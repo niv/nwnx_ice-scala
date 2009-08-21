@@ -6,15 +6,16 @@ package es.elv.kobold {
 	object GameObject {
 
 		def apply(o: NWObject): GameObject[_] = {
+			def isPC(o: NWObject) = R.proxy.getIsPC(o) &&
+				!R.proxy.getIsDMPossessed(o) &&
+				!R.proxy.getIsPossessedFamiliar(o)
+
 			o.id match {
 				case 0 => Module()
 				case 0x7f000000 => Invalid()
 				case _ => R.proxy.getObjectType(o) match {
-					case ObjectType.Creature => if (
-							R.proxy.getIsPC(o) &&
-							!R.proxy.getIsDMPossessed(o) &&
-							!R.proxy.getIsPossessedFamiliar(o)
-						) Player(o) else Creature(o)
+					case ObjectType.Creature => if (isPC(o))
+						Player(o) else Creature(o)
 					case ObjectType.Item => Item(o)
 					case ObjectType.Trigger => Trigger(o)
 					case ObjectType.Store => Store(o)
