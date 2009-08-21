@@ -144,8 +144,8 @@ package es.elv.kobold {
 		def createTrap(creator: HasActionQueue, trapType: TrapType, faction: StandardFaction,
 				onDisarm: (Event) => Unit, onTriggered: (Event) => Unit) {
 
-			CoreEvents.once(classOf[ETrapDisarmed], Some(this), onDisarm)
-			CoreEvents.once(classOf[ETrapTriggered], Some(this), onTriggered)
+			// CoreEvents.once(classOf[ETrapDisarmed], Some(this), onDisarm)
+			// CoreEvents.once(classOf[ETrapTriggered], Some(this), onTriggered)
 
 			creator assign { R.proxy.createTrapOnObject(trapType, this, faction, "trap_disarm", "trap_trigger") }
 		}

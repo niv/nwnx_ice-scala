@@ -6,7 +6,9 @@ package es.elv.kobold {
 	import scala._
 	import scala.concurrent._
 
-	final case class RawEvent(val self: NWObject, val event: String) extends Event
+	package events {
+		final case class RawEvent(val self: NWObject, val event: String) extends Event
+	}
 
 	object R extends _ClientDisp {
 		private val log = logging.Logger.get
@@ -81,7 +83,7 @@ package es.elv.kobold {
 
 			val start = System.currentTimeMillis
 
-			val e = EventSource send new RawEvent(self, ev)
+			val e = EventSource send new events.RawEvent(self, ev)
 
 			while (!delayedThunks.isEmpty && System.currentTimeMillis - start < 400)
 				delayedThunks.dequeue()()
