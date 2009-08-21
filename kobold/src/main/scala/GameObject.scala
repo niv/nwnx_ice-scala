@@ -3,20 +3,12 @@ package es.elv.kobold {
 	import net.lag._
 	import Implicits._
 		
-	object Invalid {
-		class InvalidInstance extends Wrapped[NWObject, InvalidInstance](new NWObject(0x7f000000), None)
-			with GameObject[InvalidInstance] {
-			override def toStringProperties = List()
-		}
-		val instance = new InvalidInstance
-	}
-
 	object GameObject {
 
 		def apply(o: NWObject): GameObject[_] = {
 			o.id match {
-				case 0 => Module.instance
-				case 0x7f000000 => Invalid.instance
+				case 0 => Module()
+				case 0x7f000000 => Invalid()
 				case _ => R.proxy.getObjectType(o) match {
 					case ObjectType.Creature => if (
 							R.proxy.getIsPC(o) &&
@@ -36,6 +28,7 @@ package es.elv.kobold {
 							case Weather.RainWeather => Area(o)
 							case Weather.SnowWeather => Area(o)
 							case Weather.AreaDefaultsWeather => Area(o)
+							case Weather.InvalidWeather => Invalid(o)
 					}
 					case ObjectType.All => R.proxy.getResRef(o) match {
 						case "" => Sound(o)
@@ -70,7 +63,7 @@ package es.elv.kobold {
 		val tag = P( () => R.proxy.getTag(this) )
 
 		def valid: Boolean = {
-			if (this == Module.instance)
+			if (this == Module())
 				return false
 
 			val ret = R.proxy.getIsObjectValid(this)
