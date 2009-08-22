@@ -118,41 +118,6 @@ package es.elv.kobold {
 			actions(on) += v
 		}
 
-		def nwnxSpeakToChannel(speaker: GameObject[_], channel: Int, text: String, to: GameObject[_]): Unit = {
-			if (!speaker.valid)
-				return
-
-			if (channel == 4 && !to.valid)
-				return
-
-			val t = List(speaker.wrapped.id.toHexString,
-				to.wrapped.id.toHexString, channel, text).mkString("¬")
-
-			// R.proxy.setLocalInt(speaker, "ice_chat_message_ignore", 1)
-			R.proxy.setLocalString(speaker, "NWNX!CHAT!SPEAK", t)
-		}
-
-		private def nwnxGet(obj: NWObject, lib: String, key: String, buf: Int) = {
-			R.proxy.setLocalString(obj, "NWNX!" + lib + "!" + key,
-				" " * buf)
-			R.proxy.getLocalString(obj, "NWNX!" + lib + "!" + key)
-		}
-
-		private def nwnxChatPCIn(o: Player) {
-			val id = nwnxGet(o, "CHAT", "GETID", 10).trim.toInt
-			if (id != -1) {
-				R.proxy.setLocalObject(Module(), "chatPC_" + id, o)
-				R.proxy.setLocalInt(o, "chatID", id)
-			}
-		}
-		private def nwnxChatPCOut(o: Player) {
-			val id = R.proxy.getLocalInt(o, "chatID")
-			R.proxy.deleteLocalInt(o, "chatID")
-			R.proxy.deleteLocalObject(Module(), "chatPC_" + id)
-		}
-		private def nwnxChatGetPC(id: Int): Player = {
-			Player(R.proxy.getLocalObject(Module(), "chatPC_" + id))
-		}
 
 		def listen(e: Event) = {
 			// wait for last future
@@ -226,12 +191,12 @@ package es.elv.kobold {
 
 						case "player_enter" => {
 							val player = R.proxy.getEnteringObject
-							nwnxChatPCIn(player.asInstanceOf[Player])
+							nwnx.Chat.pcIn(player.asInstanceOf[Player])
 							EventSource send new EPlayerEnter(player.asInstanceOf[GameObject[Player]])
 						}
 						case "player_leave" => {
 							val player = GameObject(R.proxy.getExitingObject)
-							nwnxChatPCOut(player.asInstanceOf[Player])
+							nwnx.Chat.pcOut(player.asInstanceOf[Player])
 							EventSource send new EPlayerLeave(player.asInstanceOf[GameObject[Player]])
 						}
 						case "player_dying" => EventSource send new EPlayerDying(R.proxy.getLastPlayerDying)
@@ -260,13 +225,12 @@ package es.elv.kobold {
 						// case "player_chat" => EventSource send new E
 
 						case "nwnx_event" => {
-							val nwnxType = nwnxGet(Module(), "EVENTS", "GET_EVENT_ID", 10).trim.toInt
-							val nwnxSubType = nwnxGet(Module(), "EVENTS", "GET_EVENT_SUBID", 10).trim.toInt
-							val nwnxItem = R.proxy.getLocalObject(Module(), "NWNX!EVENTS!ITEM")
-							val nwnxTarget = R.proxy.getLocalObject(Module(), "NWNX!EVENTS!TARGET")
+							val nwnxType = nwnx.Core.get(Module(), "EVENTS", "GET_EVENT_ID", 10).trim.toInt
+							val nwnxSubType = nwnx.Core.get(Module(), "EVENTS", "GET_EVENT_SUBID", 10).trim.toInt
+							val nwnxItem = nwnx.Core.getObject(Module(), "EVENTS", "ITEM")
+							val nwnxTarget = nwnx.Core.getObject(Module(), "EVENTS", "TARGET")
 							val nwnxPosition = {
-								val svec = nwnxGet(Module(), "EVENTS", "GET_EVENT_POSITION", 30)
-								println("got svec = " + svec)
+								val svec = nwnx.Core.get(Module(), "EVENTS", "GET_EVENT_POSITION", 30)
 								if (svec.size == 26) {
 									val (x, y, z) = (svec.substring(0, 8).toDouble, svec.substring(9, 17).toDouble,
 										svec.substring(18, 26).toDouble)
@@ -311,12 +275,12 @@ package es.elv.kobold {
 								r
 
 							} else {
-								val allText = nwnxGet(r.self, "CHAT", "TEXT", 1024) // R.proxy.getLocalString(r.self, "NWNX!CHAT!TEXT")
+								val allText = nwnx.Core.get(r.self, "CHAT", "TEXT", 1024) // R.proxy.getLocalString(r.self, "NWNX!CHAT!TEXT")
 								val modeWithDM = allText.substring(0, 2).trim.toInt
 								val mode = if (modeWithDM > 16) modeWithDM - 16 else modeWithDM
 								val toId = allText.substring(2, 12).trim.toInt
 								val text = allText.substring(12)
-								val to = if (mode == 4) nwnxChatGetPC(toId) else Invalid()
+								val to = if (mode == 4) nwnx.Chat.getPC(toId) else Invalid()
 
 								mode match {
 									case  1 => EventSource send new EChatTalk(GameObject(r.self), text)
