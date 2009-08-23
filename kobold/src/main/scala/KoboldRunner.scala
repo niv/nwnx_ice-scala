@@ -1,10 +1,23 @@
+package es.elv.kobold
+
 import NWN._
 import net.lag._
 import es.elv.kobold._
 
+object Runner {
+	def main(args: Array[String]) {
+		if (args.size < 1)
+			error("No configuration specified. Syntax: KoboldStarter my.conf")
 
-object KoboldStarter {
-	def run(endpoint: String, plugins: List[Plugin]) {
+		configgy.Configgy.configure(args(0))
+		val config = configgy.Configgy.config
+		val endpoint = config.getString("ice_endpoint", "default -p 5223")
+
+		val plugins = config.getList("plugins")
+		val pclasses = plugins.map(p =>
+			Class.forName(p).newInstance.asInstanceOf[Plugin]
+		)
+
 		val ic: Ice.Communicator = Ice.Util.initialize
 		val props = ic.getProperties
 		props.setProperty("Ice.ThreadPool.Client.Size", "2")
@@ -22,6 +35,6 @@ object KoboldStarter {
 		adapter.activate()
 
 		Kobold loadPlugin CoreEvents
-		plugins.foreach(Kobold loadPlugin _)
+		pclasses.foreach(Kobold loadPlugin _)
 	}
 }
