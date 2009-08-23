@@ -8,8 +8,8 @@ package es.elv.kobold {
 
 		class ModuleInstance extends Wrapped[NWObject, ModuleInstance](new NWObject(0), None)
 			with GameObject[ModuleInstance] with HasActionQueue
-		private val instance = new ModuleInstance
-		def apply() = new ModuleInstance
+		lazy private val instance = new ModuleInstance
+		def apply() = instance
 
 		def calendar = new DateTime(R.proxy.getCalendarYear, R.proxy.getCalendarMonth,
 			R.proxy.getCalendarDay, R.proxy.getTimeHour, R.proxy.getTimeMinute,

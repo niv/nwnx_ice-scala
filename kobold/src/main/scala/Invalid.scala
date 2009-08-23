@@ -8,7 +8,7 @@ package es.elv.kobold {
 			with GameObject[InvalidInstance] {
 			override def toStringProperties = List()
 		}
-		private val instance = new InvalidInstance
+		lazy private val instance = new InvalidInstance
 		def apply() = instance
 	}
 
