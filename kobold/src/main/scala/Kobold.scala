@@ -4,6 +4,8 @@ package es.elv.kobold {
 	abstract class Persistable[T] extends NWN.Persistable
 
 	abstract class Plugin extends Observer {
+		lazy protected val log = logging.Logger.get
+
 		def onLoad {}
 		def onUnload {}
 
