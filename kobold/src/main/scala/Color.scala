@@ -8,11 +8,17 @@ package es.elv.kobold.color {
 
 	import Color._
 
+	/**
+		This class describes a colour suitable for NWN inline text colouring.
+	*/
 	case class Color(red: Int, green: Int, blue: Int) {
 		val r = if (red > Color.max) Color.max else if (red < Color.min) Color.min else red
 		val g = if (green > Color.max) Color.max else if (green < Color.min) Color.min else green
 		val b = if (blue > Color.max) Color.max else if (blue < Color.min) Color.min else blue
 
+		/**
+			Colourise the enclosed text with this Color.
+		*/
 		def apply(enclose: String) = toString + enclose + "</c>"
 
 		def darken(by: Int) = Color(r - by, g - by, b - by)
