@@ -94,8 +94,7 @@ package es.elv.kobold {
 		case class EChatDM(val speaker: GameObject[_], val text: String) extends GameEvent
 	}
 
-	class CoreEvents extends Plugin {
-		private val log = logging.Logger.get
+	object CoreEvents extends Plugin {
 		import scala.concurrent.ops.future
 		import scala.collection._
 		import events._
