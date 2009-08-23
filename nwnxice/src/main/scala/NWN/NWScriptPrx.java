@@ -560,19 +560,19 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWEffect effectAreaOfEffect(int nAreaEffectId, String sOnEnterScript, String sHeartbeatScript, String sOnExitScript, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public NWEffect effectAttackDecrease(int nPenalty, int nModifierType)
+    public NWEffect effectAttackDecrease(int nPenalty, AttackBonus tAttackBonus)
         throws NotInContextException;
-    public NWEffect effectAttackDecrease(int nPenalty, int nModifierType, java.util.Map<String, String> __ctx)
-        throws NotInContextException;
-
-    public NWEffect effectAttackIncrease(int nBonus, int nModifierType)
-        throws NotInContextException;
-    public NWEffect effectAttackIncrease(int nBonus, int nModifierType, java.util.Map<String, String> __ctx)
+    public NWEffect effectAttackDecrease(int nPenalty, AttackBonus tAttackBonus, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public NWEffect effectBeam(int nBeamVisualEffect, NWObject oEffector, int nBodyPart, boolean bMissEffect)
+    public NWEffect effectAttackIncrease(int nBonus, AttackBonus tAttackBonus)
         throws NotInContextException;
-    public NWEffect effectBeam(int nBeamVisualEffect, NWObject oEffector, int nBodyPart, boolean bMissEffect, java.util.Map<String, String> __ctx)
+    public NWEffect effectAttackIncrease(int nBonus, AttackBonus tAttackBonus, java.util.Map<String, String> __ctx)
+        throws NotInContextException;
+
+    public NWEffect effectBeam(int nBeamVisualEffect, NWObject oEffector, CreaturePart tCreaturePart, boolean bMissEffect)
+        throws NotInContextException;
+    public NWEffect effectBeam(int nBeamVisualEffect, NWObject oEffector, CreaturePart tCreaturePart, boolean bMissEffect, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public NWEffect effectBlindness()
@@ -740,9 +740,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWEffect effectHitPointChangeWhenDying(double fHitPointChangePerRound, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public NWEffect effectImmunity(int nImmunityType)
+    public NWEffect effectImmunity(ImmunityType tImmunityType)
         throws NotInContextException;
-    public NWEffect effectImmunity(int nImmunityType, java.util.Map<String, String> __ctx)
+    public NWEffect effectImmunity(ImmunityType tImmunityType, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public NWEffect effectInvisibility(int nInvisibilityType)
@@ -1194,9 +1194,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public boolean getCommandable(NWObject oTarget, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public int getCreatureBodyPart(int nPart, NWObject oCreature)
+    public int getCreatureBodyPart(CreaturePart tCreaturePart, NWObject oCreature)
         throws NotInContextException;
-    public int getCreatureBodyPart(int nPart, NWObject oCreature, java.util.Map<String, String> __ctx)
+    public int getCreatureBodyPart(CreaturePart tCreaturePart, NWObject oCreature, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public CreatureSize getCreatureSize(NWObject oCreature)
@@ -1641,9 +1641,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public boolean getIsFriend(NWObject oTarget, NWObject oSource, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public boolean getIsImmune(NWObject oCreature, int nImmunityType, NWObject oVersus)
+    public boolean getIsImmune(NWObject oCreature, ImmunityType tImmunityType, NWObject oVersus)
         throws NotInContextException;
-    public boolean getIsImmune(NWObject oCreature, int nImmunityType, NWObject oVersus, java.util.Map<String, String> __ctx)
+    public boolean getIsImmune(NWObject oCreature, ImmunityType tImmunityType, NWObject oVersus, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public boolean getIsInCombat(NWObject oCreature)
@@ -2882,9 +2882,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWItemProperty itemPropertyHolyAvenger(java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public NWItemProperty itemPropertyImmunityMisc(int nImmunityType)
+    public NWItemProperty itemPropertyImmunityMisc(IPMiscImmunityType tIPMiscImmunityType)
         throws NotInContextException;
-    public NWItemProperty itemPropertyImmunityMisc(int nImmunityType, java.util.Map<String, String> __ctx)
+    public NWItemProperty itemPropertyImmunityMisc(IPMiscImmunityType tIPMiscImmunityType, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public NWItemProperty itemPropertyImmunityToSpellLevel(int nLevel)
@@ -2997,9 +2997,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWItemProperty itemPropertySpecialWalk(int nWalkType, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public NWItemProperty itemPropertySpellImmunitySchool(int nSchool)
+    public NWItemProperty itemPropertySpellImmunitySchool(IPSpellSchool tIPSpellSchool)
         throws NotInContextException;
-    public NWItemProperty itemPropertySpellImmunitySchool(int nSchool, java.util.Map<String, String> __ctx)
+    public NWItemProperty itemPropertySpellImmunitySchool(IPSpellSchool tIPSpellSchool, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public NWItemProperty itemPropertySpellImmunitySpecific(int nSpell)
@@ -3373,9 +3373,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void setCreatureAppearanceType(NWObject oCreature, int nAppearanceType, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void setCreatureBodyPart(int nPart, int nModelNumber, NWObject oCreature)
+    public void setCreatureBodyPart(CreaturePart tCreaturePart, int nModelNumber, NWObject oCreature)
         throws NotInContextException;
-    public void setCreatureBodyPart(int nPart, int nModelNumber, NWObject oCreature, java.util.Map<String, String> __ctx)
+    public void setCreatureBodyPart(CreaturePart tCreaturePart, int nModelNumber, NWObject oCreature, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void setCreatureTailType(int nTailType, NWObject oCreature)

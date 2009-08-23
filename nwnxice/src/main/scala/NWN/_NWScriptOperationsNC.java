@@ -341,13 +341,13 @@ public interface _NWScriptOperationsNC
     NWEffect effectAreaOfEffect(int nAreaEffectId, String sOnEnterScript, String sHeartbeatScript, String sOnExitScript)
         throws NotInContextException;
 
-    NWEffect effectAttackDecrease(int nPenalty, int nModifierType)
+    NWEffect effectAttackDecrease(int nPenalty, AttackBonus tAttackBonus)
         throws NotInContextException;
 
-    NWEffect effectAttackIncrease(int nBonus, int nModifierType)
+    NWEffect effectAttackIncrease(int nBonus, AttackBonus tAttackBonus)
         throws NotInContextException;
 
-    NWEffect effectBeam(int nBeamVisualEffect, NWObject oEffector, int nBodyPart, boolean bMissEffect)
+    NWEffect effectBeam(int nBeamVisualEffect, NWObject oEffector, CreaturePart tCreaturePart, boolean bMissEffect)
         throws NotInContextException;
 
     NWEffect effectBlindness()
@@ -449,7 +449,7 @@ public interface _NWScriptOperationsNC
     NWEffect effectHitPointChangeWhenDying(double fHitPointChangePerRound)
         throws NotInContextException;
 
-    NWEffect effectImmunity(int nImmunityType)
+    NWEffect effectImmunity(ImmunityType tImmunityType)
         throws NotInContextException;
 
     NWEffect effectInvisibility(int nInvisibilityType)
@@ -721,7 +721,7 @@ public interface _NWScriptOperationsNC
     boolean getCommandable(NWObject oTarget)
         throws NotInContextException;
 
-    int getCreatureBodyPart(int nPart, NWObject oCreature)
+    int getCreatureBodyPart(CreaturePart tCreaturePart, NWObject oCreature)
         throws NotInContextException;
 
     CreatureSize getCreatureSize(NWObject oCreature)
@@ -988,7 +988,7 @@ public interface _NWScriptOperationsNC
     boolean getIsFriend(NWObject oTarget, NWObject oSource)
         throws NotInContextException;
 
-    boolean getIsImmune(NWObject oCreature, int nImmunityType, NWObject oVersus)
+    boolean getIsImmune(NWObject oCreature, ImmunityType tImmunityType, NWObject oVersus)
         throws NotInContextException;
 
     boolean getIsInCombat(NWObject oCreature)
@@ -1731,7 +1731,7 @@ public interface _NWScriptOperationsNC
     NWItemProperty itemPropertyHolyAvenger()
         throws NotInContextException;
 
-    NWItemProperty itemPropertyImmunityMisc(int nImmunityType)
+    NWItemProperty itemPropertyImmunityMisc(IPMiscImmunityType tIPMiscImmunityType)
         throws NotInContextException;
 
     NWItemProperty itemPropertyImmunityToSpellLevel(int nLevel)
@@ -1800,7 +1800,7 @@ public interface _NWScriptOperationsNC
     NWItemProperty itemPropertySpecialWalk(int nWalkType)
         throws NotInContextException;
 
-    NWItemProperty itemPropertySpellImmunitySchool(int nSchool)
+    NWItemProperty itemPropertySpellImmunitySchool(IPSpellSchool tIPSpellSchool)
         throws NotInContextException;
 
     NWItemProperty itemPropertySpellImmunitySpecific(int nSpell)
@@ -2025,7 +2025,7 @@ public interface _NWScriptOperationsNC
     void setCreatureAppearanceType(NWObject oCreature, int nAppearanceType)
         throws NotInContextException;
 
-    void setCreatureBodyPart(int nPart, int nModelNumber, NWObject oCreature)
+    void setCreatureBodyPart(CreaturePart tCreaturePart, int nModelNumber, NWObject oCreature)
         throws NotInContextException;
 
     void setCreatureTailType(int nTailType, NWObject oCreature)

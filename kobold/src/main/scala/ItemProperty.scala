@@ -54,7 +54,7 @@ package es.elv.kobold {
 		def haste: ItemProperty = R.proxy.itemPropertyHaste
 		def healersKit(modifier: Int): ItemProperty = R.proxy.itemPropertyHealersKit(modifier)
 		def holyAvenger: ItemProperty = R.proxy.itemPropertyHolyAvenger
-		def immunityMisc(immunityType: Int): ItemProperty = R.proxy.itemPropertyImmunityMisc(immunityType)
+		def immunityMisc(immunity: IPMiscImmunityType): ItemProperty = R.proxy.itemPropertyImmunityMisc(immunity)
 		def immunityToSpellLevel(level: Int): ItemProperty = R.proxy.itemPropertyImmunityToSpellLevel(level)
 		def improvedEvasion: ItemProperty = R.proxy.itemPropertyImprovedEvasion
 		def keen: ItemProperty = R.proxy.itemPropertyKeen
@@ -77,7 +77,7 @@ package es.elv.kobold {
 		def regeneration(regenAmount: Int): ItemProperty = R.proxy.itemPropertyRegeneration(regenAmount)
 		def skillBonus(skill: Int, bonus: Int): ItemProperty = R.proxy.itemPropertySkillBonus(skill, bonus)
 		def specialWalk(walkType: Int): ItemProperty = R.proxy.itemPropertySpecialWalk(walkType)
-		def spellImmunitySchool(school: Int): ItemProperty = R.proxy.itemPropertySpellImmunitySchool(school)
+		def spellImmunitySchool(school: IPSpellSchool): ItemProperty = R.proxy.itemPropertySpellImmunitySchool(school)
 		def spellImmunitySpecific(spell: Int): ItemProperty = R.proxy.itemPropertySpellImmunitySpecific(spell)
 		def thievesTools(modifier: Int): ItemProperty = R.proxy.itemPropertyThievesTools(modifier)
 		def trap(trapLevel: Int, trapType: IPTrapType): ItemProperty = R.proxy.itemPropertyTrap(trapLevel, trapType)
@@ -100,7 +100,7 @@ package es.elv.kobold {
 		val costTable = wrap.tCostTable
 		val costTableValue = wrap.tCostTableValue
 
-		
+
 		override def toString = {
 			val typeStrRef = TwoDA("itempropdef", "Name", iprpType)
 			val typeStr = if (typeStrRef != "") Tlk(typeStrRef.toInt) else "t=" + iprpType
@@ -108,11 +108,11 @@ package es.elv.kobold {
 			val subTypeStr = (if (subTypeTable != "")
 				Tlk(TwoDA(subTypeTable, "Name", iprpSubType).toInt) // + " (" + iprpSubType.toString + ")"
 			else "")
-			
-			val param1Str = (if (param1 > -1 && param1 != 255) 
+
+			val param1Str = (if (param1 > -1 && param1 != 255)
 				Tlk(TwoDA(TwoDA("iprp_paramtable", "TableResRef", param1), "Name", param1Value).toInt) // + " (" + param1.toString + "=" + param1Value.toString + ")"
 			else "")
-			
+
 			val costTableStr = (if (costTable > 0)
 				Tlk(TwoDA(TwoDA("iprp_costtable", "Name", costTable), "Name", costTableValue).toInt) // + " (" +  costTable.toString + "=" + costTableValue.toString + ")"
 			else "")

@@ -798,24 +798,24 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final NWEffect
-    effectAttackDecrease(int nPenalty, int nModifierType)
+    effectAttackDecrease(int nPenalty, AttackBonus tAttackBonus)
         throws NotInContextException
     {
-        return effectAttackDecrease(nPenalty, nModifierType, null);
+        return effectAttackDecrease(nPenalty, tAttackBonus, null);
     }
 
     public final NWEffect
-    effectAttackIncrease(int nBonus, int nModifierType)
+    effectAttackIncrease(int nBonus, AttackBonus tAttackBonus)
         throws NotInContextException
     {
-        return effectAttackIncrease(nBonus, nModifierType, null);
+        return effectAttackIncrease(nBonus, tAttackBonus, null);
     }
 
     public final NWEffect
-    effectBeam(int nBeamVisualEffect, NWObject oEffector, int nBodyPart, boolean bMissEffect)
+    effectBeam(int nBeamVisualEffect, NWObject oEffector, CreaturePart tCreaturePart, boolean bMissEffect)
         throws NotInContextException
     {
-        return effectBeam(nBeamVisualEffect, oEffector, nBodyPart, bMissEffect, null);
+        return effectBeam(nBeamVisualEffect, oEffector, tCreaturePart, bMissEffect, null);
     }
 
     public final NWEffect
@@ -1050,10 +1050,10 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final NWEffect
-    effectImmunity(int nImmunityType)
+    effectImmunity(ImmunityType tImmunityType)
         throws NotInContextException
     {
-        return effectImmunity(nImmunityType, null);
+        return effectImmunity(tImmunityType, null);
     }
 
     public final NWEffect
@@ -1682,10 +1682,10 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final int
-    getCreatureBodyPart(int nPart, NWObject oCreature)
+    getCreatureBodyPart(CreaturePart tCreaturePart, NWObject oCreature)
         throws NotInContextException
     {
-        return getCreatureBodyPart(nPart, oCreature, null);
+        return getCreatureBodyPart(tCreaturePart, oCreature, null);
     }
 
     public final CreatureSize
@@ -2305,10 +2305,10 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final boolean
-    getIsImmune(NWObject oCreature, int nImmunityType, NWObject oVersus)
+    getIsImmune(NWObject oCreature, ImmunityType tImmunityType, NWObject oVersus)
         throws NotInContextException
     {
-        return getIsImmune(oCreature, nImmunityType, oVersus, null);
+        return getIsImmune(oCreature, tImmunityType, oVersus, null);
     }
 
     public final boolean
@@ -4041,10 +4041,10 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final NWItemProperty
-    itemPropertyImmunityMisc(int nImmunityType)
+    itemPropertyImmunityMisc(IPMiscImmunityType tIPMiscImmunityType)
         throws NotInContextException
     {
-        return itemPropertyImmunityMisc(nImmunityType, null);
+        return itemPropertyImmunityMisc(tIPMiscImmunityType, null);
     }
 
     public final NWItemProperty
@@ -4202,10 +4202,10 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final NWItemProperty
-    itemPropertySpellImmunitySchool(int nSchool)
+    itemPropertySpellImmunitySchool(IPSpellSchool tIPSpellSchool)
         throws NotInContextException
     {
-        return itemPropertySpellImmunitySchool(nSchool, null);
+        return itemPropertySpellImmunitySchool(tIPSpellSchool, null);
     }
 
     public final NWItemProperty
@@ -4729,10 +4729,10 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    setCreatureBodyPart(int nPart, int nModelNumber, NWObject oCreature)
+    setCreatureBodyPart(CreaturePart tCreaturePart, int nModelNumber, NWObject oCreature)
         throws NotInContextException
     {
-        setCreatureBodyPart(nPart, nModelNumber, oCreature, null);
+        setCreatureBodyPart(tCreaturePart, nModelNumber, oCreature, null);
     }
 
     public final void
@@ -8288,13 +8288,13 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __is.startReadEncaps();
         int nPenalty;
         nPenalty = __is.readInt();
-        int nModifierType;
-        nModifierType = __is.readInt();
+        AttackBonus tAttackBonus;
+        tAttackBonus = AttackBonus.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            NWEffect __ret = __obj.effectAttackDecrease(nPenalty, nModifierType, __current);
+            NWEffect __ret = __obj.effectAttackDecrease(nPenalty, tAttackBonus, __current);
             __ret.__write(__os);
             return Ice.DispatchStatus.DispatchOK;
         }
@@ -8313,13 +8313,13 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __is.startReadEncaps();
         int nBonus;
         nBonus = __is.readInt();
-        int nModifierType;
-        nModifierType = __is.readInt();
+        AttackBonus tAttackBonus;
+        tAttackBonus = AttackBonus.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            NWEffect __ret = __obj.effectAttackIncrease(nBonus, nModifierType, __current);
+            NWEffect __ret = __obj.effectAttackIncrease(nBonus, tAttackBonus, __current);
             __ret.__write(__os);
             return Ice.DispatchStatus.DispatchOK;
         }
@@ -8341,15 +8341,15 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oEffector;
         oEffector = new NWObject();
         oEffector.__read(__is);
-        int nBodyPart;
-        nBodyPart = __is.readInt();
+        CreaturePart tCreaturePart;
+        tCreaturePart = CreaturePart.__read(__is);
         boolean bMissEffect;
         bMissEffect = __is.readBool();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            NWEffect __ret = __obj.effectBeam(nBeamVisualEffect, oEffector, nBodyPart, bMissEffect, __current);
+            NWEffect __ret = __obj.effectBeam(nBeamVisualEffect, oEffector, tCreaturePart, bMissEffect, __current);
             __ret.__write(__os);
             return Ice.DispatchStatus.DispatchOK;
         }
@@ -9106,13 +9106,13 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __checkMode(Ice.OperationMode.Idempotent, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
-        int nImmunityType;
-        nImmunityType = __is.readInt();
+        ImmunityType tImmunityType;
+        tImmunityType = ImmunityType.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            NWEffect __ret = __obj.effectImmunity(nImmunityType, __current);
+            NWEffect __ret = __obj.effectImmunity(tImmunityType, __current);
             __ret.__write(__os);
             return Ice.DispatchStatus.DispatchOK;
         }
@@ -11246,8 +11246,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __checkMode(Ice.OperationMode.Idempotent, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
-        int nPart;
-        nPart = __is.readInt();
+        CreaturePart tCreaturePart;
+        tCreaturePart = CreaturePart.__read(__is);
         NWObject oCreature;
         oCreature = new NWObject();
         oCreature.__read(__is);
@@ -11255,7 +11255,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            int __ret = __obj.getCreatureBodyPart(nPart, oCreature, __current);
+            int __ret = __obj.getCreatureBodyPart(tCreaturePart, oCreature, __current);
             __os.writeInt(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
@@ -13379,8 +13379,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oCreature;
         oCreature = new NWObject();
         oCreature.__read(__is);
-        int nImmunityType;
-        nImmunityType = __is.readInt();
+        ImmunityType tImmunityType;
+        tImmunityType = ImmunityType.__read(__is);
         NWObject oVersus;
         oVersus = new NWObject();
         oVersus.__read(__is);
@@ -13388,7 +13388,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            boolean __ret = __obj.getIsImmune(oCreature, nImmunityType, oVersus, __current);
+            boolean __ret = __obj.getIsImmune(oCreature, tImmunityType, oVersus, __current);
             __os.writeBool(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
@@ -19099,13 +19099,13 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __checkMode(Ice.OperationMode.Idempotent, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
-        int nImmunityType;
-        nImmunityType = __is.readInt();
+        IPMiscImmunityType tIPMiscImmunityType;
+        tIPMiscImmunityType = IPMiscImmunityType.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            NWItemProperty __ret = __obj.itemPropertyImmunityMisc(nImmunityType, __current);
+            NWItemProperty __ret = __obj.itemPropertyImmunityMisc(tIPMiscImmunityType, __current);
             __ret.__write(__os);
             return Ice.DispatchStatus.DispatchOK;
         }
@@ -19632,13 +19632,13 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __checkMode(Ice.OperationMode.Idempotent, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
-        int nSchool;
-        nSchool = __is.readInt();
+        IPSpellSchool tIPSpellSchool;
+        tIPSpellSchool = IPSpellSchool.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            NWItemProperty __ret = __obj.itemPropertySpellImmunitySchool(nSchool, __current);
+            NWItemProperty __ret = __obj.itemPropertySpellImmunitySchool(tIPSpellSchool, __current);
             __ret.__write(__os);
             return Ice.DispatchStatus.DispatchOK;
         }
@@ -21509,8 +21509,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __checkMode(Ice.OperationMode.Idempotent, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
-        int nPart;
-        nPart = __is.readInt();
+        CreaturePart tCreaturePart;
+        tCreaturePart = CreaturePart.__read(__is);
         int nModelNumber;
         nModelNumber = __is.readInt();
         NWObject oCreature;
@@ -21520,7 +21520,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            __obj.setCreatureBodyPart(nPart, nModelNumber, oCreature, __current);
+            __obj.setCreatureBodyPart(tCreaturePart, nModelNumber, oCreature, __current);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)

@@ -341,13 +341,13 @@ public interface _NWScriptOperations
     NWEffect effectAreaOfEffect(int nAreaEffectId, String sOnEnterScript, String sHeartbeatScript, String sOnExitScript, Ice.Current __current)
         throws NotInContextException;
 
-    NWEffect effectAttackDecrease(int nPenalty, int nModifierType, Ice.Current __current)
+    NWEffect effectAttackDecrease(int nPenalty, AttackBonus tAttackBonus, Ice.Current __current)
         throws NotInContextException;
 
-    NWEffect effectAttackIncrease(int nBonus, int nModifierType, Ice.Current __current)
+    NWEffect effectAttackIncrease(int nBonus, AttackBonus tAttackBonus, Ice.Current __current)
         throws NotInContextException;
 
-    NWEffect effectBeam(int nBeamVisualEffect, NWObject oEffector, int nBodyPart, boolean bMissEffect, Ice.Current __current)
+    NWEffect effectBeam(int nBeamVisualEffect, NWObject oEffector, CreaturePart tCreaturePart, boolean bMissEffect, Ice.Current __current)
         throws NotInContextException;
 
     NWEffect effectBlindness(Ice.Current __current)
@@ -449,7 +449,7 @@ public interface _NWScriptOperations
     NWEffect effectHitPointChangeWhenDying(double fHitPointChangePerRound, Ice.Current __current)
         throws NotInContextException;
 
-    NWEffect effectImmunity(int nImmunityType, Ice.Current __current)
+    NWEffect effectImmunity(ImmunityType tImmunityType, Ice.Current __current)
         throws NotInContextException;
 
     NWEffect effectInvisibility(int nInvisibilityType, Ice.Current __current)
@@ -721,7 +721,7 @@ public interface _NWScriptOperations
     boolean getCommandable(NWObject oTarget, Ice.Current __current)
         throws NotInContextException;
 
-    int getCreatureBodyPart(int nPart, NWObject oCreature, Ice.Current __current)
+    int getCreatureBodyPart(CreaturePart tCreaturePart, NWObject oCreature, Ice.Current __current)
         throws NotInContextException;
 
     CreatureSize getCreatureSize(NWObject oCreature, Ice.Current __current)
@@ -988,7 +988,7 @@ public interface _NWScriptOperations
     boolean getIsFriend(NWObject oTarget, NWObject oSource, Ice.Current __current)
         throws NotInContextException;
 
-    boolean getIsImmune(NWObject oCreature, int nImmunityType, NWObject oVersus, Ice.Current __current)
+    boolean getIsImmune(NWObject oCreature, ImmunityType tImmunityType, NWObject oVersus, Ice.Current __current)
         throws NotInContextException;
 
     boolean getIsInCombat(NWObject oCreature, Ice.Current __current)
@@ -1731,7 +1731,7 @@ public interface _NWScriptOperations
     NWItemProperty itemPropertyHolyAvenger(Ice.Current __current)
         throws NotInContextException;
 
-    NWItemProperty itemPropertyImmunityMisc(int nImmunityType, Ice.Current __current)
+    NWItemProperty itemPropertyImmunityMisc(IPMiscImmunityType tIPMiscImmunityType, Ice.Current __current)
         throws NotInContextException;
 
     NWItemProperty itemPropertyImmunityToSpellLevel(int nLevel, Ice.Current __current)
@@ -1800,7 +1800,7 @@ public interface _NWScriptOperations
     NWItemProperty itemPropertySpecialWalk(int nWalkType, Ice.Current __current)
         throws NotInContextException;
 
-    NWItemProperty itemPropertySpellImmunitySchool(int nSchool, Ice.Current __current)
+    NWItemProperty itemPropertySpellImmunitySchool(IPSpellSchool tIPSpellSchool, Ice.Current __current)
         throws NotInContextException;
 
     NWItemProperty itemPropertySpellImmunitySpecific(int nSpell, Ice.Current __current)
@@ -2025,7 +2025,7 @@ public interface _NWScriptOperations
     void setCreatureAppearanceType(NWObject oCreature, int nAppearanceType, Ice.Current __current)
         throws NotInContextException;
 
-    void setCreatureBodyPart(int nPart, int nModelNumber, NWObject oCreature, Ice.Current __current)
+    void setCreatureBodyPart(CreaturePart tCreaturePart, int nModelNumber, NWObject oCreature, Ice.Current __current)
         throws NotInContextException;
 
     void setCreatureTailType(int nTailType, NWObject oCreature, Ice.Current __current)

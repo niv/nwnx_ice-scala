@@ -73,7 +73,7 @@ package es.elv.kobold {
 		def death(spectacularDeath: Boolean, displayFeedback: Boolean): Effect = R.proxy.effectDeath(spectacularDeath, displayFeedback)
 		def spellImmunityAllSpells: Effect = spellImmunity(-1)
 		def spellImmunity(spell: Int): Effect = R.proxy.effectSpellImmunity(spell)
-		
+
 		def damage(amount: Int, damageType: DamageType, damagePower: DamagePower): Effect =
 			R.proxy.effectDamage(amount, damageType, damagePower)
 		def damageReduction(amount: Int, damagePower: DamagePower, limit: Int): Effect = R.proxy.effectDamageReduction(amount, damagePower, limit)
@@ -83,33 +83,40 @@ package es.elv.kobold {
 		def damageResistance(damageType: DamageType, amount: Int, limit: Int): Effect = R.proxy.effectDamageResistance(damageType, amount, limit)
 		def damageImmunityDecrease(damageType: DamageType, percent: Int): Effect = R.proxy.effectDamageImmunityDecrease(damageType, percent)
 		def damageImmunityIncrease(damageType: DamageType, percent: Int): Effect = R.proxy.effectDamageImmunityIncrease(damageType, percent)
-		
+
 		def summonCreature(creatureResRef: String, visualEffectId: Int, fDelaySeconds: Double, useAppearAnimation: Boolean): Effect =
 			R.proxy.effectSummonCreature(creatureResRef, visualEffectId, fDelaySeconds, useAppearAnimation)
 		def swarm(looping: Boolean, t1: String, t2: String, t3: String, t4: String): Effect = R.proxy.effectSwarm(looping, t1, t2, t3, t4)
-		
+
 		def ACIncrease(value: Int, modifyType: ACModifyType, damageType: DamageType): Effect =
 			R.proxy.effectACIncrease(value, modifyType, damageType)
 		def ACDecrease(value: Int, modifyType: ACModifyType, damageType: DamageType): Effect =
 			R.proxy.effectACDecrease(value, modifyType, damageType)
-		
+
 		def skillIncrease(skill: Int, value: Int): Effect = R.proxy.effectSkillIncrease(skill, value)
 		def skillDecrease(skill: Int, value: Int): Effect = R.proxy.effectSkillDecrease(skill, value)
-		
+
 		def abilityIncrease(ability: Ability, amount: Int): Effect = R.proxy.effectAbilityIncrease(ability, amount)
 		def abilityDecrease(ability: Ability, amount: Int): Effect = R.proxy.effectAbilityDecrease(ability, amount)
+		def attackIncrease(amount: Int, modifier: AttackBonus): Effect = R.proxy.effectAttackIncrease(amount, modifier)
+		def attackDecrease(amount: Int, modifier: AttackBonus): Effect = R.proxy.effectAttackDecrease(amount, modifier)
+
+		/** Uses the callers' creature level. */
+		// def dispelMagicAll: Effect = dispelMagicAll(0)
+
+		def dispelMagicAll(casterLevel: Int): Effect = R.proxy.effectDispelMagicAll(casterLevel)
+		def dispelMagicBest(casterLevel: Int): Effect = R.proxy.effectDispelMagicBest(casterLevel)
+		def poison(poison: Int): Effect = R.proxy.effectPoison(poison)
+		def disease(disease: Int): Effect = R.proxy.effectDisease(disease)
+		def immunity(immunity: ImmunityType): Effect = R.proxy.effectImmunity(immunity)
+
+		def aoe(id: Int): Effect = aoe(id, "", "", "")
+		def aoe(id: Int, enterScript: String, hbScript: String, exitScript: String): Effect =
+			R.proxy.effectAreaOfEffect(id, enterScript, hbScript, exitScript)
 
 		/*
 		TODO
-		def areaOfEffect(nAreaEffectId: Int, string sOnEnterScript="", string sHeartbeatScript="", string sOnExitScript=""): Effect = R.proxy.effectAreaOfEffect
 		def beam(nBeamVisualEffect: Int, object oEffector, nBodyPart: Int, bMissEffect: Int=FALSE): Effect = R.proxy.effectBeam
-		def poison(nPoisonType: Int): Effect = R.proxy.effectPoison(nPoisonType)
-		def disease(nDiseaseType: Int): Effect = R.proxy.effectDisease(nDiseaseType)
-		def immunity(nImmunityType: Int): Effect = R.proxy.effectImmunity
-		def attackIncrease(nBonus: Int, nModifierType: Int=ATTACK_BONUS_MISC): Effect = R.proxy.effectAttackIncrease
-		def attackDecrease(nPenalty: Int, nModifierType: Int=ATTACK_BONUS_MISC): Effect = R.proxy.effectAttackDecrease
-		def dispelMagicAll(nCasterLevel: Int=USE_CREATURE_LEVEL): Effect = R.proxy.effectDispelMagicAll
-		def dispelMagicBest(nCasterLevel: Int=USE_CREATURE_LEVEL): Effect = R.proxy.effectDispelMagicBest
 		*/
 	}
 
@@ -121,15 +128,14 @@ package es.elv.kobold {
 		val durationType = wrap.tDurationType
 		val iconShown = wrap.tIconShown
 
-		// def spellId = wrapped.spellId
-		// def spellId_=(id: Long) = wrapped.spellId = id
+		val spellId = R.proxy.getEffectSpellId(this)
 
 		val creator = GameObject(wrap.tCreator) // R.proxy.getEffectCreator(this))
-	
+
 		def magical: Effect = R.proxy.magicalEffect(this)
 		def extraordinary: Effect = R.proxy.extraordinaryEffect(this)
 		def supernatural: Effect = R.proxy.supernaturalEffect(this)
-		
+
 		def link(to: Effect): Effect = R.proxy.effectLinkEffects(to, this)
 
 		override def toString =

@@ -6624,7 +6624,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWEffect
-    effectAttackDecrease(final int nPenalty, final int nModifierType, java.util.Map<String, String> __ctx)
+    effectAttackDecrease(final int nPenalty, final AttackBonus tAttackBonus, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -6649,7 +6649,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
                     }
                     try
                     {
-                        __result.value = __servant.effectAttackDecrease(nPenalty, nModifierType, __current);
+                        __result.value = __servant.effectAttackDecrease(nPenalty, tAttackBonus, __current);
                         return Ice.DispatchStatus.DispatchOK;
                     }
                     catch(Ice.UserException __ex)
@@ -6690,7 +6690,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWEffect
-    effectAttackIncrease(final int nBonus, final int nModifierType, java.util.Map<String, String> __ctx)
+    effectAttackIncrease(final int nBonus, final AttackBonus tAttackBonus, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -6715,7 +6715,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
                     }
                     try
                     {
-                        __result.value = __servant.effectAttackIncrease(nBonus, nModifierType, __current);
+                        __result.value = __servant.effectAttackIncrease(nBonus, tAttackBonus, __current);
                         return Ice.DispatchStatus.DispatchOK;
                     }
                     catch(Ice.UserException __ex)
@@ -6756,7 +6756,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWEffect
-    effectBeam(final int nBeamVisualEffect, final NWObject oEffector, final int nBodyPart, final boolean bMissEffect, java.util.Map<String, String> __ctx)
+    effectBeam(final int nBeamVisualEffect, final NWObject oEffector, final CreaturePart tCreaturePart, final boolean bMissEffect, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -6781,7 +6781,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
                     }
                     try
                     {
-                        __result.value = __servant.effectBeam(nBeamVisualEffect, oEffector, nBodyPart, bMissEffect, __current);
+                        __result.value = __servant.effectBeam(nBeamVisualEffect, oEffector, tCreaturePart, bMissEffect, __current);
                         return Ice.DispatchStatus.DispatchOK;
                     }
                     catch(Ice.UserException __ex)
@@ -9000,7 +9000,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWEffect
-    effectImmunity(final int nImmunityType, java.util.Map<String, String> __ctx)
+    effectImmunity(final ImmunityType tImmunityType, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -9025,7 +9025,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
                     }
                     try
                     {
-                        __result.value = __servant.effectImmunity(nImmunityType, __current);
+                        __result.value = __servant.effectImmunity(tImmunityType, __current);
                         return Ice.DispatchStatus.DispatchOK;
                     }
                     catch(Ice.UserException __ex)
@@ -14920,7 +14920,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public int
-    getCreatureBodyPart(final int nPart, final NWObject oCreature, java.util.Map<String, String> __ctx)
+    getCreatureBodyPart(final CreaturePart tCreaturePart, final NWObject oCreature, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -14945,7 +14945,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
                     }
                     try
                     {
-                        __result.value = __servant.getCreatureBodyPart(nPart, oCreature, __current);
+                        __result.value = __servant.getCreatureBodyPart(tCreaturePart, oCreature, __current);
                         return Ice.DispatchStatus.DispatchOK;
                     }
                     catch(Ice.UserException __ex)
@@ -20763,7 +20763,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public boolean
-    getIsImmune(final NWObject oCreature, final int nImmunityType, final NWObject oVersus, java.util.Map<String, String> __ctx)
+    getIsImmune(final NWObject oCreature, final ImmunityType tImmunityType, final NWObject oVersus, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -20788,7 +20788,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
                     }
                     try
                     {
-                        __result.value = __servant.getIsImmune(oCreature, nImmunityType, oVersus, __current);
+                        __result.value = __servant.getIsImmune(oCreature, tImmunityType, oVersus, __current);
                         return Ice.DispatchStatus.DispatchOK;
                     }
                     catch(Ice.UserException __ex)
@@ -37083,7 +37083,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWItemProperty
-    itemPropertyImmunityMisc(final int nImmunityType, java.util.Map<String, String> __ctx)
+    itemPropertyImmunityMisc(final IPMiscImmunityType tIPMiscImmunityType, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -37108,7 +37108,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
                     }
                     try
                     {
-                        __result.value = __servant.itemPropertyImmunityMisc(nImmunityType, __current);
+                        __result.value = __servant.itemPropertyImmunityMisc(tIPMiscImmunityType, __current);
                         return Ice.DispatchStatus.DispatchOK;
                     }
                     catch(Ice.UserException __ex)
@@ -38601,7 +38601,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWItemProperty
-    itemPropertySpellImmunitySchool(final int nSchool, java.util.Map<String, String> __ctx)
+    itemPropertySpellImmunitySchool(final IPSpellSchool tIPSpellSchool, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -38626,7 +38626,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
                     }
                     try
                     {
-                        __result.value = __servant.itemPropertySpellImmunitySchool(nSchool, __current);
+                        __result.value = __servant.itemPropertySpellImmunitySchool(tIPSpellSchool, __current);
                         return Ice.DispatchStatus.DispatchOK;
                     }
                     catch(Ice.UserException __ex)
@@ -43397,7 +43397,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    setCreatureBodyPart(final int nPart, final int nModelNumber, final NWObject oCreature, java.util.Map<String, String> __ctx)
+    setCreatureBodyPart(final CreaturePart tCreaturePart, final int nModelNumber, final NWObject oCreature, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -43421,7 +43421,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
                     }
                     try
                     {
-                        __servant.setCreatureBodyPart(nPart, nModelNumber, oCreature, __current);
+                        __servant.setCreatureBodyPart(tCreaturePart, nModelNumber, oCreature, __current);
                         return Ice.DispatchStatus.DispatchOK;
                     }
                     catch(Ice.UserException __ex)

@@ -4776,22 +4776,22 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWEffect
-    effectAttackDecrease(int nPenalty, int nModifierType)
+    effectAttackDecrease(int nPenalty, AttackBonus tAttackBonus)
         throws NotInContextException
     {
-        return effectAttackDecrease(nPenalty, nModifierType, null, false);
+        return effectAttackDecrease(nPenalty, tAttackBonus, null, false);
     }
 
     public NWEffect
-    effectAttackDecrease(int nPenalty, int nModifierType, java.util.Map<String, String> __ctx)
+    effectAttackDecrease(int nPenalty, AttackBonus tAttackBonus, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
-        return effectAttackDecrease(nPenalty, nModifierType, __ctx, true);
+        return effectAttackDecrease(nPenalty, tAttackBonus, __ctx, true);
     }
 
     @SuppressWarnings("unchecked")
     private NWEffect
-    effectAttackDecrease(int nPenalty, int nModifierType, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    effectAttackDecrease(int nPenalty, AttackBonus tAttackBonus, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -4807,7 +4807,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
                 __checkTwowayOnly("effectAttackDecrease");
                 __delBase = __getDelegate(false);
                 _NWScriptDel __del = (_NWScriptDel)__delBase;
-                return __del.effectAttackDecrease(nPenalty, nModifierType, __ctx);
+                return __del.effectAttackDecrease(nPenalty, tAttackBonus, __ctx);
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
@@ -4821,22 +4821,22 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWEffect
-    effectAttackIncrease(int nBonus, int nModifierType)
+    effectAttackIncrease(int nBonus, AttackBonus tAttackBonus)
         throws NotInContextException
     {
-        return effectAttackIncrease(nBonus, nModifierType, null, false);
+        return effectAttackIncrease(nBonus, tAttackBonus, null, false);
     }
 
     public NWEffect
-    effectAttackIncrease(int nBonus, int nModifierType, java.util.Map<String, String> __ctx)
+    effectAttackIncrease(int nBonus, AttackBonus tAttackBonus, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
-        return effectAttackIncrease(nBonus, nModifierType, __ctx, true);
+        return effectAttackIncrease(nBonus, tAttackBonus, __ctx, true);
     }
 
     @SuppressWarnings("unchecked")
     private NWEffect
-    effectAttackIncrease(int nBonus, int nModifierType, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    effectAttackIncrease(int nBonus, AttackBonus tAttackBonus, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -4852,7 +4852,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
                 __checkTwowayOnly("effectAttackIncrease");
                 __delBase = __getDelegate(false);
                 _NWScriptDel __del = (_NWScriptDel)__delBase;
-                return __del.effectAttackIncrease(nBonus, nModifierType, __ctx);
+                return __del.effectAttackIncrease(nBonus, tAttackBonus, __ctx);
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
@@ -4866,22 +4866,22 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWEffect
-    effectBeam(int nBeamVisualEffect, NWObject oEffector, int nBodyPart, boolean bMissEffect)
+    effectBeam(int nBeamVisualEffect, NWObject oEffector, CreaturePart tCreaturePart, boolean bMissEffect)
         throws NotInContextException
     {
-        return effectBeam(nBeamVisualEffect, oEffector, nBodyPart, bMissEffect, null, false);
+        return effectBeam(nBeamVisualEffect, oEffector, tCreaturePart, bMissEffect, null, false);
     }
 
     public NWEffect
-    effectBeam(int nBeamVisualEffect, NWObject oEffector, int nBodyPart, boolean bMissEffect, java.util.Map<String, String> __ctx)
+    effectBeam(int nBeamVisualEffect, NWObject oEffector, CreaturePart tCreaturePart, boolean bMissEffect, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
-        return effectBeam(nBeamVisualEffect, oEffector, nBodyPart, bMissEffect, __ctx, true);
+        return effectBeam(nBeamVisualEffect, oEffector, tCreaturePart, bMissEffect, __ctx, true);
     }
 
     @SuppressWarnings("unchecked")
     private NWEffect
-    effectBeam(int nBeamVisualEffect, NWObject oEffector, int nBodyPart, boolean bMissEffect, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    effectBeam(int nBeamVisualEffect, NWObject oEffector, CreaturePart tCreaturePart, boolean bMissEffect, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -4897,7 +4897,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
                 __checkTwowayOnly("effectBeam");
                 __delBase = __getDelegate(false);
                 _NWScriptDel __del = (_NWScriptDel)__delBase;
-                return __del.effectBeam(nBeamVisualEffect, oEffector, nBodyPart, bMissEffect, __ctx);
+                return __del.effectBeam(nBeamVisualEffect, oEffector, tCreaturePart, bMissEffect, __ctx);
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
@@ -6396,22 +6396,22 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWEffect
-    effectImmunity(int nImmunityType)
+    effectImmunity(ImmunityType tImmunityType)
         throws NotInContextException
     {
-        return effectImmunity(nImmunityType, null, false);
+        return effectImmunity(tImmunityType, null, false);
     }
 
     public NWEffect
-    effectImmunity(int nImmunityType, java.util.Map<String, String> __ctx)
+    effectImmunity(ImmunityType tImmunityType, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
-        return effectImmunity(nImmunityType, __ctx, true);
+        return effectImmunity(tImmunityType, __ctx, true);
     }
 
     @SuppressWarnings("unchecked")
     private NWEffect
-    effectImmunity(int nImmunityType, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    effectImmunity(ImmunityType tImmunityType, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -6427,7 +6427,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
                 __checkTwowayOnly("effectImmunity");
                 __delBase = __getDelegate(false);
                 _NWScriptDel __del = (_NWScriptDel)__delBase;
-                return __del.effectImmunity(nImmunityType, __ctx);
+                return __del.effectImmunity(tImmunityType, __ctx);
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
@@ -10462,22 +10462,22 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public int
-    getCreatureBodyPart(int nPart, NWObject oCreature)
+    getCreatureBodyPart(CreaturePart tCreaturePart, NWObject oCreature)
         throws NotInContextException
     {
-        return getCreatureBodyPart(nPart, oCreature, null, false);
+        return getCreatureBodyPart(tCreaturePart, oCreature, null, false);
     }
 
     public int
-    getCreatureBodyPart(int nPart, NWObject oCreature, java.util.Map<String, String> __ctx)
+    getCreatureBodyPart(CreaturePart tCreaturePart, NWObject oCreature, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
-        return getCreatureBodyPart(nPart, oCreature, __ctx, true);
+        return getCreatureBodyPart(tCreaturePart, oCreature, __ctx, true);
     }
 
     @SuppressWarnings("unchecked")
     private int
-    getCreatureBodyPart(int nPart, NWObject oCreature, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    getCreatureBodyPart(CreaturePart tCreaturePart, NWObject oCreature, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -10493,7 +10493,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
                 __checkTwowayOnly("getCreatureBodyPart");
                 __delBase = __getDelegate(false);
                 _NWScriptDel __del = (_NWScriptDel)__delBase;
-                return __del.getCreatureBodyPart(nPart, oCreature, __ctx);
+                return __del.getCreatureBodyPart(tCreaturePart, oCreature, __ctx);
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
@@ -14443,22 +14443,22 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public boolean
-    getIsImmune(NWObject oCreature, int nImmunityType, NWObject oVersus)
+    getIsImmune(NWObject oCreature, ImmunityType tImmunityType, NWObject oVersus)
         throws NotInContextException
     {
-        return getIsImmune(oCreature, nImmunityType, oVersus, null, false);
+        return getIsImmune(oCreature, tImmunityType, oVersus, null, false);
     }
 
     public boolean
-    getIsImmune(NWObject oCreature, int nImmunityType, NWObject oVersus, java.util.Map<String, String> __ctx)
+    getIsImmune(NWObject oCreature, ImmunityType tImmunityType, NWObject oVersus, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
-        return getIsImmune(oCreature, nImmunityType, oVersus, __ctx, true);
+        return getIsImmune(oCreature, tImmunityType, oVersus, __ctx, true);
     }
 
     @SuppressWarnings("unchecked")
     private boolean
-    getIsImmune(NWObject oCreature, int nImmunityType, NWObject oVersus, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    getIsImmune(NWObject oCreature, ImmunityType tImmunityType, NWObject oVersus, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -14474,7 +14474,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
                 __checkTwowayOnly("getIsImmune");
                 __delBase = __getDelegate(false);
                 _NWScriptDel __del = (_NWScriptDel)__delBase;
-                return __del.getIsImmune(oCreature, nImmunityType, oVersus, __ctx);
+                return __del.getIsImmune(oCreature, tImmunityType, oVersus, __ctx);
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
@@ -25582,22 +25582,22 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWItemProperty
-    itemPropertyImmunityMisc(int nImmunityType)
+    itemPropertyImmunityMisc(IPMiscImmunityType tIPMiscImmunityType)
         throws NotInContextException
     {
-        return itemPropertyImmunityMisc(nImmunityType, null, false);
+        return itemPropertyImmunityMisc(tIPMiscImmunityType, null, false);
     }
 
     public NWItemProperty
-    itemPropertyImmunityMisc(int nImmunityType, java.util.Map<String, String> __ctx)
+    itemPropertyImmunityMisc(IPMiscImmunityType tIPMiscImmunityType, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
-        return itemPropertyImmunityMisc(nImmunityType, __ctx, true);
+        return itemPropertyImmunityMisc(tIPMiscImmunityType, __ctx, true);
     }
 
     @SuppressWarnings("unchecked")
     private NWItemProperty
-    itemPropertyImmunityMisc(int nImmunityType, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    itemPropertyImmunityMisc(IPMiscImmunityType tIPMiscImmunityType, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -25613,7 +25613,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
                 __checkTwowayOnly("itemPropertyImmunityMisc");
                 __delBase = __getDelegate(false);
                 _NWScriptDel __del = (_NWScriptDel)__delBase;
-                return __del.itemPropertyImmunityMisc(nImmunityType, __ctx);
+                return __del.itemPropertyImmunityMisc(tIPMiscImmunityType, __ctx);
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
@@ -26617,22 +26617,22 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWItemProperty
-    itemPropertySpellImmunitySchool(int nSchool)
+    itemPropertySpellImmunitySchool(IPSpellSchool tIPSpellSchool)
         throws NotInContextException
     {
-        return itemPropertySpellImmunitySchool(nSchool, null, false);
+        return itemPropertySpellImmunitySchool(tIPSpellSchool, null, false);
     }
 
     public NWItemProperty
-    itemPropertySpellImmunitySchool(int nSchool, java.util.Map<String, String> __ctx)
+    itemPropertySpellImmunitySchool(IPSpellSchool tIPSpellSchool, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
-        return itemPropertySpellImmunitySchool(nSchool, __ctx, true);
+        return itemPropertySpellImmunitySchool(tIPSpellSchool, __ctx, true);
     }
 
     @SuppressWarnings("unchecked")
     private NWItemProperty
-    itemPropertySpellImmunitySchool(int nSchool, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    itemPropertySpellImmunitySchool(IPSpellSchool tIPSpellSchool, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -26648,7 +26648,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
                 __checkTwowayOnly("itemPropertySpellImmunitySchool");
                 __delBase = __getDelegate(false);
                 _NWScriptDel __del = (_NWScriptDel)__delBase;
-                return __del.itemPropertySpellImmunitySchool(nSchool, __ctx);
+                return __del.itemPropertySpellImmunitySchool(tIPSpellSchool, __ctx);
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
@@ -30049,22 +30049,22 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    setCreatureBodyPart(int nPart, int nModelNumber, NWObject oCreature)
+    setCreatureBodyPart(CreaturePart tCreaturePart, int nModelNumber, NWObject oCreature)
         throws NotInContextException
     {
-        setCreatureBodyPart(nPart, nModelNumber, oCreature, null, false);
+        setCreatureBodyPart(tCreaturePart, nModelNumber, oCreature, null, false);
     }
 
     public void
-    setCreatureBodyPart(int nPart, int nModelNumber, NWObject oCreature, java.util.Map<String, String> __ctx)
+    setCreatureBodyPart(CreaturePart tCreaturePart, int nModelNumber, NWObject oCreature, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
-        setCreatureBodyPart(nPart, nModelNumber, oCreature, __ctx, true);
+        setCreatureBodyPart(tCreaturePart, nModelNumber, oCreature, __ctx, true);
     }
 
     @SuppressWarnings("unchecked")
     private void
-    setCreatureBodyPart(int nPart, int nModelNumber, NWObject oCreature, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    setCreatureBodyPart(CreaturePart tCreaturePart, int nModelNumber, NWObject oCreature, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -30080,7 +30080,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
                 __checkTwowayOnly("setCreatureBodyPart");
                 __delBase = __getDelegate(false);
                 _NWScriptDel __del = (_NWScriptDel)__delBase;
-                __del.setCreatureBodyPart(nPart, nModelNumber, oCreature, __ctx);
+                __del.setCreatureBodyPart(tCreaturePart, nModelNumber, oCreature, __ctx);
                 return;
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
