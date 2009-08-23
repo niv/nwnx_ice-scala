@@ -1,5 +1,10 @@
 package es.elv.kobold {
 
+	object Vector {
+		/** The origin vector: (0, 0, 0) */
+		val origin = Vector(0, 0, 0)
+	}
+
 	case class Vector(val x: Double, val y: Double, val z: Double) {
 		require(x >= 0.0)
 		require(y >= 0.0)
