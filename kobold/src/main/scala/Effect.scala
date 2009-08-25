@@ -139,6 +139,9 @@ package es.elv.kobold {
 		def link(to: Effect): Effect = R.proxy.effectLinkEffects(to, this)
 
 		override def toString =
-			"Effect(" + wrapped.id.toHexString + ",t=" + effectType + ",st=" + effectSubType + ",dt=" + durationType + ",icon=" + iconShown + ",creator=" + creator + ")"
+			"Effect<" + effectType + "," + durationType + ">(" + List(
+				wrapped.id.toHexString, effectSubType,
+				 "icon=" + iconShown, "creator=" + creator).mkString(",")
+			")"
 	}
 }
