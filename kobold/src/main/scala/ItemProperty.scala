@@ -102,19 +102,19 @@ package es.elv.kobold {
 
 
 		override def toString = {
-			val typeStrRef = TwoDA("itempropdef", "Name", iprpType)
+			val typeStrRef = TwoDA("itempropdef")("Name", iprpType)
 			val typeStr = if (typeStrRef != "") Tlk(typeStrRef.toInt) else "t=" + iprpType
-			val subTypeTable = TwoDA("itempropdef", "SubTypeResRef", iprpSubType)
+			val subTypeTable = TwoDA("itempropdef")("SubTypeResRef", iprpSubType)
 			val subTypeStr = (if (subTypeTable != "")
-				Tlk(TwoDA(subTypeTable, "Name", iprpSubType).toInt) // + " (" + iprpSubType.toString + ")"
+				Tlk(TwoDA(subTypeTable)("Name", iprpSubType).toInt) // + " (" + iprpSubType.toString + ")"
 			else "")
 
 			val param1Str = (if (param1 > -1 && param1 != 255)
-				Tlk(TwoDA(TwoDA("iprp_paramtable", "TableResRef", param1), "Name", param1Value).toInt) // + " (" + param1.toString + "=" + param1Value.toString + ")"
+				Tlk(TwoDA(TwoDA("iprp_paramtable")("TableResRef", param1))("Name", param1Value).toInt) // + " (" + param1.toString + "=" + param1Value.toString + ")"
 			else "")
 
 			val costTableStr = (if (costTable > 0)
-				Tlk(TwoDA(TwoDA("iprp_costtable", "Name", costTable), "Name", costTableValue).toInt) // + " (" +  costTable.toString + "=" + costTableValue.toString + ")"
+				Tlk(TwoDA(TwoDA("iprp_costtable")("Name", costTable))("Name", costTableValue).toInt) // + " (" +  costTable.toString + "=" + costTableValue.toString + ")"
 			else "")
 
 			"ItemProperty(" + List(/*wrapped.id.toHexString, */typeStr, subTypeStr,
