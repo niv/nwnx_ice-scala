@@ -35,7 +35,7 @@ public final class NWEffectSeqHelper
     {
         NWEffect[] __v;
         final int __len0 = __is.readSize();
-        __is.checkFixedSeq(__len0, 22);
+        __is.checkFixedSeq(__len0, 16);
         __v = new NWEffect[__len0];
         for(int __i0 = 0; __i0 < __len0; __i0++)
         {
