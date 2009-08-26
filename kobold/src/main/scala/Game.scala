@@ -137,15 +137,6 @@ package es.elv.kobold {
 	trait Trap {
 		this: GameObject[_] =>
 
-		def createTrap(creator: ActionQueue, trapType: TrapType, faction: StandardFaction,
-				onDisarm: (Event) => Unit, onTriggered: (Event) => Unit) {
-
-			// CoreEvents.once(classOf[ETrapDisarmed], Some(this), onDisarm)
-			// CoreEvents.once(classOf[ETrapTriggered], Some(this), onTriggered)
-
-			creator assign { R.proxy.createTrapOnObject(trapType, this, faction, "trap_disarm", "trap_trigger") }
-		}
-		
 		def trapDetected(by: GameObject[_] with Creature) = R.proxy.getTrapDetectedBy(this, by)
 		def trapDetected(by: GameObject[_] with Creature, status: Boolean) = R.proxy.setTrapDetectedBy(this, by, status)
 

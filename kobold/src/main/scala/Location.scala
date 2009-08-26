@@ -50,15 +50,6 @@ package es.elv.kobold {
 				R.proxy.effectVisualEffect(e, false),
 				this, duration)
 
-		def createTrap(creator: HasActionQueue, trapType: TrapType, size: Double, tag: String, faction: StandardFaction,
-				onDisarm: (GameObject[_] with HasTrap) => Unit, onTriggered: (GameObject[_] with HasTrap) => Unit) {
 
-			// CoreHandler.add(this, "i_trap_disarm", onDisarm)
-			// CoreHandler.add(this, "i_trap_trigger", onTriggered)
-
-			creator assign { R.proxy.createTrapAtLocation(trapType, this, size, tag, faction, "trap_disarm", "trap_trigger") }
-		}
-
-	
 	}
 }
