@@ -11,7 +11,7 @@ package es.elv.kobold.cachedproperty {
 
 	import CachePolicy.CachePolicy
 	
-	private[kobold] class CachedProperty[T, V] (val cachePolicy: CachePolicy, getter: () => T) {
+	class CachedProperty[T, V] (val cachePolicy: CachePolicy, getter: () => T) {
 		protected var value: Option[T] = None
 
 		def apply() = cachePolicy match {
@@ -26,7 +26,7 @@ package es.elv.kobold.cachedproperty {
 		def clear() { value = None }
 	}
 
-	private[kobold] class RWCachedProperty[T, V] (
+	class RWCachedProperty[T, V] (
 		policy: CachePolicy,
 		getter: () => T,
 		setter: (T) => Unit
