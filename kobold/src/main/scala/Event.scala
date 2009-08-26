@@ -1,4 +1,4 @@
-package es.elv.kobold {
+package es.elv.kobold.events {
 	import net.lag.logging._
 	import scala.collection._
 

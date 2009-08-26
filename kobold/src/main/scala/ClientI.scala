@@ -5,10 +5,7 @@ package es.elv.kobold {
 	import scala.actors._
 	import scala._
 	import scala.concurrent._
-
-	package events {
-		final case class RawEvent(val self: NWObject, val event: String) extends Event
-	}
+	import events._
 
 	object R extends _ClientDisp {
 		private val log = logging.Logger.get

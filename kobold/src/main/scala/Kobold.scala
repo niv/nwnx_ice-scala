@@ -1,5 +1,6 @@
 package es.elv.kobold {
 	import net.lag._
+	import events._
 
 	abstract class Persistable[T] extends NWN.Persistable
 

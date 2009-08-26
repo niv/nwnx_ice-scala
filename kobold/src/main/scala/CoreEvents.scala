@@ -3,6 +3,7 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 	import ImplicitDowncasts._
+	import scala.collection._
 
 	object ImplicitDowncasts {
 		implicit def nw2go[K](o: NWObject): GameObject[K] =
@@ -10,6 +11,8 @@ package es.elv.kobold {
 	}
 
 	package events {
+		final case class RawEvent(val self: NWObject, val event: String) extends Event
+
 		abstract case class GameEvent() extends Event
 
 		case class EModuleLoad() extends GameEvent
