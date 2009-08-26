@@ -83,12 +83,14 @@ package es.elv.kobold {
 			R.proxy.destroyObject(this, delay)
 
 
-		private def getLV(key: String, funCall: String) = 1
-
-		def apply(key: String) =
-			R.proxy.getLocalString(this, key)
-		def apply_=(key: String, value: String) =
-			R.proxy.setLocalString(this, key, value)
+		def li(key: String) = R.proxy.getLocalInt(this, key)
+		def li(key: String, value: Int) = R.proxy.setLocalInt(this, key, value)
+		def ls(key: String) = R.proxy.getLocalString(this, key)
+		def ls(key: String, value: String) = R.proxy.setLocalString(this, key, value)
+		def lf(key: String) = R.proxy.getLocalFloat(this, key)
+		def lf(key: String, value: Float) = R.proxy.setLocalFloat(this, key, value)
+		def lo(key: String) = GameObject(R.proxy.getLocalObject(this, key))
+		def lo(key: String, value: GameObject[_]) = R.proxy.setLocalObject(this, key, value)
 
 		protected def toStringProperties = List("ref=" + resref(), "tag=" + tag(), "name=" + name())
 		override def toString = getClass.getName.toString + "(" + (wrapped.id.toHexString :: toStringProperties).mkString(",") + ")"
