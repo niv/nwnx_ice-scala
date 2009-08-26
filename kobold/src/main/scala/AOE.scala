@@ -4,7 +4,7 @@ package es.elv.kobold {
 	import Implicits._
 
 	object AOE extends WrappedFactory[NWObject, AOE]((wrapped) => new AOE(wrapped))
-	class AOE private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, AOE](wrapped, Some(AOE)) with GameObject[AOE] {
+	class AOE private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, AOE](wrapped, Some(AOE)) with G[AOE] {
 		ensureObjectType(ObjectType.AOE)
 	}
 }

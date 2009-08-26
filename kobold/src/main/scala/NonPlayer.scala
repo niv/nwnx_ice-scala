@@ -5,7 +5,7 @@ package es.elv.kobold {
 	object NonPlayer extends WrappedFactory[NWObject, NonPlayer]((wrapped) => new NonPlayer(wrapped))
 
 	class NonPlayer private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, NonPlayer](wrapped, Some(NonPlayer))
-			with GameObject[NonPlayer] with Creature {
+			with G[NonPlayer] with Creature {
 		ensureObjectType(ObjectType.Creature)
 		
 		val plot = P(() => R.proxy.getPlotFlag(this), (v: Boolean) => R.proxy.setPlotFlag(this, v))

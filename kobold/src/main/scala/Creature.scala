@@ -5,7 +5,7 @@ package es.elv.kobold {
 	trait Creature extends ActionQueue
 			with Movement with Language with Inventory with Effects
 			with VisualEffects with SpellCasting {
-		this: GameObject[_] =>
+		this: G[_] =>
 
 		val commandable = P(() => R.proxy.getCommandable(this), (is: Boolean) => R.proxy.setCommandable(is, this))
 		val lootable = P(() => R.proxy.getLootable(this), (is: Boolean) => R.proxy.setLootable(this, is))
@@ -55,7 +55,7 @@ package es.elv.kobold {
 		def rapidShotMode = P(() => R.proxy.getActionMode(this, ActionMode.RapidShotMode), (status: Boolean) => R.proxy.setActionMode(this, ActionMode.RapidShotMode, status))
 
 		// Perception
-		def canHear(who: GameObject[_]) = R.proxy.getObjectHeard(who, this)
-		def canSee(who: GameObject[_]) = R.proxy.getObjectSeen(who, this)
+		def canHear(who: G[_]) = R.proxy.getObjectHeard(who, this)
+		def canSee(who: G[_]) = R.proxy.getObjectSeen(who, this)
 	}
 }

@@ -3,9 +3,9 @@ package es.elv.kobold {
 	import net.lag._
 	import Implicits._
 		
-	object GameObject {
+	object G {
 
-		def apply(o: NWObject): GameObject[_] = {
+		def apply(o: NWObject): G[_] = {
 			def isPC(o: NWObject) = R.proxy.getIsPC(o) &&
 				!R.proxy.getIsDMPossessed(o) &&
 				!R.proxy.getIsPossessedFamiliar(o)
@@ -38,12 +38,12 @@ package es.elv.kobold {
 			}
 		}
 		
-		def byTag[T](tag: String): GameObject[T] =
-			GameObject(R.proxy.getObjectByTag(tag, 0)).asInstanceOf[GameObject[T]]
+		def byTag[T](tag: String): G[T] =
+			G(R.proxy.getObjectByTag(tag, 0)).asInstanceOf[G[T]]
 
 	}
 
-	trait GameObject[K] extends Wrapped[NWObject, K] with cachedproperty.CachedProperties[GameObject[K]] {
+	trait G[K] extends Wrapped[NWObject, K] with cachedproperty.CachedProperties[G[K]] {
 		this: K =>
 
 		import cachedproperty.CachePolicy._
@@ -72,11 +72,11 @@ package es.elv.kobold {
 			ret
 		}
 
-		val name: RWCachedProperty[String, GameObject[K]] = P(() => R.proxy.getName(this, false), (n: String) => { R.proxy.setName(this, n); this.name.clear() })
+		val name: RWCachedProperty[String, G[K]] = P(() => R.proxy.getName(this, false), (n: String) => { R.proxy.setName(this, n); this.name.clear() })
 		val originalName = P(() => R.proxy.getName(this, true))
 
-		def copy(toLocation: Location, toInventory: GameObject[_]): K =
-			GameObject(R.proxy.copyObject(this, toLocation, toInventory, "")).asInstanceOf[K] // classOf[K]]
+		def copy(toLocation: Location, toInventory: G[_]): K =
+			G(R.proxy.copyObject(this, toLocation, toInventory, "")).asInstanceOf[K] // classOf[K]]
 
 		def destroy: Unit = destroy(0.0)
 		def destroy(delay: Double): Unit =
@@ -89,8 +89,8 @@ package es.elv.kobold {
 		def ls(key: String, value: String) = R.proxy.setLocalString(this, key, value)
 		def lf(key: String) = R.proxy.getLocalFloat(this, key)
 		def lf(key: String, value: Float) = R.proxy.setLocalFloat(this, key, value)
-		def lo(key: String) = GameObject(R.proxy.getLocalObject(this, key))
-		def lo(key: String, value: GameObject[_]) = R.proxy.setLocalObject(this, key, value)
+		def lo(key: String) = G(R.proxy.getLocalObject(this, key))
+		def lo(key: String, value: G[_]) = R.proxy.setLocalObject(this, key, value)
 
 		protected def toStringProperties = List("ref=" + resref(), "tag=" + tag(), "name=" + name())
 		override def toString = getClass.getName.toString + "(" + (wrapped.id.toHexString :: toStringProperties).mkString(",") + ")"

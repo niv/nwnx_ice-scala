@@ -5,7 +5,7 @@ package es.elv.kobold {
 
 	object Item extends WrappedFactory[NWObject, Item]((wrapped) => new Item(wrapped))
 
-	class Item private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Item](wrapped, Some(Item)) with GameObject[Item]
+	class Item private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Item](wrapped, Some(Item)) with G[Item]
 			with Position with Inventory {
 		ensureObjectType(ObjectType.Item)
 
@@ -16,7 +16,7 @@ package es.elv.kobold {
 		val identified = P(() => R.proxy.getIdentified(this), (is: Boolean) => R.proxy.setIdentified(this, is))
 		val stolen = P(() => R.proxy.getStolenFlag(this), (is: Boolean) => R.proxy.setStolenFlag(this, is))
 
-		val possessor = P(() => GameObject(R.proxy.getItemPossessor(this)))
+		val possessor = P(() => G(R.proxy.getItemPossessor(this)))
 
 		def properties: List[ItemProperty] =
 			R.proxy.allItemProperties(this).toList.map(new ItemProperty(_))
@@ -43,7 +43,7 @@ package es.elv.kobold {
 
 		def weight = R.proxy.getWeight(this)
 
-		def copy(toInventory: GameObject[_]): Item =
+		def copy(toInventory: G[_]): Item =
 			Item(R.proxy.copyItem(this, toInventory, true))
 	}
 }

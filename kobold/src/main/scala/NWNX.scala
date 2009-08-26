@@ -54,7 +54,7 @@ package es.elv.kobold.nwnx {
 	}
 
 	object Chat extends Core("CHAT") {
-		def speakToChannel(speaker: GameObject[_], channel: Int, text: String, to: GameObject[_]): Unit = {
+		def speakToChannel(speaker: G[_], channel: Int, text: String, to: G[_]): Unit = {
 			if (!speaker.valid)
 				return
 

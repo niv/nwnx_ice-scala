@@ -4,7 +4,7 @@ package es.elv.kobold {
 	import Implicits._
 
 	object Waypoint extends WrappedFactory[NWObject, Waypoint]((wrapped) => new Waypoint(wrapped))
-	class Waypoint private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Waypoint](wrapped, Some(Waypoint)) with GameObject[Waypoint] {
+	class Waypoint private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Waypoint](wrapped, Some(Waypoint)) with G[Waypoint] {
 		ensureObjectType(ObjectType.Waypoint)
 	}
 }

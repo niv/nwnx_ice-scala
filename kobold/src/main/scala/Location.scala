@@ -20,7 +20,7 @@ package es.elv.kobold {
 		   oTo   <|-    = false
 		  (| is a door object, <- indicating the facing)
 		*/
-		// def onThisSide(test: GameObject, to: GameObject) =
+		// def onThisSide(test: G, to: G) =
 
 		def distanceTo(lo: Vector) =
 			position.distanceTo(lo)
@@ -31,7 +31,7 @@ package es.elv.kobold {
 		}
 
 		// create a location range units away from the current one, heading to o
-		def inRangeTo(o: GameObject[_], range: Double) = 0
+		def inRangeTo(o: G[_], range: Double) = 0
 
 		def ^+(e: Int, duration: Double): Unit = vfx(e, DurationType.Temporary, duration)
 		def ^^(e: Int): Unit = vfx(e, DurationType.Instant, 0)

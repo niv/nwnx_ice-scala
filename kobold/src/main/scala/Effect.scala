@@ -133,7 +133,7 @@ package es.elv.kobold {
 
 		val spellId = R.proxy.getEffectSpellId(this)
 
-		val creator = GameObject(wrap.tCreator) // R.proxy.getEffectCreator(this))
+		val creator = G(wrap.tCreator) // R.proxy.getEffectCreator(this))
 
 		def magical: Effect = R.proxy.magicalEffect(this)
 		def extraordinary: Effect = R.proxy.extraordinaryEffect(this)

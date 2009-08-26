@@ -5,9 +5,9 @@ package es.elv.kobold {
 
 	object Area extends WrappedFactory[NWObject, Area]((wrapped) => new Area(wrapped))
 
-	class Area private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Area](wrapped, Some(Area)) with GameObject[Area] {
-		def allObjects: List[GameObject[_]] =
-			R.proxy.allInArea(this).toList.map(GameObject(_))
+	class Area private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Area](wrapped, Some(Area)) with G[Area] {
+		def allObjects: List[G[_]] =
+			R.proxy.allInArea(this).toList.map(G(_))
 
 		ensureObjectType()
 		// XXX why npe?

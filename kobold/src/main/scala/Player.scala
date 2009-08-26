@@ -11,7 +11,7 @@ package es.elv.kobold {
 	}
 
 	class Player private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Player](wrapped, Some(Player))
-			with GameObject[Player] with Creature {
+			with G[Player] with Creature {
 		ensureObjectType(ObjectType.Creature)
 
 		import cachedproperty.CachePolicy._
