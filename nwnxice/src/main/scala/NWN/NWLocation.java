@@ -27,13 +27,11 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
 
     public double orientationZ;
 
-    public double facing;
-
     public NWLocation()
     {
     }
 
-    public NWLocation(NWObject area, double x, double y, double z, double orientationX, double orientationY, double orientationZ, double facing)
+    public NWLocation(NWObject area, double x, double y, double z, double orientationX, double orientationY, double orientationZ)
     {
         this.area = area;
         this.x = x;
@@ -42,7 +40,6 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
         this.orientationX = orientationX;
         this.orientationY = orientationY;
         this.orientationZ = orientationZ;
-        this.facing = facing;
     }
 
     public boolean
@@ -91,10 +88,6 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
             {
                 return false;
             }
-            if(facing != _r.facing)
-            {
-                return false;
-            }
 
             return true;
         }
@@ -116,7 +109,6 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
         __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(orientationX);
         __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(orientationY);
         __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(orientationZ);
-        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(facing);
         return __h;
     }
 
@@ -145,7 +137,6 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
         __os.writeDouble(orientationX);
         __os.writeDouble(orientationY);
         __os.writeDouble(orientationZ);
-        __os.writeDouble(facing);
     }
 
     public void
@@ -159,6 +150,5 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
         orientationX = __is.readDouble();
         orientationY = __is.readDouble();
         orientationZ = __is.readDouble();
-        facing = __is.readDouble();
     }
 }

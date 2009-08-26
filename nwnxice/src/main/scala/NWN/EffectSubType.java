@@ -13,18 +13,20 @@ package NWN;
 
 public enum EffectSubType implements java.io.Serializable
 {
+    InvalidSubType,
     MagicalSubType,
     SupernaturalSubType,
     ExtraordinarySubType;
 
-    public static final int _MagicalSubType = 0;
-    public static final int _SupernaturalSubType = 1;
-    public static final int _ExtraordinarySubType = 2;
+    public static final int _InvalidSubType = 0;
+    public static final int _MagicalSubType = 1;
+    public static final int _SupernaturalSubType = 2;
+    public static final int _ExtraordinarySubType = 3;
 
     public static EffectSubType
     convert(int val)
     {
-        assert val >= 0 && val < 3;
+        assert val >= 0 && val < 4;
         return values()[val];
     }
 
@@ -56,7 +58,7 @@ public enum EffectSubType implements java.io.Serializable
     public static EffectSubType
     __read(IceInternal.BasicStream __is)
     {
-        int __v = __is.readByte(3);
+        int __v = __is.readByte(4);
         return EffectSubType.convert(__v);
     }
 }
