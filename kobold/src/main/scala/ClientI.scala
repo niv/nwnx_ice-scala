@@ -32,11 +32,8 @@ package es.elv.kobold {
 		}
 
 		def assign(obj: NWObject, block: => Unit) {
-			assign(obj, block, 0.0)
-		}
-		def assign(obj: NWObject, block: => Unit, delay: Double) {
 			// This saves us a round trip, because we're already on the correct object.
-			if (obj == objectSelf && delay == 0.0) {
+			if (obj == objectSelf) {
 				block
 
 			} else {
@@ -46,7 +43,6 @@ package es.elv.kobold {
 
 				val mod = new NWObject(0)
 				proxy.setLocalString(mod, "ice_token", token.toString)
-				proxy.setLocalFloat(mod, "ice_token_delay", delay)
 				proxy.executeScript("ice_token", obj)
 			}
 		}
