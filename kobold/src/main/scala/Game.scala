@@ -96,7 +96,7 @@ package es.elv.kobold {
 		def runFrom(from: GameObject[_], range: Double) =
 			assign { R.proxy.actionMoveAwayFromObject(from, true, range) }
 
-		def follow(toFollow: Creature, followDistance: Double) = assign {
+		def follow(toFollow: GameObject[_], followDistance: Double) = assign {
 			R.proxy.actionForceFollowObject(toFollow, followDistance)
 		}
 	}
@@ -150,8 +150,8 @@ package es.elv.kobold {
 			creator assign { R.proxy.createTrapOnObject(trapType, this, faction, "trap_disarm", "trap_trigger") }
 		}
 		
-		def trapDetected(by: Creature) = R.proxy.getTrapDetectedBy(this, by)
-		def trapDetected(by: Creature, status: Boolean) = R.proxy.setTrapDetectedBy(this, by, status)
+		def trapDetected(by: GameObject[_] with Creature) = R.proxy.getTrapDetectedBy(this, by)
+		def trapDetected(by: GameObject[_] with Creature, status: Boolean) = R.proxy.setTrapDetectedBy(this, by, status)
 
 		val trapped = P(() => R.proxy.getIsTrapped(this))
 

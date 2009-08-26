@@ -96,10 +96,9 @@ package es.elv.kobold {
 
 	object CoreEvents extends Plugin {
 		import scala.concurrent.ops.future
-		import scala.collection._
 		import events._
 
-		private val factories = List(AOE, Area, Creature, Door, Encounter, Item, Placeable, Player, Store, Trigger, Waypoint)
+		private val factories = List(AOE, Area, NonPlayer, Player, Door, Encounter, Item, Placeable, Store, Trigger, Waypoint)
 
 		def invalidateFactories = future(
 			factories.foreach((f) => f.getCache.foreach((k) => k._2.clearCachedPropertiesByPolicy(cachedproperty.CachePolicy.Event)))

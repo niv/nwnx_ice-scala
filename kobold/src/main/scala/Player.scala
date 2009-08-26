@@ -3,9 +3,17 @@ package es.elv.kobold {
 	import net.lag._
 	import Implicits._
 
-	object Player extends WrappedFactory[NWObject, Player]((wrapped) => new Player(wrapped))
+	object Player extends WrappedFactory[NWObject, Player]((wrapped) => new Player(wrapped)) {
+		def all = R.proxy.allPCs.map(Player(_)).toList
 
-	class Player private[kobold] (wrapped: NWObject) extends Creature(wrapped) {
+		def byAccount(account: String) = all.find(_.account == account)
+		def byName(name: String) = all.find(_.name == name)
+	}
+
+	class Player private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Player](wrapped, Some(Player))
+			with GameObject[Player] with Creature {
+		ensureObjectType(ObjectType.Creature)
+
 		import cachedproperty.CachePolicy._
 
 		val account = P(Indef, () => R.proxy.getPCPlayerName(this))

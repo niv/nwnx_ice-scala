@@ -15,7 +15,7 @@ package es.elv.kobold {
 				case 0x7f000000 => Invalid()
 				case _ => R.proxy.getObjectType(o) match {
 					case ObjectType.Creature => if (isPC(o))
-						Player(o) else Creature(o)
+						Player(o) else NonPlayer(o)
 					case ObjectType.Item => Item(o)
 					case ObjectType.Trigger => Trigger(o)
 					case ObjectType.Store => Store(o)

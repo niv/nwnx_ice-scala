@@ -1,23 +1,14 @@
 package es.elv.kobold {
 	import NWN._
 	import Implicits._
-	
-	object Creature extends WrappedFactory[NWObject, Creature]((wrapped) => new Creature(wrapped))
 
-	class Creature private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Creature](wrapped, Some(Creature))
-			with GameObject[Creature]
+	trait Creature extends HasActionQueue
 			with HasMovement with HasLanguage with HasInventory with HasEffects
 			with HasVisualEffects with HasSpellCasting {
-		ensureObjectType(ObjectType.Creature)
-		
-		val plot = P(() => R.proxy.getPlotFlag(this), (v: Boolean) => R.proxy.setPlotFlag(this, v))
+		this: GameObject[_] =>
 
 		val commandable = P(() => R.proxy.getCommandable(this), (is: Boolean) => R.proxy.setCommandable(is, this))
 		val lootable = P(() => R.proxy.getLootable(this), (is: Boolean) => R.proxy.setLootable(this, is))
-
-		val aiLevel = P(() => R.proxy.getAILevel(this), (level: AILevel) => R.proxy.setAILevel(this, level))
-
-		val xp = P(() => R.proxy.getXP(this), (value: Int) => R.proxy.setXP(this, value))
 
 		def weight = P(() => R.proxy.getWeight(this))
 
@@ -36,6 +27,9 @@ package es.elv.kobold {
 
 		val arcaneSpellFailure = P(() => R.proxy.getArcaneSpellFailure(this))
 
+
+		val xp = P(() => R.proxy.getXP(this), (value: Int) => R.proxy.setXP(this, value))
+
 		def message(text: String) = R.proxy.sendMessageToPC(this, text)
 		def floatingText(text: String, broadcastToFaction: Boolean) =
 			R.proxy.floatingTextStringOnCreature(text, this, broadcastToFaction)
@@ -46,8 +40,6 @@ package es.elv.kobold {
 		val phenoType = P(() => R.proxy.getPhenoType(this), (id: PhenoType) => R.proxy.setPhenoType(id, this))
 		val portraitId = P(() => R.proxy.getPortraitId(this), (id: Int) => R.proxy.setPortraitId(this, id))
 		val portrait = P(() => R.proxy.getPortraitResRef(this), (resRef: String) => R.proxy.setPortraitResRef(this, resRef))
-
-		// def bodyPart(part: BodyPart) = R.proxy.getCreatureBodyPart(
 
 		def stealthMode = P(() => R.proxy.getActionMode(this, ActionMode.StealthMode), (status: Boolean) => R.proxy.setActionMode(this, ActionMode.StealthMode, status))
 		def detectMode = P(() => R.proxy.getActionMode(this, ActionMode.DetectMode), (status: Boolean) => R.proxy.setActionMode(this, ActionMode.DetectMode, status))
@@ -62,10 +54,8 @@ package es.elv.kobold {
 		def powerAttackMode = P(() => R.proxy.getActionMode(this, ActionMode.PowerAttackMode), (status: Boolean) => R.proxy.setActionMode(this, ActionMode.PowerAttackMode, status))
 		def rapidShotMode = P(() => R.proxy.getActionMode(this, ActionMode.RapidShotMode), (status: Boolean) => R.proxy.setActionMode(this, ActionMode.RapidShotMode, status))
 
-
 		// Perception
-		def canHear(who: Creature) = R.proxy.getObjectHeard(who, this)
-		def canSee(who: Creature) = R.proxy.getObjectSeen(who, this)
-
+		def canHear(who: GameObject[_]) = R.proxy.getObjectHeard(who, this)
+		def canSee(who: GameObject[_]) = R.proxy.getObjectSeen(who, this)
 	}
 }
