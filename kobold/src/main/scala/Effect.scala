@@ -126,7 +126,10 @@ package es.elv.kobold {
 		val effectType = wrap.tType
 		val effectSubType = wrap.tSubType
 		val durationType = wrap.tDurationType
-		val iconShown = wrap.tIconShown
+		def iconShown = wrap.tIconShown
+		def iconShown_=(state: Boolean) {
+			iconShown = state ; R.proxy.setEffectIconShown(this, state)
+		}
 
 		val spellId = R.proxy.getEffectSpellId(this)
 
