@@ -112,13 +112,13 @@ package es.elv.kobold {
 		private val actions: mutable.Map[Class[_], mutable.Set[(Option[GameObject[_]], (Event) => Unit)]] = mutable.Map()
 
 		// Register action to be ran with on as self when eventName on on happens. Hah, parse that.
-		def once[T <: GameEvent](on: Class[T], self: Option[GameObject[_]], action: (Event) => Unit) {
-			if (!actions.contains(on))
-				actions(on) = mutable.Set()
+		def once[T <: Event](onEvent: Class[T], self: Option[GameObject[_]], action: (Event) => Unit) {
+			if (!actions.contains(onEvent))
+				actions(onEvent) = mutable.Set()
 			val v = (self, action)
-			actions(on) += v
+			actions(onEvent) += v
 		}
-
+		
 
 		def listen(e: Event) = {
 			// wait for last future
@@ -191,14 +191,14 @@ package es.elv.kobold {
 
 
 						case "player_enter" => {
-							val player = R.proxy.getEnteringObject
-							nwnx.Chat.pcIn(player.asInstanceOf[Player])
-							EventSource send new EPlayerEnter(player.asInstanceOf[GameObject[Player]])
+							val player = Player(R.proxy.getEnteringObject)
+							nwnx.Chat.pcIn(player)
+							EventSource send new EPlayerEnter(player)
 						}
 						case "player_leave" => {
-							val player = GameObject(R.proxy.getExitingObject)
-							nwnx.Chat.pcOut(player.asInstanceOf[Player])
-							EventSource send new EPlayerLeave(player.asInstanceOf[GameObject[Player]])
+							val player = Player(R.proxy.getExitingObject)
+							nwnx.Chat.pcOut(player)
+							EventSource send new EPlayerLeave(player)
 						}
 						case "player_dying" => EventSource send new EPlayerDying(R.proxy.getLastPlayerDying)
 						case "player_death" => EventSource send new EPlayerDeath(R.proxy.getLastPlayerDied)
@@ -300,7 +300,6 @@ package es.elv.kobold {
 						case _ => log.warning("Unhandled event received: " + r.event) ; r
 					})
 
-					// todo: indirect invocations
 					if (actions.contains(e.getClass)) {
 						actions(e.getClass).foreach(x => {
 							val (self, handler) = (x._1, x._2)
