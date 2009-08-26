@@ -7,7 +7,7 @@ package es.elv.kobold {
 		class DateTime(val year: Int, val month: Int, val day: Int, val hour: Int, val minute: Int, val second: Int)
 
 		class ModuleInstance extends Wrapped[NWObject, ModuleInstance](new NWObject(0), None)
-			with GameObject[ModuleInstance] with HasActionQueue
+			with GameObject[ModuleInstance] with ActionQueue
 		lazy private val instance = new ModuleInstance
 		def apply() = instance
 

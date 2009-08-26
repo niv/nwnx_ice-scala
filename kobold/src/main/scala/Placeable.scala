@@ -5,7 +5,7 @@ package es.elv.kobold {
 
 	object Placeable extends WrappedFactory[NWObject, Placeable]((wrapped) => new Placeable(wrapped))
 	class Placeable private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Placeable](wrapped, Some(Placeable)) with GameObject[Placeable]
-			with HasLocation with HasEffects with HasLock with HasTrap {
+			with Position with Effects with Lock with Trap {
 		ensureObjectType(ObjectType.Placeable)
 	}
 }

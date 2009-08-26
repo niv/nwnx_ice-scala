@@ -6,7 +6,7 @@ package es.elv.kobold {
 	object Item extends WrappedFactory[NWObject, Item]((wrapped) => new Item(wrapped))
 
 	class Item private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Item](wrapped, Some(Item)) with GameObject[Item]
-			with HasLocation with HasInventory {
+			with Position with Inventory {
 		ensureObjectType(ObjectType.Item)
 
 		lazy val baseType = R.proxy.getBaseItemType(this)

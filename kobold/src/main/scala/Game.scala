@@ -2,16 +2,13 @@ package es.elv.kobold {
 	import NWN._
 	import net.lag._
 	import Implicits._
+	import events._
 
 
-	trait HasActionQueue {
+	trait ActionQueue {
 		this: GameObject[_] =>
 
 		def assign(what: => Unit) {
-			R assign (this, what)
-		}
-
-		def delay(delay: Double, what: => Unit) {
 			R assign (this, what)
 		}
 
@@ -27,16 +24,16 @@ package es.elv.kobold {
 		def currentAction = R.proxy.getCurrentAction(this)
 		def isBusy = currentAction != Action.InvalidAction
 
-		def doLock(what: GameObject[_] with HasLock) = assign {
+		def doLock(what: GameObject[_] with Lock) = assign {
 			R.proxy.actionLockObject(what)
 		}
 	}
 
-	trait HasLanguage extends HasActionQueue {
+	trait Language extends ActionQueue {
 		this: GameObject[_] =>
 
 		def speak(channel: TalkVolume, text: String) = assign {
-			R.proxy.speakString(text, channel)
+			R.proxy.actionSpeakString(text, channel)
 		}
 
 		def say(text: String) = speak(TalkVolume.TalkVol, text)
@@ -44,10 +41,10 @@ package es.elv.kobold {
 		def whisper(text: String) = speak(TalkVolume.WhisperVol, text)
 	}
 
-	trait HasInventory extends HasActionQueue {
+	trait Inventory extends ActionQueue {
 		this: GameObject[_] =>
 
-		def hasInventory = R.proxy.getHasInventory(this)
+		def hasInventory = R.proxy.allInInventory(this)
 		def allInInventory: List[Item] = R.proxy.allInInventory(this).toList.map(Item(_))
 		def getEquipped: NWCreatureEquipped = R.proxy.allEquipped(this)
 		def isEquipped(item: Item) = getEquipped.all contains item
@@ -57,7 +54,7 @@ package es.elv.kobold {
 			Item(R.proxy.createItemOnObject(resref, this, stacksize, ""))
 		}
 
-		def giveItem(item: Item, to: GameObject[_] with HasInventory) = assign {
+		def giveItem(item: Item, to: GameObject[_] with Inventory) = assign {
 			R.proxy.actionGiveItem(item, to)
 		}
 
@@ -74,7 +71,7 @@ package es.elv.kobold {
 		}
 	}
 
-	trait HasLocation {
+	trait Position {
 		this: GameObject[_] =>
 
 		val location = P(() => R.proxy.getLocation(this) : Location, (n: Location) => R.proxy.jumpToLocation(n))
@@ -82,11 +79,8 @@ package es.elv.kobold {
 		val area = P(() => location().area : Area)
 	}
 
-	trait HasMovement extends HasLocation with HasActionQueue {
+	trait Movement extends Position with ActionQueue {
 		this: GameObject[_] =>
-
-		// def location_=(to: Location) = assign { R.proxy.jumpToLocation(to) }
-		// def facing_=(f: Double) = assign { R.proxy.setFacing(f) }
 
 		def walk(to: Location) = assign { R.proxy.actionMoveToLocation(to, false) }
 		def run(to: Location) = assign { R.proxy.actionMoveToLocation(to, true) }
@@ -101,35 +95,37 @@ package es.elv.kobold {
 		}
 	}
 
-	trait HasEffects extends HasActionQueue {
+	trait Effects extends ActionQueue {
 		this: GameObject[_] =>
 		
 		private implicit def e2e(w: NWEffect) = new Effect(w)
 
 		def effects: List[Effect] = R.proxy.allEffects(this).toList.map(new Effect(_))
 
-		// Apply a temporary effect to this object.
+		/** Apply a temporary effect to this object. */
 		def <+(e: Effect, duration: Double) = applyEffect(this, e, DurationType.Temporary, duration)
 
-		// Apply a instantaneous effect to this object.
+		/** Apply a instantaneous effect to this object. */
 		def <<(e: Effect) = applyEffect(this, e, DurationType.Instant, 0)
 
-		// Apply a permanent effect to this object.
+		/** Apply a permanent effect to this object. */
 		def <*(e: Effect) = applyEffect(this, e, DurationType.Permanent, 0)
 
-		def applyEffect(creator: HasActionQueue, e: Effect, durationType: DurationType, duration: Double) =
+		def applyEffect(creator: ActionQueue, e: Effect, durationType: DurationType, duration: Double) =
 			creator assign { R.proxy.applyEffectToObject(durationType, e, this, duration) }
-		
+	
+		/** Remove the given effect from this object. Does nothing if this effect is not applied. */
 		def removeEffect(e: Effect) = R.proxy.removeEffect(this, e)
-		def hasEffect(e: Effect) = effects.contains(e)
-		def hasEffectFromSpell(spell: Int) = R.proxy.getHasSpellEffect(spell, this)
 	}
 
-	trait HasVisualEffects {
+	trait VisualEffects {
 		this: GameObject[_] =>
 
+		/** Show a temporary visual effect on this object. */
 		def ^+(e: Int, duration: Double): Unit = vfx(e, DurationType.Temporary, duration)
+		/** Show a instantaneous visual effect on this object. */
 		def ^^(e: Int): Unit = vfx(e, DurationType.Instant, 0)
+		/** Show a permanent visual effect on this object. */
 		def ^*(e: Int): Unit = vfx(e, DurationType.Permanent, 0)
 
 		def vfx(e: Int, durationType: DurationType, duration: Double) =
@@ -138,10 +134,10 @@ package es.elv.kobold {
 				this, duration)
 	}
 
-	trait HasTrap {
+	trait Trap {
 		this: GameObject[_] =>
 
-		def createTrap(creator: HasActionQueue, trapType: TrapType, faction: StandardFaction,
+		def createTrap(creator: ActionQueue, trapType: TrapType, faction: StandardFaction,
 				onDisarm: (Event) => Unit, onTriggered: (Event) => Unit) {
 
 			// CoreEvents.once(classOf[ETrapDisarmed], Some(this), onDisarm)
@@ -169,7 +165,7 @@ package es.elv.kobold {
 		val trapRecoverable = P(() => R.proxy.getTrapRecoverable(this), (b: Boolean) => R.proxy.setTrapRecoverable(this, b))
 
 	}
-	trait HasLock {
+	trait Lock {
 		this: GameObject[_] =>
 
 		val locked = P(() => R.proxy.getLocked(this), (locked: Boolean) => R.proxy.setLocked(this, locked))
@@ -180,10 +176,8 @@ package es.elv.kobold {
 		val unlockDC = P(() => R.proxy.getLockUnlockDC(this), (dc: Int) => R.proxy.setLockUnlockDC(this, dc))
 	}
 
-	trait HasSpellCasting extends HasActionQueue {
+	trait SpellCasting extends ActionQueue {
 		this: GameObject[_] =>
-
-		def spellsMemorized(spell: Int) = R.proxy.getHasSpell(spell, this)
 
 		def doCounterSpell(o: GameObject[_]) = assign {
 			R.proxy.actionCounterSpell(o)

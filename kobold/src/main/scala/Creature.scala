@@ -2,9 +2,9 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
-	trait Creature extends HasActionQueue
-			with HasMovement with HasLanguage with HasInventory with HasEffects
-			with HasVisualEffects with HasSpellCasting {
+	trait Creature extends ActionQueue
+			with Movement with Language with Inventory with Effects
+			with VisualEffects with SpellCasting {
 		this: GameObject[_] =>
 
 		val commandable = P(() => R.proxy.getCommandable(this), (is: Boolean) => R.proxy.setCommandable(is, this))

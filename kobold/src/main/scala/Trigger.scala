@@ -6,7 +6,7 @@ package es.elv.kobold {
 	object Trigger extends WrappedFactory[NWObject, Trigger]((wrapped) => new Trigger(wrapped))
 
 	class Trigger private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Trigger](wrapped, Some(Trigger)) with GameObject[Trigger]
-				with HasLock with HasTrap with HasLocation {
+				with Lock with Trap with Position {
 		ensureObjectType(ObjectType.Trigger)
 	}
 }
