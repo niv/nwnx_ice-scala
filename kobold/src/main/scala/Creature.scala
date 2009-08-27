@@ -31,6 +31,8 @@ package es.elv.kobold {
 		val xp = P(() => R.proxy.getXP(this), (value: Int) => R.proxy.setXP(this, value))
 
 		def message(text: String) = R.proxy.sendMessageToPC(this, text)
+		def floatingText(text: String): Unit =
+			floatingText(text, false)
 		def floatingText(text: String, broadcastToFaction: Boolean) =
 			R.proxy.floatingTextStringOnCreature(text, this, broadcastToFaction)
 
