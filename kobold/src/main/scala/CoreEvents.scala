@@ -15,6 +15,8 @@ package es.elv.kobold {
 
 		abstract case class GameEvent() extends Event
 
+		case class EStartup() extends GameEvent
+
 		case class EModuleLoad() extends GameEvent
 		case class EModuleHB() extends GameEvent
 
@@ -112,6 +114,8 @@ package es.elv.kobold {
 
 		private val actions: mutable.Map[Class[_], mutable.Set[(Option[G[_]], (Event) => Unit)]] = mutable.Map()
 
+		private var firstEvent = false
+
 		// Register action to be ran with on as self when eventName on on happens. Hah, parse that.
 		def once[T <: Event](onEvent: Class[T], self: Option[G[_]], action: (Event) => Unit) {
 			if (!actions.contains(onEvent))
@@ -124,6 +128,11 @@ package es.elv.kobold {
 		def listen(e: Event) = {
 			// wait for last future
 			lastInvalidateRun()
+
+			if (!firstEvent) {
+				firstEvent = true
+				EventSource send new EStartup()
+			}
 
 			e match {
 				case r: RawEvent => {
