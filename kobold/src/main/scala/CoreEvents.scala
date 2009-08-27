@@ -101,9 +101,10 @@ package es.elv.kobold {
 		import scala.concurrent.ops.future
 		import events._
 
-		private val factories = List(AOE, Area, NonPlayer, Player, Door, Encounter, Item, Placeable, Store, Trigger, Waypoint)
+		val factories: List[WrappedFactory[NWObject, _ <: G[_]]] =
+			List(AOE, Area, NonPlayer, Player, Door, Encounter, Item, Placeable, Store, Trigger, Waypoint)
 
-		def invalidateFactories = future(
+		def invalidateFactories() = future(
 			factories.foreach((f) => f.getCache.foreach((k) => k._2.clearCachedPropertiesByPolicy(cachedproperty.CachePolicy.Event)))
 		)
 
@@ -321,7 +322,7 @@ package es.elv.kobold {
 				case _ =>
 			}
 
-			lastInvalidateRun = invalidateFactories
+			lastInvalidateRun = invalidateFactories()
 		}
 	}
 }
