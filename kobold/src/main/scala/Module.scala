@@ -6,8 +6,7 @@ package es.elv.kobold {
 	object Module {
 		class DateTime(val year: Int, val month: Int, val day: Int, val hour: Int, val minute: Int, val second: Int)
 
-		class ModuleInstance extends Wrapped[NWObject, ModuleInstance](new NWObject(0), None)
-			with G[ModuleInstance] with ActionQueue
+		class ModuleInstance extends G[ModuleInstance](new NWObject(0), None)
 		lazy private val instance = new ModuleInstance
 		def apply() = instance
 

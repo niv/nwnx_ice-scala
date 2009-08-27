@@ -5,7 +5,7 @@ package es.elv.kobold {
 
 	object Item extends WrappedFactory[NWObject, Item]((wrapped) => new Item(wrapped))
 
-	class Item private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Item](wrapped, Some(Item)) with G[Item]
+	class Item private[kobold] (wrapped: NWObject) extends G[Item](wrapped, Some(Item))
 			with Position with Inventory {
 		ensureObjectType(ObjectType.Item)
 

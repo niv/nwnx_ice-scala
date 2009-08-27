@@ -5,7 +5,7 @@ package es.elv.kobold {
 
 	object Area extends WrappedFactory[NWObject, Area]((wrapped) => new Area(wrapped))
 
-	class Area private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Area](wrapped, Some(Area)) with G[Area] {
+	class Area private[kobold] (wrapped: NWObject) extends G[Area](wrapped, Some(Area)) {
 		def allObjects: List[G[_]] =
 			R.proxy.allInArea(this).toList.map(G(_))
 

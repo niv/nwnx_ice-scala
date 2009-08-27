@@ -10,8 +10,8 @@ package es.elv.kobold {
 		def byName(name: String) = all.find(_.name == name)
 	}
 
-	class Player private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Player](wrapped, Some(Player))
-			with G[Player] with Creature {
+	class Player private[kobold] (wrapped: NWObject) extends G[Player](wrapped, Some(Player))
+			with Creature {
 		ensureObjectType(ObjectType.Creature)
 
 		import cachedproperty.CachePolicy._

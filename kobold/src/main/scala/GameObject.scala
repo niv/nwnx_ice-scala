@@ -43,7 +43,8 @@ package es.elv.kobold {
 
 	}
 
-	trait G[K] extends Wrapped[NWObject, K] with cachedproperty.CachedProperties[G[K]] {
+	abstract class G[K](wrapped: NWObject, factory: Option[WrappedFactory[NWObject, K]]) extends Wrapped[NWObject, K](wrapped, factory)
+			with cachedproperty.CachedProperties[G[K]] {
 		this: K =>
 
 		import cachedproperty.CachePolicy._

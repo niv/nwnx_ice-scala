@@ -4,7 +4,7 @@ package es.elv.kobold {
 	import Implicits._
 
 	object Door extends WrappedFactory[NWObject, Door]((wrapped) => new Door(wrapped))
-	class Door private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Door](wrapped, Some(Door)) with G[Door]
+	class Door private[kobold] (wrapped: NWObject) extends G[Door](wrapped, Some(Door))
 			with VisualEffects with Lock with Trap {
 		ensureObjectType(ObjectType.Door)
 	}

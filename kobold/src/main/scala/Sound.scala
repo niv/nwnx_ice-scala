@@ -4,7 +4,7 @@ package es.elv.kobold {
 	import Implicits._
 
 	object Sound extends WrappedFactory[NWObject, Sound]((wrapped) => new Sound(wrapped))
-	class Sound private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Sound](wrapped, Some(Sound)) with G[Sound] {
+	class Sound private[kobold] (wrapped: NWObject) extends G[Sound](wrapped, Some(Sound)) {
 		ensureObjectType(ObjectType.All)
 
 		require(resref() == "")

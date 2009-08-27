@@ -4,7 +4,7 @@ package es.elv.kobold {
 	import Implicits._
 
 	object Store extends WrappedFactory[NWObject, Store]((wrapped) => new Store(wrapped))
-	class Store private[kobold] (wrapped: NWObject) extends Wrapped[NWObject, Store](wrapped, Some(Store)) with G[Store] {
+	class Store private[kobold] (wrapped: NWObject) extends G[Store](wrapped, Some(Store)) {
 		ensureObjectType(ObjectType.Store)
 	}
 }
