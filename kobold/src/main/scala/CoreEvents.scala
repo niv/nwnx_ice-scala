@@ -200,13 +200,13 @@ package es.elv.kobold {
 							R.proxy.getLastSpell, R.proxy.getMetaMagicFeat, R.proxy.getLastSpellHarmful)
 
 
-						case "player_enter" => {
-							val player = Player(R.proxy.getEnteringObject)
+						case "player_login" => {
+							val player = Player(r.self)
 							nwnx.Chat.pcIn(player)
 							EventSource send new EPlayerEnter(player)
 						}
-						case "player_leave" => {
-							val player = Player(R.proxy.getExitingObject)
+						case "player_logout" => {
+							val player = Player(r.self)
 							nwnx.Chat.pcOut(player)
 							EventSource send new EPlayerLeave(player)
 						}
