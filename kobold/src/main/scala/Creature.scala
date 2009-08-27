@@ -3,7 +3,7 @@ package es.elv.kobold {
 	import Implicits._
 
 	trait Creature extends ActionQueue
-			with Movement with Language with Inventory with Effects
+			with Movement with Language with Inventory with Equipped with Effects
 			with VisualEffects with SpellCasting {
 		this: G[_] =>
 

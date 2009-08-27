@@ -46,8 +46,6 @@ package es.elv.kobold {
 
 		def hasInventory = R.proxy.allInInventory(this)
 		def allInInventory: List[Item] = R.proxy.allInInventory(this).toList.map(Item(_))
-		def getEquipped: NWCreatureEquipped = R.proxy.allEquipped(this)
-		def isEquipped(item: Item) = getEquipped.all contains item
 
 		def createItem(resref: String,  stacksize: Int): Item = {
 			require(stacksize > 0)
@@ -57,6 +55,13 @@ package es.elv.kobold {
 		def giveItem(item: Item, to: G[_] with Inventory) = assign {
 			R.proxy.actionGiveItem(item, to)
 		}
+	}
+
+	trait Equipped extends ActionQueue {
+		this: G[_] =>
+
+		def getEquipped: NWCreatureEquipped = R.proxy.allEquipped(this)
+		def isEquipped(item: Item) = getEquipped.all contains item
 
 		def equipItem(item: Item, slot: InventorySlot) = assign {
 			R.proxy.actionEquipItem(item, slot)
