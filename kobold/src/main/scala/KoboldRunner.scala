@@ -5,6 +5,8 @@ import net.lag._
 import es.elv.kobold._
 
 object Runner {
+	lazy private val log = logging.Logger.get
+
 	def main(args: Array[String]) {
 		if (args.size < 1)
 			error("No configuration specified. Syntax: KoboldStarter my.conf")
@@ -12,6 +14,8 @@ object Runner {
 		configgy.Configgy.configure(args(0))
 		val config = configgy.Configgy.config
 		val endpoint = config.getString("ice_endpoint", "default -p 5223")
+
+		log.debug("ICE endpoint listening at: " + endpoint)
 
 		val plugins = config.getList("plugins")
 		val pclasses = plugins.map(p =>
@@ -32,9 +36,11 @@ object Runner {
 		val obj: Ice.Object = R
 
 		adapter.add(obj, ic.stringToIdentity("Client"))
-		adapter.activate()
 
+		log.info("Loading all plugins ..")
 		Kobold loadPlugin CoreEvents
 		pclasses.foreach(Kobold loadPlugin _)
+		log.info("Starting up.")
+		adapter.activate()
 	}
 }
