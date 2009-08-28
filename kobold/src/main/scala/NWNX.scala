@@ -38,13 +38,13 @@ package es.elv.kobold.nwnx {
 			Core.setGet(obj, "FUNCS", key, args map(_ toString) mkString(" ") + " " * 10).toInt
 
 		def allAreas: List[Area] = {
-			var all = List[Area]()
+			var all = new mutable.ListBuffer[Area]
 			var area = Area(getObject(Module(), "GETFIRSTAREA"))
 			while (area.valid) {
 				area = Area(getObject(Module(), "GETNEXTAREA"))
-				all ::= area
+				all += area
 			}
-			all
+			all.toList
 		}
 	}
 

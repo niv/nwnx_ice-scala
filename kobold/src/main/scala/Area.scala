@@ -3,7 +3,9 @@ package es.elv.kobold {
 	import net.lag._
 	import Implicits._
 
-	object Area extends WrappedFactory[NWObject, Area]((wrapped) => new Area(wrapped))
+	object Area extends WrappedFactory[NWObject, Area]((wrapped) => new Area(wrapped)) {
+		lazy val all = nwnx.Funcs.allAreas
+	}
 
 	class Area private[kobold] (wrapped: NWObject) extends G[Area](wrapped, Some(Area)) {
 		def allObjects: List[G[_]] =
