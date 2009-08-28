@@ -39,6 +39,7 @@ object Runner {
 
 		log.info("Loading all plugins ..")
 		Kobold loadPlugin CoreEvents
+		Kobold loadPlugin new Imp
 		pclasses.foreach(Kobold loadPlugin _)
 		log.info("Starting up.")
 		adapter.activate()

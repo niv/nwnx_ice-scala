@@ -66,11 +66,9 @@ package es.elv.kobold {
 
 		def valid: Boolean = {
 			if (this == Module())
-				return false
+				return true
 
-			val ret = R.proxy.getIsObjectValid(this)
-			if (!ret) invalidate()
-			ret
+			R.proxy.getIsObjectValid(this)
 		}
 
 		val name: RWCachedProperty[String, G[K]] = P(() => R.proxy.getName(this, false), (n: String) => { R.proxy.setName(this, n); this.name.clear() })
@@ -93,7 +91,7 @@ package es.elv.kobold {
 		def lo(key: String) = G(R.proxy.getLocalObject(this, key))
 		def lo(key: String, value: G[_]) = R.proxy.setLocalObject(this, key, value)
 
-		protected def toStringProperties = List("ref=" + resref(), "tag=" + tag(), "name=" + name())
+		protected def toStringProperties = List(if (valid) "valid" else "invalid", "ref=" + resref(), "tag=" + tag(), "name=" + name())
 		override def toString = getClass.getName.toString + "(" + (wrapped.id.toHexString :: toStringProperties).mkString(",") + ")"
 	}
 }
