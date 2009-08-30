@@ -35,7 +35,7 @@ public final class NWObjectSeqHelper
     {
         NWObject[] __v;
         final int __len0 = __is.readSize();
-        __is.checkFixedSeq(__len0, 4);
+        __is.checkFixedSeq(__len0, 8);
         __v = new NWObject[__len0];
         for(int __i0 = 0; __i0 < __len0; __i0++)
         {

@@ -13,13 +13,13 @@ package NWN;
 
 public final class NWObject implements java.lang.Cloneable, java.io.Serializable
 {
-    public int id;
+    public long id;
 
     public NWObject()
     {
     }
 
-    public NWObject(int id)
+    public NWObject(long id)
     {
         this.id = id;
     }
@@ -57,7 +57,7 @@ public final class NWObject implements java.lang.Cloneable, java.io.Serializable
     hashCode()
     {
         int __h = 0;
-        __h = 5 * __h + id;
+        __h = 5 * __h + (int)id;
         return __h;
     }
 
@@ -79,12 +79,12 @@ public final class NWObject implements java.lang.Cloneable, java.io.Serializable
     public void
     __write(IceInternal.BasicStream __os)
     {
-        __os.writeInt(id);
+        __os.writeLong(id);
     }
 
     public void
     __read(IceInternal.BasicStream __is)
     {
-        id = __is.readInt();
+        id = __is.readLong();
     }
 }
