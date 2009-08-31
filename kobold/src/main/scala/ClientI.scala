@@ -27,10 +27,18 @@ package es.elv.kobold {
 			tokenCounter
 		}
 
+		/**
+			Schedule a block of code to be executed
+			with NWN context after the next available event.
+		*/
 		def schedule(block: () => Unit) {
 			delayedThunks += block
 		}
 
+		/**
+			Assign a block of code to be executed on a
+			specific object.
+		*/
 		def assign(obj: NWObject, block: => Unit) {
 			// This saves us a round trip, because we're already on the correct object.
 			if (obj == objectSelf) {
@@ -47,6 +55,23 @@ package es.elv.kobold {
 			}
 		}
 
+		/**
+			Assign a block of code to be executed after the
+			given time on a specific object. Do not reference
+			effects from the outer scope in the given block -
+			they will not be valid anymore.
+		*/
+		def delay(obj: NWObject, delay: Double, block: => Unit) {
+			val token = nextToken()
+			storedTokens(token) = () => { block }
+
+			val mod = new NWObject(0)
+			proxy.setLocalString(mod, "ice_token", token.toString)
+			proxy.setLocalFloat(mod, "ice_delay", if (delay < 0.0) 0.0 else delay)
+			proxy.executeScript("ice_schedule", obj)
+		}
+
+
 		def token(p: NWScriptPrx, self: NWObject, tk: String, current: Ice.Current) {
 			objectSelf = self
 			cachedProxy = p
@@ -61,7 +86,7 @@ package es.elv.kobold {
 			} else {
 				log.error("  Wanted to execute token " + tk + " but not found")
 			}
-			
+
 			log.info("t %08x %-20s %8d ms (cache: %d)".format(
 				self.id, "   " * contextDepth + tk, System.currentTimeMillis - start,
 				storedTokens.size
@@ -82,11 +107,11 @@ package es.elv.kobold {
 				delayedThunks.dequeue()()
 			if (delayedThunks.size > 0)
 				log.warning(delayedThunks.size + " thunks remaining")
-			
+
 			contextDepth -= 1
 
 			log.info("e %08x %-20s %8d ms".format(self.id, "   " * contextDepth + ev, System.currentTimeMillis - start))
-			
+
 			if (e.suppressed)
 				return ClientResult.Suppress
 			if (e.stopped)

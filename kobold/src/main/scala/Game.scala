@@ -12,6 +12,10 @@ package es.elv.kobold {
 			R assign (this, what)
 		}
 
+		def after(delay: Double, what: => Unit) {
+			R delay (this, delay, what)
+		}
+
 		def clearActions: Unit = clearActions(true)
 		def clearActions(combatToo: Boolean) = assign {
 			R.proxy.clearAllActions(combatToo)
