@@ -10,7 +10,7 @@ package es.elv.kobold.cachedproperty {
 	}
 
 	import CachePolicy.CachePolicy
-	
+
 	class CachedProperty[T, V] (val cachePolicy: CachePolicy, getter: () => T) {
 		protected var value: Option[T] = None
 
@@ -22,8 +22,10 @@ package es.elv.kobold.cachedproperty {
 				value.get
 			}
 		}
-		
+
 		def clear() { value = None }
+
+		override def toString() = "CachedProperty(" + cachePolicy + ", " + apply().toString + ")"
 	}
 
 	class RWCachedProperty[T, V] (
@@ -35,13 +37,15 @@ package es.elv.kobold.cachedproperty {
 			setter(what)
 			value = Some(what)
 		}
+
+		override def toString() = "RWCachedProperty(" + cachePolicy + ", " + apply().toString + ")"
 	}
 
 	trait CachedProperties[V] {
 		this: V =>
 
 		private var cachedProperties: List[CachedProperty[_,V]] = List()
-		
+
 		protected object P {
 
 			def apply[T](getter: () => T): CachedProperty[T, V] =
