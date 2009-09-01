@@ -18,6 +18,8 @@ package es.elv.kobold {
 
 		val possessor = P(() => G(R.proxy.getItemPossessor(this)))
 
+		val goldValue = P(() => R.proxy.getGoldPieceValue(this))
+
 		def properties: List[ItemProperty] =
 			R.proxy.allItemProperties(this).toList.map(new ItemProperty(_))
 
