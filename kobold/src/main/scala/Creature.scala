@@ -59,6 +59,21 @@ package es.elv.kobold {
 		val powerAttackMode = getSetActionMode(ActionMode.PowerAttackMode)
 		val rapidShotMode = getSetActionMode(ActionMode.RapidShotMode)
 
+		/** Contains a List of classes. */
+		val classes = P(() => {
+			List(R.proxy.getClassByPosition(1, this),
+				R.proxy.getClassByPosition(2, this),
+				R.proxy.getClassByPosition(3, this)
+			).filter(_ != 255)
+		})
+
+		/** Contains a SortedMap of class -> level. */
+		val classLevels = P(() => {
+			collection.immutable.TreeMap[Int, Int]() ++ this.classes().map(k =>
+				k -> R.proxy.getLevelByClass(k, this)
+			)
+		})
+
 		// Perception
 		def canHear(who: G[_]) = R.proxy.getObjectHeard(who, this)
 		def canSee(who: G[_]) = R.proxy.getObjectSeen(who, this)
