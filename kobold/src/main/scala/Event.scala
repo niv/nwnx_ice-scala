@@ -7,10 +7,6 @@ package es.elv.kobold.events {
 	}
 
 	trait Event {
-		private var _suppressed = false
-		def suppress() = synchronized { _suppressed = true }
-		def suppressed = _suppressed
-
 		private var _stopped = false
 		def stop() = synchronized { _stopped = true }
 		def stopped = _stopped
@@ -33,7 +29,11 @@ package es.elv.kobold.events {
 		}
 
 		def send(e: Event): Event = {
-			observers.foreach(_ listen e)
+			for (o <- observers) {
+				if (!e.stopped)
+					o listen e
+			}
+
 			e
 		}
 	}

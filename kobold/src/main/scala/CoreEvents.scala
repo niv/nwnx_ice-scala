@@ -324,9 +324,6 @@ package es.elv.kobold {
 
 					if (e.stopped)
 						r.stop
-					if (e.suppressed)
-						r.suppress
-
 				}
 				case _ =>
 			}

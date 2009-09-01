@@ -112,8 +112,6 @@ package es.elv.kobold {
 
 			log.info("e %08x %-20s %8d ms".format(self.id, "   " * contextDepth + ev, System.currentTimeMillis - start))
 
-			if (e.suppressed)
-				return ClientResult.Suppress
 			if (e.stopped)
 				return ClientResult.Stop
 			return ClientResult.Continue

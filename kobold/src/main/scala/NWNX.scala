@@ -53,6 +53,10 @@ package es.elv.kobold.nwnx {
 			set(Module(), "SETSPELLID", spell.toString)
 	}
 
+	object Events extends Core("EVENTS") {
+		def suppress(o: G[_]) = set(o, "BYPASS", "1")
+	}
+	
 	object Chat extends Core("CHAT") {
 		def speakToChannel(speaker: G[_], channel: Int, text: String, to: G[_]): Unit = {
 			if (!speaker.valid)
@@ -64,7 +68,6 @@ package es.elv.kobold.nwnx {
 			val t = List(speaker.wrapped.id.toHexString,
 				to.wrapped.id.toHexString, channel, text).mkString("¬")
 
-			// R.proxy.setLocalInt(speaker, "ice_chat_message_ignore", 1)
 			set(speaker, "SPEAK", t)
 		}
 
@@ -85,6 +88,7 @@ package es.elv.kobold.nwnx {
 			Player(R.proxy.getLocalObject(Module(), "chatPC_" + id))
 		}
 
+		def suppress(o: G[_]) = set(o, "SUPRESS", "1")
 	}
 
 }
