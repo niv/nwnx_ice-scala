@@ -12,6 +12,7 @@ package es.elv.kobold {
 
 	package events {
 		final case class RawEvent(val self: NWObject, val event: String) extends Event
+		final case class AnyEvent(val self: G[_], val event: String) extends Event
 
 		abstract case class GameEvent() extends Event
 
@@ -37,6 +38,7 @@ package es.elv.kobold {
 			val attackMode: CombatMode, val attackType: SpecialAttack) extends GameEvent
 		case class ECreatureConversation(val creature: G[Creature], val speaker: G[_]) extends GameEvent
 		case class ECreatureDeath(val creature: G[Creature], val killer: G[Creature]) extends GameEvent
+		case class ECreatureBlocked(val creature: G[Creature], val blocker: G[_]) extends GameEvent
 		case class ECreatureDisturbed(val creature: G[Creature], val disturber: G[Creature]) extends GameEvent
 		case class ECreatureEndOfRound(val creature: G[Creature]) extends GameEvent
 		case class ECreatureHears(val creature: G[Creature], val who: G[Creature]) extends GameEvent
@@ -136,6 +138,8 @@ package es.elv.kobold {
 
 			e match {
 				case r: RawEvent => {
+					val ee = EventSource send new AnyEvent(r.self, r.event)
+
 					val e: Event = (r.event match {
 						case "module_hb"       => EventSource send new EModuleHB()
 						case "module_load"     => EventSource send new EModuleLoad()
@@ -179,6 +183,8 @@ package es.elv.kobold {
 							r.self, R.proxy.getLastDamager(r.self))
 						case "creature_death" => EventSource send new ECreatureDeath(
 							r.self, R.proxy.getLastKiller)
+						case "creature_blocked" => EventSource send new ECreatureBlocked(
+							r.self, R.proxy.getBlockingDoor)
 						case "creature_disturbed" => EventSource send new ECreatureDisturbed(
 							r.self, R.proxy.getLastDisturbed)
 						case "creature_endofround" => EventSource send new ECreatureEndOfRound(
