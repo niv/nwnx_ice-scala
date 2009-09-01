@@ -37,12 +37,13 @@ package es.elv.kobold {
 		this: G[_] =>
 
 		def speak(channel: TalkVolume, text: String) = assign {
-			R.proxy.actionSpeakString(text, channel)
+			R.proxy.speakString(text, channel)
 		}
 
 		def say(text: String) = speak(TalkVolume.TalkVol, text)
 		def shout(text: String) = speak(TalkVolume.ShoutVol, text)
 		def whisper(text: String) = speak(TalkVolume.WhisperVol, text)
+		def sayParty(text: String) = nwnx.Chat.speakToChannel(this, 6, text, Invalid())
 	}
 
 	trait Inventory extends ActionQueue {
