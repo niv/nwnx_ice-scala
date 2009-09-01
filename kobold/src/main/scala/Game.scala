@@ -105,45 +105,6 @@ package es.elv.kobold {
 		}
 	}
 
-	trait Effects extends ActionQueue {
-		this: G =>
-		
-		private implicit def e2e(w: NWEffect) = new Effect(w)
-
-		def effects: List[Effect] = R.proxy.allEffects(this).toList.map(new Effect(_))
-
-		/** Apply a temporary effect to this object. */
-		def <+(e: Effect, duration: Double) = applyEffect(this, e, DurationType.Temporary, duration)
-
-		/** Apply a instantaneous effect to this object. */
-		def <<(e: Effect) = applyEffect(this, e, DurationType.Instant, 0)
-
-		/** Apply a permanent effect to this object. */
-		def <*(e: Effect) = applyEffect(this, e, DurationType.Permanent, 0)
-
-		def applyEffect(creator: ActionQueue, e: Effect, durationType: DurationType, duration: Double) =
-			creator assign { R.proxy.applyEffectToObject(durationType, e, this, duration) }
-	
-		/** Remove the given effect from this object. Does nothing if this effect is not applied. */
-		def removeEffect(e: Effect) = R.proxy.removeEffect(this, e)
-	}
-
-	trait VisualEffects {
-		this: G =>
-
-		/** Show a temporary visual effect on this object. */
-		def ^+(e: Int, duration: Double): Unit = vfx(e, DurationType.Temporary, duration)
-		/** Show a instantaneous visual effect on this object. */
-		def ^^(e: Int): Unit = vfx(e, DurationType.Instant, 0)
-		/** Show a permanent visual effect on this object. */
-		def ^*(e: Int): Unit = vfx(e, DurationType.Permanent, 0)
-
-		def vfx(e: Int, durationType: DurationType, duration: Double) =
-			R.proxy.applyEffectToObject(durationType,
-				R.proxy.effectVisualEffect(e, false),
-				this, duration)
-	}
-
 	trait Trap {
 		this: G =>
 

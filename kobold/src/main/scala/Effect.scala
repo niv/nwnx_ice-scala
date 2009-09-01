@@ -1,13 +1,52 @@
 package es.elv.kobold {
 	import NWN._
 	import scala.collection._
-	import net.lag._
 	import scala.actors._
 	import scala._
 	import Implicits._
 
+	trait Effects extends ActionQueue {
+		this: G =>
+
+		def effects: List[Effect] = R.proxy.allEffects(this).toList.map(Effect(_))
+
+		/** Apply a temporary effect to this object. */
+		def <+(e: Effect, duration: Double) = applyEffect(this, e, DurationType.Temporary, duration)
+
+		/** Apply a instantaneous effect to this object. */
+		def <<(e: Effect) = applyEffect(this, e, DurationType.Instant, 0)
+
+		/** Apply a permanent effect to this object. */
+		def <*(e: Effect) = applyEffect(this, e, DurationType.Permanent, 0)
+
+		def applyEffect(creator: ActionQueue, e: Effect, durationType: DurationType, duration: Double) =
+			creator assign { R.proxy.applyEffectToObject(durationType, e, this, duration) }
+
+		/** Remove the given effect from this object. Does nothing if this effect is not applied. */
+		def removeEffect(e: Effect) = R.proxy.removeEffect(this, e)
+	}
+
+	trait VisualEffects {
+		this: G =>
+
+		/** Show a temporary visual effect on this object. */
+		def ^+(e: Int, duration: Double): Unit = vfx(e, DurationType.Temporary, duration)
+		/** Show a instantaneous visual effect on this object. */
+		def ^^(e: Int): Unit = vfx(e, DurationType.Instant, 0)
+		/** Show a permanent visual effect on this object. */
+		def ^*(e: Int): Unit = vfx(e, DurationType.Permanent, 0)
+
+		def vfx(e: Int, durationType: DurationType, duration: Double) =
+			R.proxy.applyEffectToObject(durationType,
+				R.proxy.effectVisualEffect(e, false),
+				this, duration)
+	}
+
 	object Effect {
-		private implicit def e2e(w: NWEffect) = new Effect(w)
+		def apply(o: NWEffect): Effect = implicitEffect(o)
+
+		private implicit def implicitEffect(n: NWEffect): Effect = Effect(
+			n.id, n.tType, n.tSubType, n.tDurationType, n.tSpellId, G(n.tCreator))
 
 		def darknessInvisibility: Effect = R.proxy.effectInvisibility(2)
 		def improvedInvisibility: Effect = R.proxy.effectInvisibility(4)
@@ -123,20 +162,15 @@ package es.elv.kobold {
 		*/
 	}
 
-	case class Effect private[kobold] (wrap: NWEffect) extends Wrapped[NWEffect, Effect](wrap, None) {
-		// lazy val valid = R.proxy.getIsEffectValid(this)
+	case class Effect (val effectId: Long, val effectType: EffectType, val effectSubType: EffectSubType,
+			val durationType: DurationType, val effectSpellId: Int, val effectCreator: G) {
 
-		val effectType = wrap.tType
-		val effectSubType = wrap.tSubType
-		val durationType = wrap.tDurationType
-		def iconShown = wrap.tIconShown
+		/*def iconShown = wrapped.tIconShown
 		def iconShown_=(state: Boolean) {
 			iconShown = state ; R.proxy.setEffectIconShown(this, state)
-		}
+		}*/
 
-		val spellId = R.proxy.getEffectSpellId(this)
-
-		val creator = G(wrap.tCreator) // R.proxy.getEffectCreator(this))
+		// val spellId = R.proxy.getEffectSpellId(this)
 
 		def magical: Effect = R.proxy.magicalEffect(this)
 		def extraordinary: Effect = R.proxy.extraordinaryEffect(this)
@@ -144,10 +178,13 @@ package es.elv.kobold {
 
 		def link(to: Effect): Effect = R.proxy.effectLinkEffects(to, this)
 
+		private[kobold] def toNWEffect: NWEffect =
+			new NWEffect(effectId, durationType, effectType, effectSubType, true, Module(), 0)
+
 		override def toString =
 			"Effect<" + effectType + "," + durationType + ">(" + List(
-				wrapped.id.toHexString, effectSubType,
-				 "icon=" + iconShown, "creator=" + creator).mkString(",")
+				effectId.toHexString, effectSubType,
+				"creator=" + effectCreator).mkString(",") +
 			")"
 	}
 }

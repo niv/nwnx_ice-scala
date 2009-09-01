@@ -7,7 +7,10 @@ package es.elv.kobold {
 	import Implicits._
 
 	object ItemProperty {
-		private implicit def e2e(w: NWItemProperty) = new ItemProperty(w)
+		def apply(o: NWItemProperty): ItemProperty = implicitIprp(o)
+
+		private implicit def implicitIprp(w: NWItemProperty) = new ItemProperty(
+			w.id, w.tType, w.tSubType, w.tDurationType, w.tParam1, w.tParam1Value, w.tCostTable, w.tCostTableValue)
 
 		def additional(additionalProperty: Int): ItemProperty = R.proxy.itemPropertyAdditional(additionalProperty)
 
@@ -91,15 +94,11 @@ package es.elv.kobold {
 
 	}
 
-	case class ItemProperty(wrap: NWItemProperty) extends Wrapped[NWItemProperty, ItemProperty](wrap, None) {
-		val iprpType = wrap.tType
-		val iprpSubType = wrap.tSubType
-		val durationType = wrap.tDurationType
-		val param1 = wrap.tParam1
-		val param1Value = wrap.tParam1Value
-		val costTable = wrap.tCostTable
-		val costTableValue = wrap.tCostTableValue
+	case class ItemProperty(val iprpId: Long, iprpType: Int, iprpSubType: Int, durationType: DurationType,
+			val param1: Int, val param1Value: Int, val costTable: Int, val costTableValue: Int) {
 
+		private[kobold] def toNWItemProperty: NWItemProperty = new NWItemProperty(
+			iprpId, durationType, 0, 0, 0, 0, 0, 0)
 
 		override def toString = {
 			val typeStrRef = TwoDA("itempropdef")("Name", iprpType)
@@ -118,7 +117,7 @@ package es.elv.kobold {
 			else "")
 
 			"ItemProperty<" + typeStr + "," + durationType + ">(" +
-				List(wrapped.id.toHexString, subTypeStr,
+				List(iprpId.toHexString, subTypeStr,
 				param1Str, costTableStr).filter(_ != "").mkString(",") + ")"
 		}
 	}

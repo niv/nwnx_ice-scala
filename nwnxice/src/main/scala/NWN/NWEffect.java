@@ -25,11 +25,13 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
 
     public NWObject tCreator;
 
+    public int tSpellId;
+
     public NWEffect()
     {
     }
 
-    public NWEffect(long id, DurationType tDurationType, EffectType tType, EffectSubType tSubType, boolean tIconShown, NWObject tCreator)
+    public NWEffect(long id, DurationType tDurationType, EffectType tType, EffectSubType tSubType, boolean tIconShown, NWObject tCreator, int tSpellId)
     {
         this.id = id;
         this.tDurationType = tDurationType;
@@ -37,6 +39,7 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
         this.tSubType = tSubType;
         this.tIconShown = tIconShown;
         this.tCreator = tCreator;
+        this.tSpellId = tSpellId;
     }
 
     public boolean
@@ -81,6 +84,10 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
             {
                 return false;
             }
+            if(tSpellId != _r.tSpellId)
+            {
+                return false;
+            }
 
             return true;
         }
@@ -110,6 +117,7 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
         {
             __h = 5 * __h + tCreator.hashCode();
         }
+        __h = 5 * __h + tSpellId;
         return __h;
     }
 
@@ -137,6 +145,7 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
         tSubType.__write(__os);
         __os.writeBool(tIconShown);
         tCreator.__write(__os);
+        __os.writeInt(tSpellId);
     }
 
     public void
@@ -149,5 +158,6 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
         tIconShown = __is.readBool();
         tCreator = new NWObject();
         tCreator.__read(__is);
+        tSpellId = __is.readInt();
     }
 }

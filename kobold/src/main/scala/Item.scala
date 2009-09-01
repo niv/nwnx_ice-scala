@@ -21,7 +21,7 @@ package es.elv.kobold {
 		val goldValue = P(() => R.proxy.getGoldPieceValue(this))
 
 		def properties: List[ItemProperty] =
-			R.proxy.allItemProperties(this).toList.map(new ItemProperty(_))
+			R.proxy.allItemProperties(this).toList.map(ItemProperty(_))
 
 		// Apply a temporary itemProperty to this object.
 		def <+(e: ItemProperty, duration: Double) = addPropertyIntelligently(e, duration)
