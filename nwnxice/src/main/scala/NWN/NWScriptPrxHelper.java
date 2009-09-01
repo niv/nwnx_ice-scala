@@ -2270,6 +2270,51 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
+    public NWObject[]
+    allByTag(String tag)
+        throws NotInContextException
+    {
+        return allByTag(tag, null, false);
+    }
+
+    public NWObject[]
+    allByTag(String tag, java.util.Map<String, String> __ctx)
+        throws NotInContextException
+    {
+        return allByTag(tag, __ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private NWObject[]
+    allByTag(String tag, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws NotInContextException
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("allByTag");
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                return __del.allByTag(tag, __ctx);
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __cnt = __handleExceptionWrapperRelaxed(__delBase, __ex, null, __cnt);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
     public NWEffect[]
     allEffects(NWObject o)
         throws NotInContextException

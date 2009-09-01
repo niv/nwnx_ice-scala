@@ -33,6 +33,9 @@ public interface _NWScriptOperations
     NWObject[] allInArea(NWObject area, Ice.Current __current)
         throws NotInContextException;
 
+    NWObject[] allByTag(String tag, Ice.Current __current)
+        throws NotInContextException;
+
     NWObject[] allInInventory(NWObject o, Ice.Current __current)
         throws NotInContextException;
 

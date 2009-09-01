@@ -45,6 +45,11 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWObject[] allInArea(NWObject area, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
+    public NWObject[] allByTag(String tag)
+        throws NotInContextException;
+    public NWObject[] allByTag(String tag, java.util.Map<String, String> __ctx)
+        throws NotInContextException;
+
     public NWObject[] allInInventory(NWObject o)
         throws NotInContextException;
     public NWObject[] allInInventory(NWObject o, java.util.Map<String, String> __ctx)

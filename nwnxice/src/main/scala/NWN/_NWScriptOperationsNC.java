@@ -33,6 +33,9 @@ public interface _NWScriptOperationsNC
     NWObject[] allInArea(NWObject area)
         throws NotInContextException;
 
+    NWObject[] allByTag(String tag)
+        throws NotInContextException;
+
     NWObject[] allInInventory(NWObject o)
         throws NotInContextException;
 
