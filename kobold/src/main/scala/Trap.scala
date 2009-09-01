@@ -3,7 +3,7 @@ package es.elv.kobold {
 	import net.lag._
 	import Implicits._
 
-	class TrapTrigger private[kobold] (wrapped: NWObject) extends G[Trap](wrapped, None)
+	class TrapTrigger private[kobold] (wrapped: NWObject) extends G(wrapped)
 			with Trap {
 		import cachedproperty.CachePolicy._
 

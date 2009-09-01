@@ -2,10 +2,11 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
-	trait Creature extends ActionQueue
+	abstract class Creature(wrapped: NWObject) extends G(wrapped) with ActionQueue
 			with Movement with Language with Inventory with Equipped with Effects
 			with VisualEffects with SpellCasting {
-		this: G[_] =>
+
+		ensureObjectType(ObjectType.Creature)
 
 		val commandable = P(() => R.proxy.getCommandable(this), (is: Boolean) => R.proxy.setCommandable(is, this))
 		val lootable = P(() => R.proxy.getLootable(this), (is: Boolean) => R.proxy.setLootable(this, is))
@@ -75,7 +76,7 @@ package es.elv.kobold {
 		})
 
 		// Perception
-		def canHear(who: G[_]) = R.proxy.getObjectHeard(who, this)
-		def canSee(who: G[_]) = R.proxy.getObjectSeen(who, this)
+		def canHear(who: G) = R.proxy.getObjectHeard(who, this)
+		def canSee(who: G) = R.proxy.getObjectSeen(who, this)
 	}
 }

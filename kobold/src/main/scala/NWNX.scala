@@ -39,10 +39,10 @@ package es.elv.kobold.nwnx {
 
 		def allAreas: List[Area] = {
 			var all = new mutable.ListBuffer[Area]
-			var area = Area(getObject(Module(), "GETFIRSTAREA"))
+			var area: G = G(getObject(Module(), "GETFIRSTAREA"))
 			while (area.valid) {
-				area = Area(getObject(Module(), "GETNEXTAREA"))
-				all += area
+				all += area.asInstanceOf[Area]
+				area = G(getObject(Module(), "GETNEXTAREA"))
 			}
 			all.toList
 		}
@@ -54,11 +54,11 @@ package es.elv.kobold.nwnx {
 	}
 
 	object Events extends Core("EVENTS") {
-		def suppress(o: G[_]) = set(o, "BYPASS", "1")
+		def suppress(o: G) = set(o, "BYPASS", "1")
 	}
 	
 	object Chat extends Core("CHAT") {
-		def speakToChannel(speaker: G[_], channel: Int, text: String, to: G[_]): Unit = {
+		def speakToChannel(speaker: G, channel: Int, text: String, to: G): Unit = {
 			if (!speaker.valid)
 				return
 
@@ -71,24 +71,24 @@ package es.elv.kobold.nwnx {
 			set(speaker, "SPEAK", t)
 		}
 
-		def pcIn(o: Player) {
+		def pcIn(o: G) {
 			val id = get(o, "GETID", 10).trim.toInt
 			if (id != -1) {
 				R.proxy.setLocalObject(Module(), "chatPC_" + id, o)
 				R.proxy.setLocalInt(o, "chatID", id)
 			}
 		}
-		def pcOut(o: Player) {
+		def pcOut(o: G) {
 			val id = R.proxy.getLocalInt(o, "chatID")
 			R.proxy.deleteLocalInt(o, "chatID")
 			R.proxy.deleteLocalObject(Module(), "chatPC_" + id)
 		}
 
-		def getPC(id: Int): Player = {
-			Player(R.proxy.getLocalObject(Module(), "chatPC_" + id))
+		def getPC(id: Int): G = {
+			G(R.proxy.getLocalObject(Module(), "chatPC_" + id))
 		}
 
-		def suppress(o: G[_]) = set(o, "SUPRESS", "1")
+		def suppress(o: G) = set(o, "SUPRESS", "1")
 	}
 
 }

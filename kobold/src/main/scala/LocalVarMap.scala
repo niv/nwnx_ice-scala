@@ -1,21 +1,7 @@
 package es.elv.kobold
 import es.elv.kobold.Implicits._
 
-/*class LocalStringMap(val parent: G[_]) extends scala.collection.mutable.Map[String, String] {
-	def -=(key: String) =
-		R.proxy.deleteLocalString(parent, key)
-
-	def update(key: String, value: String) =
-		R.proxy.setLocalString(parent, key, value)
-	
-	// from Map
-	override def get(key: String): Option[String] =
-		Some(R.proxy.getLocalString(parent, key))
-
-	override def size: Int = 0
-}*/
-
-class LocalStringMap(parent: G[_]) {
+class LocalStringMap(parent: G) {
 	def apply(key: String): String =
 		R.proxy.getLocalString(parent, key)
 	def update(key: String, value: String) =
@@ -24,7 +10,7 @@ class LocalStringMap(parent: G[_]) {
 		R.proxy.deleteLocalString(parent, key)
 }
 
-class LocalIntMap(parent: G[_]) {
+class LocalIntMap(parent: G) {
 	def apply(key: String): Int =
 		R.proxy.getLocalInt(parent, key)
 	def update(key: String, value: Int) =
@@ -33,7 +19,7 @@ class LocalIntMap(parent: G[_]) {
 		R.proxy.deleteLocalInt(parent, key)
 }
 
-class LocalBoolMap(parent: G[_]) {
+class LocalBoolMap(parent: G) {
 	def apply(key: String): Boolean =
 		if (R.proxy.getLocalInt(parent, "_ice_b_" + key) == 0) false else true
 	def update(key: String, value: Boolean) =
@@ -42,7 +28,7 @@ class LocalBoolMap(parent: G[_]) {
 		R.proxy.deleteLocalInt(parent, "_ice_b_" + key)
 }
 
-class LocalFloatMap(parent: G[_]) {
+class LocalFloatMap(parent: G) {
 	def apply(key: String): Double =
 		R.proxy.getLocalFloat(parent, key)
 	def update(key: String, value: Double) =
@@ -51,10 +37,10 @@ class LocalFloatMap(parent: G[_]) {
 		R.proxy.deleteLocalFloat(parent, key)
 }
 
-class LocalObjectMap(parent: G[_]) {
-	def apply(key: String): G[_] =
+class LocalObjectMap(parent: G) {
+	def apply(key: String): G =
 		G(R.proxy.getLocalObject(parent, key))
-	def update(key: String, value: G[_]) =
+	def update(key: String, value: G) =
 		R.proxy.setLocalObject(parent, key, value)
 	def -=(key: String) =
 		R.proxy.deleteLocalObject(parent, key)

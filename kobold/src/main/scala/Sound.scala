@@ -3,8 +3,8 @@ package es.elv.kobold {
 	import net.lag._
 	import Implicits._
 
-	object Sound extends WrappedFactory[NWObject, Sound]((wrapped) => new Sound(wrapped))
-	class Sound private[kobold] (wrapped: NWObject) extends G[Sound](wrapped, Some(Sound)) {
+	object Sound
+	class Sound private[kobold] (wrapped: NWObject) extends G(wrapped) {
 		ensureObjectType(ObjectType.All)
 
 		require(resref() == "")

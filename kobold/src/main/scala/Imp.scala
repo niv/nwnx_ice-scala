@@ -22,19 +22,17 @@ class Imp extends Plugin {
 		}
 
 		case EModuleHB() => {
-
-			log.info("")
-			log.info("  Factory statistics:")
-			CoreEvents.factories.foreach(f => {
-				val invalid = f.getCache.filter(v => v._2.valid == false).toList
-				invalid.foreach(x => f.invalidate(x._1))
-				val invalidated = invalid.size
-				if (invalidated > 0 || f.getCache.size > 0)
-					log.info("    %s: %d objects (%d invalidated)".format(f.getClass.getName.toString, f.getCache.size, invalidated))
-			})
-			log.info("")
+			val invalid = G.getCache.filter(v => v._2.valid == false).toList
+			invalid.foreach(x => G.invalidate(x._1))
+			val invalidated = invalid.size
+			if (invalidated > 0 || G.getCache.size > 0)
+			log.info("  Cache statistics: %d (%d invalidated".format(G.getCache.size, invalidated))
 		}
 
-		case _ =>
+		case RawEvent(o, e) => {
+			G.getCache.foreach((k) =>
+				k._2.clearCachedPropertiesByPolicy(cachedproperty.CachePolicy.Event)
+			)
+		}
 	}
 }

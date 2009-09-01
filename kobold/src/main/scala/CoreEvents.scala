@@ -6,13 +6,12 @@ package es.elv.kobold {
 	import scala.collection._
 
 	object ImplicitDowncasts {
-		implicit def nw2go[K](o: NWObject): G[K] =
-			G(o).asInstanceOf[G[K]]
+		implicit def nwn2go[K <: G](o: NWObject): K = G[K](o)
 	}
 
 	package events {
 		final case class RawEvent(val self: NWObject, val event: String) extends Event
-		final case class AnyEvent(val self: G[_], val event: String) extends Event
+		final case class AnyEvent(val self: G, val event: String) extends Event
 
 		abstract case class GameEvent() extends Event
 
@@ -21,105 +20,96 @@ package es.elv.kobold {
 		case class EModuleLoad() extends GameEvent
 		case class EModuleHB() extends GameEvent
 
-		case class EItemAcquire(val item: G[Item], val creature: G[Creature], val from: G[_],
+		case class EItemAcquire(val item: G, val creature: G, val from: G,
 			stackSize: Int, firstLoginAfterReset: Boolean) extends GameEvent
-		case class EItemUnacquire(val item: G[_], val creature: G[Creature]) extends GameEvent
-		case class EItemEquip(val item: G[Item], val creature: G[Creature]) extends GameEvent
-		case class EItemUnequip(val item: G[_], val creature: G[Creature]) extends GameEvent
-		case class EItemActivate(val item: G[Item], val creature: G[Creature], val targetObject: G[_],
+		case class EItemUnacquire(val item: G, val creature: G) extends GameEvent
+		case class EItemEquip(val item: G, val creature: G) extends GameEvent
+		case class EItemUnequip(val item: G, val creature: G) extends GameEvent
+		case class EItemActivate(val item: G, val creature: G, val targetObject: G,
 			val targetLocation: Location) extends GameEvent
-		case class EItemSpellCastAt(val item: G[Item], val caster: G[Creature], val castItem: G[Item],
+		case class EItemSpellCastAt(val item: G, val caster: G, val castItem: G,
 			val spell: Int, val metaMagic: MetaMagic, val harmful: Boolean) extends GameEvent
 
-		case class ECreatureSpawn(val creature: G[Creature]) extends GameEvent
-		case class ECreatureDamaged(val creature: G[Creature], val damager: G[Creature]) extends GameEvent
-		case class ECreatureHB(val creature: G[Creature]) extends GameEvent
-		case class ECreatureAttacked(val creature: G[Creature], val attacker: G[Creature],
+		case class ECreatureSpawn(val creature: G) extends GameEvent
+		case class ECreatureDamaged(val creature: G, val damager: G) extends GameEvent
+		case class ECreatureHB(val creature: G) extends GameEvent
+		case class ECreatureAttacked(val creature: G, val attacker: G,
 			val attackMode: CombatMode, val attackType: SpecialAttack) extends GameEvent
-		case class ECreatureConversation(val creature: G[Creature], val speaker: G[_]) extends GameEvent
-		case class ECreatureDeath(val creature: G[Creature], val killer: G[Creature]) extends GameEvent
-		case class ECreatureBlocked(val creature: G[Creature], val blocker: G[_]) extends GameEvent
-		case class ECreatureDisturbed(val creature: G[Creature], val disturber: G[Creature]) extends GameEvent
-		case class ECreatureEndOfRound(val creature: G[Creature]) extends GameEvent
-		case class ECreatureHears(val creature: G[Creature], val who: G[Creature]) extends GameEvent
-		case class ECreatureSees(val creature: G[Creature], val who: G[Creature]) extends GameEvent
-		case class ECreatureNoLongerHears(val creature: G[Creature], val who: G[Creature]) extends GameEvent
-		case class ECreatureNoLongerSees(val creature: G[Creature], val who: G[Creature]) extends GameEvent
+		case class ECreatureConversation(val creature: G, val speaker: G) extends GameEvent
+		case class ECreatureDeath(val creature: G, val killer: G) extends GameEvent
+		case class ECreatureBlocked(val creature: G, val blocker: G) extends GameEvent
+		case class ECreatureDisturbed(val creature: G, val disturber: G) extends GameEvent
+		case class ECreatureEndOfRound(val creature: G) extends GameEvent
+		case class ECreatureHears(val creature: G, val who: G) extends GameEvent
+		case class ECreatureSees(val creature: G, val who: G) extends GameEvent
+		case class ECreatureNoLongerHears(val creature: G, val who: G) extends GameEvent
+		case class ECreatureNoLongerSees(val creature: G, val who: G) extends GameEvent
 
-		case class ECreatureRest(val creature: G[Creature]) extends GameEvent
-		case class ECreatureSpellCastAt(val creature: G[Creature], val caster: G[Creature], val castItem: G[Item],
+		case class ECreatureRest(val creature: G) extends GameEvent
+		case class ECreatureSpellCastAt(val creature: G, val caster: G, val castItem: G,
 			val spell: Int, val metaMagic: MetaMagic, val harmful: Boolean) extends GameEvent
 
-		case class EAreaEnter(val area: G[Area], val creature: G[Creature]) extends GameEvent
-		case class EAreaLeave(val area: G[Area], val creature: G[Creature]) extends GameEvent
-		case class ETransitionClick(val transition: G[_], val creature: G[Creature], val target: G[_]) extends GameEvent /* todo: transition/target = Trigger or Door, but cannot abstract */
+		case class EAreaEnter(val area: G, val creature: G) extends GameEvent
+		case class EAreaLeave(val area: G, val creature: G) extends GameEvent
+		case class ETransitionClick(val transition: G, val creature: G, val target: G) extends GameEvent /* todo: transition/target = Trigger or Door, but cannot abstract */
 
-		case class EDoorClick(val door: G[Door], val clicker: G[Creature]) extends GameEvent
-		case class EDoorLock(val door: G[Door], val locker: G[Creature]) extends GameEvent
-		case class EDoorUnlock(val door: G[Door], val unlocker: G[Creature]) extends GameEvent
-		case class EDoorOpen(val door: G[Door], val opener: G[Creature]) extends GameEvent
-		case class EDoorClosed(val door: G[Door], val closer: G[Creature]) extends GameEvent
-		case class EDoorAttacked(val door: G[Door], val attacker: G[Creature]) extends GameEvent
-		case class EDoorDamaged(val door: G[Door], val damager: G[_]) extends GameEvent
-		case class EDoorDeath(val door: G[Door], val killer: G[_]) extends GameEvent
-		case class EDoorFailToOpen(val door: G[Door], val blocked: G[Creature]) extends GameEvent
-		case class EDoorSpellCastAt(val door: G[Door], val caster: G[Creature], val castItem: G[Item],
+		case class EDoorClick(val door: G, val clicker: G) extends GameEvent
+		case class EDoorLock(val door: G, val locker: G) extends GameEvent
+		case class EDoorUnlock(val door: G, val unlocker: G) extends GameEvent
+		case class EDoorOpen(val door: G, val opener: G) extends GameEvent
+		case class EDoorClosed(val door: G, val closer: G) extends GameEvent
+		case class EDoorAttacked(val door: G, val attacker: G) extends GameEvent
+		case class EDoorDamaged(val door: G, val damager: G) extends GameEvent
+		case class EDoorDeath(val door: G, val killer: G) extends GameEvent
+		case class EDoorFailToOpen(val door: G, val blocked: G) extends GameEvent
+		case class EDoorSpellCastAt(val door: G, val caster: G, val castItem: G,
 			val spell: Int, val metaMagic: MetaMagic, val harmful: Boolean) extends GameEvent
 
-		case class EPlayerEnter(val player: G[Player]) extends GameEvent
-		case class EPlayerLeave(val player: G[Player]) extends GameEvent
-		case class EPlayerDying(val player: G[Player]) extends GameEvent
-		case class EPlayerDeath(val player: G[Player]) extends GameEvent
-		case class EPlayerRest(val player: G[Player]) extends GameEvent
-		case class EPlayerLevelUp(val player: G[Player]) extends GameEvent
-		case class EPlayerRespawn(val player: G[Player]) extends GameEvent
-		case class EPlayerCutsceneAbort(val player: G[Player]) extends GameEvent
+		case class EPlayerEnter(val player: G) extends GameEvent
+		case class EPlayerLeave(val player: G) extends GameEvent
+		case class EPlayerDying(val player: G) extends GameEvent
+		case class EPlayerDeath(val player: G) extends GameEvent
+		case class EPlayerRest(val player: G) extends GameEvent
+		case class EPlayerLevelUp(val player: G) extends GameEvent
+		case class EPlayerRespawn(val player: G) extends GameEvent
+		case class EPlayerCutsceneAbort(val player: G) extends GameEvent
 
-		case class ETrapTriggered(val trap: G[_]) extends GameEvent
-		case class ETrapDisarmed(val trap: G[_], val disarmer: G[Creature]) extends GameEvent
+		case class ETrapTriggered(val trap: G) extends GameEvent
+		case class ETrapDisarmed(val trap: G, val disarmer: G) extends GameEvent
 
-		case class ESaveCharacter(val player: G[Player]) extends GameEvent
-		// case class ECreaturePickpocket(val creature: G[Creature], val target: G[Creature]) extends GameEvent
-		case class ECreatureAttack(val creature: G[Creature], val target: G[_]) extends GameEvent
-		case class EItemFreeActivate(val creature: G[Creature], val item: G[Item], val target: G[_], val targetLocation: Location) extends GameEvent
-		case class ECreatureQuickChat(creature: G[Creature], chat: Int) extends GameEvent
-		case class EObjectExamine(val examiner: G[Creature], val target: G[_]) extends GameEvent
-		case class ECreatureUseSkill(val creature: G[Creature], val skill: Int, val target: G[_], val targetLocation: Location) extends GameEvent
-		case class ECreatureUseFeat(val creature: G[Creature], val feat: Int, val target: G[_], val targetLocation: Location) extends GameEvent
-		case class ECreatureToggleMode(val creature: G[Creature], val mode: ActionMode) extends GameEvent
-		case class ECreatureCastSpell(val caster: G[Creature], val spell: Int, val target: G[_], val targetLocation: Location) extends GameEvent
-		case class ETogglePause(player: G[Player]) extends GameEvent
-		case class ECreaturePossessFamiliar(creature: G[Creature]) extends GameEvent
+		case class ESaveCharacter(val player: G) extends GameEvent
+		// case class ECreaturePickpocket(val creature: G, val target: G) extends GameEvent
+		case class ECreatureAttack(val creature: G, val target: G) extends GameEvent
+		case class EItemFreeActivate(val creature: G, val item: G, val target: G, val targetLocation: Location) extends GameEvent
+		case class ECreatureQuickChat(creature: G, chat: Int) extends GameEvent
+		case class EObjectExamine(val examiner: G, val target: G) extends GameEvent
+		case class ECreatureUseSkill(val creature: G, val skill: Int, val target: G, val targetLocation: Location) extends GameEvent
+		case class ECreatureUseFeat(val creature: G, val feat: Int, val target: G, val targetLocation: Location) extends GameEvent
+		case class ECreatureToggleMode(val creature: G, val mode: ActionMode) extends GameEvent
+		case class ECreatureCastSpell(val caster: G, val spell: Int, val target: G, val targetLocation: Location) extends GameEvent
+		case class ETogglePause(player: G) extends GameEvent
+		case class ECreaturePossessFamiliar(creature: G) extends GameEvent
 
-		case class EChatTalk(val speaker: G[_], val text: String) extends GameEvent
-		case class EChatShout(val speaker: G[_], val text: String) extends GameEvent
-		case class EChatWhisper(val speaker: G[_], val text: String) extends GameEvent
-		case class EChatPrivate(val speaker: G[_], val to: G[_], val text: String) extends GameEvent
-		case class EChatServer(val speaker: G[_], val text: String) extends GameEvent
-		case class EChatParty(val speaker: G[_], val text: String) extends GameEvent
-		case class EChatSilentShout(val speaker: G[_], val text: String) extends GameEvent
-		case class EChatDM(val speaker: G[_], val text: String) extends GameEvent
+		case class EChatTalk(val speaker: G, val text: String) extends GameEvent
+		case class EChatShout(val speaker: G, val text: String) extends GameEvent
+		case class EChatWhisper(val speaker: G, val text: String) extends GameEvent
+		case class EChatPrivate(val speaker: G, val to: G, val text: String) extends GameEvent
+		case class EChatServer(val speaker: G, val text: String) extends GameEvent
+		case class EChatParty(val speaker: G, val text: String) extends GameEvent
+		case class EChatSilentShout(val speaker: G, val text: String) extends GameEvent
+		case class EChatDM(val speaker: G, val text: String) extends GameEvent
 	}
 
 	object CoreEvents extends Plugin {
 		import scala.concurrent.ops.future
 		import events._
 
-		val factories: List[WrappedFactory[NWObject, _ <: G[_]]] =
-			List(AOE, Area, NonPlayer, Player, Door, Encounter, Item, Placeable, Store, Trigger, Waypoint)
-
-		def invalidateFactories() = future(
-			factories.foreach((f) => f.getCache.foreach((k) => k._2.clearCachedPropertiesByPolicy(cachedproperty.CachePolicy.Event)))
-		)
-
-		private var lastInvalidateRun: () => Unit = future()
-
-		private val actions: mutable.Map[Class[_], mutable.Set[(Option[G[_]], (Event) => Unit)]] = mutable.Map()
+		private val actions: mutable.Map[Class[_], mutable.Set[(Option[G], (Event) => Unit)]] = mutable.Map()
 
 		private var firstEvent = false
 
 		// Register action to be ran with on as self when eventName on on happens. Hah, parse that.
-		def once[T <: Event](onEvent: Class[T], self: Option[G[_]], action: (Event) => Unit) {
+		def once[T <: Event](onEvent: Class[T], self: Option[G], action: (Event) => Unit) {
 			if (!actions.contains(onEvent))
 				actions(onEvent) = mutable.Set()
 			val v = (self, action)
@@ -128,9 +118,6 @@ package es.elv.kobold {
 		
 
 		def listen(e: Event) = {
-			// wait for last future
-			lastInvalidateRun()
-
 			if (!firstEvent) {
 				firstEvent = true
 				EventSource send new EStartup()
@@ -207,12 +194,12 @@ package es.elv.kobold {
 
 
 						case "player_login" => {
-							val player = Player(r.self)
+							val player: G = G(r.self)
 							nwnx.Chat.pcIn(player)
 							EventSource send new EPlayerEnter(player)
 						}
 						case "player_logout" => {
-							val player = Player(r.self)
+							val player: G = G(r.self)
 							nwnx.Chat.pcOut(player)
 							EventSource send new EPlayerLeave(player)
 						}
@@ -256,7 +243,7 @@ package es.elv.kobold {
 									Vector(0, 0, 0)
 								}
 							}
-							val nwnxLocation = Location(Area(R.proxy.getArea(r.self)), nwnxPosition, 0)
+							val nwnxLocation = Location(G[Area](R.proxy.getArea(r.self)), nwnxPosition, 0)
 
 							nwnxType match {
 								case 1 => EventSource send new ESaveCharacter(r.self)
@@ -320,15 +307,11 @@ package es.elv.kobold {
 						})
 					}
 
-					// log.info(e.toString)
-
 					if (e.stopped)
 						r.stop
 				}
 				case _ =>
 			}
-
-			lastInvalidateRun = invalidateFactories()
 		}
 	}
 }

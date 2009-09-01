@@ -3,8 +3,8 @@ package es.elv.kobold {
 	import net.lag._
 	import Implicits._
 
-	object Waypoint extends WrappedFactory[NWObject, Waypoint]((wrapped) => new Waypoint(wrapped))
-	class Waypoint private[kobold] (wrapped: NWObject) extends G[Waypoint](wrapped, Some(Waypoint)) {
+	object Waypoint
+	class Waypoint private[kobold] (wrapped: NWObject) extends G(wrapped) {
 		ensureObjectType(ObjectType.Waypoint)
 	}
 }

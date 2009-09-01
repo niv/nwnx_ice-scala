@@ -3,9 +3,9 @@ package es.elv.kobold {
 	import net.lag._
 	import Implicits._
 
-	object Item extends WrappedFactory[NWObject, Item]((wrapped) => new Item(wrapped))
+	object Item
 
-	class Item private[kobold] (wrapped: NWObject) extends G[Item](wrapped, Some(Item))
+	class Item private[kobold] (wrapped: NWObject) extends G(wrapped)
 			with Position with Inventory {
 		ensureObjectType(ObjectType.Item)
 
@@ -45,7 +45,7 @@ package es.elv.kobold {
 
 		def weight = R.proxy.getWeight(this)
 
-		def copy(toInventory: G[_]): Item =
-			Item(R.proxy.copyItem(this, toInventory, true))
+		def copy(toInventory: G): G =
+			G(R.proxy.copyItem(this, toInventory, true))
 	}
 }

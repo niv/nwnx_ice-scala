@@ -3,9 +3,9 @@ package es.elv.kobold {
 	import net.lag._
 	import Implicits._
 
-	object Trigger extends WrappedFactory[NWObject, Trigger]((wrapped) => new Trigger(wrapped))
+	object Trigger
 
-	class Trigger private[kobold] (wrapped: NWObject) extends G[Trigger](wrapped, Some(Trigger))
+	class Trigger private[kobold] (wrapped: NWObject) extends G(wrapped)
 				with Lock with Trap with Position {
 		ensureObjectType(ObjectType.Trigger)
 	}
