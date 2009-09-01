@@ -9,13 +9,16 @@ class KoboldProject(info: ProjectInfo) extends ParentProject(info) {
 	lazy val sternenfall = project("sternenfall", "Sternenfall", new Sternenfall(_), nwnxice, kobold)
 
 	class Kobold(info: ProjectInfo) extends DefaultProject(info) {
+		override def compileOptions: Seq[CompileOption] = List( Deprecation, Unchecked, target(Target.Java1_5))
 		val scalatest = "org.scala-tools.testing" % "scalatest" % "0.9.5"
 		val configgy = "net.lag" % "configgy" % "1.4" from "http://www.lag.net/repo/net/lag/configgy/1.4/configgy-1.4.jar"
 	}
 
 	class NWNXICE(info: ProjectInfo) extends DefaultProject(info) {
+		override def compileOptions: Seq[CompileOption] = List( Deprecation, Unchecked, target(Target.Java1_5))
 	}
 
 	class Sternenfall(info: ProjectInfo) extends DefaultProject(info) {
+		override def compileOptions: Seq[CompileOption] = List( Deprecation, Unchecked, target(Target.Java1_5))
 	}
 }
