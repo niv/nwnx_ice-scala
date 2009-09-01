@@ -5,6 +5,9 @@ package es.elv.kobold {
 		
 	object G {
 
+		def apply(n: Long): G[_] =
+			apply(new NWObject(n))
+
 		def apply(o: NWObject): G[_] = {
 			def isPC(o: NWObject) = R.proxy.getIsPC(o) &&
 				!R.proxy.getIsDMPossessed(o) &&
@@ -38,8 +41,22 @@ package es.elv.kobold {
 			}
 		}
 		
-		def byTag[T](tag: String): G[T] =
-			G(R.proxy.getObjectByTag(tag, 0)).asInstanceOf[G[T]]
+		/**
+			Returns the first object with the given tag.
+		*/
+		def byTag(tag: String): G[_] = byTag(tag, 0)
+
+		/**
+			Returns the nth object with the given tag.
+		*/
+		def byTag(tag: String, index: Int): G[_] =
+			G(R.proxy.getObjectByTag(tag, index))
+		
+		/**
+			Returns a list of all objects with the given tag.
+		*/
+		def allByTag(tag: String): List[G[_]] =
+			R.proxy.allByTag(tag).map(G(_)).toList
 
 	}
 
@@ -47,13 +64,17 @@ package es.elv.kobold {
 			with cachedproperty.CachedProperties[G[K]] {
 		this: K =>
 
+		override def equals(what: Any) = what match {
+			case o: G[K] => o.wrapped.id == this.wrapped.id
+			case _ => false
+		}
+
 		import cachedproperty.CachePolicy._
 		import cachedproperty._
 
 		val createdAt = new java.util.Date
 
 		val objectType = R.proxy.getObjectType(this)
-
 
 		def ensureObjectType(o: ObjectType*) {
 			val m = (o contains objectType) || (objectType == ObjectType.InvalidObject)
@@ -74,8 +95,8 @@ package es.elv.kobold {
 		val name: RWCachedProperty[String, G[K]] = P(() => R.proxy.getName(this, false), (n: String) => { R.proxy.setName(this, n); this.name.clear() })
 		val originalName = P(() => R.proxy.getName(this, true))
 
-		def copy(toLocation: Location, toInventory: G[_]): K =
-			G(R.proxy.copyObject(this, toLocation, toInventory, "")).asInstanceOf[K] // classOf[K]]
+		def copy(toLocation: Location, toInventory: G[_]): G[_] =
+			G(R.proxy.copyObject(this, toLocation, toInventory, ""))
 
 		def destroy: Unit = destroy(0.0)
 		def destroy(delay: Double): Unit =
