@@ -81,15 +81,11 @@ package es.elv.kobold {
 		def destroy(delay: Double): Unit =
 			R.proxy.destroyObject(this, delay)
 
-
-		def li(key: String) = R.proxy.getLocalInt(this, key)
-		def li(key: String, value: Int) = R.proxy.setLocalInt(this, key, value)
-		def ls(key: String) = R.proxy.getLocalString(this, key)
-		def ls(key: String, value: String) = R.proxy.setLocalString(this, key, value)
-		def lf(key: String) = R.proxy.getLocalFloat(this, key)
-		def lf(key: String, value: Float) = R.proxy.setLocalFloat(this, key, value)
-		def lo(key: String) = G(R.proxy.getLocalObject(this, key))
-		def lo(key: String, value: G[_]) = R.proxy.setLocalObject(this, key, value)
+		lazy val ls   = new LocalStringMap(this)
+		lazy val li   = new LocalIntMap(this)
+		lazy val lb   = new LocalBoolMap(this)
+		lazy val lo   = new LocalObjectMap(this)
+		lazy val lf   = new LocalFloatMap(this)
 
 		protected def toStringProperties = List(if (valid) "valid" else "invalid", "ref=" + resref(), "tag=" + tag(), "name=" + name())
 		override def toString = getClass.getName.toString + "(" + (wrapped.id.toHexString :: toStringProperties).mkString(",") + ")"
