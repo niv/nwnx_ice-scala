@@ -287,28 +287,22 @@ package es.elv.kobold {
 							MSG_DM = 14,
 							MSG_MODE_DM = 16;
 							*/
-							if (R.proxy.getLocalInt(r.self, "ice_chat_message_ignore") > 0) {
-								R.proxy.setLocalInt(r.self, "ice_chat_message_ignore", 0)
-								r
+							val allText = nwnx.Core.get(r.self, "CHAT", "TEXT", 1024)
+							val modeWithDM = allText.substring(0, 2).trim.toInt
+							val mode = if (modeWithDM > 16) modeWithDM - 16 else modeWithDM
+							val toId = allText.substring(2, 12).trim.toInt
+							val text = allText.substring(12)
+							val to = if (mode == 4) nwnx.Chat.getPC(toId) else Invalid()
 
-							} else {
-								val allText = nwnx.Core.get(r.self, "CHAT", "TEXT", 1024) // R.proxy.getLocalString(r.self, "NWNX!CHAT!TEXT")
-								val modeWithDM = allText.substring(0, 2).trim.toInt
-								val mode = if (modeWithDM > 16) modeWithDM - 16 else modeWithDM
-								val toId = allText.substring(2, 12).trim.toInt
-								val text = allText.substring(12)
-								val to = if (mode == 4) nwnx.Chat.getPC(toId) else Invalid()
-
-								mode match {
-									case  1 => EventSource send new EChatTalk(G(r.self), text)
-									case  2 => EventSource send new EChatShout(G(r.self), text)
-									case  3 => EventSource send new EChatWhisper(G(r.self), text)
-									case  4 => EventSource send new EChatPrivate(G(r.self), to, text)
-									case  5 => EventSource send new EChatServer(G(r.self), text)
-									case  6 => EventSource send new EChatParty(G(r.self), text)
-									case 13 => EventSource send new EChatSilentShout(G(r.self), text)
-									case 14 => EventSource send new EChatDM(G(r.self), text)
-								}
+							mode match {
+								case  1 => EventSource send new EChatTalk(G(r.self), text)
+								case  2 => EventSource send new EChatShout(G(r.self), text)
+								case  3 => EventSource send new EChatWhisper(G(r.self), text)
+								case  4 => EventSource send new EChatPrivate(G(r.self), to, text)
+								case  5 => EventSource send new EChatServer(G(r.self), text)
+								case  6 => EventSource send new EChatParty(G(r.self), text)
+								case 13 => EventSource send new EChatSilentShout(G(r.self), text)
+								case 14 => EventSource send new EChatDM(G(r.self), text)
 							}
 						}
 
