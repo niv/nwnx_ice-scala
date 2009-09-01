@@ -114,6 +114,9 @@ package es.elv.kobold {
 		def aoe(id: Int, enterScript: String, hbScript: String, exitScript: String): Effect =
 			R.proxy.effectAreaOfEffect(id, enterScript, hbScript, exitScript)
 
+
+		def vfx(id: Int): Effect = vfx(id, false)
+		def vfx(id: Int, miss: Boolean): Effect = R.proxy.effectVisualEffect(id, miss)
 		/*
 		TODO
 		def beam(nBeamVisualEffect: Int, object oEffector, nBodyPart: Int, bMissEffect: Int=FALSE): Effect = R.proxy.effectBeam
