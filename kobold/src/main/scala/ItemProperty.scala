@@ -10,7 +10,7 @@ package es.elv.kobold {
 		def apply(o: NWItemProperty): ItemProperty = implicitIprp(o)
 
 		private implicit def implicitIprp(w: NWItemProperty) = new ItemProperty(
-			w.id, w.tType, w.tSubType, w.tDurationType, w.tParam1, w.tParam1Value, w.tCostTable, w.tCostTableValue)
+			w.id, G(w.tCreator), w.tType, w.tSubType, w.tDurationType, w.tParam1, w.tParam1Value, w.tCostTable, w.tCostTableValue)
 
 		def additional(additionalProperty: Int): ItemProperty = R.proxy.itemPropertyAdditional(additionalProperty)
 
@@ -94,11 +94,11 @@ package es.elv.kobold {
 
 	}
 
-	case class ItemProperty(val iprpId: Long, iprpType: Int, iprpSubType: Int, durationType: DurationType,
+	case class ItemProperty(val iprpId: Long, creator: G, iprpType: Int, iprpSubType: Int, durationType: DurationType,
 			val param1: Int, val param1Value: Int, val costTable: Int, val costTableValue: Int) {
 
 		private[kobold] def toNWItemProperty: NWItemProperty = new NWItemProperty(
-			iprpId, durationType, 0, 0, 0, 0, 0, 0)
+			iprpId, durationType, 0, 0, 0, 0, 0, 0, Module())
 
 		override def toString = {
 			val typeStrRef = TwoDA("itempropdef")("Name", iprpType)

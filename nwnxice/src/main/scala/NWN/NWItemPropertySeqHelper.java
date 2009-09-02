@@ -35,7 +35,7 @@ public final class NWItemPropertySeqHelper
     {
         NWItemProperty[] __v;
         final int __len0 = __is.readSize();
-        __is.checkFixedSeq(__len0, 33);
+        __is.checkFixedSeq(__len0, 41);
         __v = new NWItemProperty[__len0];
         for(int __i0 = 0; __i0 < __len0; __i0++)
         {

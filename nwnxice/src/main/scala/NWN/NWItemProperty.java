@@ -29,11 +29,13 @@ public final class NWItemProperty implements java.lang.Cloneable, java.io.Serial
 
     public int tParam1Value;
 
+    public NWObject tCreator;
+
     public NWItemProperty()
     {
     }
 
-    public NWItemProperty(long id, DurationType tDurationType, int tType, int tSubType, int tCostTable, int tCostTableValue, int tParam1, int tParam1Value)
+    public NWItemProperty(long id, DurationType tDurationType, int tType, int tSubType, int tCostTable, int tCostTableValue, int tParam1, int tParam1Value, NWObject tCreator)
     {
         this.id = id;
         this.tDurationType = tDurationType;
@@ -43,6 +45,7 @@ public final class NWItemProperty implements java.lang.Cloneable, java.io.Serial
         this.tCostTableValue = tCostTableValue;
         this.tParam1 = tParam1;
         this.tParam1Value = tParam1Value;
+        this.tCreator = tCreator;
     }
 
     public boolean
@@ -95,6 +98,10 @@ public final class NWItemProperty implements java.lang.Cloneable, java.io.Serial
             {
                 return false;
             }
+            if(tCreator != _r.tCreator && tCreator != null && !tCreator.equals(_r.tCreator))
+            {
+                return false;
+            }
 
             return true;
         }
@@ -117,6 +124,10 @@ public final class NWItemProperty implements java.lang.Cloneable, java.io.Serial
         __h = 5 * __h + tCostTableValue;
         __h = 5 * __h + tParam1;
         __h = 5 * __h + tParam1Value;
+        if(tCreator != null)
+        {
+            __h = 5 * __h + tCreator.hashCode();
+        }
         return __h;
     }
 
@@ -146,6 +157,7 @@ public final class NWItemProperty implements java.lang.Cloneable, java.io.Serial
         __os.writeInt(tCostTableValue);
         __os.writeInt(tParam1);
         __os.writeInt(tParam1Value);
+        tCreator.__write(__os);
     }
 
     public void
@@ -159,5 +171,7 @@ public final class NWItemProperty implements java.lang.Cloneable, java.io.Serial
         tCostTableValue = __is.readInt();
         tParam1 = __is.readInt();
         tParam1Value = __is.readInt();
+        tCreator = new NWObject();
+        tCreator.__read(__is);
     }
 }
