@@ -81,7 +81,12 @@ package es.elv.kobold {
 			val token = tk.toLong
 
 			if (storedTokens.contains(token)) {
-				storedTokens(token)()
+				try { storedTokens(token)() } catch {
+					case p => {
+						log.fatal(p, "while handling token: " + tk)
+						System.exit(1)
+					}
+				}
 				storedTokens -= token
 			} else {
 				log.error("  Wanted to execute token " + tk + " but not found")
@@ -101,7 +106,13 @@ package es.elv.kobold {
 
 			val start = System.currentTimeMillis
 
-			val e = EventSource send new events.RawEvent(self, ev)
+			val e: Event = try { EventSource send new events.RawEvent(self, ev) } catch {
+				case p => {
+					log.fatal(p, "while distributing event: " + ev + " on " + self.id)
+					System.exit(1)
+					throw p
+				}
+			}
 
 			while (!delayedThunks.isEmpty && System.currentTimeMillis - start < 400)
 				delayedThunks.dequeue()()
