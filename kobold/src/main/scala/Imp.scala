@@ -15,19 +15,19 @@ class Imp extends Plugin {
 	private var lastcount = 0
 
 	def listen(event: Event) = event match {
-		case EStartup() => {
+		case OnStartup() => {
 			log.info("Factoring areas ..")
 			log.info("Done: " + Area.all.size + " areas in module")
 			log.info("Factoring players ..")
 			log.info("Done: " + Player.all.size + " players online")
 		}
 
-		case EModuleLoad() => {
+		case OnModuleLoad() => {
 			log.info("  Clearing cache.")
 			G.getCache.clear
 		}
 
-		case EModuleHB() => {
+		case OnModuleHB() => {
 			val szBeforeInvalidation = G.getCache.size
 
 			val added = szBeforeInvalidation - lastcount
