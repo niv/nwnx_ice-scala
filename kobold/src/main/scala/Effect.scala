@@ -46,7 +46,7 @@ package es.elv.kobold {
 		def apply(o: NWEffect): Effect = implicitEffect(o)
 
 		private implicit def implicitEffect(n: NWEffect): Effect = Effect(
-			n.id, n.tType, n.tSubType, n.tDurationType, n.tSpellId, G(n.tCreator))
+			n.id, G(n.tCreator), n.tType, n.tSubType, n.tDurationType, n.tSpellId)
 
 		def darknessInvisibility: Effect = R.proxy.effectInvisibility(2)
 		def improvedInvisibility: Effect = R.proxy.effectInvisibility(4)
@@ -162,8 +162,8 @@ package es.elv.kobold {
 		*/
 	}
 
-	case class Effect (val effectId: Long, val effectType: EffectType, val effectSubType: EffectSubType,
-			val durationType: DurationType, val effectSpellId: Int, val effectCreator: G) {
+	case class Effect (val effectId: Long, val creator: G, val effectType: EffectType, val effectSubType: EffectSubType,
+			val durationType: DurationType, val effectSpellId: Int) {
 
 		/*def iconShown = wrapped.tIconShown
 		def iconShown_=(state: Boolean) {
@@ -184,7 +184,7 @@ package es.elv.kobold {
 		override def toString =
 			"Effect<" + effectType + "," + durationType + ">(" + List(
 				effectId.toHexString, effectSubType,
-				"creator=" + effectCreator).mkString(",") +
+				"creator=" + creator).mkString(",") +
 			")"
 	}
 }
