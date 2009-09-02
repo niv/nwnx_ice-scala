@@ -12,6 +12,7 @@ import es.elv.kobold.Implicits._
 	you know what you are doing.
 */
 class Imp extends Plugin {
+	private var lastcount = 0
 
 	def listen(event: Event) = event match {
 		case EStartup() => {
@@ -21,12 +22,24 @@ class Imp extends Plugin {
 			log.info("Done: " + Player.all.size + " players online")
 		}
 
+		case EModuleLoad() => {
+			log.info("  Clearing cache.")
+			G.getCache.clear
+		}
+
 		case EModuleHB() => {
+			val szBeforeInvalidation = G.getCache.size
+
+			val added = szBeforeInvalidation - lastcount
+
 			val invalid = G.getCache.filter(v => v._2.valid == false).toList
 			invalid.foreach(x => G.invalidate(x._1))
 			val invalidated = invalid.size
-			if (invalidated > 0 || G.getCache.size > 0)
-			log.info("  Cache statistics: %d (%d invalidated".format(G.getCache.size, invalidated))
+
+			val szAfterInvalidation = G.getCache.size
+			lastcount = szAfterInvalidation
+
+			log.info("  Cache statistics: %d (%d +/- %d) = %d".format(szBeforeInvalidation, added, invalidated, szAfterInvalidation))
 		}
 
 		case RawEvent(o, e) => {
@@ -34,5 +47,7 @@ class Imp extends Plugin {
 				k._2.clearCachedPropertiesByPolicy(cachedproperty.CachePolicy.Event)
 			)
 		}
+
+		case x =>
 	}
 }
