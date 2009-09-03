@@ -174,7 +174,7 @@ package es.elv.kobold {
 							r.self, R.proxy.getBlockingDoor)
 						case "creature_disturbed" => EventSource send new OnCreatureDisturbed(
 							r.self, R.proxy.getLastDisturbed)
-						case "creature_endofround" => EventSource send new OnCreatureEndOfRound(
+						case "creature_endround" => EventSource send new OnCreatureEndOfRound(
 							r.self)
 						case "creature_perceive" => {
 							val (heard, seen, inaudible, vanished) = (
@@ -262,7 +262,7 @@ package es.elv.kobold {
 								case 10 => EventSource send new OnCreatureCastSpell(r.self, nwnxSubType, G(nwnxTarget), nwnxLocation)
 								case 11 => EventSource send new OnTogglePause(r.self)
 								case 12 => EventSource send new OnCreaturePossessFamiliar(r.self)
-								case _ => log.warning("Unhandled nwnx_event: " + r.event) ; r
+								case _ => log.error("Unhandled nwnx_event: " + r.event) ; r
 							}
 						}
 
@@ -297,8 +297,19 @@ package es.elv.kobold {
 							}
 						}
 
+						// Ignore legacy chat events.
+						case "chat_prefilter" => r
+						case "chat_command" => r
+						case "creature_attack" => r // nwnx_events
+						case "creature_castspell" => r
+						case "object_spell_cast_at" => r
+						case "placeable_spell_cast_at" => r
 
-						case _ => log.warning("Unhandled event received: " + r.event) ; r
+						case _ => {
+							log.warning("Unhandled event received: %s (on %08x)".format(r.event, r.self.id))
+							// log.warning("  On: " + G[G](r.self))
+							r
+						}
 					})
 
 					if (actions.contains(e.getClass)) {

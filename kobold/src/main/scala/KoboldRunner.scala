@@ -5,7 +5,8 @@ import net.lag._
 import es.elv.kobold._
 
 object Runner {
-	lazy private val log = logging.Logger.get
+	lazy private val log = Kobold.logger()
+
 
 	def main(args: Array[String]) {
 		if (args.size < 1)

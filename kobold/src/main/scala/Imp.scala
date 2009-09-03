@@ -39,7 +39,7 @@ class Imp extends Plugin {
 			val szAfterInvalidation = G.getCache.size
 			lastcount = szAfterInvalidation
 
-			log.info("  Cache statistics: %d (%d +/- %d) = %d".format(szBeforeInvalidation, added, invalidated, szAfterInvalidation))
+			log.debug("  Cache statistics: %d (%d +/- %d) = %d".format(szBeforeInvalidation, added, invalidated, szAfterInvalidation))
 		}
 
 		case RawEvent(o, e) => {

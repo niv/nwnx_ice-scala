@@ -13,7 +13,7 @@ package es.elv.kobold.events {
 	}
 
 	object EventSource {
-		private val log = Logger.get
+		private val log = Kobold.logger()
 
 		private val observers: mutable.ArrayBuffer[Observer] = new mutable.ArrayBuffer()
 

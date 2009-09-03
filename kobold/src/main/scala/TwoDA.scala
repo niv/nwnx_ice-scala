@@ -7,12 +7,12 @@ package es.elv.kobold {
 	import scala.io.Source
 
 	object TwoDA {
-		private val log = logging.Logger.get
+		private val log = Kobold.logger()
 
 		private val twodaPath = new java.io.File(configgy.Configgy.config.getString("twoda_path").get)
 
 		class TwoDAParser extends JavaTokenParsers {
-			private val log = logging.Logger.get
+			private val log = Kobold.logger()
 
 			override val whiteSpace = """[ \t]+""".r
 

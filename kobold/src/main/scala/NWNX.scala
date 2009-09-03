@@ -25,6 +25,8 @@ package es.elv.kobold.nwnx {
 	}
 
 	abstract class Core(val nwnxKey: String) {
+		protected lazy val log = Kobold.logger()
+
 		def get(obj: NWObject, key: String, buf: Int) =
 			Core.setGet(obj, nwnxKey, key, " " * buf)
 		def set(obj: NWObject, key: String, value: String) =

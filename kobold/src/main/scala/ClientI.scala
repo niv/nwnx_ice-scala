@@ -8,7 +8,7 @@ package es.elv.kobold {
 	import events._
 
 	object R extends _ClientDisp {
-		private val log = logging.Logger.get
+		private val log = Kobold.logger()
 
 		private val delayedThunks = new mutable.Queue[() => Unit]
 		private val storedTokens: mutable.Map[Long, () => Unit] = mutable.Map()
@@ -21,6 +21,8 @@ package es.elv.kobold {
 		def proxy = cachedProxy
 
 		def getObjectSelf = objectSelf
+
+		def getContextDepth = contextDepth
 
 		private def nextToken() = {
 			tokenCounter = tokenCounter + 1
@@ -76,6 +78,8 @@ package es.elv.kobold {
 			objectSelf = self
 			cachedProxy = p
 
+			contextDepth += 1
+
 			val start = System.currentTimeMillis
 
 			val token = tk.toLong
@@ -92,11 +96,13 @@ package es.elv.kobold {
 				log.error("  Wanted to execute token " + tk + " but not found")
 			}
 
-			log.info("t %08x %-20s %8d ms (cache: %d)".format(
+			log.debug("t %08x %-20s %8d ms (cache: %d)".format(
 				self.id, "   " * contextDepth + tk, System.currentTimeMillis - start,
 				storedTokens.size
 			))
+			contextDepth -= 1
 		}
+
 
 		def event(p: NWScriptPrx, self: NWObject, ev: String, current: Ice.Current): ClientResult = {
 			objectSelf = self
@@ -111,21 +117,25 @@ package es.elv.kobold {
 			if (delayedThunks.size > 0)
 				log.warning(delayedThunks.size + " thunks remaining")
 
-			val e: Event = try { EventSource send new events.RawEvent(self, ev) } catch {
+			val ret: ClientResult = try {
+				val e: Event = EventSource send new events.RawEvent(self, ev)
+				if (e.stopped)
+					ClientResult.Stop
+				else
+					ClientResult.Continue
+
+			} catch {
 				case p => {
 					log.fatal(p, "while distributing event: " + ev + " on " + self.id)
 					System.exit(1)
-					throw p
+					ClientResult.Error
 				}
 			}
 
+			log.debug("e %08x %-20s %8d ms".format(self.id, "   " * contextDepth + ev, System.currentTimeMillis - start))
+
 			contextDepth -= 1
-
-			log.info("e %08x %-20s %8d ms".format(self.id, "   " * contextDepth + ev, System.currentTimeMillis - start))
-
-			if (e.stopped)
-				return ClientResult.Stop
-			return ClientResult.Continue
+			ret
 		}
 	}
 }

@@ -5,7 +5,7 @@ package es.elv.kobold {
 	abstract class Persistable[T] extends NWN.Persistable
 
 	abstract class Plugin extends Observer {
-		lazy protected val log = logging.Logger.get
+		lazy protected val log = Kobold.logger()
 
 		def onLoad {}
 		def onUnload {}
@@ -29,9 +29,20 @@ package es.elv.kobold {
 	}
 
 	object Kobold {
-		private val log = logging.Logger.get
+		private val ingameHandler = new IngameLogHandler()
+
+		private val log = logger()
+
+		val config = configgy.Configgy.config
 
 		private var plugins: List[Plugin] = List()
+
+		def logger() = {
+			val className = new Throwable().getStackTrace()(2).getClassName
+			val logger = logging.Logger.get(className)
+			logger.addHandler(ingameHandler)
+			logger
+		}
 
 		def loadPlugin(p: Plugin) {
 			EventSource register p
