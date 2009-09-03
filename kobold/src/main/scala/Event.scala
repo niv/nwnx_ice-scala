@@ -31,7 +31,12 @@ package es.elv.kobold.events {
 		def send(e: Event): Event = {
 			for (o <- observers) {
 				if (!e.stopped)
-					o listen e
+					try { o listen e } catch {
+						case p => {
+							log.fatal(p, "while sending " + e + " to " + o)
+							throw p
+						}
+					}
 			}
 
 			e
