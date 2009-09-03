@@ -16310,6 +16310,72 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
+    public double
+    getEffectDuration(final NWEffect e, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidEffectException
+    {
+        final Ice.Current __current = new Ice.Current();
+        __initCurrent(__current, "getEffectDuration", Ice.OperationMode.Normal, __ctx);
+        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        IceInternal.Direct __direct = null;
+        try
+        {
+            __direct = new IceInternal.Direct(__current)
+            {
+                public Ice.DispatchStatus run(Ice.Object __obj)
+                {
+                    NWScript __servant = null;
+                    try
+                    {
+                        __servant = (NWScript)__obj;
+                    }
+                    catch(ClassCastException __ex)
+                    {
+                        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+                    }
+                    try
+                    {
+                        __result.value = __servant.getEffectDuration(e, __current);
+                        return Ice.DispatchStatus.DispatchOK;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        setUserException(__ex);
+                        return Ice.DispatchStatus.DispatchUserException;
+                    }
+                }
+            };
+            try
+            {
+                Ice.DispatchStatus __status = __direct.servant().__collocDispatch(__direct);
+                if(__status == Ice.DispatchStatus.DispatchUserException)
+                {
+                    __direct.throwUserException();
+                }
+                assert __status == Ice.DispatchStatus.DispatchOK;
+                return __result.value;
+            }
+            finally
+            {
+                __direct.destroy();
+            }
+        }
+        catch(InvalidEffectException __ex)
+        {
+            throw __ex;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            throw __ex;
+        }
+        catch(java.lang.Throwable __ex)
+        {
+            IceInternal.LocalExceptionWrapper.throwWrapper(__ex);
+        }
+        return __result.value;
+    }
+
     public DurationType
     getEffectDurationType(final NWEffect eEffect, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
@@ -16338,6 +16404,77 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
                     try
                     {
                         __result.value = __servant.getEffectDurationType(eEffect, __current);
+                        return Ice.DispatchStatus.DispatchOK;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        setUserException(__ex);
+                        return Ice.DispatchStatus.DispatchUserException;
+                    }
+                }
+            };
+            try
+            {
+                Ice.DispatchStatus __status = __direct.servant().__collocDispatch(__direct);
+                if(__status == Ice.DispatchStatus.DispatchUserException)
+                {
+                    __direct.throwUserException();
+                }
+                assert __status == Ice.DispatchStatus.DispatchOK;
+                return __result.value;
+            }
+            finally
+            {
+                __direct.destroy();
+            }
+        }
+        catch(InvalidEffectException __ex)
+        {
+            throw __ex;
+        }
+        catch(NotInContextException __ex)
+        {
+            throw __ex;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            throw __ex;
+        }
+        catch(java.lang.Throwable __ex)
+        {
+            IceInternal.LocalExceptionWrapper.throwWrapper(__ex);
+        }
+        return __result.value;
+    }
+
+    public boolean
+    getEffectExposed(final NWEffect eff, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidEffectException,
+               NotInContextException
+    {
+        final Ice.Current __current = new Ice.Current();
+        __initCurrent(__current, "getEffectExposed", Ice.OperationMode.Idempotent, __ctx);
+        final Ice.BooleanHolder __result = new Ice.BooleanHolder();
+        IceInternal.Direct __direct = null;
+        try
+        {
+            __direct = new IceInternal.Direct(__current)
+            {
+                public Ice.DispatchStatus run(Ice.Object __obj)
+                {
+                    NWScript __servant = null;
+                    try
+                    {
+                        __servant = (NWScript)__obj;
+                    }
+                    catch(ClassCastException __ex)
+                    {
+                        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+                    }
+                    try
+                    {
+                        __result.value = __servant.getEffectExposed(eff, __current);
                         return Ice.DispatchStatus.DispatchOK;
                     }
                     catch(Ice.UserException __ex)
@@ -16438,6 +16575,77 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
             throw __ex;
         }
         catch(NotInContextException __ex)
+        {
+            throw __ex;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            throw __ex;
+        }
+        catch(java.lang.Throwable __ex)
+        {
+            IceInternal.LocalExceptionWrapper.throwWrapper(__ex);
+        }
+        return __result.value;
+    }
+
+    public int
+    getEffectInteger(final NWEffect e, final int index, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidArgumentException,
+               InvalidEffectException
+    {
+        final Ice.Current __current = new Ice.Current();
+        __initCurrent(__current, "getEffectInteger", Ice.OperationMode.Normal, __ctx);
+        final Ice.IntHolder __result = new Ice.IntHolder();
+        IceInternal.Direct __direct = null;
+        try
+        {
+            __direct = new IceInternal.Direct(__current)
+            {
+                public Ice.DispatchStatus run(Ice.Object __obj)
+                {
+                    NWScript __servant = null;
+                    try
+                    {
+                        __servant = (NWScript)__obj;
+                    }
+                    catch(ClassCastException __ex)
+                    {
+                        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+                    }
+                    try
+                    {
+                        __result.value = __servant.getEffectInteger(e, index, __current);
+                        return Ice.DispatchStatus.DispatchOK;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        setUserException(__ex);
+                        return Ice.DispatchStatus.DispatchUserException;
+                    }
+                }
+            };
+            try
+            {
+                Ice.DispatchStatus __status = __direct.servant().__collocDispatch(__direct);
+                if(__status == Ice.DispatchStatus.DispatchUserException)
+                {
+                    __direct.throwUserException();
+                }
+                assert __status == Ice.DispatchStatus.DispatchOK;
+                return __result.value;
+            }
+            finally
+            {
+                __direct.destroy();
+            }
+        }
+        catch(InvalidArgumentException __ex)
+        {
+            throw __ex;
+        }
+        catch(InvalidEffectException __ex)
         {
             throw __ex;
         }
@@ -23087,6 +23295,72 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
+    public double
+    getItemPropertyDuration(final NWItemProperty e, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidEffectException
+    {
+        final Ice.Current __current = new Ice.Current();
+        __initCurrent(__current, "getItemPropertyDuration", Ice.OperationMode.Normal, __ctx);
+        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        IceInternal.Direct __direct = null;
+        try
+        {
+            __direct = new IceInternal.Direct(__current)
+            {
+                public Ice.DispatchStatus run(Ice.Object __obj)
+                {
+                    NWScript __servant = null;
+                    try
+                    {
+                        __servant = (NWScript)__obj;
+                    }
+                    catch(ClassCastException __ex)
+                    {
+                        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+                    }
+                    try
+                    {
+                        __result.value = __servant.getItemPropertyDuration(e, __current);
+                        return Ice.DispatchStatus.DispatchOK;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        setUserException(__ex);
+                        return Ice.DispatchStatus.DispatchUserException;
+                    }
+                }
+            };
+            try
+            {
+                Ice.DispatchStatus __status = __direct.servant().__collocDispatch(__direct);
+                if(__status == Ice.DispatchStatus.DispatchUserException)
+                {
+                    __direct.throwUserException();
+                }
+                assert __status == Ice.DispatchStatus.DispatchOK;
+                return __result.value;
+            }
+            finally
+            {
+                __direct.destroy();
+            }
+        }
+        catch(InvalidEffectException __ex)
+        {
+            throw __ex;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            throw __ex;
+        }
+        catch(java.lang.Throwable __ex)
+        {
+            IceInternal.LocalExceptionWrapper.throwWrapper(__ex);
+        }
+        return __result.value;
+    }
+
     public DurationType
     getItemPropertyDurationType(final NWItemProperty ip, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
@@ -23144,6 +23418,77 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
             throw __ex;
         }
         catch(NotInContextException __ex)
+        {
+            throw __ex;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            throw __ex;
+        }
+        catch(java.lang.Throwable __ex)
+        {
+            IceInternal.LocalExceptionWrapper.throwWrapper(__ex);
+        }
+        return __result.value;
+    }
+
+    public int
+    getItemPropertyInteger(final NWItemProperty e, final int index, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidArgumentException,
+               InvalidItemPropertyException
+    {
+        final Ice.Current __current = new Ice.Current();
+        __initCurrent(__current, "getItemPropertyInteger", Ice.OperationMode.Normal, __ctx);
+        final Ice.IntHolder __result = new Ice.IntHolder();
+        IceInternal.Direct __direct = null;
+        try
+        {
+            __direct = new IceInternal.Direct(__current)
+            {
+                public Ice.DispatchStatus run(Ice.Object __obj)
+                {
+                    NWScript __servant = null;
+                    try
+                    {
+                        __servant = (NWScript)__obj;
+                    }
+                    catch(ClassCastException __ex)
+                    {
+                        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+                    }
+                    try
+                    {
+                        __result.value = __servant.getItemPropertyInteger(e, index, __current);
+                        return Ice.DispatchStatus.DispatchOK;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        setUserException(__ex);
+                        return Ice.DispatchStatus.DispatchUserException;
+                    }
+                }
+            };
+            try
+            {
+                Ice.DispatchStatus __status = __direct.servant().__collocDispatch(__direct);
+                if(__status == Ice.DispatchStatus.DispatchUserException)
+                {
+                    __direct.throwUserException();
+                }
+                assert __status == Ice.DispatchStatus.DispatchOK;
+                return __result.value;
+            }
+            finally
+            {
+                __direct.destroy();
+            }
+        }
+        catch(InvalidArgumentException __ex)
+        {
+            throw __ex;
+        }
+        catch(InvalidItemPropertyException __ex)
         {
             throw __ex;
         }
@@ -44030,6 +44375,74 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
+    setEffectExposed(final NWEffect eff, final boolean bShown, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidEffectException,
+               NotInContextException
+    {
+        final Ice.Current __current = new Ice.Current();
+        __initCurrent(__current, "setEffectExposed", Ice.OperationMode.Idempotent, __ctx);
+        IceInternal.Direct __direct = null;
+        try
+        {
+            __direct = new IceInternal.Direct(__current)
+            {
+                public Ice.DispatchStatus run(Ice.Object __obj)
+                {
+                    NWScript __servant = null;
+                    try
+                    {
+                        __servant = (NWScript)__obj;
+                    }
+                    catch(ClassCastException __ex)
+                    {
+                        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+                    }
+                    try
+                    {
+                        __servant.setEffectExposed(eff, bShown, __current);
+                        return Ice.DispatchStatus.DispatchOK;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        setUserException(__ex);
+                        return Ice.DispatchStatus.DispatchUserException;
+                    }
+                }
+            };
+            try
+            {
+                Ice.DispatchStatus __status = __direct.servant().__collocDispatch(__direct);
+                if(__status == Ice.DispatchStatus.DispatchUserException)
+                {
+                    __direct.throwUserException();
+                }
+                assert __status == Ice.DispatchStatus.DispatchOK;
+            }
+            finally
+            {
+                __direct.destroy();
+            }
+        }
+        catch(InvalidEffectException __ex)
+        {
+            throw __ex;
+        }
+        catch(NotInContextException __ex)
+        {
+            throw __ex;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            throw __ex;
+        }
+        catch(java.lang.Throwable __ex)
+        {
+            IceInternal.LocalExceptionWrapper.throwWrapper(__ex);
+        }
+    }
+
+    public void
     setEffectIconShown(final NWEffect eff, final boolean bShown, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException,
@@ -44084,6 +44497,137 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
             throw __ex;
         }
         catch(NotInContextException __ex)
+        {
+            throw __ex;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            throw __ex;
+        }
+        catch(java.lang.Throwable __ex)
+        {
+            IceInternal.LocalExceptionWrapper.throwWrapper(__ex);
+        }
+    }
+
+    public void
+    setEffectInteger(final NWEffect e, final int index, final int value, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidArgumentException,
+               InvalidEffectException
+    {
+        final Ice.Current __current = new Ice.Current();
+        __initCurrent(__current, "setEffectInteger", Ice.OperationMode.Normal, __ctx);
+        IceInternal.Direct __direct = null;
+        try
+        {
+            __direct = new IceInternal.Direct(__current)
+            {
+                public Ice.DispatchStatus run(Ice.Object __obj)
+                {
+                    NWScript __servant = null;
+                    try
+                    {
+                        __servant = (NWScript)__obj;
+                    }
+                    catch(ClassCastException __ex)
+                    {
+                        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+                    }
+                    try
+                    {
+                        __servant.setEffectInteger(e, index, value, __current);
+                        return Ice.DispatchStatus.DispatchOK;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        setUserException(__ex);
+                        return Ice.DispatchStatus.DispatchUserException;
+                    }
+                }
+            };
+            try
+            {
+                Ice.DispatchStatus __status = __direct.servant().__collocDispatch(__direct);
+                if(__status == Ice.DispatchStatus.DispatchUserException)
+                {
+                    __direct.throwUserException();
+                }
+                assert __status == Ice.DispatchStatus.DispatchOK;
+            }
+            finally
+            {
+                __direct.destroy();
+            }
+        }
+        catch(InvalidArgumentException __ex)
+        {
+            throw __ex;
+        }
+        catch(InvalidEffectException __ex)
+        {
+            throw __ex;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            throw __ex;
+        }
+        catch(java.lang.Throwable __ex)
+        {
+            IceInternal.LocalExceptionWrapper.throwWrapper(__ex);
+        }
+    }
+
+    public void
+    setEffectTrueType(final NWEffect e, final EffectTrueType t, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidItemPropertyException
+    {
+        final Ice.Current __current = new Ice.Current();
+        __initCurrent(__current, "setEffectTrueType", Ice.OperationMode.Normal, __ctx);
+        IceInternal.Direct __direct = null;
+        try
+        {
+            __direct = new IceInternal.Direct(__current)
+            {
+                public Ice.DispatchStatus run(Ice.Object __obj)
+                {
+                    NWScript __servant = null;
+                    try
+                    {
+                        __servant = (NWScript)__obj;
+                    }
+                    catch(ClassCastException __ex)
+                    {
+                        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+                    }
+                    try
+                    {
+                        __servant.setEffectTrueType(e, t, __current);
+                        return Ice.DispatchStatus.DispatchOK;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        setUserException(__ex);
+                        return Ice.DispatchStatus.DispatchUserException;
+                    }
+                }
+            };
+            try
+            {
+                Ice.DispatchStatus __status = __direct.servant().__collocDispatch(__direct);
+                if(__status == Ice.DispatchStatus.DispatchUserException)
+                {
+                    __direct.throwUserException();
+                }
+                assert __status == Ice.DispatchStatus.DispatchOK;
+            }
+            finally
+            {
+                __direct.destroy();
+            }
+        }
+        catch(InvalidItemPropertyException __ex)
         {
             throw __ex;
         }
@@ -45344,6 +45888,74 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
             }
         }
         catch(NotInContextException __ex)
+        {
+            throw __ex;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            throw __ex;
+        }
+        catch(java.lang.Throwable __ex)
+        {
+            IceInternal.LocalExceptionWrapper.throwWrapper(__ex);
+        }
+    }
+
+    public void
+    setItemPropertyInteger(final NWItemProperty e, final int index, final int value, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidArgumentException,
+               InvalidItemPropertyException
+    {
+        final Ice.Current __current = new Ice.Current();
+        __initCurrent(__current, "setItemPropertyInteger", Ice.OperationMode.Normal, __ctx);
+        IceInternal.Direct __direct = null;
+        try
+        {
+            __direct = new IceInternal.Direct(__current)
+            {
+                public Ice.DispatchStatus run(Ice.Object __obj)
+                {
+                    NWScript __servant = null;
+                    try
+                    {
+                        __servant = (NWScript)__obj;
+                    }
+                    catch(ClassCastException __ex)
+                    {
+                        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+                    }
+                    try
+                    {
+                        __servant.setItemPropertyInteger(e, index, value, __current);
+                        return Ice.DispatchStatus.DispatchOK;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        setUserException(__ex);
+                        return Ice.DispatchStatus.DispatchUserException;
+                    }
+                }
+            };
+            try
+            {
+                Ice.DispatchStatus __status = __direct.servant().__collocDispatch(__direct);
+                if(__status == Ice.DispatchStatus.DispatchUserException)
+                {
+                    __direct.throwUserException();
+                }
+                assert __status == Ice.DispatchStatus.DispatchOK;
+            }
+            finally
+            {
+                __direct.destroy();
+            }
+        }
+        catch(InvalidArgumentException __ex)
+        {
+            throw __ex;
+        }
+        catch(InvalidItemPropertyException __ex)
         {
             throw __ex;
         }

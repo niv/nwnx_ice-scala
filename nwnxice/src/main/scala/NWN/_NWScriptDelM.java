@@ -12812,6 +12812,59 @@ public final class _NWScriptDelM extends Ice._ObjectDelM implements _NWScriptDel
         }
     }
 
+    public double
+    getEffectDuration(NWEffect e, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidEffectException
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("getEffectDuration", Ice.OperationMode.Normal, __ctx);
+        try
+        {
+            try
+            {
+                IceInternal.BasicStream __os = __og.os();
+                e.__write(__os);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __og.abort(__ex);
+            }
+            boolean __ok = __og.invoke();
+            try
+            {
+                if(!__ok)
+                {
+                    try
+                    {
+                        __og.throwUserException();
+                    }
+                    catch(InvalidEffectException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        throw new Ice.UnknownUserException(__ex.ice_name());
+                    }
+                }
+                IceInternal.BasicStream __is = __og.is();
+                __is.startReadEncaps();
+                double __ret;
+                __ret = __is.readDouble();
+                __is.endReadEncaps();
+                return __ret;
+            }
+            catch(Ice.LocalException __ex)
+            {
+                throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
     public DurationType
     getEffectDurationType(NWEffect eEffect, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
@@ -12871,6 +12924,64 @@ public final class _NWScriptDelM extends Ice._ObjectDelM implements _NWScriptDel
     }
 
     public boolean
+    getEffectExposed(NWEffect eff, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidEffectException,
+               NotInContextException
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("getEffectExposed", Ice.OperationMode.Idempotent, __ctx);
+        try
+        {
+            try
+            {
+                IceInternal.BasicStream __os = __og.os();
+                eff.__write(__os);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __og.abort(__ex);
+            }
+            boolean __ok = __og.invoke();
+            try
+            {
+                if(!__ok)
+                {
+                    try
+                    {
+                        __og.throwUserException();
+                    }
+                    catch(InvalidEffectException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(NotInContextException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        throw new Ice.UnknownUserException(__ex.ice_name());
+                    }
+                }
+                IceInternal.BasicStream __is = __og.is();
+                __is.startReadEncaps();
+                boolean __ret;
+                __ret = __is.readBool();
+                __is.endReadEncaps();
+                return __ret;
+            }
+            catch(Ice.LocalException __ex)
+            {
+                throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
+    public boolean
     getEffectIconShown(NWEffect eff, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException,
@@ -12914,6 +13025,65 @@ public final class _NWScriptDelM extends Ice._ObjectDelM implements _NWScriptDel
                 __is.startReadEncaps();
                 boolean __ret;
                 __ret = __is.readBool();
+                __is.endReadEncaps();
+                return __ret;
+            }
+            catch(Ice.LocalException __ex)
+            {
+                throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
+    public int
+    getEffectInteger(NWEffect e, int index, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidArgumentException,
+               InvalidEffectException
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("getEffectInteger", Ice.OperationMode.Normal, __ctx);
+        try
+        {
+            try
+            {
+                IceInternal.BasicStream __os = __og.os();
+                e.__write(__os);
+                __os.writeInt(index);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __og.abort(__ex);
+            }
+            boolean __ok = __og.invoke();
+            try
+            {
+                if(!__ok)
+                {
+                    try
+                    {
+                        __og.throwUserException();
+                    }
+                    catch(InvalidArgumentException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(InvalidEffectException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        throw new Ice.UnknownUserException(__ex.ice_name());
+                    }
+                }
+                IceInternal.BasicStream __is = __og.is();
+                __is.startReadEncaps();
+                int __ret;
+                __ret = __is.readInt();
                 __is.endReadEncaps();
                 return __ret;
             }
@@ -18200,6 +18370,59 @@ public final class _NWScriptDelM extends Ice._ObjectDelM implements _NWScriptDel
         }
     }
 
+    public double
+    getItemPropertyDuration(NWItemProperty e, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidEffectException
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("getItemPropertyDuration", Ice.OperationMode.Normal, __ctx);
+        try
+        {
+            try
+            {
+                IceInternal.BasicStream __os = __og.os();
+                e.__write(__os);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __og.abort(__ex);
+            }
+            boolean __ok = __og.invoke();
+            try
+            {
+                if(!__ok)
+                {
+                    try
+                    {
+                        __og.throwUserException();
+                    }
+                    catch(InvalidEffectException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        throw new Ice.UnknownUserException(__ex.ice_name());
+                    }
+                }
+                IceInternal.BasicStream __is = __og.is();
+                __is.startReadEncaps();
+                double __ret;
+                __ret = __is.readDouble();
+                __is.endReadEncaps();
+                return __ret;
+            }
+            catch(Ice.LocalException __ex)
+            {
+                throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
     public DurationType
     getItemPropertyDurationType(NWItemProperty ip, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
@@ -18244,6 +18467,65 @@ public final class _NWScriptDelM extends Ice._ObjectDelM implements _NWScriptDel
                 __is.startReadEncaps();
                 DurationType __ret;
                 __ret = DurationType.__read(__is);
+                __is.endReadEncaps();
+                return __ret;
+            }
+            catch(Ice.LocalException __ex)
+            {
+                throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
+    public int
+    getItemPropertyInteger(NWItemProperty e, int index, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidArgumentException,
+               InvalidItemPropertyException
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("getItemPropertyInteger", Ice.OperationMode.Normal, __ctx);
+        try
+        {
+            try
+            {
+                IceInternal.BasicStream __os = __og.os();
+                e.__write(__os);
+                __os.writeInt(index);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __og.abort(__ex);
+            }
+            boolean __ok = __og.invoke();
+            try
+            {
+                if(!__ok)
+                {
+                    try
+                    {
+                        __og.throwUserException();
+                    }
+                    catch(InvalidArgumentException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(InvalidItemPropertyException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        throw new Ice.UnknownUserException(__ex.ice_name());
+                    }
+                }
+                IceInternal.BasicStream __is = __og.is();
+                __is.startReadEncaps();
+                int __ret;
+                __ret = __is.readInt();
                 __is.endReadEncaps();
                 return __ret;
             }
@@ -34569,6 +34851,60 @@ public final class _NWScriptDelM extends Ice._ObjectDelM implements _NWScriptDel
     }
 
     public void
+    setEffectExposed(NWEffect eff, boolean bShown, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidEffectException,
+               NotInContextException
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("setEffectExposed", Ice.OperationMode.Idempotent, __ctx);
+        try
+        {
+            try
+            {
+                IceInternal.BasicStream __os = __og.os();
+                eff.__write(__os);
+                __os.writeBool(bShown);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __og.abort(__ex);
+            }
+            boolean __ok = __og.invoke();
+            try
+            {
+                if(!__ok)
+                {
+                    try
+                    {
+                        __og.throwUserException();
+                    }
+                    catch(InvalidEffectException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(NotInContextException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        throw new Ice.UnknownUserException(__ex.ice_name());
+                    }
+                }
+                __og.is().skipEmptyEncaps();
+            }
+            catch(Ice.LocalException __ex)
+            {
+                throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
+    public void
     setEffectIconShown(NWEffect eff, boolean bShown, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException,
@@ -34601,6 +34937,110 @@ public final class _NWScriptDelM extends Ice._ObjectDelM implements _NWScriptDel
                         throw __ex;
                     }
                     catch(NotInContextException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        throw new Ice.UnknownUserException(__ex.ice_name());
+                    }
+                }
+                __og.is().skipEmptyEncaps();
+            }
+            catch(Ice.LocalException __ex)
+            {
+                throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
+    public void
+    setEffectInteger(NWEffect e, int index, int value, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidArgumentException,
+               InvalidEffectException
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("setEffectInteger", Ice.OperationMode.Normal, __ctx);
+        try
+        {
+            try
+            {
+                IceInternal.BasicStream __os = __og.os();
+                e.__write(__os);
+                __os.writeInt(index);
+                __os.writeInt(value);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __og.abort(__ex);
+            }
+            boolean __ok = __og.invoke();
+            try
+            {
+                if(!__ok)
+                {
+                    try
+                    {
+                        __og.throwUserException();
+                    }
+                    catch(InvalidArgumentException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(InvalidEffectException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        throw new Ice.UnknownUserException(__ex.ice_name());
+                    }
+                }
+                __og.is().skipEmptyEncaps();
+            }
+            catch(Ice.LocalException __ex)
+            {
+                throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
+    public void
+    setEffectTrueType(NWEffect e, EffectTrueType t, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidItemPropertyException
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("setEffectTrueType", Ice.OperationMode.Normal, __ctx);
+        try
+        {
+            try
+            {
+                IceInternal.BasicStream __os = __og.os();
+                e.__write(__os);
+                t.__write(__os);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __og.abort(__ex);
+            }
+            boolean __ok = __og.invoke();
+            try
+            {
+                if(!__ok)
+                {
+                    try
+                    {
+                        __og.throwUserException();
+                    }
+                    catch(InvalidItemPropertyException __ex)
                     {
                         throw __ex;
                     }
@@ -35588,6 +36028,61 @@ public final class _NWScriptDelM extends Ice._ObjectDelM implements _NWScriptDel
                         __og.throwUserException();
                     }
                     catch(NotInContextException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        throw new Ice.UnknownUserException(__ex.ice_name());
+                    }
+                }
+                __og.is().skipEmptyEncaps();
+            }
+            catch(Ice.LocalException __ex)
+            {
+                throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
+    public void
+    setItemPropertyInteger(NWItemProperty e, int index, int value, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               InvalidArgumentException,
+               InvalidItemPropertyException
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("setItemPropertyInteger", Ice.OperationMode.Normal, __ctx);
+        try
+        {
+            try
+            {
+                IceInternal.BasicStream __os = __og.os();
+                e.__write(__os);
+                __os.writeInt(index);
+                __os.writeInt(value);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __og.abort(__ex);
+            }
+            boolean __ok = __og.invoke();
+            try
+            {
+                if(!__ok)
+                {
+                    try
+                    {
+                        __og.throwUserException();
+                    }
+                    catch(InvalidArgumentException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(InvalidItemPropertyException __ex)
                     {
                         throw __ex;
                     }

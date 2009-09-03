@@ -32,7 +32,7 @@ package es.elv.kobold {
 		def addPropertyIntelligently(p: ItemProperty, duration: Double) = {
 			val durationType = if (duration > 0) DurationType.Temporary else DurationType.Permanent
 			val matching = properties.filter(v => v.durationType == durationType &&
-					v.iprpType == p.iprpType && v.iprpSubType == p.iprpSubType)
+					v.iprpType == p.iprpType && v.subType == p.subType)
 
 			matching.foreach(this removeProperty _)
 

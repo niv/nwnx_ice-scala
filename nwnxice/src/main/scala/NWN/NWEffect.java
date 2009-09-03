@@ -19,9 +19,9 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
 
     public EffectType tType;
 
-    public EffectSubType tSubType;
+    public EffectTrueType tTrueType;
 
-    public boolean tIconShown;
+    public EffectSubType tSubType;
 
     public NWObject tCreator;
 
@@ -31,13 +31,13 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
     {
     }
 
-    public NWEffect(long id, DurationType tDurationType, EffectType tType, EffectSubType tSubType, boolean tIconShown, NWObject tCreator, int tSpellId)
+    public NWEffect(long id, DurationType tDurationType, EffectType tType, EffectTrueType tTrueType, EffectSubType tSubType, NWObject tCreator, int tSpellId)
     {
         this.id = id;
         this.tDurationType = tDurationType;
         this.tType = tType;
+        this.tTrueType = tTrueType;
         this.tSubType = tSubType;
-        this.tIconShown = tIconShown;
         this.tCreator = tCreator;
         this.tSpellId = tSpellId;
     }
@@ -72,11 +72,11 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
             {
                 return false;
             }
-            if(tSubType != _r.tSubType && tSubType != null && !tSubType.equals(_r.tSubType))
+            if(tTrueType != _r.tTrueType && tTrueType != null && !tTrueType.equals(_r.tTrueType))
             {
                 return false;
             }
-            if(tIconShown != _r.tIconShown)
+            if(tSubType != _r.tSubType && tSubType != null && !tSubType.equals(_r.tSubType))
             {
                 return false;
             }
@@ -108,11 +108,14 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
         {
             __h = 5 * __h + tType.hashCode();
         }
+        if(tTrueType != null)
+        {
+            __h = 5 * __h + tTrueType.hashCode();
+        }
         if(tSubType != null)
         {
             __h = 5 * __h + tSubType.hashCode();
         }
-        __h = 5 * __h + (tIconShown ? 1 : 0);
         if(tCreator != null)
         {
             __h = 5 * __h + tCreator.hashCode();
@@ -142,8 +145,8 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
         __os.writeLong(id);
         tDurationType.__write(__os);
         tType.__write(__os);
+        tTrueType.__write(__os);
         tSubType.__write(__os);
-        __os.writeBool(tIconShown);
         tCreator.__write(__os);
         __os.writeInt(tSpellId);
     }
@@ -154,8 +157,8 @@ public final class NWEffect implements java.lang.Cloneable, java.io.Serializable
         id = __is.readLong();
         tDurationType = DurationType.__read(__is);
         tType = EffectType.__read(__is);
+        tTrueType = EffectTrueType.__read(__is);
         tSubType = EffectSubType.__read(__is);
-        tIconShown = __is.readBool();
         tCreator = new NWObject();
         tCreator.__read(__is);
         tSpellId = __is.readInt();

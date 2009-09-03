@@ -13,6 +13,49 @@ package NWN;
 
 public interface NWScriptPrx extends Ice.ObjectPrx
 {
+    public int getEffectInteger(NWEffect e, int index)
+        throws InvalidArgumentException,
+               InvalidEffectException;
+    public int getEffectInteger(NWEffect e, int index, java.util.Map<String, String> __ctx)
+        throws InvalidArgumentException,
+               InvalidEffectException;
+
+    public void setEffectInteger(NWEffect e, int index, int value)
+        throws InvalidArgumentException,
+               InvalidEffectException;
+    public void setEffectInteger(NWEffect e, int index, int value, java.util.Map<String, String> __ctx)
+        throws InvalidArgumentException,
+               InvalidEffectException;
+
+    public int getItemPropertyInteger(NWItemProperty e, int index)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException;
+    public int getItemPropertyInteger(NWItemProperty e, int index, java.util.Map<String, String> __ctx)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException;
+
+    public void setItemPropertyInteger(NWItemProperty e, int index, int value)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException;
+    public void setItemPropertyInteger(NWItemProperty e, int index, int value, java.util.Map<String, String> __ctx)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException;
+
+    public void setEffectTrueType(NWEffect e, EffectTrueType t)
+        throws InvalidItemPropertyException;
+    public void setEffectTrueType(NWEffect e, EffectTrueType t, java.util.Map<String, String> __ctx)
+        throws InvalidItemPropertyException;
+
+    public double getEffectDuration(NWEffect e)
+        throws InvalidEffectException;
+    public double getEffectDuration(NWEffect e, java.util.Map<String, String> __ctx)
+        throws InvalidEffectException;
+
+    public double getItemPropertyDuration(NWItemProperty e)
+        throws InvalidEffectException;
+    public double getItemPropertyDuration(NWItemProperty e, java.util.Map<String, String> __ctx)
+        throws InvalidEffectException;
+
     public boolean hasState(String key);
     public boolean hasState(String key, java.util.Map<String, String> __ctx);
 
@@ -86,6 +129,20 @@ public interface NWScriptPrx extends Ice.ObjectPrx
         throws InvalidEffectException,
                NotInContextException;
     public void setEffectIconShown(NWEffect eff, boolean bShown, java.util.Map<String, String> __ctx)
+        throws InvalidEffectException,
+               NotInContextException;
+
+    public boolean getEffectExposed(NWEffect eff)
+        throws InvalidEffectException,
+               NotInContextException;
+    public boolean getEffectExposed(NWEffect eff, java.util.Map<String, String> __ctx)
+        throws InvalidEffectException,
+               NotInContextException;
+
+    public void setEffectExposed(NWEffect eff, boolean bShown)
+        throws InvalidEffectException,
+               NotInContextException;
+    public void setEffectExposed(NWEffect eff, boolean bShown, java.util.Map<String, String> __ctx)
         throws InvalidEffectException,
                NotInContextException;
 

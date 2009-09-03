@@ -94,7 +94,7 @@ package es.elv.kobold {
 
 	}
 
-	case class ItemProperty(val iprpId: Long, creator: G, iprpType: Int, iprpSubType: Int, durationType: DurationType,
+	case class ItemProperty(val iprpId: Long, creator: G, iprpType: Int, subType: Int, durationType: DurationType,
 			val param1: Int, val param1Value: Int, val costTable: Int, val costTableValue: Int) {
 
 		private[kobold] def toNWItemProperty: NWItemProperty = new NWItemProperty(
@@ -103,9 +103,9 @@ package es.elv.kobold {
 		override def toString = {
 			val typeStrRef = TwoDA("itempropdef")("Name", iprpType)
 			val typeStr = if (typeStrRef != "") Tlk(typeStrRef.toInt) else "t=" + iprpType
-			val subTypeTable = TwoDA("itempropdef")("SubTypeResRef", iprpSubType)
-			val subTypeStr = (if (subTypeTable != "" && iprpSubType != -1)
-				Tlk(TwoDA(subTypeTable)("Name", iprpSubType).toInt) + " (" + iprpSubType.toString + ")"
+			val subTypeTable = TwoDA("itempropdef")("SubTypeResRef", subType)
+			val subTypeStr = (if (subTypeTable != "" && subType != -1)
+				Tlk(TwoDA(subTypeTable)("Name", subType).toInt) + " (" + subType.toString + ")"
 			else "")
 
 			val param1Str = (if (param1 > -1 && param1 != 255)

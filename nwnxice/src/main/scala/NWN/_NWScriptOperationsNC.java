@@ -13,6 +13,31 @@ package NWN;
 
 public interface _NWScriptOperationsNC
 {
+    int getEffectInteger(NWEffect e, int index)
+        throws InvalidArgumentException,
+               InvalidEffectException;
+
+    void setEffectInteger(NWEffect e, int index, int value)
+        throws InvalidArgumentException,
+               InvalidEffectException;
+
+    int getItemPropertyInteger(NWItemProperty e, int index)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException;
+
+    void setItemPropertyInteger(NWItemProperty e, int index, int value)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException;
+
+    void setEffectTrueType(NWEffect e, EffectTrueType t)
+        throws InvalidItemPropertyException;
+
+    double getEffectDuration(NWEffect e)
+        throws InvalidEffectException;
+
+    double getItemPropertyDuration(NWItemProperty e)
+        throws InvalidEffectException;
+
     boolean hasState(String key);
 
     NWN.Persistable getState(String key)
@@ -56,6 +81,14 @@ public interface _NWScriptOperationsNC
                NotInContextException;
 
     void setEffectIconShown(NWEffect eff, boolean bShown)
+        throws InvalidEffectException,
+               NotInContextException;
+
+    boolean getEffectExposed(NWEffect eff)
+        throws InvalidEffectException,
+               NotInContextException;
+
+    void setEffectExposed(NWEffect eff, boolean bShown)
         throws InvalidEffectException,
                NotInContextException;
 

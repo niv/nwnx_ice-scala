@@ -46,7 +46,7 @@ package es.elv.kobold {
 		def apply(o: NWEffect): Effect = implicitEffect(o)
 
 		private implicit def implicitEffect(n: NWEffect): Effect = Effect(
-			n.id, G(n.tCreator), n.tType, n.tSubType, n.tDurationType, n.tSpellId)
+			n.id, G(n.tCreator), n.tTrueType, n.tSubType, n.tDurationType, n.tSpellId)
 
 		def darknessInvisibility: Effect = R.proxy.effectInvisibility(2)
 		def improvedInvisibility: Effect = R.proxy.effectInvisibility(4)
@@ -162,15 +162,22 @@ package es.elv.kobold {
 		*/
 	}
 
-	case class Effect (val effectId: Long, val creator: G, val effectType: EffectType, val effectSubType: EffectSubType,
-			val durationType: DurationType, val effectSpellId: Int) {
+	case class Effect (val effectId: Long, val creator: G, val effectType: EffectTrueType,
+			val subType: EffectSubType, val durationType: DurationType, val spellId: Int) {
 
-		/*def iconShown = wrapped.tIconShown
-		def iconShown_=(state: Boolean) {
-			iconShown = state ; R.proxy.setEffectIconShown(this, state)
-		}*/
+		/** the legacy nwscript effect type. Usually not needed. */
+		lazy val nwEffectType = R.proxy.getEffectType(this)
 
-		// val spellId = R.proxy.getEffectSpellId(this)
+		lazy val duration = R.proxy.getEffectDuration(this)
+		lazy val iconShown = R.proxy.getEffectIconShown(this)
+		lazy val exposed = R.proxy.getEffectExposed(this)
+		def iconShown_=(v: Boolean) = R.proxy.setEffectIconShown(this, v)
+		def exposed_=(v: Boolean) = R.proxy.setEffectExposed(this, v)
+
+		def getInteger(idx: Int): Int =
+			R.proxy.getEffectInteger(this, idx)
+		def setInteger(idx: Int, value: Int) =
+			R.proxy.setEffectInteger(this, idx, value)
 
 		def magical: Effect = R.proxy.magicalEffect(this)
 		def extraordinary: Effect = R.proxy.extraordinaryEffect(this)
@@ -179,12 +186,13 @@ package es.elv.kobold {
 		def link(to: Effect): Effect = R.proxy.effectLinkEffects(to, this)
 
 		private[kobold] def toNWEffect: NWEffect =
-			new NWEffect(effectId, durationType, effectType, effectSubType, true, Module(), 0)
+			new NWEffect(effectId, durationType, EffectType.InvalidEffect, effectType, subType, Module(), 0)
 
 		override def toString =
-			"Effect<" + effectType + "," + durationType + ">(" + List(
-				effectId.toHexString, effectSubType,
-				"creator=" + creator).mkString(",") +
-			")"
+			effectType + "<" + subType + ">(" + List(
+				effectId.toHexString, durationType, duration,
+				"creator=" + creator, "icon=" + iconShown, "exposed=" + exposed,
+				"iv=" + (for (i <- 0 to 15) yield(getInteger(i))).toList
+			).mkString(",") + ")"
 	}
 }

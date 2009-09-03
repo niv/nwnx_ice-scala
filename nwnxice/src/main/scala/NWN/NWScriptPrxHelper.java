@@ -11409,6 +11409,51 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
+    public double
+    getEffectDuration(NWEffect e)
+        throws InvalidEffectException
+    {
+        return getEffectDuration(e, null, false);
+    }
+
+    public double
+    getEffectDuration(NWEffect e, java.util.Map<String, String> __ctx)
+        throws InvalidEffectException
+    {
+        return getEffectDuration(e, __ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private double
+    getEffectDuration(NWEffect e, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws InvalidEffectException
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("getEffectDuration");
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                return __del.getEffectDuration(e, __ctx);
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __handleExceptionWrapper(__delBase, __ex, null);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
     public DurationType
     getEffectDurationType(NWEffect eEffect)
         throws InvalidEffectException,
@@ -11445,6 +11490,54 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
                 __delBase = __getDelegate(false);
                 _NWScriptDel __del = (_NWScriptDel)__delBase;
                 return __del.getEffectDurationType(eEffect, __ctx);
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __cnt = __handleExceptionWrapperRelaxed(__delBase, __ex, null, __cnt);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
+    public boolean
+    getEffectExposed(NWEffect eff)
+        throws InvalidEffectException,
+               NotInContextException
+    {
+        return getEffectExposed(eff, null, false);
+    }
+
+    public boolean
+    getEffectExposed(NWEffect eff, java.util.Map<String, String> __ctx)
+        throws InvalidEffectException,
+               NotInContextException
+    {
+        return getEffectExposed(eff, __ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private boolean
+    getEffectExposed(NWEffect eff, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws InvalidEffectException,
+               NotInContextException
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("getEffectExposed");
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                return __del.getEffectExposed(eff, __ctx);
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
@@ -11497,6 +11590,54 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
                 __cnt = __handleExceptionWrapperRelaxed(__delBase, __ex, null, __cnt);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
+    public int
+    getEffectInteger(NWEffect e, int index)
+        throws InvalidArgumentException,
+               InvalidEffectException
+    {
+        return getEffectInteger(e, index, null, false);
+    }
+
+    public int
+    getEffectInteger(NWEffect e, int index, java.util.Map<String, String> __ctx)
+        throws InvalidArgumentException,
+               InvalidEffectException
+    {
+        return getEffectInteger(e, index, __ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private int
+    getEffectInteger(NWEffect e, int index, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws InvalidArgumentException,
+               InvalidEffectException
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("getEffectInteger");
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                return __del.getEffectInteger(e, index, __ctx);
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __handleExceptionWrapper(__delBase, __ex, null);
             }
             catch(Ice.LocalException __ex)
             {
@@ -16026,6 +16167,51 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
+    public double
+    getItemPropertyDuration(NWItemProperty e)
+        throws InvalidEffectException
+    {
+        return getItemPropertyDuration(e, null, false);
+    }
+
+    public double
+    getItemPropertyDuration(NWItemProperty e, java.util.Map<String, String> __ctx)
+        throws InvalidEffectException
+    {
+        return getItemPropertyDuration(e, __ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private double
+    getItemPropertyDuration(NWItemProperty e, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws InvalidEffectException
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("getItemPropertyDuration");
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                return __del.getItemPropertyDuration(e, __ctx);
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __handleExceptionWrapper(__delBase, __ex, null);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
     public DurationType
     getItemPropertyDurationType(NWItemProperty ip)
         throws InvalidItemPropertyException,
@@ -16066,6 +16252,54 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
                 __cnt = __handleExceptionWrapperRelaxed(__delBase, __ex, null, __cnt);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
+    public int
+    getItemPropertyInteger(NWItemProperty e, int index)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException
+    {
+        return getItemPropertyInteger(e, index, null, false);
+    }
+
+    public int
+    getItemPropertyInteger(NWItemProperty e, int index, java.util.Map<String, String> __ctx)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException
+    {
+        return getItemPropertyInteger(e, index, __ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private int
+    getItemPropertyInteger(NWItemProperty e, int index, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("getItemPropertyInteger");
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                return __del.getItemPropertyInteger(e, index, __ctx);
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __handleExceptionWrapper(__delBase, __ex, null);
             }
             catch(Ice.LocalException __ex)
             {
@@ -30508,6 +30742,55 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
+    setEffectExposed(NWEffect eff, boolean bShown)
+        throws InvalidEffectException,
+               NotInContextException
+    {
+        setEffectExposed(eff, bShown, null, false);
+    }
+
+    public void
+    setEffectExposed(NWEffect eff, boolean bShown, java.util.Map<String, String> __ctx)
+        throws InvalidEffectException,
+               NotInContextException
+    {
+        setEffectExposed(eff, bShown, __ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void
+    setEffectExposed(NWEffect eff, boolean bShown, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws InvalidEffectException,
+               NotInContextException
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("setEffectExposed");
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                __del.setEffectExposed(eff, bShown, __ctx);
+                return;
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __cnt = __handleExceptionWrapperRelaxed(__delBase, __ex, null, __cnt);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
+    public void
     setEffectIconShown(NWEffect eff, boolean bShown)
         throws InvalidEffectException,
                NotInContextException
@@ -30548,6 +30831,101 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
                 __cnt = __handleExceptionWrapperRelaxed(__delBase, __ex, null, __cnt);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
+    public void
+    setEffectInteger(NWEffect e, int index, int value)
+        throws InvalidArgumentException,
+               InvalidEffectException
+    {
+        setEffectInteger(e, index, value, null, false);
+    }
+
+    public void
+    setEffectInteger(NWEffect e, int index, int value, java.util.Map<String, String> __ctx)
+        throws InvalidArgumentException,
+               InvalidEffectException
+    {
+        setEffectInteger(e, index, value, __ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void
+    setEffectInteger(NWEffect e, int index, int value, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws InvalidArgumentException,
+               InvalidEffectException
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("setEffectInteger");
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                __del.setEffectInteger(e, index, value, __ctx);
+                return;
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __handleExceptionWrapper(__delBase, __ex, null);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
+    public void
+    setEffectTrueType(NWEffect e, EffectTrueType t)
+        throws InvalidItemPropertyException
+    {
+        setEffectTrueType(e, t, null, false);
+    }
+
+    public void
+    setEffectTrueType(NWEffect e, EffectTrueType t, java.util.Map<String, String> __ctx)
+        throws InvalidItemPropertyException
+    {
+        setEffectTrueType(e, t, __ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void
+    setEffectTrueType(NWEffect e, EffectTrueType t, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws InvalidItemPropertyException
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("setEffectTrueType");
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                __del.setEffectTrueType(e, t, __ctx);
+                return;
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __handleExceptionWrapper(__delBase, __ex, null);
             }
             catch(Ice.LocalException __ex)
             {
@@ -31468,6 +31846,55 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
                 __cnt = __handleExceptionWrapperRelaxed(__delBase, __ex, null, __cnt);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
+    public void
+    setItemPropertyInteger(NWItemProperty e, int index, int value)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException
+    {
+        setItemPropertyInteger(e, index, value, null, false);
+    }
+
+    public void
+    setItemPropertyInteger(NWItemProperty e, int index, int value, java.util.Map<String, String> __ctx)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException
+    {
+        setItemPropertyInteger(e, index, value, __ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void
+    setItemPropertyInteger(NWItemProperty e, int index, int value, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws InvalidArgumentException,
+               InvalidItemPropertyException
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("setItemPropertyInteger");
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                __del.setItemPropertyInteger(e, index, value, __ctx);
+                return;
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __handleExceptionWrapper(__delBase, __ex, null);
             }
             catch(Ice.LocalException __ex)
             {
