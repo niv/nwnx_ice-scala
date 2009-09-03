@@ -243,7 +243,11 @@ package es.elv.kobold {
 									Vector(0, 0, 0)
 								}
 							}
-							val nwnxLocation = Location(G[Area](R.proxy.getArea(r.self)), nwnxPosition, 0)
+							val area = G[G](R.proxy.getArea(r.self))
+							val nwnxLocation = if (area.valid)
+								Location(area.asInstanceOf[Area], nwnxPosition, 0)
+							else
+								InvalidLocation()
 
 							nwnxType match {
 								case 1 => EventSource send new OnSaveCharacter(r.self)
