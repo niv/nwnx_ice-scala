@@ -106,6 +106,11 @@ package es.elv.kobold {
 
 			val start = System.currentTimeMillis
 
+			while (!delayedThunks.isEmpty && System.currentTimeMillis - start < 400)
+				delayedThunks.dequeue()()
+			if (delayedThunks.size > 0)
+				log.warning(delayedThunks.size + " thunks remaining")
+
 			val e: Event = try { EventSource send new events.RawEvent(self, ev) } catch {
 				case p => {
 					log.fatal(p, "while distributing event: " + ev + " on " + self.id)
@@ -113,11 +118,6 @@ package es.elv.kobold {
 					throw p
 				}
 			}
-
-			while (!delayedThunks.isEmpty && System.currentTimeMillis - start < 400)
-				delayedThunks.dequeue()()
-			if (delayedThunks.size > 0)
-				log.warning(delayedThunks.size + " thunks remaining")
 
 			contextDepth -= 1
 
