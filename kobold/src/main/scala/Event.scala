@@ -15,7 +15,7 @@ package es.elv.kobold.events {
 	object EventSource {
 		private val log = Logger.get
 
-		private val observers: mutable.Set[Observer] = mutable.Set()
+		private val observers: mutable.ArrayBuffer[Observer] = new mutable.ArrayBuffer()
 
 		def register(observer: Observer) {
 			if (!observers.contains(observer))
