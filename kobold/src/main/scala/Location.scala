@@ -2,8 +2,15 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
+	object InvalidLocation extends Location(new Area(new NWObject(0x7f000000)), Vector.origin, 0.0) {
+		override val valid = false
+		def apply() = this
+	}
+
 	case class Location(val area: Area, val position: Vector, f: Double) {
 		val facing = f % 360.0
+
+		val valid = true
 
 		def this(area: Area, x: Double, y: Double, z: Double, facing: Double) =
 			this(area, new Vector(x, y, z), facing)
