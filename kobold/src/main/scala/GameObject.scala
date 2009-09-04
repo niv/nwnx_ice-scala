@@ -108,9 +108,12 @@ package es.elv.kobold {
 
 		lazy val ls   = new LocalStringMap(this)
 		lazy val li   = new LocalIntMap(this)
+		lazy val ll   = new LocalLongMap(this)
 		lazy val lb   = new LocalBoolMap(this)
 		lazy val lo   = new LocalObjectMap(this)
 		lazy val lf   = new LocalFloatMap(this)
+		lazy val lv   = new LocalVectorMap(this)
+		lazy val llo  = new LocalLocationMap(this)
 
 		protected def toStringProperties = List(if (valid) "valid" else "invalid", "ref=" + resref(), "tag=" + tag(), "name=" + name())
 		override def toString = getClass.getName.toString + "(" + (wrapped.id.toHexString :: toStringProperties).mkString(",") + ")"
