@@ -84,7 +84,7 @@ package es.elv.kobold {
 		case class OnObjectExamine(val examiner: G, val target: G) extends GameEvent
 		case class OnCreatureUseSkill(val creature: G, val skill: Int, val target: G, val targetLocation: Location) extends GameEvent
 		case class OnCreatureUseFeat(val creature: G, val feat: Int, val target: G, val targetLocation: Location) extends GameEvent
-		case class OnCreatureToggleMode(val creature: G, val mode: ActionMode) extends GameEvent
+		case class OnCreatureToggleMode(val creature: G, val mode: ActionMode, val desiredState: Boolean) extends GameEvent
 		case class OnCreatureCastSpell(val caster: G, val spell: Int, val target: G, val targetLocation: Location) extends GameEvent
 		case class OnTogglePause(player: G) extends GameEvent
 		case class OnCreaturePossessFamiliar(creature: G) extends GameEvent
@@ -257,7 +257,8 @@ package es.elv.kobold {
 								case 6 => EventSource send new OnObjectExamine(r.self, G(nwnxTarget))
 								case 7 => EventSource send new OnCreatureUseSkill(r.self, nwnxSubType, G(nwnxTarget), nwnxLocation)
 								case 8 => EventSource send new OnCreatureUseFeat(r.self, nwnxSubType, G(nwnxTarget), nwnxLocation)
-								case 9 => EventSource send new OnCreatureToggleMode(r.self, ActionMode.convert(nwnxSubType))
+								case 9 => EventSource send new OnCreatureToggleMode(r.self,
+									ActionMode.convert(nwnxSubType), !R.proxy.getActionMode(r.self, ActionMode.convert(nwnxSubType)))
 								case 10 => EventSource send new OnCreatureCastSpell(r.self, nwnxSubType, G(nwnxTarget), nwnxLocation)
 								case 11 => EventSource send new OnTogglePause(r.self)
 								case 12 => EventSource send new OnCreaturePossessFamiliar(r.self)
@@ -303,6 +304,8 @@ package es.elv.kobold {
 						case "creature_castspell" => r
 						case "object_spell_cast_at" => r
 						case "placeable_spell_cast_at" => r
+						case "pc_togglemode" => r
+						case "item_freeactivate" => r
 
 						case _ => {
 							log.warn("Unhandled event received: %s (on %08x)".format(r.event, r.self.id))
