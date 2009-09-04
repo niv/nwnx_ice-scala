@@ -33,7 +33,7 @@ package es.elv.kobold.events {
 				if (!e.stopped)
 					try { o listen e } catch {
 						case p => {
-							log.fatal(p, "while sending " + e + " to " + o)
+							log.error("while sending " + e + " to " + o, p)
 							throw p
 						}
 					}

@@ -87,7 +87,7 @@ package es.elv.kobold {
 			if (storedTokens.contains(token)) {
 				try { storedTokens(token)() } catch {
 					case p => {
-						log.fatal(p, "while handling token: " + tk)
+						log.error("while handling token: " + tk, p)
 						System.exit(1)
 					}
 				}
@@ -115,7 +115,7 @@ package es.elv.kobold {
 			while (!delayedThunks.isEmpty && System.currentTimeMillis - start < 400)
 				delayedThunks.dequeue()()
 			if (delayedThunks.size > 0)
-				log.warning(delayedThunks.size + " thunks remaining")
+				log.warn(delayedThunks.size + " thunks remaining")
 
 			val ret: ClientResult = try {
 				val e: Event = EventSource send new events.RawEvent(self, ev)
@@ -126,7 +126,7 @@ package es.elv.kobold {
 
 			} catch {
 				case p => {
-					log.fatal(p, "while distributing event: " + ev + " on " + self.id)
+					log.error("while distributing event: " + ev + " on " + self.id, p)
 					System.exit(1)
 					ClientResult.Error
 				}

@@ -1,61 +1,36 @@
-package es.elv.kobold
+package es.elv.kobold.log
 
-class IngameLogHandler extends net.lag.logging.Handler(new net.lag.logging.GenericFormatter("%.3s %s: ")) {
-	private var closed = false
+import org.apache.log4j
 
-	private var bufferedMessages: collection.mutable.SynchronizedQueue[java.util.logging.LogRecord] =
-		new collection.mutable.SynchronizedQueue()
+class IngameAppender extends log4j.AppenderSkeleton {
+	override def requiresLayout = true
+	override def close() {}
 
-	override def close {
-		closed = true
-	}
-	override def flush {}
-
-	override def publish(what: java.util.logging.LogRecord): Unit = {
-		if (closed)
-			return
-
-		if (bufferedMessages.size > 100)
-			println("(warning: IngameLogger message buffer: " + bufferedMessages.size + ")")
-		else
-			bufferedMessages += what
-
-		if (R.getContextDepth > 0) while (!bufferedMessages.isEmpty) {
-			val o = bufferedMessages.dequeue
-			if (!myPublish(o))
-				println("failed to send: " + o)
-		}
-	}
-
-	private def myPublish(what: java.util.logging.LogRecord): Boolean = {
+	override def append(what: log4j.spi.LoggingEvent) {
 		val col = what.getLevel match {
-			case java.util.logging.Level.SEVERE => color.Red
-			case java.util.logging.Level.WARNING => color.Pink
-			case java.util.logging.Level.INFO => color.Bisque
+			case log4j.Level.FATAL => color.Red
+			case log4j.Level.ERROR => color.Red
+			case log4j.Level.WARN => color.Pink
+			case log4j.Level.INFO => color.Bisque
 			case _ => color.Mistyrose
 		}
 		
-		val text = col.toString + getFormatter().format(what).trim
-		
-		try {
-			for (p <- Player.all) {
-				// Warnings and errors to all players, no matter what.
-				if (what.getLevel.intValue >= java.util.logging.Level.WARNING.intValue)
-					p.message(text)
-				
-				val wantLogLevel = p.li("logLevel")
+		val text = col.toString + layout.format(what).trim
 
-				if (wantLogLevel > 0 && what.getLevel.intValue >= wantLogLevel)
-					p.message(text)
-			}
+		if (R.getContextDepth == 0)
+			return
 
-			true
+		for (p <- Player.all) {
+			// Warnings and errors to all players, no matter what.
+			if (what.getLevel.toInt >= log4j.Level.WARN.toInt)
+				p.message(text)
+			
+			val wantLogLevel = p.li("logLevel")
 
-		} catch {
-			case v: NWN.NotInContextException => {
-				println("(Not in context, cannot publish message to NWN)")
-				false
-			}
+			if (wantLogLevel > 0 && what.getLevel.toInt >= wantLogLevel)
+				p.message(text)
 		}
+
+		true
 	}
 }

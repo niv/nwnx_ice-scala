@@ -306,7 +306,7 @@ package es.elv.kobold {
 						case "placeable_spell_cast_at" => r
 
 						case _ => {
-							log.warning("Unhandled event received: %s (on %08x)".format(r.event, r.self.id))
+							log.warn("Unhandled event received: %s (on %08x)".format(r.event, r.self.id))
 							// log.warning("  On: " + G[G](r.self))
 							r
 						}
