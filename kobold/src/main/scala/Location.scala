@@ -22,7 +22,7 @@ package es.elv.kobold {
 		 Returns true if oTo is on "this" side of facing.
 		 oFacing has to be in the same area than oTo, or the result will
 		 not make any sense.
-		
+
 		   oTo   -|>    = true
 		   oTo   <|-    = false
 		  (| is a door object, <- indicating the facing)
@@ -57,6 +57,20 @@ package es.elv.kobold {
 				R.proxy.effectVisualEffect(e, false),
 				this, duration)
 
+		/** Create a new Location based on this one, with a new area set. */
+		def relocate(a: (Area) => Area): Location =
+			modify(a, p => position, f => facing)
 
+		/** Create a new Location based on this one, with the position modified. */
+		def move(v: (Vector) => Vector): Location =
+			modify(a => area, v, f => facing)
+
+		/** Create a new Location based on this one, with the facing modified. */
+		def face(f: (Double) => Double): Location =
+			modify(a => area, p => position, f)
+
+		/** Create a new Location based on this one. */
+		def modify(a: (Area) => Area, v: (Vector) => Vector, f: (Double) => Double): Location =
+			Location(a(area), v(position), f(facing))
 	}
 }
