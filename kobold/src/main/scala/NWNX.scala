@@ -51,12 +51,10 @@ package es.elv.kobold.nwnx {
 	}
 
 	object Structs extends Core("STRUCTS") {
-		def setEffectSpellId(obj: NWObject, effect: Effect, spell: Int) =
-			set(Module(), "SETSPELLID", spell.toString)
 	}
 
 	object Events extends Core("EVENTS") {
-		def suppress(o: G) = set(o, "BYPASS", "1")
+		def suppress = set(Module(), "BYPASS", "1")
 	}
 	
 	object Chat extends Core("CHAT") {
