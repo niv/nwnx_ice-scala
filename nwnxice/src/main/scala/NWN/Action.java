@@ -37,6 +37,7 @@ public enum Action implements java.io.Serializable
     HealAction,
     PickpocketAction,
     FollowAction,
+    WaitAction,
     SitAction,
     SmiteGoodAction,
     KIDamageAction,
@@ -67,16 +68,17 @@ public enum Action implements java.io.Serializable
     public static final int _HealAction = 21;
     public static final int _PickpocketAction = 22;
     public static final int _FollowAction = 23;
-    public static final int _SitAction = 24;
-    public static final int _SmiteGoodAction = 25;
-    public static final int _KIDamageAction = 26;
-    public static final int _RandomWalkAction = 27;
-    public static final int _InvalidAction = 28;
+    public static final int _WaitAction = 24;
+    public static final int _SitAction = 25;
+    public static final int _SmiteGoodAction = 26;
+    public static final int _KIDamageAction = 27;
+    public static final int _RandomWalkAction = 28;
+    public static final int _InvalidAction = 29;
 
     public static Action
     convert(int val)
     {
-        assert val >= 0 && val < 29;
+        assert val >= 0 && val < 30;
         return values()[val];
     }
 
@@ -108,7 +110,7 @@ public enum Action implements java.io.Serializable
     public static Action
     __read(IceInternal.BasicStream __is)
     {
-        int __v = __is.readByte(29);
+        int __v = __is.readByte(30);
         return Action.convert(__v);
     }
 }
