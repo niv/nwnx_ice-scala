@@ -21,13 +21,15 @@ package es.elv.kobold {
 				lazy val isPC = R.proxy.getIsPC(o) &&
 					!R.proxy.getIsDMPossessed(o) &&
 					!R.proxy.getIsPossessedFamiliar(o)
+				lazy val isDM = isPC && R.proxy.getIsDM(o)
 
 				val kk = o.id match {
 					case 0 => Module()
 					case 0x7f000000 => Invalid()
 					case _ => R.proxy.getObjectType(o) match {
-						case ObjectType.Creature => if (isPC)
-							new Player(o) else new NonPlayer(o)
+						case ObjectType.Creature => if (isPC) {
+							if (isDM) new DM(o) else new Player(o)
+						} else new NonPlayer(o)
 						case ObjectType.Item => new Item(o)
 						case ObjectType.Trigger => new Trigger(o)
 						case ObjectType.Store => new Store(o)

@@ -2,25 +2,33 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
+	object PlayerCreature {
+		def all: List[PlayerCreature] = R.proxy.allPCs.map(G[PlayerCreature](_)).toList
+
+		def byAccount(account: String) = all.find(_.account == account)
+		def byName(name: String) = all.find(_.name == name)
+	}
 	object Player {
-		def all: List[Player] = R.proxy.allPCs.map(G[Player](_)).toList
+		def all: List[Player] = PlayerCreature.all.filter(_.isInstanceOf[Player]).map(_.asInstanceOf[Player])
+
+		def byAccount(account: String) = all.find(_.account == account)
+		def byName(name: String) = all.find(_.name == name)
+	}
+	object DM {
+		def all: List[DM] = PlayerCreature.all.filter(_.isInstanceOf[DM]).map(_.asInstanceOf[DM])
 
 		def byAccount(account: String) = all.find(_.account == account)
 		def byName(name: String) = all.find(_.name == name)
 	}
 
-	class Player private[kobold] (wrapped: NWObject) extends Creature(wrapped) {
+	abstract class PlayerCreature private[kobold] (wrapped: NWObject) extends Creature(wrapped) {
 		import cachedproperty.CachePolicy._
+
+		val age = P(Indef, () => R.proxy.getAge(this))
 
 		val account = P(Indef, () => R.proxy.getPCPlayerName(this))
 		val ipAddress = P(Indef, () => R.proxy.getPCIPAddress(this))
 		val publicKey = P(Indef, () => R.proxy.getPCPublicCDKey(this, false))
-		
-		def giveXP(adjust: Int) = R.proxy.giveXPToCreature(this, adjust)
-
-		val isDM = P(Indef, () => R.proxy.getIsDM(this))
-
-		val age = P(Indef, () => R.proxy.getAge(this))
 
 		def kick = R.proxy.bootPC(this)
 
@@ -30,12 +38,17 @@ package es.elv.kobold {
 		def sendToServer(address: String, password: String, waypointTag: String, seamless: Boolean) =
 			R.proxy.activatePortal(this, address, password, waypointTag.toUpperCase, seamless)
 
-
 		// val cameraMode = P(() => R.proxy.getCameraMode
-		
+
 		override def toStringProperties = List(
-			"account=" + account(), "key=" + publicKey(),
-			"dm=" + isDM(), "ip=" + ipAddress()
+			"account=" + account(), "key=" + publicKey(), "ip=" + ipAddress()
 		)
+	}
+
+	class Player private[kobold] (wrapped: NWObject) extends PlayerCreature(wrapped) {
+		def giveXP(adjust: Int) = R.proxy.giveXPToCreature(this, adjust)
+	}
+
+	class DM private[kobold] (wrapped: NWObject) extends PlayerCreature(wrapped) {
 	}
 }

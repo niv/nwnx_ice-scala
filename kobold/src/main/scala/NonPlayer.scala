@@ -8,7 +8,5 @@ package es.elv.kobold {
 		val plot = P(() => R.proxy.getPlotFlag(this), (v: Boolean) => R.proxy.setPlotFlag(this, v))
 
 		val aiLevel = P(() => R.proxy.getAILevel(this), (level: AILevel) => R.proxy.setAILevel(this, level))
-
-		// def bodyPart(part: BodyPart) = R.proxy.getNonPlayerBodyPart(
 	}
 }
