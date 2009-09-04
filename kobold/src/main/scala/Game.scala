@@ -26,7 +26,8 @@ package es.elv.kobold {
 		}
 
 		def currentAction = R.proxy.getCurrentAction(this)
-		def isBusy = currentAction != Action.InvalidAction
+		def idle = !busy
+		def busy = currentAction != Action.InvalidAction
 
 		def doLock(what: G with Lock) = assign {
 			R.proxy.actionLockObject(what)
