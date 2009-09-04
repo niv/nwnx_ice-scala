@@ -9,8 +9,7 @@ abstract class Persistable[T] extends NWN.Persistable
 abstract class Plugin extends Observer {
 	lazy protected val log = Kobold.logger()
 
-	private val configName = getClass.getName.toString.
-		split("\\.").toList.takeRight(1)(0).replace("$", "").toLowerCase +
+	private val configName = getClass.getName.toString.replace("$", "") +
 		".properties"
 
 	lazy protected val config = {
