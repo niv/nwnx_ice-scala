@@ -1,6 +1,5 @@
 package es.elv.kobold {
 	import NWN._
-	import net.lag._
 	import Implicits._
 
 	object Player {

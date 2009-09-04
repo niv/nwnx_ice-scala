@@ -1,5 +1,4 @@
 package es.elv.kobold.events {
-	import net.lag.logging._
 	import scala.collection._
 
 	trait Observer {

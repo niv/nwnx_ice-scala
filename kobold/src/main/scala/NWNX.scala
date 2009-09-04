@@ -1,7 +1,6 @@
 package es.elv.kobold.nwnx {
 	import NWN._
 	import scala.collection._
-	import net.lag._
 	import Implicits._
 
 	object Core {

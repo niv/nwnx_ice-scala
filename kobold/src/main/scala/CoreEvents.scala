@@ -1,5 +1,4 @@
 package es.elv.kobold {
-	import net.lag._
 	import NWN._
 	import Implicits._
 	import ImplicitDowncasts._

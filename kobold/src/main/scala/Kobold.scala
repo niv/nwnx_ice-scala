@@ -2,13 +2,22 @@ package es.elv.kobold
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import net.lag._
 import events._
 
 abstract class Persistable[T] extends NWN.Persistable
 
 abstract class Plugin extends Observer {
 	lazy protected val log = Kobold.logger()
+
+	private val configName = getClass.getName.toString.
+		split("\\.").toList.takeRight(1)(0).replace("$", "").toLowerCase +
+		".properties"
+
+	lazy protected val config = {
+		val c = new org.apache.commons.configuration.PropertiesConfiguration(configName)
+		c.setThrowExceptionOnMissing(true)
+		c
+	}
 
 	def onLoad {}
 	def onUnload {}
@@ -32,9 +41,10 @@ abstract class Plugin extends Observer {
 }
 
 object Kobold {
-	private val log = logger()
+	lazy private val log = logger()
 
-	val config = configgy.Configgy.config
+	val config = new org.apache.commons.configuration.PropertiesConfiguration("kobold.properties")
+	config.setThrowExceptionOnMissing(true)
 
 	private var plugins: List[Plugin] = List()
 
@@ -55,4 +65,40 @@ object Kobold {
 		EventSource unregister p
 	}
 
+
+	def main(args: Array[String]) {
+		val endpoint = config.getString("ice.endpoint")
+
+		log.debug("ICE endpoint listening at: " + endpoint)
+
+		val plugins = config.getStringArray("kobold.plugins")
+		val pclasses = plugins.map(p =>
+			Class.forName(p).newInstance.asInstanceOf[Plugin]
+		)
+
+		val iceprop = config.getProperties("ice.properties")
+		val ic: Ice.Communicator = Ice.Util.initialize
+		val props = ic.getProperties
+		val propNames = iceprop.propertyNames
+		while (propNames.hasMoreElements) {
+			val nx: String = propNames.nextElement.asInstanceOf[String]
+			log.debug("Set ice.property: " + nx + "=" + iceprop.getProperty(nx))
+			props.setProperty(nx, iceprop.getProperty(nx))
+		}
+
+		val adapter: Ice.ObjectAdapter =
+			ic.createObjectAdapterWithEndpoints(
+				"Client", endpoint)
+
+		val obj: Ice.Object = R
+
+		adapter.add(obj, ic.stringToIdentity("Client"))
+
+		log.info("Loading all plugins ..")
+		Kobold loadPlugin CoreEvents
+		Kobold loadPlugin new Imp
+		pclasses.foreach(Kobold loadPlugin _)
+		log.info("Starting up.")
+		adapter.activate()
+	}
 }

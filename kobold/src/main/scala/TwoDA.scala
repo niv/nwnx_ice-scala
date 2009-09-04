@@ -1,6 +1,5 @@
 package es.elv.kobold {
 	import NWN._
-	import net.lag._
 	import Implicits._
 	import scala.collection._
 	import scala.util.parsing.combinator._
@@ -9,7 +8,7 @@ package es.elv.kobold {
 	object TwoDA {
 		private val log = Kobold.logger()
 
-		private val twodaPath = new java.io.File(configgy.Configgy.config.getString("twoda_path").get)
+		private val twodaPath = new java.io.File(Kobold.config.getString("kobold.twoda_path"))
 
 		class TwoDAParser extends JavaTokenParsers {
 			private val log = Kobold.logger()

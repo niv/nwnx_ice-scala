@@ -1,7 +1,6 @@
 package es.elv.kobold {
 	import NWN._
 	import scala.collection._
-	import net.lag._
 	import scala.actors._
 	import scala._
 	import Implicits._

@@ -11,7 +11,7 @@ class KoboldProject(info: ProjectInfo) extends ParentProject(info) {
 	class Kobold(info: ProjectInfo) extends DefaultProject(info) {
 		override def compileOptions: Seq[CompileOption] = List( Deprecation, Unchecked, target(Target.Java1_5))
 		val scalatest = "org.scala-tools.testing" % "scalatest" % "0.9.5"
-		val configgy = "net.lag" % "configgy" % "1.4" % "provided->default" from "http://www.lag.net/repo/net/lag/configgy/1.4/configgy-1.4.jar"
+		val commonsconfig = "commons-configuration" % "commons-configuration" % "1.6" % "provided->default"
 
 		val slf4japi = "org.slf4j" % "slf4j-api" % "1.5.8" % "provided->default"
 		val slf4jlog4j = "org.slf4j" % "slf4j-log4j12" % "1.5.8" % "provided->default"
