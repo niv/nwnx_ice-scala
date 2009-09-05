@@ -75,8 +75,19 @@ package es.elv.kobold {
 			)
 		})
 
-		// Perception
-		def canHear(who: G) = R.proxy.getObjectHeard(who, this)
-		def canSee(who: G) = R.proxy.getObjectSeen(who, this)
+		/** Returns true if this Creature can hear who. */
+		def hears(who: Creature) = R.proxy.getObjectHeard(who, this)
+
+		/** Returns true if this Creature can see who. */
+		def sees(who: Creature) = R.proxy.getObjectSeen(who, this)
+
+		def alive = !dead
+		def dead = R.proxy.getIsDead(this)
+
+		/** Returns all Creatures within the given maxDistance that hear this critter. */
+		def heardBy(maxDistance: Double): List[Creature] = near(ObjectType.Creature, maxDistance) filter (_ match {
+			case c: Creature => c hears this
+			case p => false
+		}) map (_.asInstanceOf[Creature])
 	}
 }

@@ -87,6 +87,13 @@ package es.elv.kobold {
 		val location = P(() => R.proxy.getLocation(this) : Location, (n: Location) => R.proxy.jumpToLocation(n))
 		val facing = P(() => location().facing, (n: Double) => R.proxy.setFacing(n))
 		val area = P(() => location().area : Area)
+
+		/** Returns all objects in the given radius. */
+		def near(radius: Double): List[G] = near(ObjectType.All, radius)
+
+		/** Returns all objects matching oType in the given radius. */
+		def near(oType: ObjectType, radius: Double): List[G] = R.proxy.allInShape(ShapeType.SphereShape, radius,
+			location(), false, oType, Vector.origin) map(x => G[G](x)) filter(x => x != this) toList
 	}
 
 	trait Movement extends Position with ActionQueue {
@@ -116,7 +123,7 @@ package es.elv.kobold {
 		val trapType = P(() => R.proxy.getTrapBaseType(this))
 		val trapCreator = P(() => R.proxy.getTrapCreator(this))
 		val trapFlagged = P(() => R.proxy.getTrapFlagged(this))
-		
+
 		val trapActive = P(() => R.proxy.getTrapActive(this), (b: Boolean) => R.proxy.setTrapActive(this, b))
 		val trapDetectDC = P(() => R.proxy.getTrapDetectDC(this), (b: Int) => R.proxy.setTrapDetectDC(this, b))
 		val trapDetectable = P(() => R.proxy.getTrapDetectable(this), (b: Boolean) => R.proxy.setTrapDetectable(this, b))
