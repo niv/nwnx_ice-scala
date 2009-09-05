@@ -79,7 +79,7 @@ package es.elv.kobold {
 		case class OnSaveCharacter(val player: G) extends GameEvent
 		// case class OnCreaturePickpocket(val creature: G, val target: G) extends GameEvent
 		case class OnCreatureAttack(val creature: G, val target: G) extends GameEvent
-		case class OnItemFreeActivate(val creature: G, val item: G, val target: G, val targetLocation: Location) extends GameEvent
+		case class OnItemFreeActivate(val item: G, val creature: G, val target: G, val targetLocation: Location) extends GameEvent
 		case class OnCreatureQuickChat(creature: G, chat: Int) extends GameEvent
 		case class OnObjectExamine(val examiner: G, val target: G) extends GameEvent
 		case class OnCreatureUseSkill(val creature: G, val skill: Int, val target: G, val targetLocation: Location) extends GameEvent
@@ -155,7 +155,7 @@ package es.elv.kobold {
 							r.self, R.proxy.getLastSpellCaster, R.proxy.getSpellCastItem,
 							R.proxy.getLastSpell, R.proxy.getMetaMagicFeat, R.proxy.getLastSpellHarmful)
 						case "item_activate"   => EventSource send new OnItemActivate(
-							R.proxy.getItemActivator, R.proxy.getItemActivated,
+							R.proxy.getItemActivated, R.proxy.getItemActivator,
 							R.proxy.getItemActivatedTarget, R.proxy.getItemActivatedTargetLocation)
 
 						case "creature_spawn"  => EventSource send new OnCreatureSpawn(r.self)
@@ -252,7 +252,7 @@ package es.elv.kobold {
 								case 1 => EventSource send new OnSaveCharacter(r.self)
 								// case 2 => EventSource send new OnCreaturePickpocket(r.self, nwnxTarget)
 								case 3 => EventSource send new OnCreatureAttack(r.self, G(nwnxTarget))
-								case 4 => EventSource send new OnItemFreeActivate(r.self, nwnxItem, G(nwnxTarget), nwnxLocation)
+								case 4 => EventSource send new OnItemFreeActivate(nwnxItem, r.self, G(nwnxTarget), nwnxLocation)
 								case 5 => EventSource send new OnCreatureQuickChat(r.self, nwnxSubType)
 								case 6 => EventSource send new OnObjectExamine(r.self, G(nwnxTarget))
 								case 7 => EventSource send new OnCreatureUseSkill(r.self, nwnxSubType, G(nwnxTarget), nwnxLocation)
