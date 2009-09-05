@@ -16,27 +16,39 @@ package es.elv.kobold.events {
 
 		private val observers: mutable.ArrayBuffer[Observer] = new mutable.ArrayBuffer()
 
+		private def eventTimeWarnThreshold = Kobold.config.getLong("eventTimeWarnThreshold")
+		private def eventAllTimeWarnThreshold = Kobold.config.getLong("eventTimeWarnThreshold")
+
 		def register(observer: Observer) {
 			if (!observers.contains(observer))
 				observers += observer
 			log.info("Added observer: " + observer)
 		}
-		
+
 		def unregister(observer: Observer) {
 			observers -= observer
 			log.info("Removed observer: " + observer)
 		}
 
 		def send(e: Event): Event = {
+			val aa = System.currentTimeMillis
 			for (o <- observers) {
-				if (!e.stopped)
-					try { o listen e } catch {
-						case p => {
-							log.error("while sending " + e + " to " + o, p)
-							throw p
-						}
+				if (!e.stopped) try {
+					val a = System.currentTimeMillis
+					o listen e
+					val b = System.currentTimeMillis
+					if (eventTimeWarnThreshold > 0 &&  b - a > eventTimeWarnThreshold)
+						log.warn(o + " took " + (b-a) + " for " + e)
+				} catch {
+					case p => {
+						log.error("while sending " + e + " to " + o, p)
+						throw p
 					}
+				}
 			}
+			val bb = System.currentTimeMillis
+			if (eventAllTimeWarnThreshold > 0 &&  bb - aa > eventAllTimeWarnThreshold)
+				log.warn((bb-aa) + " for " + e)
 
 			e
 		}
