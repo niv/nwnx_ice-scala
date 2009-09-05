@@ -8,8 +8,9 @@ package es.elv.kobold {
 		private val cache: collection.mutable.Map[Long, G] =
 			collection.mutable.Map()
 
+		private val invalidationTime = Kobold.config.getLong("G.invalidateInvalidAfter")
+
 		def getCache = cache
-		def invalidate(o: Long) = if (cache.contains(o)) cache -= o
 
 		private var objectClasses: List[(NWObject, =>ObjectType, =>String, =>String) => Option[G]] = List()
 
@@ -79,6 +80,10 @@ package es.elv.kobold {
 			apply[K](new NWObject(n))
 
 		def apply[K <: G](o: NWObject): K = {
+			if (cache.contains(o.id) && cache(o.id).objAge > invalidationTime
+					&& !cache(o.id).valid)
+				cache -= o.id
+
 			if (!cache.contains(o.id)) {
 				lazy val objectType = R.proxy.getObjectType(o)
 				lazy val resRef = R.proxy.getResRef(o)
@@ -135,7 +140,8 @@ package es.elv.kobold {
 			them. Usually not needed. */
 		val cacheClassInstances = true
 
-		val createdAt = System.currentTimeMillis
+		val objCreatedAt = System.currentTimeMillis
+		def objAge = System.currentTimeMillis - objCreatedAt
 
 		val objectType = R.proxy.getObjectType(this)
 

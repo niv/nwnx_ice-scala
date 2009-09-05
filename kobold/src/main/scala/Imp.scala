@@ -14,8 +14,6 @@ import es.elv.kobold.Implicits._
 object Imp extends Plugin {
 	private var lastcount = 0
 
-	private val invalidatorActive = Kobold.config.getBoolean("imp.invalidatorActive")
-
 	def listen(event: Event) = event match {
 		case OnStartup() => {
 			log.info("Factoring areas ..")
@@ -30,23 +28,8 @@ object Imp extends Plugin {
 		}
 
 		case OnModuleLoad() => {
-			log.info("  Clearing cache.")
+			log.info("Clearing cache.")
 			G.getCache.clear
-		}
-
-		case OnModuleHB() => if (invalidatorActive) {
-			val szBeforeInvalidation = G.getCache.size
-
-			val added = szBeforeInvalidation - lastcount
-
-			val invalid = G.getCache.filter(v => v._2.valid == false).toList
-			invalid.foreach(x => G.invalidate(x._1))
-			val invalidated = invalid.size
-
-			val szAfterInvalidation = G.getCache.size
-			lastcount = szAfterInvalidation
-
-			log.debug("  Cache statistics: %d (%d +/- %d) = %d".format(szBeforeInvalidation, added, invalidated, szAfterInvalidation))
 		}
 
 		case RawEvent(o, e) => {
