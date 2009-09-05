@@ -20,6 +20,11 @@ class Imp extends Plugin {
 			log.info("Done: " + Area.all.size + " areas in module")
 			log.info("Factoring players ..")
 			log.info("Done: " + Player.all.size + " players online")
+
+			val lastEventAt = Module().ll("koboldLastEventAt")
+			val sec = (System.currentTimeMillis - lastEventAt).toDouble / 1000
+			if (sec > 6.0 && lastEventAt > 0L)
+				log.warn("reload: The kobold made you wait %.1f seconds.".format(sec - 6.0))
 		}
 
 		case OnModuleLoad() => {
@@ -43,6 +48,7 @@ class Imp extends Plugin {
 		}
 
 		case RawEvent(o, e) => {
+			Module().ll("koboldLastEventAt") = System.currentTimeMillis
 			G.getCache.foreach((k) =>
 				k._2.clearCachedPropertiesByPolicy(cachedproperty.CachePolicy.Event)
 			)
