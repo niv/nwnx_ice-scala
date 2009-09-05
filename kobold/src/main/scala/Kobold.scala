@@ -39,6 +39,8 @@ abstract class Plugin extends Observer {
 
 	def store[T](key: String, p: Persistable[T]) =
 		R.proxy.putState(persistKey + key, p.asInstanceOf[NWN.Persistable])
+
+	override def toString = this.getClass.getName.toString
 }
 
 object Kobold {
