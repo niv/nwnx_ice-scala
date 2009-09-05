@@ -99,7 +99,7 @@ package es.elv.kobold {
 		case class OnChatDM(val speaker: G, val text: String) extends GameEvent
 	}
 
-	object CoreEvents extends Plugin {
+	class CoreEvents extends Plugin {
 		import scala.concurrent.ops.future
 		import events._
 

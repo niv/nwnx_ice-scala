@@ -100,7 +100,7 @@ object Kobold {
 		adapter.add(obj, ic.stringToIdentity("Client"))
 
 		log.info("Loading all plugins ..")
-		Kobold loadPlugin CoreEvents
+		Kobold loadPlugin new CoreEvents
 		Kobold loadPlugin new Imp
 		pclasses.foreach(Kobold loadPlugin _)
 		log.info("Starting up.")
