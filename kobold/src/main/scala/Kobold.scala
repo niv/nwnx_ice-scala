@@ -78,7 +78,7 @@ object Kobold {
 
 		val plugins = config.getStringArray("kobold.plugins")
 		val pclasses = plugins.map(p =>
-			Class.forName(p).newInstance.asInstanceOf[Plugin]
+			Class.forName(p + "$").getField("MODULE$").get(null).asInstanceOf[Plugin]
 		)
 
 		val iceprop = config.getProperties("ice.properties")
@@ -100,8 +100,8 @@ object Kobold {
 		adapter.add(obj, ic.stringToIdentity("Client"))
 
 		log.info("Loading all plugins ..")
-		Kobold loadPlugin new CoreEvents
-		Kobold loadPlugin new Imp
+		Kobold loadPlugin CoreEvents
+		Kobold loadPlugin Imp
 		pclasses.foreach(Kobold loadPlugin _)
 		log.info("Starting up.")
 		adapter.activate()

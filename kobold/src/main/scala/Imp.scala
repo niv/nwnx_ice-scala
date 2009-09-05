@@ -11,7 +11,7 @@ import es.elv.kobold.Implicits._
 	This is a core plugin, so try not to unload it unless
 	you know what you are doing.
 */
-class Imp extends Plugin {
+object Imp extends Plugin {
 	private var lastcount = 0
 
 	def listen(event: Event) = event match {

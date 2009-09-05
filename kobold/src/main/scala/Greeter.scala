@@ -1,7 +1,7 @@
 package es.elv.kobold
 import events._
 
-class Greeter extends Plugin {
+object Greeter extends Plugin {
 	def listen(event: Event) = event match {
 		case OnPlayerEnter(p: Creature) => {
 			p after(18.0, {
