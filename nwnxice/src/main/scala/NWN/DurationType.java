@@ -13,18 +13,20 @@ package NWN;
 
 public enum DurationType implements java.io.Serializable
 {
+    InvalidDuration,
     Instant,
     Temporary,
     Permanent;
 
-    public static final int _Instant = 0;
-    public static final int _Temporary = 1;
-    public static final int _Permanent = 2;
+    public static final int _InvalidDuration = 0;
+    public static final int _Instant = 1;
+    public static final int _Temporary = 2;
+    public static final int _Permanent = 3;
 
     public static DurationType
     convert(int val)
     {
-        assert val >= 0 && val < 3;
+        assert val >= 0 && val < 4;
         return values()[val];
     }
 
@@ -56,7 +58,7 @@ public enum DurationType implements java.io.Serializable
     public static DurationType
     __read(IceInternal.BasicStream __is)
     {
-        int __v = __is.readByte(3);
+        int __v = __is.readByte(4);
         return DurationType.convert(__v);
     }
 }
