@@ -5,11 +5,11 @@ package es.elv.kobold {
 	object G {
 		private val log = Kobold.logger()
 
-		private val cache: collection.mutable.Map[NWObject, G] =
+		private val cache: collection.mutable.Map[Long, G] =
 			collection.mutable.Map()
 
 		def getCache = cache
-		def invalidate(o: NWObject) = if (cache.contains(o)) cache -= o
+		def invalidate(o: Long) = if (cache.contains(o)) cache -= o
 
 		private var objectClasses: List[(NWObject, =>ObjectType, =>String, =>String) => Option[G]] = List()
 
@@ -79,7 +79,7 @@ package es.elv.kobold {
 			apply[K](new NWObject(n))
 
 		def apply[K <: G](o: NWObject): K = {
-			if (!cache.contains(o)) {
+			if (!cache.contains(o.id)) {
 				lazy val objectType = R.proxy.getObjectType(o)
 				lazy val resRef = R.proxy.getResRef(o)
 				lazy val tag = R.proxy.getTag(o)
@@ -101,10 +101,10 @@ package es.elv.kobold {
 				log.debug("%08x=%s ref=%s tag=%s -> %s".format(o.id, objectType.toString, resRef, tag, kk.toString))
 
 				if (kk.cacheClassInstances)
-					cache(o) = kk
+					cache(o.id) = kk
 				kk.asInstanceOf[K]
 			} else {
-				cache(o).asInstanceOf[K]
+				cache(o.id).asInstanceOf[K]
 			}
 		}
 
