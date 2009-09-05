@@ -15710,6 +15710,45 @@ public final class _NWScriptDelM extends Ice._ObjectDelM implements _NWScriptDel
         }
     }
 
+    public long
+    getInstructionCount(java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("getInstructionCount", Ice.OperationMode.Idempotent, __ctx);
+        try
+        {
+            boolean __ok = __og.invoke();
+            try
+            {
+                if(!__ok)
+                {
+                    try
+                    {
+                        __og.throwUserException();
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        throw new Ice.UnknownUserException(__ex.ice_name());
+                    }
+                }
+                IceInternal.BasicStream __is = __og.is();
+                __is.startReadEncaps();
+                long __ret;
+                __ret = __is.readLong();
+                __is.endReadEncaps();
+                return __ret;
+            }
+            catch(Ice.LocalException __ex)
+            {
+                throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
     public NWObject
     getInventoryDisturbItem(java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
@@ -34694,6 +34733,52 @@ public final class _NWScriptDelM extends Ice._ObjectDelM implements _NWScriptDel
             catch(Ice.LocalException __ex)
             {
                 throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
+    public void
+    setDebugLogging(boolean state, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("setDebugLogging", Ice.OperationMode.Idempotent, __ctx);
+        try
+        {
+            try
+            {
+                IceInternal.BasicStream __os = __og.os();
+                __os.writeBool(state);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __og.abort(__ex);
+            }
+            boolean __ok = __og.invoke();
+            if(!__og.is().isEmpty())
+            {
+                try
+                {
+                    if(!__ok)
+                    {
+                        try
+                        {
+                            __og.throwUserException();
+                        }
+                        catch(Ice.UserException __ex)
+                        {
+                            throw new Ice.UnknownUserException(__ex.ice_name());
+                        }
+                    }
+                    __og.is().skipEmptyEncaps();
+                }
+                catch(Ice.LocalException __ex)
+                {
+                    throw new IceInternal.LocalExceptionWrapper(__ex, false);
+                }
             }
         }
         finally

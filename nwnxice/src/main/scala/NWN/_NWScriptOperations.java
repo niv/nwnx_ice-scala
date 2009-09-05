@@ -38,6 +38,10 @@ public interface _NWScriptOperations
     double getItemPropertyDuration(NWItemProperty e, Ice.Current __current)
         throws InvalidEffectException;
 
+    void setDebugLogging(boolean state, Ice.Current __current);
+
+    long getInstructionCount(Ice.Current __current);
+
     boolean hasState(String key, Ice.Current __current);
 
     NWN.Persistable getState(String key, Ice.Current __current)

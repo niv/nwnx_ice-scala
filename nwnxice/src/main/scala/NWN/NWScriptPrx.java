@@ -56,6 +56,12 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public double getItemPropertyDuration(NWItemProperty e, java.util.Map<String, String> __ctx)
         throws InvalidEffectException;
 
+    public void setDebugLogging(boolean state);
+    public void setDebugLogging(boolean state, java.util.Map<String, String> __ctx);
+
+    public long getInstructionCount();
+    public long getInstructionCount(java.util.Map<String, String> __ctx);
+
     public boolean hasState(String key);
     public boolean hasState(String key, java.util.Map<String, String> __ctx);
 

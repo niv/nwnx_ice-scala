@@ -13860,6 +13860,48 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
+    public long
+    getInstructionCount()
+    {
+        return getInstructionCount(null, false);
+    }
+
+    public long
+    getInstructionCount(java.util.Map<String, String> __ctx)
+    {
+        return getInstructionCount(__ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private long
+    getInstructionCount(java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("getInstructionCount");
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                return __del.getInstructionCount(__ctx);
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __cnt = __handleExceptionWrapperRelaxed(__delBase, __ex, null, __cnt);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
     public NWObject
     getInventoryDisturbItem()
         throws NotInContextException
@@ -30590,6 +30632,48 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
                 __delBase = __getDelegate(false);
                 _NWScriptDel __del = (_NWScriptDel)__delBase;
                 __del.setCutsceneMode(oCreature, bInCutscene, bLeftClickingEnabled, __ctx);
+                return;
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __cnt = __handleExceptionWrapperRelaxed(__delBase, __ex, null, __cnt);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
+    public void
+    setDebugLogging(boolean state)
+    {
+        setDebugLogging(state, null, false);
+    }
+
+    public void
+    setDebugLogging(boolean state, java.util.Map<String, String> __ctx)
+    {
+        setDebugLogging(state, __ctx, true);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void
+    setDebugLogging(boolean state, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __delBase = __getDelegate(false);
+                _NWScriptDel __del = (_NWScriptDel)__delBase;
+                __del.setDebugLogging(state, __ctx);
                 return;
             }
             catch(IceInternal.LocalExceptionWrapper __ex)

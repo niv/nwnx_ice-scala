@@ -19909,6 +19909,59 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
+    public long
+    getInstructionCount(java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper
+    {
+        final Ice.Current __current = new Ice.Current();
+        __initCurrent(__current, "getInstructionCount", Ice.OperationMode.Idempotent, __ctx);
+        final Ice.LongHolder __result = new Ice.LongHolder();
+        IceInternal.Direct __direct = null;
+        try
+        {
+            __direct = new IceInternal.Direct(__current)
+            {
+                public Ice.DispatchStatus run(Ice.Object __obj)
+                {
+                    NWScript __servant = null;
+                    try
+                    {
+                        __servant = (NWScript)__obj;
+                    }
+                    catch(ClassCastException __ex)
+                    {
+                        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+                    }
+                    __result.value = __servant.getInstructionCount(__current);
+                    return Ice.DispatchStatus.DispatchOK;
+                }
+            };
+            try
+            {
+                Ice.DispatchStatus __status = __direct.servant().__collocDispatch(__direct);
+                if(__status == Ice.DispatchStatus.DispatchUserException)
+                {
+                    __direct.throwUserException();
+                }
+                assert __status == Ice.DispatchStatus.DispatchOK;
+                return __result.value;
+            }
+            finally
+            {
+                __direct.destroy();
+            }
+        }
+        catch(Ice.SystemException __ex)
+        {
+            throw __ex;
+        }
+        catch(java.lang.Throwable __ex)
+        {
+            IceInternal.LocalExceptionWrapper.throwWrapper(__ex);
+        }
+        return __result.value;
+    }
+
     public NWObject
     getInventoryDisturbItem(java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
@@ -44174,6 +44227,56 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         catch(NotInContextException __ex)
         {
             throw __ex;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            throw __ex;
+        }
+        catch(java.lang.Throwable __ex)
+        {
+            IceInternal.LocalExceptionWrapper.throwWrapper(__ex);
+        }
+    }
+
+    public void
+    setDebugLogging(final boolean state, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper
+    {
+        final Ice.Current __current = new Ice.Current();
+        __initCurrent(__current, "setDebugLogging", Ice.OperationMode.Idempotent, __ctx);
+        IceInternal.Direct __direct = null;
+        try
+        {
+            __direct = new IceInternal.Direct(__current)
+            {
+                public Ice.DispatchStatus run(Ice.Object __obj)
+                {
+                    NWScript __servant = null;
+                    try
+                    {
+                        __servant = (NWScript)__obj;
+                    }
+                    catch(ClassCastException __ex)
+                    {
+                        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+                    }
+                    __servant.setDebugLogging(state, __current);
+                    return Ice.DispatchStatus.DispatchOK;
+                }
+            };
+            try
+            {
+                Ice.DispatchStatus __status = __direct.servant().__collocDispatch(__direct);
+                if(__status == Ice.DispatchStatus.DispatchUserException)
+                {
+                    __direct.throwUserException();
+                }
+                assert __status == Ice.DispatchStatus.DispatchOK;
+            }
+            finally
+            {
+                __direct.destroy();
+            }
         }
         catch(Ice.SystemException __ex)
         {

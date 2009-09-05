@@ -45,6 +45,12 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException;
 
+    void setDebugLogging(boolean state, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper;
+
+    long getInstructionCount(java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper;
+
     boolean hasState(String key, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper;
 
