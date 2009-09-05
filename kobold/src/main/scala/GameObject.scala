@@ -95,10 +95,10 @@ package es.elv.kobold {
 
 				val kk: G = selectClass(objectClasses) match {
 					case Some(g) => g
-					case None => throw new Exception("Cannot produce a class for %08x, ot=%s, ref=%s".format(o.id, objectType, resRef))
+					case None => throw new Exception("Cannot produce a class for %08x=%s ref=%s tag=%s".format(o.id, objectType, resRef, tag))
 				}
 
-				log.debug("Produced class for %08x, ot=%s, ref=%s: %s".format(o.id, objectType.toString, resRef, kk.toString))
+				log.debug("%08x=%s ref=%s tag=%s -> %s".format(o.id, objectType.toString, resRef, tag, kk.toString))
 
 				if (kk.cacheClassInstances)
 					cache(o) = kk
