@@ -14,6 +14,8 @@ import es.elv.kobold.Implicits._
 object Imp extends Plugin {
 	private var lastcount = 0
 
+	private val invalidatorActive = Kobold.config.getBoolean("imp.invalidatorActive")
+
 	def listen(event: Event) = event match {
 		case OnStartup() => {
 			log.info("Factoring areas ..")
@@ -32,7 +34,7 @@ object Imp extends Plugin {
 			G.getCache.clear
 		}
 
-		case OnModuleHB() => {
+		case OnModuleHB() => if (invalidatorActive) {
 			val szBeforeInvalidation = G.getCache.size
 
 			val added = szBeforeInvalidation - lastcount
