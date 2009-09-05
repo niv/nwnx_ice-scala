@@ -6,6 +6,8 @@ package es.elv.kobold.color {
 		val high = 210
 		val max = 255
 
+		def apply(hex: Int) = new Color(hex)
+
 		/**
 			Strip all colour tags out of the given string.
 		*/
