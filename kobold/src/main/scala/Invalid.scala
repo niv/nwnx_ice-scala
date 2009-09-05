@@ -12,5 +12,7 @@ package es.elv.kobold {
 
 	class Invalid private[kobold] (wrapped: NWObject) extends G(wrapped) {
 		ensureObjectType()
+
+		override val cacheClassInstances = false
 	}
 }
