@@ -15,6 +15,8 @@ abstract class Plugin extends Observer {
 	lazy protected val config = {
 		val c = new org.apache.commons.configuration.PropertiesConfiguration(configName)
 		c.setThrowExceptionOnMissing(true)
+		if (Kobold.config.getBoolean("reloadConfigOnChange", true))
+			c.setReloadingStrategy(new org.apache.commons.configuration.reloading.FileChangedReloadingStrategy)
 		c
 	}
 
@@ -44,6 +46,8 @@ object Kobold {
 
 	val config = new org.apache.commons.configuration.PropertiesConfiguration("kobold.properties")
 	config.setThrowExceptionOnMissing(true)
+	if (config.getBoolean("reloadConfigOnChange", true))
+		config.setReloadingStrategy(new org.apache.commons.configuration.reloading.FileChangedReloadingStrategy)
 
 	private var plugins: List[Plugin] = List()
 
