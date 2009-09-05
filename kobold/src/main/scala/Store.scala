@@ -3,7 +3,7 @@ package es.elv.kobold {
 	import Implicits._
 
 	object Store
-	class Store private[kobold] (wrapped: NWObject) extends G(wrapped) {
+	class Store (wrapped: NWObject) extends G(wrapped) {
 		ensureObjectType(ObjectType.Store)
 	}
 }

@@ -4,7 +4,7 @@ package es.elv.kobold {
 
 	object Trigger
 
-	class Trigger private[kobold] (wrapped: NWObject) extends G(wrapped)
+	class Trigger (wrapped: NWObject) extends G(wrapped)
 				with Lock with Trap with Position {
 		ensureObjectType(ObjectType.Trigger)
 	}

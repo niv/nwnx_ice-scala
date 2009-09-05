@@ -3,7 +3,7 @@ package es.elv.kobold {
 	import Implicits._
 
 	object Sound
-	class Sound private[kobold] (wrapped: NWObject) extends G(wrapped) {
+	class Sound (wrapped: NWObject) extends G(wrapped) {
 		ensureObjectType(ObjectType.All)
 
 		require(resref() == "")

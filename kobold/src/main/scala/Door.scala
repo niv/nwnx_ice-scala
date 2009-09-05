@@ -3,7 +3,7 @@ package es.elv.kobold {
 	import Implicits._
 
 	object Door
-	class Door private[kobold] (wrapped: NWObject) extends G(wrapped)
+	class Door (wrapped: NWObject) extends G(wrapped)
 			with VisualEffects with Lock with Trap {
 		ensureObjectType(ObjectType.Door)
 	}

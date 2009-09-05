@@ -21,7 +21,7 @@ package es.elv.kobold {
 		def byName(name: String) = all.find(_.name == name)
 	}
 
-	abstract class PlayerCreature private[kobold] (wrapped: NWObject) extends Creature(wrapped) {
+	abstract class PlayerCreature (wrapped: NWObject) extends Creature(wrapped) {
 		import cachedproperty.CachePolicy._
 
 		val age = P(Indef, () => R.proxy.getAge(this))
@@ -45,10 +45,10 @@ package es.elv.kobold {
 		)
 	}
 
-	class Player private[kobold] (wrapped: NWObject) extends PlayerCreature(wrapped) {
+	class Player (wrapped: NWObject) extends PlayerCreature(wrapped) {
 		def giveXP(adjust: Int) = R.proxy.giveXPToCreature(this, adjust)
 	}
 
-	class DM private[kobold] (wrapped: NWObject) extends PlayerCreature(wrapped) {
+	class DM (wrapped: NWObject) extends PlayerCreature(wrapped) {
 	}
 }

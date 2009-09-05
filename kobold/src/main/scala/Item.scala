@@ -4,7 +4,7 @@ package es.elv.kobold {
 
 	object Item
 
-	class Item private[kobold] (wrapped: NWObject) extends G(wrapped)
+	class Item (wrapped: NWObject) extends G(wrapped)
 			with Position with Inventory {
 		ensureObjectType(ObjectType.Item)
 

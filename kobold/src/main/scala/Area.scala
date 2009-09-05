@@ -6,7 +6,7 @@ package es.elv.kobold {
 		lazy val all = nwnx.Funcs.allAreas
 	}
 
-	class Area private[kobold] (wrapped: NWObject) extends G(wrapped) {
+	class Area (wrapped: NWObject) extends G(wrapped) {
 		def allObjects: List[G] =
 			R.proxy.allInArea(this).toList.map(G(_))
 

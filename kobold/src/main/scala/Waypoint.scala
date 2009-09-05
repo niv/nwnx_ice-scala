@@ -3,7 +3,7 @@ package es.elv.kobold {
 	import Implicits._
 
 	object Waypoint
-	class Waypoint private[kobold] (wrapped: NWObject) extends G(wrapped) {
+	class Waypoint (wrapped: NWObject) extends G(wrapped) {
 		ensureObjectType(ObjectType.Waypoint)
 	}
 }
