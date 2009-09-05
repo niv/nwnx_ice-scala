@@ -1,0 +1,30 @@
+# Where to listen for ICE events.
+ice.endpoint=default -h 127.0.0.1 -p 5223
+
+# ICE properties. Usually no need to touch.
+ice.properties = ThreadPool.Client.Size=2, Ice.ThreadPool.Client.SizeMax=15, \
+	Ice.ThreadPool.Server.Size=2, Ice.ThreadPool.Server.SizeMax=15
+
+# Specify the path to your complete 2da file collection here.
+# This is needed by the TwoDA class.
+kobold.twoda_path=./2da/
+
+# Invalidate cached objects that went invalid after this many ms.
+G.invalidateInvalidAfter=120000
+
+# A list of all plugins to load. Load order is importance - events
+# will be distributed from top to bottom, and will not propagate
+# further if stopped by a plugin.
+kobold.plugins=es.elv.kobold.ext.ChatListener
+kobold.plugins=es.elv.kobold.Greeter
+
+# Reload configuration files when they have changed. Depending on
+# the plugin and variable, changes may or may not take effect.
+reloadConfigOnChange=true
+
+# Emit a warning when a single Event takes longer than this many ms
+# on a single listener. Will print both the event and the listener.
+eventTimeWarnThreshold=350
+
+# Emit a warning when a single Event takes longer than this many ms.
+eventAllTimeWarnThreshold=2000
