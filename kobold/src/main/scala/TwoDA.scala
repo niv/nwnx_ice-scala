@@ -16,6 +16,7 @@ package es.elv.kobold {
 			override val whiteSpace = """[ \t]+""".r
 
 			private var _columns: List[String] = _
+			private var currentRow = -1
 
 			def header = "2DA V2.0" ~ eol
 
@@ -25,12 +26,13 @@ package es.elv.kobold {
 			def columns: Parser[List[String]] = rep1(cell) ~ eol ^^
 				{ case cells ~ eol => { _columns = cells ; cells.map(_ toLowerCase)} }
 
-			def row: Parser[List[String]] = rowNum ~ rep(cell) ~ eol ^^ {
+			def row: Parser[Row] = rowNum ~ rep(cell) ~ eol ^^ {
 				case row ~ cells ~ eol => {
 					var cx = cells
 					while (cx.size < _columns.size) cx = "" :: cx
 					if (cx.size > _columns.size)  cx = cx.dropRight(cx.size - _columns.size)
-					cx
+					currentRow += 1
+					Row(currentRow, _columns, cx)
 				}
 			}
 
@@ -40,7 +42,7 @@ package es.elv.kobold {
 			}
 
 			def rowNum: Parser[String] = wholeNumber
-			
+
 			def newlines = rep1("\r" | "\n")
 			def eol = opt(regex(whiteSpace)) ~ (newlines | regex("$".r))
 
@@ -59,7 +61,22 @@ package es.elv.kobold {
 			}
 		}
 
-		case class Table(val name: String, val columns: Seq[String], val rows: Seq[Seq[String]]) {
+		case class Row(val id: Int, val columns: Seq[String], val cells: Seq[String]) {
+			require(columns.size == cells.size)
+
+			def apply(column: Int) =
+				if (column >= cells.size) "" else cells(column)
+
+			def apply(column: String) = {
+				val idx = columns.indexOf(column)
+				if (idx != -1) cells(idx) else ""
+			}
+
+			def size = columns.size
+		}
+
+
+		case class Table(val name: String, val columns: Seq[String], val rows: Seq[Row]) {
 			rows.foreach(row =>
 				require(row.size == columns.size, "cell missing/too much in row " + rows.indexOf(row) + " = " + row.toString)
 			)
