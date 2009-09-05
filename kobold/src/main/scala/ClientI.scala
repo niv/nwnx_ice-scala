@@ -95,10 +95,10 @@ package es.elv.kobold {
 				log.error("  Wanted to execute token " + tk + " but not found")
 			}
 
-			log.debug("t %08x %-20s %8d ms (cache: %d)".format(
-				self.id, "   " * contextDepth + tk, System.currentTimeMillis - start,
-				storedTokens.size
-			))
+			val instr: Long = p.getInstructionCount()
+
+			log.debug("%08x %4d %4d ms - %s (cache: %d)".format(
+				self.id, instr,  System.currentTimeMillis - start, tk, storedTokens.size))
 			contextDepth -= 1
 		}
 
@@ -131,7 +131,9 @@ package es.elv.kobold {
 				}
 			}
 
-			log.debug("e %08x %-20s %8d ms".format(self.id, "   " * contextDepth + ev, System.currentTimeMillis - start))
+			val instr: Long = p.getInstructionCount()
+
+			log.debug("%08x %4d %4d ms - %s".format(self.id, instr, System.currentTimeMillis - start, ev))
 
 			contextDepth -= 1
 			ret
