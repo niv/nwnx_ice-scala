@@ -24,6 +24,20 @@
 		</filter>
 	</appender>
 
+	<appender name="errorlog" class="org.apache.log4j.FileAppender">
+		<param name="File" value="error.log" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %-5p %c{2} - %m%n" />
+		</layout>
+
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="ERROR" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
 	<!-- Turn off route debug messages. -->
 	<!-- <logger name="es.elv.kobold.R$">
 		<level value="info" />
@@ -33,6 +47,7 @@
 		<priority value="debug" />
 		<appender-ref ref="stdout" />
 		<appender-ref ref="ingame" />
+		<appender-ref ref="errorlog" />
 	</root>
 
 </log4j:configuration>
