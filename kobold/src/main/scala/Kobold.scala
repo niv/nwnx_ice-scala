@@ -6,7 +6,7 @@ import events._
 
 abstract class Persistable[T] extends NWN.Persistable
 
-abstract class Plugin extends Observer {
+trait Plugin extends Observer {
 	lazy protected val log = Kobold.logger()
 
 	private val configName = getClass.getName.toString.replace("$", "") +
