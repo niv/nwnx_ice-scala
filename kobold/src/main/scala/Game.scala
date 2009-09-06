@@ -11,8 +11,8 @@ package es.elv.kobold {
 			R assign (this, what)
 		}
 
-		def after(delay: Double, what: => Unit) {
-			R delay (this, delay, what)
+		def after(delay: Long, what: => Unit) {
+			R delay (this, delay.toDouble / 1000, what)
 		}
 
 		def clearActions: Unit = clearActions(true)

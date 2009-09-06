@@ -4,7 +4,7 @@ import events._
 object Greeter extends Plugin {
 	def listen(event: Event) = event match {
 		case OnPlayerEnter(p: Creature) => {
-			p after(18.0, {
+			p after(18000, {
 				p floatingText color.White("The ") + color.Orange("kobold") +
 					color.White(" bids thee welcome!")
 
