@@ -2,12 +2,10 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
-	object Module {
+	object Module extends G(new NWObject(0)) with ActionQueue {
 		class DateTime(val year: Int, val month: Int, val day: Int, val hour: Int, val minute: Int, val second: Int)
 
-		class ModuleInstance extends G(new NWObject(0))
-		lazy private val instance = new ModuleInstance
-		def apply() = instance
+		def apply() = this
 
 		def calendar = new DateTime(R.proxy.getCalendarYear, R.proxy.getCalendarMonth,
 			R.proxy.getCalendarDay, R.proxy.getTimeHour, R.proxy.getTimeMinute,
