@@ -1,19 +1,22 @@
 package es.elv.kobold {
 	import NWN._
 	import Implicits._
-	import ImplicitDowncasts._
 	import scala.collection._
 
-	object ImplicitDowncasts {
-		implicit def nwn2go[K <: G](o: NWObject): K = G[K](o)
-	}
 
 	package events {
+		object ImplicitDowncasts {
+			implicit def nwn2go[K <: G](o: NWObject): K = G[K](o)
+		}
+
 		final case class RawEvent(val self: NWObject, val event: String) extends Event
-		final case class AnyEvent(val self: G, val event: String) extends Event
 
 		abstract case class GameEvent() extends Event
 
+		/**
+			Gets sent once as soon as NWN context is acquired, but BEFORE
+			the first actual GameEvent will be sent.
+		*/
 		case class OnStartup() extends GameEvent
 
 		case class OnModuleLoad() extends GameEvent
@@ -76,45 +79,14 @@ package es.elv.kobold {
 		case class OnTrapTriggered(val trap: G) extends GameEvent
 		case class OnTrapDisarmed(val trap: G, val disarmer: G) extends GameEvent
 
-		case class OnSaveCharacter(val player: G) extends GameEvent
-		// case class OnCreaturePickpocket(val creature: G, val target: G) extends GameEvent
-		case class OnCreatureAttack(val creature: G, val target: G) extends GameEvent
-		case class OnItemFreeActivate(val item: G, val creature: G, val target: G, val targetLocation: Location) extends GameEvent
-		case class OnCreatureQuickChat(creature: G, chat: Int) extends GameEvent
-		case class OnObjectExamine(val examiner: G, val target: G) extends GameEvent
-		case class OnCreatureUseSkill(val creature: G, val skill: Int, val target: G, val targetLocation: Location) extends GameEvent
-		case class OnCreatureUseFeat(val creature: G, val feat: Int, val target: G, val targetLocation: Location) extends GameEvent
-		case class OnCreatureToggleMode(val creature: G, val mode: ActionMode, val desiredState: Boolean) extends GameEvent
-		case class OnCreatureCastSpell(val caster: G, val spell: Int, val target: G, val targetLocation: Location) extends GameEvent
-		case class OnTogglePause(player: G) extends GameEvent
-		case class OnCreaturePossessFamiliar(creature: G) extends GameEvent
-
-		case class OnChatTalk(val speaker: G, val text: String) extends GameEvent
-		case class OnChatShout(val speaker: G, val text: String) extends GameEvent
-		case class OnChatWhisper(val speaker: G, val text: String) extends GameEvent
-		case class OnChatPrivate(val speaker: G, val to: G, val text: String) extends GameEvent
-		case class OnChatServer(val speaker: G, val text: String) extends GameEvent
-		case class OnChatParty(val speaker: G, val text: String) extends GameEvent
-		case class OnChatSilentShout(val speaker: G, val text: String) extends GameEvent
-		case class OnChatDM(val speaker: G, val text: String) extends GameEvent
 	}
 
 	object CoreEvents extends Plugin {
+		import events.ImplicitDowncasts._
 		import scala.concurrent.ops.future
 		import events._
 
-		private val actions: mutable.Map[Class[_], mutable.Set[(Option[G], (Event) => Unit)]] = mutable.Map()
-
 		private var firstEvent = false
-
-		// Register action to be ran with on as self when eventName on on happens. Hah, parse that.
-		def once[T <: Event](onEvent: Class[T], self: Option[G], action: (Event) => Unit) {
-			if (!actions.contains(onEvent))
-				actions(onEvent) = mutable.Set()
-			val v = (self, action)
-			actions(onEvent) += v
-		}
-		
 
 		def listen(e: Event) = {
 			if (!firstEvent) {
@@ -124,8 +96,6 @@ package es.elv.kobold {
 
 			e match {
 				case r: RawEvent => {
-					val ee = EventSource send new AnyEvent(r.self, r.event)
-
 					val e: Event = (r.event match {
 						case "module_hb"       => EventSource send new OnModuleHB()
 						case "module_load"     => EventSource send new OnModuleLoad()
@@ -191,7 +161,6 @@ package es.elv.kobold {
 							r.self, R.proxy.getLastSpellCaster, R.proxy.getSpellCastItem,
 							R.proxy.getLastSpell, R.proxy.getMetaMagicFeat, R.proxy.getLastSpellHarmful)
 
-
 						case "player_login" => {
 							val player: G = G(r.self)
 							nwnx.Chat.pcIn(player)
@@ -224,108 +193,11 @@ package es.elv.kobold {
 						case "trap_disarm" => EventSource send new OnTrapDisarmed(G(r.self), R.proxy.getLastDisarmed)
 						case "trap_triggered" => EventSource send new OnTrapTriggered(G(r.self))
 
-						// NWNX
-						// case "player_chat" => EventSource send new E
-
-						case "nwnx_event" => {
-							val nwnxType = nwnx.Core.get(Module(), "EVENTS", "GET_EVENT_ID", 10).trim.toInt
-							val nwnxSubType = nwnx.Core.get(Module(), "EVENTS", "GET_EVENT_SUBID", 10).trim.toInt
-							val nwnxItem = nwnx.Core.getObject(Module(), "EVENTS", "ITEM")
-							val nwnxTarget = nwnx.Core.getObject(Module(), "EVENTS", "TARGET")
-							val nwnxPosition = {
-								val svec = nwnx.Core.get(Module(), "EVENTS", "GET_EVENT_POSITION", 30)
-								if (svec.size == 26) {
-									val (x, y, z) = (svec.substring(0, 8).toDouble, svec.substring(9, 17).toDouble,
-										svec.substring(18, 26).toDouble)
-									Vector(x, y, z)
-								} else {
-									Vector(0, 0, 0)
-								}
-							}
-							val area = G[G](R.proxy.getArea(r.self))
-							val nwnxLocation = if (area.valid)
-								Location(area.asInstanceOf[Area], nwnxPosition, 0)
-							else
-								InvalidLocation()
-
-							nwnxType match {
-								case 1 => EventSource send new OnSaveCharacter(r.self)
-								// case 2 => EventSource send new OnCreaturePickpocket(r.self, nwnxTarget)
-								case 3 => EventSource send new OnCreatureAttack(r.self, G(nwnxTarget))
-								case 4 => EventSource send new OnItemFreeActivate(nwnxItem, r.self, G(nwnxTarget), nwnxLocation)
-								case 5 => EventSource send new OnCreatureQuickChat(r.self, nwnxSubType)
-								case 6 => EventSource send new OnObjectExamine(r.self, G(nwnxTarget))
-								case 7 => EventSource send new OnCreatureUseSkill(r.self, nwnxSubType, G(nwnxTarget), nwnxLocation)
-								case 8 => EventSource send new OnCreatureUseFeat(r.self, nwnxSubType, G(nwnxTarget), nwnxLocation)
-								case 9 => EventSource send new OnCreatureToggleMode(r.self,
-									ActionMode.convert(nwnxSubType), !R.proxy.getActionMode(r.self, ActionMode.convert(nwnxSubType)))
-								case 10 => EventSource send new OnCreatureCastSpell(r.self, nwnxSubType, G(nwnxTarget), nwnxLocation)
-								case 11 => EventSource send new OnTogglePause(r.self)
-								case 12 => EventSource send new OnCreaturePossessFamiliar(r.self)
-								case _ => log.error("Unhandled nwnx_event: " + r.event) ; r
-							}
-						}
-
-						case "nwnx_chat" => {
-							/*
-							MSG_TALK = 1,
-							MSG_SHOUT = 2,
-							MSG_WHISPER = 3,
-							MSG_PRIVATE = 4,
-							MSG_SERVER = 5,
-							MSG_PARTY = 6,
-							MSG_SILENT_SHOUT = 13,
-							MSG_DM = 14,
-							MSG_MODE_DM = 16;
-							*/
-							val allText = nwnx.Core.get(r.self, "CHAT", "TEXT", 1024)
-							val modeWithDM = allText.substring(0, 2).trim.toInt
-							val mode = if (modeWithDM > 16) modeWithDM - 16 else modeWithDM
-							val toId = allText.substring(2, 12).trim.toInt
-							val text = allText.substring(12)
-							val to = if (mode == 4) nwnx.Chat.getPC(toId) else Invalid()
-
-							mode match {
-								case  1 => EventSource send new OnChatTalk(G(r.self), text)
-								case  2 => EventSource send new OnChatShout(G(r.self), text)
-								case  3 => EventSource send new OnChatWhisper(G(r.self), text)
-								case  4 => EventSource send new OnChatPrivate(G(r.self), to, text)
-								case  5 => EventSource send new OnChatServer(G(r.self), text)
-								case  6 => EventSource send new OnChatParty(G(r.self), text)
-								case 13 => EventSource send new OnChatSilentShout(G(r.self), text)
-								case 14 => EventSource send new OnChatDM(G(r.self), text)
-							}
-						}
-
-						// Ignore legacy chat events.
-						case "chat_prefilter" => r
-						case "chat_command" => r
-						case "creature_attack" => r // nwnx_events
-						case "creature_castspell" => r
-						case "object_spell_cast_at" => r
-						case "placeable_spell_cast_at" => r
-						case "pc_togglemode" => r
-						case "item_freeactivate" => r
-
-						case _ => {
-							log.warn("Unhandled event received: %s (on %08x)".format(r.event, r.self.id))
-							// log.warning("  On: " + G[G](r.self))
-							r
-						}
+						case _ => r
 					})
 
-					if (actions.contains(e.getClass)) {
-						actions(e.getClass).foreach(x => {
-							val (self, handler) = (x._1, x._2)
-							if ((self.isDefined && r.self.id == self.get.wrapped.id) || self.isEmpty) {
-								actions(e.getClass) -= x
-								handler(e)
-							}
-						})
-					}
-
-					if (e.stopped)
-						r.stop
+					if (e != r)
+						R.setRawEventHandled // ClientI -> don't emit the warning AND pass in the STOP token to ICE.
 				}
 				case _ =>
 			}

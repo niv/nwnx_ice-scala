@@ -16,6 +16,10 @@ package es.elv.kobold {
 		private var cachedProxy: NWScriptPrx = null
 		private var objectSelf: NWObject = null
 		private var contextDepth = 0
+		private var rawEventHandled = false
+
+
+		def setRawEventHandled = rawEventHandled = true
 
 		def proxy = cachedProxy
 
@@ -117,7 +121,10 @@ package es.elv.kobold {
 				log.warn(delayedThunks.size + " thunks remaining")
 
 			val ret: ClientResult = try {
+				rawEventHandled = false
 				val e: Event = EventSource send new events.RawEvent(self, ev)
+				if (!rawEventHandled)
+					log.warn("Unhandled event received: %s (on %08x)".format(ev, self.id))
 				if (e.stopped)
 					ClientResult.Stop
 				else

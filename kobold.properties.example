@@ -15,6 +15,9 @@ G.invalidateInvalidAfter=120000
 # A list of all plugins to load. Load order is importance - events
 # will be distributed from top to bottom, and will not propagate
 # further if stopped by a plugin.
+kobold.plugins=es.elv.kobold.nwnx.Chat
+kobold.plugins=es.elv.kobold.nwnx.Events
+
 kobold.plugins=es.elv.kobold.ext.ChatListener
 kobold.plugins=es.elv.kobold.Greeter
 
