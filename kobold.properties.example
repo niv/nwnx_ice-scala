@@ -12,15 +12,6 @@ kobold.twoda_path=./2da/
 # Invalidate cached objects that went invalid after this many ms.
 G.invalidateInvalidAfter=120000
 
-# A list of all plugins to load. Load order is importance - events
-# will be distributed from top to bottom, and will not propagate
-# further if stopped by a plugin.
-kobold.plugins=es.elv.kobold.nwnx.Chat
-kobold.plugins=es.elv.kobold.nwnx.Events
-
-kobold.plugins=es.elv.kobold.ext.ChatListener
-kobold.plugins=es.elv.kobold.Greeter
-
 # Reload configuration files when they have changed. Depending on
 # the plugin and variable, changes may or may not take effect.
 reloadConfigOnChange=true
@@ -31,3 +22,23 @@ eventTimeWarnThreshold=350
 
 # Emit a warning when a single Event takes longer than this many ms.
 eventAllTimeWarnThreshold=2000
+
+
+# A list of all plugins to load. Load order is importance - events
+# will be distributed from top to bottom, and will not propagate
+# further if stopped by a plugin.
+
+# The nwnx namespace contains NWNX extensions for common plugins.
+# Load them before any other plugins. Core functionality does
+# not depend on them, but plugins usually do.
+kobold.plugins=es.elv.kobold.nwnx.Chat
+kobold.plugins=es.elv.kobold.nwnx.Events
+kobold.plugins=es.elv.kobold.nwnx.DMActions
+
+# The ext namespace contains plugins that send out custom events
+# that do not depend on NWNX, but merely repackage existing
+# information in a more accessible format.
+kobold.plugins=es.elv.kobold.ext.ChatListener
+
+# Load your custom plugins at the end.
+kobold.plugins=es.elv.kobold.Greeter
