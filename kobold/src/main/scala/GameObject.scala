@@ -49,19 +49,19 @@ package es.elv.kobold {
 			everything else, including creatures controlled by the DM.  */
 		registerObjectClass((o, t, r, ta) => if (R.proxy.getIsDM(o)) Some(new DM(o)) else None)
 
-		/* Returns TRUE if the creature oCreature is currently possessed by a DM character. */
-		/* Note: GetIsDMPossessed() will return FALSE if oCreature is the DM character. */
-		registerObjectClass((o, t, r, ta) => if (R.proxy.getIsDMPossessed(o)) Some(new NonPlayer(o)) else None)
-
 		/* Returns ASSOCIATE_TYPE_NONE if the creature is not the associate of anyone. */
 		registerObjectClass((o, t, r, ta) => R.proxy.getAssociateType(o) match {
 			case AssociateType.AnimalCompanionAssociate => Some(new AnimalCompanion(o))
 			case AssociateType.FamiliarAssociate        => Some(new Familiar(o))
 			case AssociateType.DominatedAssociate       => Some(new NonPlayer(o))
 			case AssociateType.HenchmanAssociate        => Some(new NonPlayer(o))
-			case AssociateType.SummonedAssociate        => Some(new Summon(o))
+			case AssociateType.SummonedAssociate        => Some(new Summon(o)) // XXX: summons are only flagged AFTER onCreate
 			case AssociateType.NoAssociate              => None
 		})
+
+		/* Returns TRUE if the creature oCreature is currently possessed by a DM character. */
+		/* Note: GetIsDMPossessed() will return FALSE if oCreature is the DM character. */
+		registerObjectClass((o, t, r, ta) => if (R.proxy.getIsDMPossessed(o)) Some(new NonPlayer(o)) else None)
 
 		/* Resref is always "" for player characters. */
 		/* A player controlled character is treated as one of the following: a PC, DM avatars,
@@ -75,6 +75,15 @@ package es.elv.kobold {
 		} else None)
 
 		registerObjectClass((o, t, r, ta) => if (t == ObjectType.InvalidObject) Some(new Invalid(o)) else None)
+
+		/**
+			Purge the whole cache, removing invalid objects.
+			This is a potentially expensive operation.
+			Not needed for normal usage.
+		*/
+		def purgeCache = for ((l,g) <- cache)
+			if (g.objAge > invalidationTime && !g.valid)
+				cache -= l
 
 		def apply[K <: G](n: Long): K =
 			apply[K](new NWObject(n))
