@@ -17,7 +17,7 @@ object Imp extends Plugin {
 	def listen(event: Event) = event match {
 		case OnStartup() => {
 			log.info("Factoring areas ..")
-			log.info("Done: " + Area.all.size + " areas in module")
+			log.info("Done: " + Area.all().size + " areas in module")
 			log.info("Factoring players ..")
 			log.info("Done: " + Player.all.size + " players online")
 

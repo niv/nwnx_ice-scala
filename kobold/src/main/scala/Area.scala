@@ -2,8 +2,10 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
-	object Area {
-		lazy val all = nwnx.Funcs.allAreas
+	object Area extends cachedproperty.CachedProperties {
+		import cachedproperty.CachePolicy._
+
+		val all = P(Indef, () => nwnx.Funcs.allAreas)
 	}
 
 	class Area (wrapped: NWObject) extends G(wrapped) {
