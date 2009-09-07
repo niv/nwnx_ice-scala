@@ -11,7 +11,7 @@ package es.elv.kobold.cachedproperty {
 
 	import CachePolicy.CachePolicy
 
-	class CachedProperty[T, V] (val cachePolicy: CachePolicy, getter: () => T) {
+	class CachedProperty[T] (val cachePolicy: CachePolicy, getter: () => T) {
 		protected var value: Option[T] = None
 
 		def apply() = cachePolicy match {
@@ -28,11 +28,11 @@ package es.elv.kobold.cachedproperty {
 		override def toString() = "CachedProperty(" + cachePolicy + ", " + apply().toString + ")"
 	}
 
-	class RWCachedProperty[T, V] (
+	class RWCachedProperty[T] (
 		policy: CachePolicy,
 		getter: () => T,
 		setter: (T) => Unit
-	) extends CachedProperty[T, V](policy, getter) {
+	) extends CachedProperty[T](policy, getter) {
 		def update(what: T) {
 			setter(what)
 			value = Some(what)
@@ -41,25 +41,23 @@ package es.elv.kobold.cachedproperty {
 		override def toString() = "RWCachedProperty(" + cachePolicy + ", " + apply().toString + ")"
 	}
 
-	trait CachedProperties[V] {
-		this: V =>
-
-		private var cachedProperties: List[CachedProperty[_,V]] = List()
+	trait CachedProperties {
+		private var cachedProperties: List[CachedProperty[_]] = List()
 
 		protected object P {
 
-			def apply[T](getter: () => T): CachedProperty[T, V] =
+			def apply[T](getter: () => T): CachedProperty[T] =
 				apply(CachePolicy.Event, getter)
-			def apply[T](getter: () => T, setter: (T) => Unit): RWCachedProperty[T, V] =
+			def apply[T](getter: () => T, setter: (T) => Unit): RWCachedProperty[T] =
 				apply(CachePolicy.Event, getter, setter)
 
 			def apply[T](policy: CachePolicy, getter: () => T) = {
-				val v = new CachedProperty[T, V](policy, getter)
+				val v = new CachedProperty[T](policy, getter)
 				cachedProperties = v :: cachedProperties
 				v
 			}
 			def apply[T](policy: CachePolicy, getter: () => T, setter: (T) => Unit) = {
-				val v = new RWCachedProperty[T, V](policy, getter, setter)
+				val v = new RWCachedProperty[T](policy, getter, setter)
 				cachedProperties = v :: cachedProperties
 				v
 			}

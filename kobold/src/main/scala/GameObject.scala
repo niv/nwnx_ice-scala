@@ -132,7 +132,7 @@ package es.elv.kobold {
 
 	}
 
-	abstract case class G private[kobold] (wrapped: NWObject) extends cachedproperty.CachedProperties[G] {
+	abstract case class G private[kobold] (wrapped: NWObject) extends cachedproperty.CachedProperties {
 		import cachedproperty.CachePolicy._
 		import cachedproperty._
 
@@ -161,7 +161,7 @@ package es.elv.kobold {
 			R.proxy.getIsObjectValid(this)
 		}
 
-		val name: RWCachedProperty[String, G] = P(() => R.proxy.getName(this, false), (n: String) => { R.proxy.setName(this, n); this.name.clear() })
+		val name: RWCachedProperty[String] = P(() => R.proxy.getName(this, false), (n: String) => { R.proxy.setName(this, n); this.name.clear() })
 		val originalName = P(() => R.proxy.getName(this, true))
 
 		def copy(toLocation: Location, toInventory: G): G =
