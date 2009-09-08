@@ -2,7 +2,7 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
-	object Module extends G(new NWObject(0)) with ActionQueue {
+	object Module extends G(new NWObject(0)) {
 		class DateTime(val year: Int, val month: Int, val day: Int, val hour: Int, val minute: Int, val second: Int)
 
 		def apply() = this

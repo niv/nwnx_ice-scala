@@ -142,7 +142,7 @@ package es.elv.kobold {
 
 	}
 
-	abstract case class G private[kobold] (wrapped: NWObject) extends cachedproperty.CachedProperties {
+	abstract case class G private[kobold] (wrapped: NWObject) extends cachedproperty.CachedProperties with ActionQueue {
 		import cachedproperty.CachePolicy._
 		import cachedproperty._
 

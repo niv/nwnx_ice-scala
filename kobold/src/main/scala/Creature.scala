@@ -2,7 +2,7 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
-	abstract class Creature(wrapped: NWObject) extends G(wrapped) with ActionQueue
+	abstract class Creature(wrapped: NWObject) extends G(wrapped)
 			with Movement with Language with Inventory with Equipped with Effects
 			with VisualEffects with SpellCasting {
 
