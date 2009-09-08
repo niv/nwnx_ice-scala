@@ -3,7 +3,7 @@ package es.elv.kobold {
 	import Implicits._
 
 	object Invalid {
-		class InvalidInstance extends G(new NWObject(0x7f000000)) {
+		class InvalidInstance extends Invalid(new NWObject(0x7f000000)) {
 			override def toStringProperties = List()
 		}
 		lazy private val instance = new InvalidInstance
