@@ -6,13 +6,20 @@ package es.elv.kobold.events {
 	}
 
 	trait Event {
+		/** override this to false to disable event stopping. */
+		val stoppable = true
+
 		private var _stopped = false
-		def stop() = synchronized { _stopped = true }
+		def stop() = synchronized { if (stoppable)
+				_stopped = true
+			else
+				EventSource.log.error("tried to stop non-stoppable event: " + this)
+		}
 		def stopped = _stopped
 	}
 
 	object EventSource {
-		private val log = Kobold.logger()
+		private[events] val log = Kobold.logger()
 
 		private val observers: mutable.ArrayBuffer[Observer] = new mutable.ArrayBuffer()
 
