@@ -68,7 +68,8 @@ package es.elv.kobold {
 			familiars possessed by PCs, monsters possessed by DMs. */
 		registerObjectClass((o, t, r, ta) => if (r == "" && R.proxy.getIsPC(o)) Some(new Player(o)) else None)
 
-		registerObjectClass((o, t, r, ta) => if (r != "" && t == ObjectType.Creature) Some(new NonPlayer(o)) else None)
+		/* Empty resref: copy of player.  Non-empty: created from template. */
+		registerObjectClass((o, t, r, ta) => if (t == ObjectType.Creature) Some(new NonPlayer(o)) else None)
 
 		registerObjectClass((o, t, r, ta) => if (t == ObjectType.All) r match {
 			case "" => Some(new Sound(o))
