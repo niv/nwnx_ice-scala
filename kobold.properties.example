@@ -23,6 +23,12 @@ eventTimeWarnThreshold=350
 # Emit a warning when a single Event takes longer than this many ms.
 eventAllTimeWarnThreshold=2000
 
+# Enable a tick timer that fires the OnTick event every 1000 milliseconds.
+# Some plugins will depend on this, and there is no latency/speed disadvantage,
+# so do not disable it unless you know what you are doing.
+tickEnabled=true
+# Emit warnings if a tick is at least this many ms late.
+tickDriftWarn=1000
 
 # A list of all plugins to load. Load order is importance - events
 # will be distributed from top to bottom, and will not propagate

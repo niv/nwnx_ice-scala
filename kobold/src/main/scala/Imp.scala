@@ -5,6 +5,21 @@ import es.elv.kobold._
 import es.elv.kobold.events._
 import es.elv.kobold.Implicits._
 
+package events {
+	/**
+		A tick is a event called at one seconds interval. This
+		is not a fixed value, and prone to drift if load gets high.
+		It also includes network latency.
+		The calculated drift is not corrected for, but provided for
+		reference. This means that each tick roughly equates one
+		"ingame second", for engine purposes.
+
+		tickCounter starts at 0 at startup/restart, and increments
+		for each tick issued.
+	*/
+	case class OnTick(val drift: Long, val tickCounter: Long) extends GameEvent
+}
+
 /**
 	The Imp takes care of invalidating objects that are not
 	referenced anymore anywhere, and does some housekeeping.
@@ -13,6 +28,12 @@ import es.elv.kobold.Implicits._
 */
 object Imp extends Plugin {
 	private var lastcount = 0
+
+	private var lastTickAt = 0L
+
+	private val tickEnabled = Kobold.config.getBoolean("tickEnabled")
+	private val tickInterval = 1000
+	private val tickDriftWarn = Kobold.config.getLong("tickDriftWarn")
 
 	def listen(event: Event) = event match {
 		case OnStartup() => {
@@ -32,7 +53,29 @@ object Imp extends Plugin {
 			G.getCache.clear
 		}
 
+		case OnTick(_, lastTick) => {
+			val timerDrift = System.currentTimeMillis - lastTickAt - tickInterval
+			lastTickAt = System.currentTimeMillis
+
+			if (tickDriftWarn > 0 && timerDrift > tickDriftWarn)
+				log.warn("timer drift: " + timerDrift + " ms")
+
+			log.trace("tick, drift " + timerDrift)
+
+			if (tickEnabled)
+				Module() after (tickInterval, EventSource send OnTick(timerDrift, lastTick + 1))
+		}
+
 		case RawEvent(o, e) => {
+			if (lastTickAt == 0)
+				lastTickAt = System.currentTimeMillis
+
+			if (tickEnabled && (System.currentTimeMillis - lastTickAt) > (tickInterval + 5000)) {
+				log.warn("lost tick timer, restarting.")
+				lastTickAt = System.currentTimeMillis
+				Module() after (tickInterval, EventSource send OnTick(0, 0))
+			}
+
 			Module().ll("koboldLastEventAt") = System.currentTimeMillis
 			G.getCache.foreach((k) =>
 				k._2.clearCachedPropertiesByPolicy(cachedproperty.CachePolicy.Event)
