@@ -21,25 +21,19 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
 
     public double z;
 
-    public double orientationX;
-
-    public double orientationY;
-
-    public double orientationZ;
+    public double facing;
 
     public NWLocation()
     {
     }
 
-    public NWLocation(NWObject area, double x, double y, double z, double orientationX, double orientationY, double orientationZ)
+    public NWLocation(NWObject area, double x, double y, double z, double facing)
     {
         this.area = area;
         this.x = x;
         this.y = y;
         this.z = z;
-        this.orientationX = orientationX;
-        this.orientationY = orientationY;
-        this.orientationZ = orientationZ;
+        this.facing = facing;
     }
 
     public boolean
@@ -76,15 +70,7 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
             {
                 return false;
             }
-            if(orientationX != _r.orientationX)
-            {
-                return false;
-            }
-            if(orientationY != _r.orientationY)
-            {
-                return false;
-            }
-            if(orientationZ != _r.orientationZ)
+            if(facing != _r.facing)
             {
                 return false;
             }
@@ -106,9 +92,7 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
         __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(x);
         __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(y);
         __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(z);
-        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(orientationX);
-        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(orientationY);
-        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(orientationZ);
+        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(facing);
         return __h;
     }
 
@@ -134,9 +118,7 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
         __os.writeDouble(x);
         __os.writeDouble(y);
         __os.writeDouble(z);
-        __os.writeDouble(orientationX);
-        __os.writeDouble(orientationY);
-        __os.writeDouble(orientationZ);
+        __os.writeDouble(facing);
     }
 
     public void
@@ -147,8 +129,6 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
         x = __is.readDouble();
         y = __is.readDouble();
         z = __is.readDouble();
-        orientationX = __is.readDouble();
-        orientationY = __is.readDouble();
-        orientationZ = __is.readDouble();
+        facing = __is.readDouble();
     }
 }

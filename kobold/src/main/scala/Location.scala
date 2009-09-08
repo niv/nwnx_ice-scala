@@ -7,13 +7,8 @@ package es.elv.kobold {
 		def apply() = this
 	}
 
-	case class Location(val area: Area, val position: Vector, f: Double) {
-		val facing = f % 360.0
-
+	case class Location(val area: Area, val position: Vector, val facing: Double) {
 		val valid = true
-
-		def this(area: Area, x: Double, y: Double, z: Double, facing: Double) =
-			this(area, new Vector(x, y, z), facing)
 
 		def directionalAdjust(directionMod: Double) =
 			new Location(area, position, facing + directionMod)

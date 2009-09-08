@@ -10,11 +10,8 @@ package es.elv.kobold {
 		to the nwscript "vector" datatype.
 	*/
 	case class Vector(val x: Double, val y: Double, val z: Double) {
-		require(x >= 0.0)
-		require(y >= 0.0)
-
 		/** The angle of this Vector. */
-		lazy val angle = this match {
+		lazy val angle: Double = this match {
 			case Vector(0, 0, 0) => 0
 			case _ => angleTo(Vector(0, 0, 0))
 		}
@@ -31,7 +28,7 @@ package es.elv.kobold {
 			new Vector(Math.abs(x + distance * Math.cos(angle)), Math.abs(y + distance * Math.sin(angle)), z)
 
 		/** Calculates the angle to another Vector. */
-		def angleTo(lo: Vector) =
+		def angleTo(lo: Vector): Double =
 			Math.acos(Math.abs((x - lo.x).toInt).toDouble / distanceTo(lo))
 
 		/** Returns the normalised unit-Vector. */

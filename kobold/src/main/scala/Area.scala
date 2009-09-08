@@ -8,6 +8,12 @@ package es.elv.kobold {
 		val all = P(Indef, () => nwnx.Funcs.allAreas)
 	}
 
+	/** A special area object for creatures currently in transition. */
+	object NoArea extends Area(new NWObject(0x7f000000)) {
+		def apply() = this
+		override def valid = false
+	}
+
 	class Area (wrapped: NWObject) extends G(wrapped) {
 		def allObjects: List[G] =
 			R.proxy.allInArea(this).toList.map(G(_))
@@ -18,4 +24,5 @@ package es.elv.kobold {
 
 		val weather = P(() => R.proxy.getWeather(this), (weather: Weather) => R.proxy.setWeather(this, weather))
 	}
+
 }
