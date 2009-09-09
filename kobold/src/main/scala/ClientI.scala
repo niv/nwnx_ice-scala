@@ -41,8 +41,8 @@ package es.elv.kobold {
 			Schedule a block of code to be executed
 			with NWN context after the next available event.
 		*/
-		def schedule(block: () => Unit) {
-			delayedThunks += block
+		def schedule(block: => Unit) {
+			delayedThunks += (() => {block})
 		}
 
 		/**
@@ -92,6 +92,8 @@ package es.elv.kobold {
 
 			val token = tk.toLong
 
+			handleScheduled
+
 			EventSource send events.TokenEvent(self, token)
 
 			if (storedTokens.contains(token)) {
@@ -122,14 +124,11 @@ package es.elv.kobold {
 
 			val start = System.currentTimeMillis
 
-			while (!delayedThunks.isEmpty && System.currentTimeMillis - start < 400)
-				delayedThunks.dequeue()()
-			if (delayedThunks.size > 0)
-				log.warn(delayedThunks.size + " thunks remaining")
+			handleScheduled
 
 			val ret: ClientResult = try {
 				rawEventHandled = false
-				val e: Event = EventSource send new events.RawEvent(self, ev)
+				val e: Event = EventSource send events.RawEvent(self, ev)
 				if (!rawEventHandled)
 					log.warn("Unhandled event received: %s (on %08x)".format(ev, self.id))
 				if (e.stopped)
@@ -151,6 +150,15 @@ package es.elv.kobold {
 
 			contextDepth -= 1
 			ret
+		}
+
+		private def handleScheduled {
+			val start = System.currentTimeMillis
+
+			while (!delayedThunks.isEmpty && System.currentTimeMillis - start < 400)
+				delayedThunks.dequeue()()
+			if (delayedThunks.size > 0)
+				log.warn(delayedThunks.size + " thunks remaining")
 		}
 	}
 }
