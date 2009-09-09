@@ -24,6 +24,30 @@
 		</filter>
 	</appender>
 
+	<appender name="xmpp" class="es.elv.kobold.log.XMPPAppender">
+		<param name="host" value="swordcoast.net" />
+		<param name="service" value="swordcoast.net" />
+		<param name="useTLS" value="false" />
+		<param name="forcePlain" value="true" />
+		<param name="username" value="user" />
+		<param name="password" value="pass" />
+		<param name="resource" value="log4j" />
+		<param name="logTarget" value="jid@host.net,jid@anotherhost.net" />
+		<param name="presenceModePriority" value="0" />
+		<param name="presenceModeMessage" value="log4j notify, will not answer messages" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%p %c{2} - %m" />
+		</layout>
+
+		<!-- only print WARN and above to ingame -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="ERROR" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
 	<appender name="errorlog" class="org.apache.log4j.FileAppender">
 		<param name="File" value="error.log" />
 
@@ -48,6 +72,7 @@
 		<appender-ref ref="stdout" />
 		<appender-ref ref="ingame" />
 		<appender-ref ref="errorlog" />
+		<appender-ref ref="xmpp" />
 	</root>
 
 </log4j:configuration>

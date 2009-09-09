@@ -15,6 +15,9 @@ class KoboldProject(info: ProjectInfo) extends ParentProject(info) {
 
 		val slf4japi = "org.slf4j" % "slf4j-api" % "1.5.8" % "provided->default"
 		val slf4jlog4j = "org.slf4j" % "slf4j-log4j12" % "1.5.8" % "provided->default"
+
+		val smack = "jivesoftware" % "smack" % "3.1.0" % "provided->default"
+		val smackx = "jivesoftware" % "smackx" % "3.1.0" % "provided->default"
 	}
 
 	class NWNXICE(info: ProjectInfo) extends DefaultProject(info) {
