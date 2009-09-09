@@ -24,7 +24,7 @@ package es.elv.kobold.events {
 		private val observers: mutable.ArrayBuffer[Observer] = new mutable.ArrayBuffer()
 
 		private def eventTimeWarnThreshold = Kobold.config.getLong("eventTimeWarnThreshold")
-		private def eventAllTimeWarnThreshold = Kobold.config.getLong("eventTimeWarnThreshold")
+		private def eventAllTimeWarnThreshold = Kobold.config.getLong("eventAllTimeWarnThreshold")
 
 		def register(observer: Observer) {
 			if (!observers.contains(observer))
