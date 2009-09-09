@@ -27,7 +27,7 @@ class IngameAppender extends log4j.AppenderSkeleton {
 			R.proxy.sendMessageToAllDMs(text)
 
 		if (toAllPlayers)
-			for (p <- PlayerCreature.all) p.message(text)
+			for (p <- PlayerCreature.all()) p.message(text)
 
 		true
 	}

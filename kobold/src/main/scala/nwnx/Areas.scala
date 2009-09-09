@@ -30,7 +30,7 @@ object Areas extends Core("AREAS") {
 		Destroy the given area.
 	*/
 	def destroyArea(area: Area) {
-		if (Player.all.filter(_.area() == area).size < 1) {
+		if (PlayerCreature.all().filter(_.area() == area).size < 1) {
 			set(Module(), "DESTROY_AREA", "%x".format(area))
 			Area.all.clear
 		} else

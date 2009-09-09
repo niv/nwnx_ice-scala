@@ -40,7 +40,7 @@ object Imp extends Plugin {
 			log.info("Factoring areas ..")
 			log.info("Done: " + Area.all().size + " areas in module")
 			log.info("Factoring players ..")
-			log.info("Done: " + Player.all.size + " players online")
+			log.info("Done: " + PlayerCreature.all().size + " players online")
 
 			val lastEventAt = Module().ll("koboldLastEventAt")
 			val sec = (System.currentTimeMillis - lastEventAt).toDouble / 1000
