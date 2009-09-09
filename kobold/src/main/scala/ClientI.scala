@@ -110,7 +110,7 @@ package es.elv.kobold {
 
 			val instr: Long = p.getInstructionCount()
 
-			log.trace("%08x %4d %4d ms - %s (cache: %d)".format(
+			log.debug("%08x %4d %4d ms - %s (cache: %d)".format(
 				self.id, instr,  System.currentTimeMillis - start, tk, storedTokens.size))
 			contextDepth -= 1
 		}
