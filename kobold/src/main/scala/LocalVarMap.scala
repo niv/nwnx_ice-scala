@@ -38,9 +38,9 @@ class LocalBoolMap(parent: G) {
 }
 
 class LocalFloatMap(parent: G) {
-	def apply(key: String): Double =
+	def apply(key: String): Float =
 		R.proxy.getLocalFloat(parent, key)
-	def update(key: String, value: Double) =
+	def update(key: String, value: Float) =
 		R.proxy.setLocalFloat(parent, key, value)
 	def -=(key: String) =
 		R.proxy.deleteLocalFloat(parent, key)

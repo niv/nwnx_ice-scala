@@ -11,7 +11,7 @@ package es.elv.kobold {
 		def effects: List[Effect] = R.proxy.allEffects(this).toList.map(Effect(_))
 
 		/** Apply a temporary effect to this object. */
-		def <+(e: Effect, duration: Double) = applyEffect(this, e, DurationType.Temporary, duration)
+		def <+(e: Effect, duration: Float) = applyEffect(this, e, DurationType.Temporary, duration)
 
 		/** Apply a instantaneous effect to this object. */
 		def <<(e: Effect) = applyEffect(this, e, DurationType.Instant, 0)
@@ -19,7 +19,7 @@ package es.elv.kobold {
 		/** Apply a permanent effect to this object. */
 		def <*(e: Effect) = applyEffect(this, e, DurationType.Permanent, 0)
 
-		def applyEffect(creator: ActionQueue, e: Effect, durationType: DurationType, duration: Double) =
+		def applyEffect(creator: ActionQueue, e: Effect, durationType: DurationType, duration: Float) =
 			creator assign { R.proxy.applyEffectToObject(durationType, e, this, duration) }
 
 		/** Remove the given effect from this object. Does nothing if this effect is not applied. */
@@ -30,13 +30,13 @@ package es.elv.kobold {
 		this: G =>
 
 		/** Show a temporary visual effect on this object. */
-		def ^+(e: Int, duration: Double): Unit = vfx(e, DurationType.Temporary, duration)
+		def ^+(e: Int, duration: Float): Unit = vfx(e, DurationType.Temporary, duration)
 		/** Show a instantaneous visual effect on this object. */
 		def ^^(e: Int): Unit = vfx(e, DurationType.Instant, 0)
 		/** Show a permanent visual effect on this object. */
 		def ^*(e: Int): Unit = vfx(e, DurationType.Permanent, 0)
 
-		def vfx(e: Int, durationType: DurationType, duration: Double) =
+		def vfx(e: Int, durationType: DurationType, duration: Float) =
 			R.proxy.applyEffectToObject(durationType,
 				R.proxy.effectVisualEffect(e, false),
 				this, duration)
@@ -70,7 +70,7 @@ package es.elv.kobold {
 		def dominated: Effect = R.proxy.effectDominated
 		def dazed: Effect = R.proxy.effectDazed
 		def stunned: Effect = R.proxy.effectStunned
-		def regenerate(amount: Int, intervalSeconds: Double): Effect = R.proxy.effectRegenerate(amount, intervalSeconds)
+		def regenerate(amount: Int, intervalSeconds: Float): Effect = R.proxy.effectRegenerate(amount, intervalSeconds)
 		def silence: Effect = R.proxy.effectSilence
 		def haste: Effect = R.proxy.effectHaste
 		def slow: Effect = R.proxy.effectSlow
@@ -108,7 +108,7 @@ package es.elv.kobold {
 		def spellResistanceDecrease(value: Int): Effect = R.proxy.effectSpellResistanceDecrease(value)
 		def movementSpeedIncrease(percent: Int): Effect = R.proxy.effectMovementSpeedIncrease(percent)
 		def movementSpeedDecrease(percent: Int): Effect = R.proxy.effectMovementSpeedDecrease(percent)
-		def hitPointChangeWhenDying(hitPointChangePerRound: Double): Effect = R.proxy.effectHitPointChangeWhenDying(hitPointChangePerRound)
+		def hitPointChangeWhenDying(hitPointChangePerRound: Float): Effect = R.proxy.effectHitPointChangeWhenDying(hitPointChangePerRound)
 		def death(spectacularDeath: Boolean, displayFeedback: Boolean): Effect = R.proxy.effectDeath(spectacularDeath, displayFeedback)
 		def spellImmunityAllSpells: Effect = spellImmunity(-1)
 		def spellImmunity(spell: Int): Effect = R.proxy.effectSpellImmunity(spell)
@@ -123,7 +123,7 @@ package es.elv.kobold {
 		def damageImmunityDecrease(damageType: DamageType, percent: Int): Effect = R.proxy.effectDamageImmunityDecrease(damageType, percent)
 		def damageImmunityIncrease(damageType: DamageType, percent: Int): Effect = R.proxy.effectDamageImmunityIncrease(damageType, percent)
 
-		def summonCreature(creatureResRef: String, visualEffectId: Int, fDelaySeconds: Double, useAppearAnimation: Boolean): Effect =
+		def summonCreature(creatureResRef: String, visualEffectId: Int, fDelaySeconds: Float, useAppearAnimation: Boolean): Effect =
 			R.proxy.effectSummonCreature(creatureResRef, visualEffectId, fDelaySeconds, useAppearAnimation)
 		def swarm(looping: Boolean, t1: String, t2: String, t3: String, t4: String): Effect = R.proxy.effectSwarm(looping, t1, t2, t3, t4)
 

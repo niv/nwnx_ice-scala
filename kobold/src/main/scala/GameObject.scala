@@ -177,8 +177,8 @@ package es.elv.kobold {
 		def copy(toLocation: Location, toInventory: G): G =
 			G(R.proxy.copyObject(this, toLocation, toInventory, ""))
 
-		def destroy: Unit = destroy(0.0)
-		def destroy(delay: Double): Unit =
+		def destroy: Unit = destroy(0f)
+		def destroy(delay: Float): Unit =
 			R.proxy.destroyObject(this, delay)
 
 		lazy val ls   = new LocalStringMap(this)

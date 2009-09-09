@@ -6,7 +6,8 @@ package es.elv.kobold {
 		implicit def iprpj2nwiprp(n: ItemProperty): NWItemProperty = n.toNWItemProperty
 		implicit def go2nwobj(n: G): NWObject = n.wrapped
 
-		implicit def loc2nwloc(l: Location): NWLocation = new NWLocation(l.area.wrapped, l.position.x, l.position.y, l.position.z, l.facing)
+		implicit def loc2nwloc(l: Location): NWLocation = new NWLocation(l.area.wrapped,
+			l.position.x, l.position.y, l.position.z, l.facing)
 
 		implicit def nwloc2loc(l: NWLocation): Location = {
 			new Location(G[G](l.area) match {

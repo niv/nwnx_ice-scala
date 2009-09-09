@@ -37,11 +37,11 @@ object DMActions extends Core("DMACTIONS") with Plugin {
 				lazy val nwnxPosition = {
 					val svec = get(Module(), "GETPOS", 30)
 					if (svec.size == 26) {
-						val (x, y, z) = (svec.substring(0, 8).toDouble, svec.substring(9, 17).toDouble,
-							svec.substring(18, 26).toDouble)
+						val (x, y, z) = (svec.substring(0, 8).toFloat, svec.substring(9, 17).toFloat,
+							svec.substring(18, 26).toFloat)
 						Vector(x, y, z)
 					} else {
-						Vector(0, 0, 0)
+						Vector.origin
 					}
 				}
 				lazy val loc = Location(G[Area](target1), nwnxPosition, 0)

@@ -38,11 +38,11 @@ object Events extends Core("EVENTS") with Plugin {
 				val nwnxPosition = {
 					val svec = get(Module(), "GET_EVENT_POSITION", 30)
 					if (svec.size == 26) {
-						val (x, y, z) = (svec.substring(0, 8).toDouble, svec.substring(9, 17).toDouble,
-							svec.substring(18, 26).toDouble)
+						val (x, y, z) = (svec.substring(0, 8).toFloat, svec.substring(9, 17).toFloat,
+							svec.substring(18, 26).toFloat)
 						Vector(x, y, z)
 					} else {
-						Vector(0, 0, 0)
+						Vector.origin
 					}
 				}
 				val area = G[G](R.proxy.getArea(self))

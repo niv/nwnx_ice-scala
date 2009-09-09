@@ -2,15 +2,15 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
-	object InvalidLocation extends Location(new Area(new NWObject(0x7f000000)), Vector.origin, 0.0) {
+	object InvalidLocation extends Location(new Area(new NWObject(0x7f000000)), Vector.origin, 0f) {
 		override val valid = false
 		def apply() = this
 	}
 
-	case class Location(val area: Area, val position: Vector, val facing: Double) {
+	case class Location(val area: Area, val position: Vector, val facing: Float) {
 		val valid = true
 
-		def directionalAdjust(directionMod: Double) =
+		def directionalAdjust(directionMod: Float) =
 			new Location(area, position, facing + directionMod)
 
 		/*
@@ -33,21 +33,21 @@ package es.elv.kobold {
 		}
 
 		// create a location range units away from the current one, heading to o
-		def inRangeTo(o: G, range: Double) = 0
+		def inRangeTo(o: G, range: Float) = 0
 
-		def ^+(e: Int, duration: Double): Unit = vfx(e, DurationType.Temporary, duration)
+		def ^+(e: Int, duration: Float): Unit = vfx(e, DurationType.Temporary, duration)
 		def ^^(e: Int): Unit = vfx(e, DurationType.Instant, 0)
 		def ^*(e: Int): Unit = vfx(e, DurationType.Permanent, 0)
 
-		def applyEffect(e: Effect, durationType: DurationType, duration: Double) =
+		def applyEffect(e: Effect, durationType: DurationType, duration: Float) =
 			R.proxy.applyEffectAtLocation(durationType, e, this, duration)
 
 		/*def vfx(e: Int): Unit = instantVfx(e)
 		def instantVfx(e: Int): Unit = vfx(e, DurationType.Instant, 0)
 		def permanentVfx(e: Int): Unit = vfx(e, DurationType.Permanent, 0)
-		def temporaryVfx(e: Int, duration: Double) = vfx(e, DurationType.Temporary, duration)*/
+		def temporaryVfx(e: Int, duration: Float) = vfx(e, DurationType.Temporary, duration)*/
 
-		def vfx(e: Int, durationType: DurationType, duration: Double) =
+		def vfx(e: Int, durationType: DurationType, duration: Float) =
 			R.proxy.applyEffectAtLocation(durationType,
 				R.proxy.effectVisualEffect(e, false),
 				this, duration)
@@ -61,11 +61,11 @@ package es.elv.kobold {
 			modify(a => area, v, f => facing)
 
 		/** Create a new Location based on this one, with the facing modified. */
-		def face(f: (Double) => Double): Location =
+		def face(f: (Float) => Float): Location =
 			modify(a => area, p => position, f)
 
 		/** Create a new Location based on this one. */
-		def modify(a: (Area) => Area, v: (Vector) => Vector, f: (Double) => Double): Location =
+		def modify(a: (Area) => Area, v: (Vector) => Vector, f: (Float) => Float): Location =
 			Location(a(area), v(position), f(facing))
 	}
 }

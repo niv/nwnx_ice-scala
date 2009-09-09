@@ -85,7 +85,7 @@ package es.elv.kobold {
 		def dead = R.proxy.getIsDead(this)
 
 		/** Returns all Creatures within the given maxDistance that hear this critter. */
-		def heardBy(maxDistance: Double): List[Creature] = near(ObjectType.Creature, maxDistance) filter (_ match {
+		def heardBy(maxDistance: Float): List[Creature] = near(ObjectType.Creature, maxDistance) filter (_ match {
 			case c: Creature => c hears this
 			case p => false
 		}) map (_.asInstanceOf[Creature])

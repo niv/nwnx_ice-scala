@@ -23,12 +23,12 @@ package es.elv.kobold {
 			R.proxy.allItemProperties(this).toList.map(ItemProperty(_))
 
 		// Apply a temporary itemProperty to this object.
-		def <+(e: ItemProperty, duration: Double) = addPropertyIntelligently(e, duration)
+		def <+(e: ItemProperty, duration: Float) = addPropertyIntelligently(e, duration)
 
 		// Apply a permanent itemProperty to this object.
 		def <*(e: ItemProperty) = addPropertyIntelligently(e, 0)
 
-		def addPropertyIntelligently(p: ItemProperty, duration: Double) = {
+		def addPropertyIntelligently(p: ItemProperty, duration: Float) = {
 			val durationType = if (duration > 0) DurationType.Temporary else DurationType.Permanent
 			val matching = properties.filter(v => v.durationType == durationType &&
 					v.iprpType == p.iprpType && v.subType == p.subType)
@@ -38,7 +38,7 @@ package es.elv.kobold {
 			addProperty(p, duration)
 		}
 
-		def addProperty(p: ItemProperty, duration: Double) =
+		def addProperty(p: ItemProperty, duration: Float) =
 			R.proxy.addItemProperty(if (duration > 0) DurationType.Temporary else DurationType.Permanent, p, this, duration)
 		def removeProperty(p: ItemProperty) = R.proxy.removeItemProperty(this, p)
 

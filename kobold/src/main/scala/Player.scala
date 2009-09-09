@@ -32,8 +32,8 @@ package es.elv.kobold {
 
 		def kick = R.proxy.bootPC(this)
 
-		def day2night(transitionTime: Double) = R.proxy.dayToNight(this, transitionTime)
-		def night2day(transitionTime: Double) = R.proxy.nightToDay(this, transitionTime)
+		def day2night(transitionTime: Float) = R.proxy.dayToNight(this, transitionTime)
+		def night2day(transitionTime: Float) = R.proxy.nightToDay(this, transitionTime)
 
 		def sendToServer(address: String, password: String, waypointTag: String, seamless: Boolean) =
 			R.proxy.activatePortal(this, address, password, waypointTag.toUpperCase, seamless)

@@ -66,13 +66,13 @@ package es.elv.kobold {
 			effects from the outer scope in the given block -
 			they will not be valid anymore.
 		*/
-		def delay(obj: NWObject, delay: Double, block: => Unit) {
+		def delay(obj: NWObject, delay: Float, block: => Unit) {
 			val token = nextToken()
 			storedTokens(token) = () => { block }
 
 			val mod = new NWObject(0)
 			proxy.setLocalString(mod, "ice_token", token.toString)
-			proxy.setLocalFloat(mod, "ice_delay", if (delay < 0.0) 0.0 else delay)
+			proxy.setLocalFloat(mod, "ice_delay", if (delay < 0.0) 0.0f else delay)
 			proxy.executeScript("ice_schedule", obj)
 		}
 

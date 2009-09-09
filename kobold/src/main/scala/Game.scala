@@ -12,7 +12,7 @@ package es.elv.kobold {
 		}
 
 		def after(delay: Long, what: => Unit) {
-			R delay (this, delay.toDouble / 1000, what)
+			R delay (this, delay / 1000, what)
 		}
 
 		def clearActions: Unit = clearActions(true)
@@ -20,8 +20,8 @@ package es.elv.kobold {
 			R.proxy.clearAllActions(combatToo)
 		}
 
-		def doWait(seconds: Double) = assign {
-			R.proxy.actionWait(seconds)
+		def doWait(msec: Long) = assign {
+			R.proxy.actionWait(msec / 1000)
 		}
 
 		def currentAction = R.proxy.getCurrentAction(this)
@@ -85,14 +85,14 @@ package es.elv.kobold {
 		this: G =>
 
 		val location = P(() => R.proxy.getLocation(this) : Location, (n: Location) => R.proxy.jumpToLocation(n))
-		val facing = P(() => location().facing, (n: Double) => R.proxy.setFacing(n))
+		val facing = P(() => location().facing, (n: Float) => R.proxy.setFacing(n))
 		val area = P(() => location().area : Area)
 
 		/** Returns all objects in the given radius. */
-		def near(radius: Double): List[G] = near(ObjectType.All, radius)
+		def near(radius: Float): List[G] = near(ObjectType.All, radius)
 
 		/** Returns all objects matching oType in the given radius. */
-		def near(oType: ObjectType, radius: Double): List[G] = R.proxy.allInShape(ShapeType.SphereShape, radius,
+		def near(oType: ObjectType, radius: Float): List[G] = R.proxy.allInShape(ShapeType.SphereShape, radius,
 			location(), false, oType, Vector.origin) map(x => G[G](x)) filter(x => x != this) toList
 	}
 
@@ -102,12 +102,12 @@ package es.elv.kobold {
 		def walk(to: Location) = assign { R.proxy.actionMoveToLocation(to, false) }
 		def run(to: Location) = assign { R.proxy.actionMoveToLocation(to, true) }
 		def randomWalk(to: Location) = assign { R.proxy.actionRandomWalk }
-		def walkFrom(from: G, range: Double) =
+		def walkFrom(from: G, range: Float) =
 			assign { R.proxy.actionMoveAwayFromObject(from, false, range) }
-		def runFrom(from: G, range: Double) =
+		def runFrom(from: G, range: Float) =
 			assign { R.proxy.actionMoveAwayFromObject(from, true, range) }
 
-		def follow(toFollow: G, followDistance: Double) = assign {
+		def follow(toFollow: G, followDistance: Float) = assign {
 			R.proxy.actionForceFollowObject(toFollow, followDistance)
 		}
 	}
