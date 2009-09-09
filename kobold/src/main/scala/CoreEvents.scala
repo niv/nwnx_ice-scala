@@ -87,7 +87,7 @@ package es.elv.kobold {
 		private var firstEvent = false
 
 		def listen(e: Event) = {
-			if (!firstEvent) {
+			if (!firstEvent && e.isInstanceOf[GameEvent]) {
 				firstEvent = true
 				EventSource send new OnStartup()
 			}
