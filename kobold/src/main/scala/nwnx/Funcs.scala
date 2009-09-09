@@ -14,7 +14,7 @@ object Funcs extends Core("FUNCS") {
 	import scala.collection._
 
 	def getInt(obj: NWObject, key: String, args: Int*) =
-		Core.setGet(obj, "FUNCS", key, args map(_ toString) mkString(" ") + " " * 10).toInt
+		setGet(obj, key, args map(_ toString) mkString(" ") + " " * 10).toInt
 
 	def allAreas: List[Area] = {
 		var all = new mutable.ListBuffer[Area]

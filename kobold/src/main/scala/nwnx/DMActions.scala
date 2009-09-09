@@ -34,16 +34,7 @@ object DMActions extends Core("DMACTIONS") with Plugin {
 				lazy val target2 = getObject(dm, "TARGET_2")
 				val param1  = try { get(dm, "GETPARAM_1", 10).toInt } catch { case _ => 0 }
 				val param2  = try { get(dm, "GETPARAM_2", 10).toInt } catch { case _ => 0 }
-				lazy val nwnxPosition = {
-					val svec = get(Module(), "GETPOS", 30)
-					if (svec.size == 26) {
-						val (x, y, z) = (svec.substring(0, 8).toFloat, svec.substring(9, 17).toFloat,
-							svec.substring(18, 26).toFloat)
-						Vector(x, y, z)
-					} else {
-						Vector.origin
-					}
-				}
+				lazy val nwnxPosition = stringToVector(get(Module(), "GETPOS", 30))
 				lazy val loc = Location(G[Area](target1), nwnxPosition, 0)
 
 				log.debug("actionId=%d".format(actionId))

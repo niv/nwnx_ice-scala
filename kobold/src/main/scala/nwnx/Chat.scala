@@ -31,26 +31,31 @@ object Chat extends Core("CHAT") with Plugin {
 		set(speaker, "SPEAK", t)
 	}
 
-	def pcIn(o: G) {
+	def suppress(o: G) = set(o, "SUPRESS", "1")
+
+	private def pcIn(o: G) {
 		val id = get(o, "GETID", 10).trim.toInt
 		if (id != -1) {
 			R.proxy.setLocalObject(Module(), "chatPC_" + id, o)
 			R.proxy.setLocalInt(o, "chatID", id)
 		}
 	}
-	def pcOut(o: G) {
+	private def pcOut(o: G) {
 		val id = R.proxy.getLocalInt(o, "chatID")
 		R.proxy.deleteLocalInt(o, "chatID")
 		R.proxy.deleteLocalObject(Module(), "chatPC_" + id)
 	}
 
-	def getPC(id: Int): G = {
+	private def getPC(id: Int): G = {
 		G(R.proxy.getLocalObject(Module(), "chatPC_" + id))
 	}
 
-	def suppress(o: G) = set(o, "SUPRESS", "1")
 
 	def listen(event: Event) = event match {
+		case OnPlayerEnter(p: G) =>
+			pcIn(p)
+		case OnPlayerLeave(p: G) =>
+			pcOut(p)
 
 		case RawEvent(self, t) => t match {
 			case "nwnx_chat" => {
@@ -65,12 +70,12 @@ object Chat extends Core("CHAT") with Plugin {
 				MSG_DM = 14,
 				MSG_MODE_DM = 16;
 				*/
-				val allText = nwnx.Core.get(self, "CHAT", "TEXT", 1024)
+				val allText = get(self, "TEXT", 1024)
 				val modeWithDM = allText.substring(0, 2).trim.toInt
 				val mode = if (modeWithDM > 16) modeWithDM - 16 else modeWithDM
 				val toId = allText.substring(2, 12).trim.toInt
 				val text = allText.substring(12)
-				val to = if (mode == 4) nwnx.Chat.getPC(toId) else Invalid()
+				val to = if (mode == 4) getPC(toId) else Invalid()
 
 				mode match {
 					case  1 => EventSource send new OnChatTalk(G(self), text)

@@ -35,16 +35,8 @@ object Events extends Core("EVENTS") with Plugin {
 				val nwnxSubType = get(Module(), "GET_EVENT_SUBID", 10).trim.toInt
 				val nwnxItem = getObject(Module(), "ITEM")
 				val nwnxTarget = getObject(Module(), "TARGET")
-				val nwnxPosition = {
-					val svec = get(Module(), "GET_EVENT_POSITION", 30)
-					if (svec.size == 26) {
-						val (x, y, z) = (svec.substring(0, 8).toFloat, svec.substring(9, 17).toFloat,
-							svec.substring(18, 26).toFloat)
-						Vector(x, y, z)
-					} else {
-						Vector.origin
-					}
-				}
+				val nwnxPosition = stringToVector(get(Module(), "GET_EVENT_POSITION", 30))
+
 				val area = G[G](R.proxy.getArea(self))
 				val nwnxLocation = if (area.valid)
 					Location(area.asInstanceOf[Area], nwnxPosition, 0)
