@@ -53,12 +53,15 @@ object Imp extends Plugin {
 			G.getCache.clear
 		}
 
+		case OnModuleHB() =>
+			G purgeCache
+
 		case OnTick(_, lastTick) => {
 			val timerDrift = System.currentTimeMillis - lastTickAt - tickInterval
 			lastTickAt = System.currentTimeMillis
 
 			if (tickDriftWarn > 0 && timerDrift > tickDriftWarn)
-				log.warn("timer drift: " + timerDrift + " ms")
+				log.warn("tick drift: " + timerDrift + " ms")
 
 			log.trace("tick, drift " + timerDrift)
 
@@ -77,6 +80,12 @@ object Imp extends Plugin {
 			}
 
 			Module().ll("koboldLastEventAt") = System.currentTimeMillis
+			G.getCache.foreach((k) =>
+				k._2.clearCachedPropertiesByPolicy(cachedproperty.CachePolicy.Event)
+			)
+		}
+		
+		case TokenEvent(o, e) => {
 			G.getCache.foreach((k) =>
 				k._2.clearCachedPropertiesByPolicy(cachedproperty.CachePolicy.Event)
 			)
