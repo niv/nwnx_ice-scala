@@ -9,8 +9,6 @@ package es.elv.kobold {
 			implicit def nwn2go[K <: G](o: NWObject): K = G[K](o)
 		}
 
-		final case class RawEvent(val self: NWObject, val event: String) extends Event
-
 		abstract case class GameEvent() extends Event
 
 		/**

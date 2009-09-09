@@ -6,6 +6,11 @@ package es.elv.kobold {
 	import scala.concurrent._
 	import events._
 
+	package events {
+		final case class RawEvent(val self: NWObject, val event: String) extends Event
+		final case class TokenEvent(val self: NWObject, val token: Long) extends Event
+	}
+
 	object R extends _ClientDisp {
 		private val log = Kobold.logger()
 
@@ -86,6 +91,8 @@ package es.elv.kobold {
 			val start = System.currentTimeMillis
 
 			val token = tk.toLong
+
+			EventSource send events.TokenEvent(self, token)
 
 			if (storedTokens.contains(token)) {
 				try { storedTokens(token)() } catch {
