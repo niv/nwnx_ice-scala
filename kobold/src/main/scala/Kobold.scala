@@ -44,7 +44,7 @@ trait Plugin extends Observer {
 }
 
 object Kobold {
-	lazy private val log = logger()
+	lazy private[kobold] val log = logger()
 
 	val config = new org.apache.commons.configuration.PropertiesConfiguration("kobold.properties")
 	config.setThrowExceptionOnMissing(true)
