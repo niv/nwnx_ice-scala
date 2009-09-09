@@ -38,7 +38,7 @@ class XMPPAppender extends log4j.AppenderSkeleton with smack.MessageListener {
 
 		connection.connect
 		connection.login(username, password, resource)
-		connection.sendPacket(new smack.packet.Presence(smack.packet.Presence.Type.available,
+		connection.sendPacket(new smack.packet.Presence(smack.packet.Presence.Type.unavailable,
 			presenceModeMessage, presenceModePriority, presenceMode))
 
 		chats = logTarget.split(",").map(t => connection.getChatManager.createChat(t, this)).toList
@@ -59,5 +59,6 @@ class XMPPAppender extends log4j.AppenderSkeleton with smack.MessageListener {
 	}
 
 	override def processMessage(c: smack.Chat, m: smack.packet.Message) {
+		Kobold.log.debug("XMPPAppender: Message from " + c.getParticipant + ": " + m.getBody)
 	}
 }
