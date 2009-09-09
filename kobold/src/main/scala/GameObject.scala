@@ -2,6 +2,13 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
+	abstract class GFactory[K <: G](val createsWhat: ObjectType) {
+		def create(resref: String, where: Location): G =
+			create(resref, where, false, "")
+		def create(resref: String, where: Location, useAnimation: Boolean, newTag: String): G =
+			G[G](R.proxy.createObject(createsWhat, resref, where, useAnimation, newTag))
+	}
+
 	object G {
 		private val log = Kobold.logger()
 

@@ -2,7 +2,10 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
-	object Item
+	object Item extends GFactory[Item](ObjectType.Item) {
+		def create(resref: String, on: G, newTag: String, stacksize: Int) =
+			G[G](R.proxy.createItemOnObject(resref, on, stacksize, newTag))
+	}
 
 	class Item (wrapped: NWObject) extends G(wrapped)
 			with Position with Inventory {
