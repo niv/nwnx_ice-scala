@@ -75,27 +75,9 @@ class LocalVectorMap(parent: G) {
 
 class LocalLocationMap(parent: G) {
 	def apply(key: String): Location =
-		G[G](R.proxy.getLocalObject(parent, "_ice_lo_" + key + "_o")) match {
-			case l: Area => Location(l,
-				Vector(R.proxy.getLocalFloat(parent, "_ice_lo_" + key + "_x"),
-					R.proxy.getLocalFloat(parent, "_ice_lo_" + key + "_y"),
-					R.proxy.getLocalFloat(parent, "_ice_lo_" + key + "_z")),
-				R.proxy.getLocalFloat(parent, "_ice_lo_" + key + "_f")
-			)
-			case _ => InvalidLocation()
-		}
-	def update(key: String, value: Location) {
-		R.proxy.setLocalObject(parent, "_ice_lo_" + key + "_o", value.area)
-		R.proxy.setLocalFloat(parent, "_ice_lo_" + key + "_x", value.position.x)
-		R.proxy.setLocalFloat(parent, "_ice_lo_" + key + "_y", value.position.y)
-		R.proxy.setLocalFloat(parent, "_ice_lo_" + key + "_z", value.position.z)
-		R.proxy.setLocalFloat(parent, "_ice_lo_" + key + "_f", value.facing)
-	}
-	def -=(key: String) {
-		R.proxy.deleteLocalObject(parent, "_ice_lo_" + key + "_o")
-		R.proxy.deleteLocalFloat(parent, "_ice_lo_" + key + "_x")
-		R.proxy.deleteLocalFloat(parent, "_ice_lo_" + key + "_y")
-		R.proxy.deleteLocalFloat(parent, "_ice_lo_" + key + "_z")
-		R.proxy.deleteLocalFloat(parent, "_ice_lo_" + key + "_f")
-	}
+		R.proxy.getLocalLocation(parent, key)
+	def update(key: String, value: Location) =
+		R.proxy.setLocalLocation(parent, key, value)
+	def -=(key: String) =
+		R.proxy.deleteLocalLocation(parent, key)
 }
