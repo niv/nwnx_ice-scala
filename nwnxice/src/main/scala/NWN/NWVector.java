@@ -13,17 +13,17 @@ package NWN;
 
 public final class NWVector implements java.lang.Cloneable, java.io.Serializable
 {
-    public double x;
+    public float x;
 
-    public double y;
+    public float y;
 
-    public double z;
+    public float z;
 
     public NWVector()
     {
     }
 
-    public NWVector(double x, double y, double z)
+    public NWVector(float x, float y, float z)
     {
         this.x = x;
         this.y = y;
@@ -71,9 +71,9 @@ public final class NWVector implements java.lang.Cloneable, java.io.Serializable
     hashCode()
     {
         int __h = 0;
-        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(x);
-        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(y);
-        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(z);
+        __h = 5 * __h + java.lang.Float.floatToIntBits(x);
+        __h = 5 * __h + java.lang.Float.floatToIntBits(y);
+        __h = 5 * __h + java.lang.Float.floatToIntBits(z);
         return __h;
     }
 
@@ -95,16 +95,16 @@ public final class NWVector implements java.lang.Cloneable, java.io.Serializable
     public void
     __write(IceInternal.BasicStream __os)
     {
-        __os.writeDouble(x);
-        __os.writeDouble(y);
-        __os.writeDouble(z);
+        __os.writeFloat(x);
+        __os.writeFloat(y);
+        __os.writeFloat(z);
     }
 
     public void
     __read(IceInternal.BasicStream __is)
     {
-        x = __is.readDouble();
-        y = __is.readDouble();
-        z = __is.readDouble();
+        x = __is.readFloat();
+        y = __is.readFloat();
+        z = __is.readFloat();
     }
 }

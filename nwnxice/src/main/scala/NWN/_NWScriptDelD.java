@@ -770,7 +770,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    actionForceFollowObject(final NWObject oFollow, final double fFollowDistance, java.util.Map<String, String> __ctx)
+    actionForceFollowObject(final NWObject oFollow, final float fFollowDistance, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -833,7 +833,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    actionForceMoveToLocation(final NWLocation lDestination, final boolean bRun, final double fTimeout, java.util.Map<String, String> __ctx)
+    actionForceMoveToLocation(final NWLocation lDestination, final boolean bRun, final float fTimeout, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -896,7 +896,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    actionForceMoveToObject(final NWObject oMoveTo, final boolean bRun, final double fRange, final double fTimeout, java.util.Map<String, String> __ctx)
+    actionForceMoveToObject(final NWObject oMoveTo, final boolean bRun, final float fRange, final float fTimeout, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -1274,7 +1274,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    actionMoveAwayFromLocation(final NWLocation lMoveAwayFrom, final boolean bRun, final double fMoveAwayRange, java.util.Map<String, String> __ctx)
+    actionMoveAwayFromLocation(final NWLocation lMoveAwayFrom, final boolean bRun, final float fMoveAwayRange, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -1337,7 +1337,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    actionMoveAwayFromObject(final NWObject oFleeFrom, final boolean bRun, final double fMoveAwayRange, java.util.Map<String, String> __ctx)
+    actionMoveAwayFromObject(final NWObject oFleeFrom, final boolean bRun, final float fMoveAwayRange, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -1463,7 +1463,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    actionMoveToObject(final NWObject oMoveTo, final boolean bRun, final double fRange, java.util.Map<String, String> __ctx)
+    actionMoveToObject(final NWObject oMoveTo, final boolean bRun, final float fRange, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -1715,7 +1715,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    actionPlayAnimation(final int nAnimation, final double fSpeed, final double fDurationSeconds, java.util.Map<String, String> __ctx)
+    actionPlayAnimation(final int nAnimation, final float fSpeed, final float fDurationSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -2597,7 +2597,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    actionWait(final double fSeconds, java.util.Map<String, String> __ctx)
+    actionWait(final float fSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -2786,7 +2786,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    addItemProperty(final DurationType tDurationType, final NWItemProperty ipProperty, final NWObject oItem, final double fDuration, java.util.Map<String, String> __ctx)
+    addItemProperty(final DurationType tDurationType, final NWItemProperty ipProperty, final NWObject oItem, final float fDuration, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidItemPropertyException,
                NotInContextException
@@ -3502,7 +3502,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWObject[]
-    allInShape(final ShapeType tShapeType, final double fSize, final NWLocation lTarget, final boolean bLineOfSight, final ObjectType tObjectType, final NWVector vOrigin, java.util.Map<String, String> __ctx)
+    allInShape(final ShapeType tShapeType, final float fSize, final NWLocation lTarget, final boolean bLineOfSight, final ObjectType tObjectType, final NWVector vOrigin, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -4078,7 +4078,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWVector
-    angleToVector(final double fAngle, java.util.Map<String, String> __ctx)
+    angleToVector(final float fAngle, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -4144,7 +4144,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    applyEffectAtLocation(final DurationType tDurationType, final NWEffect eEffect, final NWLocation lLocation, final double fDuration, java.util.Map<String, String> __ctx)
+    applyEffectAtLocation(final DurationType tDurationType, final NWEffect eEffect, final NWLocation lLocation, final float fDuration, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException,
                NotInContextException
@@ -4212,7 +4212,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    applyEffectToObject(final DurationType tDurationType, final NWEffect eEffect, final NWObject oTarget, final double fDuration, java.util.Map<String, String> __ctx)
+    applyEffectToObject(final DurationType tDurationType, final NWEffect eEffect, final NWObject oTarget, final float fDuration, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException,
                NotInContextException
@@ -5170,7 +5170,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWObject
-    createTrapAtLocation(final TrapType tTrapType, final NWLocation lLocation, final double fSize, final String sTag, final StandardFaction tStandardFaction, final String sOnDisarmScript, final String sOnTrapTriggeredScript, java.util.Map<String, String> __ctx)
+    createTrapAtLocation(final TrapType tTrapType, final NWLocation lLocation, final float fSize, final String sTag, final StandardFaction tStandardFaction, final String sOnDisarmScript, final String sOnTrapTriggeredScript, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -5299,7 +5299,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    dayToNight(final NWObject oPlayer, final double fTransitionTime, java.util.Map<String, String> __ctx)
+    dayToNight(final NWObject oPlayer, final float fTransitionTime, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -5979,7 +5979,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    destroyObject(final NWObject oDestroy, final double fDelay, java.util.Map<String, String> __ctx)
+    destroyObject(final NWObject oDestroy, final float fDelay, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -9000,7 +9000,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWEffect
-    effectHitPointChangeWhenDying(final double fHitPointChangePerRound, java.util.Map<String, String> __ctx)
+    effectHitPointChangeWhenDying(final float fHitPointChangePerRound, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -9929,7 +9929,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWEffect
-    effectRegenerate(final int nAmount, final double fIntervalSeconds, java.util.Map<String, String> __ctx)
+    effectRegenerate(final int nAmount, final float fIntervalSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -11051,7 +11051,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public NWEffect
-    effectSummonCreature(final String sCreatureResref, final int nVisualEffectId, final double fDelaySeconds, final boolean bUseAppearAnimation, java.util.Map<String, String> __ctx)
+    effectSummonCreature(final String sCreatureResref, final int nVisualEffectId, final float fDelaySeconds, final boolean bUseAppearAnimation, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -12097,7 +12097,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    fadeFromBlack(final NWObject oCreature, final double fSpeed, java.util.Map<String, String> __ctx)
+    fadeFromBlack(final NWObject oCreature, final float fSpeed, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -12160,7 +12160,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    fadeToBlack(final NWObject oCreature, final double fSpeed, java.util.Map<String, String> __ctx)
+    fadeToBlack(final NWObject oCreature, final float fSpeed, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -14259,14 +14259,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getCampaignFloat(final String sCampaignName, final String sVarName, final NWObject oPlayer, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getCampaignFloat", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -14655,14 +14655,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getChallengeRating(final NWObject oCreature, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getChallengeRating", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -15447,14 +15447,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getCutsceneCameraMoveRate(final NWObject oCreature, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getCutsceneCameraMoveRate", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -15909,14 +15909,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getDialogSoundLength(final int nStrRef, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getDialogSoundLength", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -15975,14 +15975,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getDistanceBetween(final NWObject oObjectA, final NWObject oObjectB, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getDistanceBetween", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -16041,14 +16041,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getDistanceBetweenLocations(final NWLocation lLocationA, final NWLocation lLocationB, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getDistanceBetweenLocations", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -16107,14 +16107,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getDistanceToObject(final NWObject oObject, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getDistanceToObject", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -16310,14 +16310,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getEffectDuration(final NWEffect e, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getEffectDuration", Ice.OperationMode.Normal, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -17269,14 +17269,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getFacing(final NWObject oTarget, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getFacing", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -23348,14 +23348,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getItemPropertyDuration(final NWItemProperty e, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getItemPropertyDuration", Ice.OperationMode.Normal, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -26414,14 +26414,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getLocalFloat(final NWObject oObject, final String sVarName, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getLocalFloat", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -31892,14 +31892,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     getStrRefSoundDuration(final int nStrRef, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "getStrRefSoundDuration", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -34447,14 +34447,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     hoursToSeconds(final int nHours, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "hoursToSeconds", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -41077,7 +41077,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    nightToDay(final NWObject oPlayer, final double fTransitionTime, java.util.Map<String, String> __ctx)
+    nightToDay(final NWObject oPlayer, final float fTransitionTime, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -41266,7 +41266,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    playAnimation(final int nAnimation, final double fSpeed, final double fSeconds, java.util.Map<String, String> __ctx)
+    playAnimation(final int nAnimation, final float fSpeed, final float fSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -42534,14 +42534,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     roundsToSeconds(final int nRounds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "roundsToSeconds", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -43168,7 +43168,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    setCameraFacing(final double fDirection, final double fDistance, final double fPitch, final int nTransitionType, java.util.Map<String, String> __ctx)
+    setCameraFacing(final float fDirection, final float fDistance, final float fPitch, final int nTransitionType, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -43231,7 +43231,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    setCameraHeight(final NWObject oPlayer, final double fHeight, java.util.Map<String, String> __ctx)
+    setCameraHeight(final NWObject oPlayer, final float fHeight, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -43357,7 +43357,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    setCampaignFloat(final String sCampaignName, final String sVarName, final double flFloat, final NWObject oPlayer, java.util.Map<String, String> __ctx)
+    setCampaignFloat(final String sCampaignName, final String sVarName, final float flFloat, final NWObject oPlayer, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -44113,7 +44113,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    setCutsceneCameraMoveRate(final NWObject oCreature, final double fRate, java.util.Map<String, String> __ctx)
+    setCutsceneCameraMoveRate(final NWObject oCreature, final float fRate, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -44997,7 +44997,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    setFacing(final double fDirection, java.util.Map<String, String> __ctx)
+    setFacing(final float fDirection, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -45690,7 +45690,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    setIsTemporaryEnemy(final NWObject oTarget, final NWObject oSource, final boolean bDecays, final double fDurationInSeconds, java.util.Map<String, String> __ctx)
+    setIsTemporaryEnemy(final NWObject oTarget, final NWObject oSource, final boolean bDecays, final float fDurationInSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -45753,7 +45753,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    setIsTemporaryFriend(final NWObject oTarget, final NWObject oSource, final boolean bDecays, final double fDurationInSeconds, java.util.Map<String, String> __ctx)
+    setIsTemporaryFriend(final NWObject oTarget, final NWObject oSource, final boolean bDecays, final float fDurationInSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -45816,7 +45816,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    setIsTemporaryNeutral(final NWObject oTarget, final NWObject oSource, final boolean bDecays, final double fDurationInSeconds, java.util.Map<String, String> __ctx)
+    setIsTemporaryNeutral(final NWObject oTarget, final NWObject oSource, final boolean bDecays, final float fDurationInSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -46325,7 +46325,7 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
     }
 
     public void
-    setLocalFloat(final NWObject oObject, final String sVarName, final double fValue, java.util.Map<String, String> __ctx)
+    setLocalFloat(final NWObject oObject, final String sVarName, final float fValue, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
@@ -50754,14 +50754,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     turnsToSeconds(final int nTurns, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "turnsToSeconds", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -50883,14 +50883,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         }
     }
 
-    public double
+    public float
     vectorMagnitude(final NWVector vVector, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "vectorMagnitude", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {
@@ -51015,14 +51015,14 @@ public final class _NWScriptDelD extends Ice._ObjectDelD implements _NWScriptDel
         return __result.value;
     }
 
-    public double
+    public float
     vectorToAngle(final NWVector vVector, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "vectorToAngle", Ice.OperationMode.Idempotent, __ctx);
-        final Ice.DoubleHolder __result = new Ice.DoubleHolder();
+        final Ice.FloatHolder __result = new Ice.FloatHolder();
         IceInternal.Direct __direct = null;
         try
         {

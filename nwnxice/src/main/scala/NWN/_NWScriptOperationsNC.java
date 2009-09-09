@@ -32,10 +32,10 @@ public interface _NWScriptOperationsNC
     void setEffectTrueType(NWEffect e, EffectTrueType t)
         throws InvalidItemPropertyException;
 
-    double getEffectDuration(NWEffect e)
+    float getEffectDuration(NWEffect e)
         throws InvalidEffectException;
 
-    double getItemPropertyDuration(NWItemProperty e)
+    float getItemPropertyDuration(NWItemProperty e)
         throws InvalidEffectException;
 
     void setDebugLogging(boolean state);
@@ -74,7 +74,7 @@ public interface _NWScriptOperationsNC
     NWItemProperty[] allItemProperties(NWObject item)
         throws NotInContextException;
 
-    NWObject[] allInShape(ShapeType tShapeType, double fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin)
+    NWObject[] allInShape(ShapeType tShapeType, float fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin)
         throws NotInContextException;
 
     NWObject[] allInFaction(NWObject memberOf, boolean bPCOnly)
@@ -132,13 +132,13 @@ public interface _NWScriptOperationsNC
     void actionExamine(NWObject oExamine)
         throws NotInContextException;
 
-    void actionForceFollowObject(NWObject oFollow, double fFollowDistance)
+    void actionForceFollowObject(NWObject oFollow, float fFollowDistance)
         throws NotInContextException;
 
-    void actionForceMoveToLocation(NWLocation lDestination, boolean bRun, double fTimeout)
+    void actionForceMoveToLocation(NWLocation lDestination, boolean bRun, float fTimeout)
         throws NotInContextException;
 
-    void actionForceMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, double fTimeout)
+    void actionForceMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, float fTimeout)
         throws NotInContextException;
 
     void actionGiveItem(NWObject oItem, NWObject oGiveTo)
@@ -156,16 +156,16 @@ public interface _NWScriptOperationsNC
     void actionLockObject(NWObject oTarget)
         throws NotInContextException;
 
-    void actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, double fMoveAwayRange)
+    void actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, float fMoveAwayRange)
         throws NotInContextException;
 
-    void actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, double fMoveAwayRange)
+    void actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, float fMoveAwayRange)
         throws NotInContextException;
 
     void actionMoveToLocation(NWLocation lDestination, boolean bRun)
         throws NotInContextException;
 
-    void actionMoveToObject(NWObject oMoveTo, boolean bRun, double fRange)
+    void actionMoveToObject(NWObject oMoveTo, boolean bRun, float fRange)
         throws NotInContextException;
 
     void actionOpenDoor(NWObject oDoor)
@@ -177,7 +177,7 @@ public interface _NWScriptOperationsNC
     void actionPickUpItem(NWObject oItem)
         throws NotInContextException;
 
-    void actionPlayAnimation(int nAnimation, double fSpeed, double fDurationSeconds)
+    void actionPlayAnimation(int nAnimation, float fSpeed, float fDurationSeconds)
         throws NotInContextException;
 
     void actionPutDownItem(NWObject oItem)
@@ -219,7 +219,7 @@ public interface _NWScriptOperationsNC
     void actionUseSkill(int nSkill, NWObject oTarget, int nSubSkill, NWObject oItemUsed)
         throws NotInContextException;
 
-    void actionWait(double fSeconds)
+    void actionWait(float fSeconds)
         throws NotInContextException;
 
     void activatePortal(NWObject oTarget, String sIPaddress, String sPassword, String sWaypointTag, boolean bSeemless)
@@ -228,7 +228,7 @@ public interface _NWScriptOperationsNC
     void addHenchman(NWObject oMaster, NWObject oHenchman)
         throws NotInContextException;
 
-    void addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, double fDuration)
+    void addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, float fDuration)
         throws InvalidItemPropertyException,
                NotInContextException;
 
@@ -262,14 +262,14 @@ public interface _NWScriptOperationsNC
     void ambientSoundStop(NWObject oArea)
         throws NotInContextException;
 
-    NWVector angleToVector(double fAngle)
+    NWVector angleToVector(float fAngle)
         throws NotInContextException;
 
-    void applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, double fDuration)
+    void applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, float fDuration)
         throws InvalidEffectException,
                NotInContextException;
 
-    void applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, double fDuration)
+    void applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, float fDuration)
         throws InvalidEffectException,
                NotInContextException;
 
@@ -312,13 +312,13 @@ public interface _NWScriptOperationsNC
     NWObject createObject(ObjectType tObjectType, String sTemplate, NWLocation lLocation, boolean bUseAppearAnimation, String sNewTag)
         throws NotInContextException;
 
-    NWObject createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, double fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript)
+    NWObject createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, float fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript)
         throws NotInContextException;
 
     void createTrapOnObject(TrapType tTrapType, NWObject oObject, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript)
         throws NotInContextException;
 
-    void dayToNight(NWObject oPlayer, double fTransitionTime)
+    void dayToNight(NWObject oPlayer, float fTransitionTime)
         throws NotInContextException;
 
     void decrementRemainingFeatUses(NWObject oCreature, int nFeat)
@@ -348,7 +348,7 @@ public interface _NWScriptOperationsNC
     void destroyCampaignDatabase(String sCampaignName)
         throws NotInContextException;
 
-    void destroyObject(NWObject oDestroy, double fDelay)
+    void destroyObject(NWObject oDestroy, float fDelay)
         throws NotInContextException;
 
     void doDoorAction(NWObject oTargetDoor, DoorAction tDoorAction)
@@ -486,7 +486,7 @@ public interface _NWScriptOperationsNC
     NWEffect effectHeal(int nDamageToHeal)
         throws NotInContextException;
 
-    NWEffect effectHitPointChangeWhenDying(double fHitPointChangePerRound)
+    NWEffect effectHitPointChangeWhenDying(float fHitPointChangePerRound)
         throws NotInContextException;
 
     NWEffect effectImmunity(ImmunityType tImmunityType)
@@ -529,7 +529,7 @@ public interface _NWScriptOperationsNC
     NWEffect effectPolymorph(int nPolymorphSelection, boolean bLocked)
         throws NotInContextException;
 
-    NWEffect effectRegenerate(int nAmount, double fIntervalSeconds)
+    NWEffect effectRegenerate(int nAmount, float fIntervalSeconds)
         throws NotInContextException;
 
     NWEffect effectResurrection()
@@ -580,7 +580,7 @@ public interface _NWScriptOperationsNC
     NWEffect effectStunned()
         throws NotInContextException;
 
-    NWEffect effectSummonCreature(String sCreatureResref, int nVisualEffectId, double fDelaySeconds, boolean bUseAppearAnimation)
+    NWEffect effectSummonCreature(String sCreatureResref, int nVisualEffectId, float fDelaySeconds, boolean bUseAppearAnimation)
         throws NotInContextException;
 
     NWEffect effectSwarm(boolean bLooping, String sCreatureTemplate1, String sCreatureTemplate2, String sCreatureTemplate3, String sCreatureTemplate4)
@@ -629,10 +629,10 @@ public interface _NWScriptOperationsNC
         throws InvalidEffectException,
                NotInContextException;
 
-    void fadeFromBlack(NWObject oCreature, double fSpeed)
+    void fadeFromBlack(NWObject oCreature, float fSpeed)
         throws NotInContextException;
 
-    void fadeToBlack(NWObject oCreature, double fSpeed)
+    void fadeToBlack(NWObject oCreature, float fSpeed)
         throws NotInContextException;
 
     void floatingTextStrRefOnCreature(int nStrRefToDisplay, NWObject oCreatureToFloatAbove, boolean bBroadcastToFaction)
@@ -728,7 +728,7 @@ public interface _NWScriptOperationsNC
     int getCalendarYear()
         throws NotInContextException;
 
-    double getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer)
+    float getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer)
         throws NotInContextException;
 
     int getCampaignInt(String sCampaignName, String sVarName, NWObject oPlayer)
@@ -746,7 +746,7 @@ public interface _NWScriptOperationsNC
     int getCasterLevel(NWObject oCreature)
         throws NotInContextException;
 
-    double getChallengeRating(NWObject oCreature)
+    float getChallengeRating(NWObject oCreature)
         throws NotInContextException;
 
     int getClassByPosition(int nClassPosition, NWObject oCreature)
@@ -782,7 +782,7 @@ public interface _NWScriptOperationsNC
     int getCurrentHitPoints(NWObject oObject)
         throws NotInContextException;
 
-    double getCutsceneCameraMoveRate(NWObject oCreature)
+    float getCutsceneCameraMoveRate(NWObject oCreature)
         throws NotInContextException;
 
     boolean getCutsceneMode(NWObject oCreature)
@@ -803,16 +803,16 @@ public interface _NWScriptOperationsNC
     int getDetectMode(NWObject oCreature)
         throws NotInContextException;
 
-    double getDialogSoundLength(int nStrRef)
+    float getDialogSoundLength(int nStrRef)
         throws NotInContextException;
 
-    double getDistanceBetween(NWObject oObjectA, NWObject oObjectB)
+    float getDistanceBetween(NWObject oObjectA, NWObject oObjectB)
         throws NotInContextException;
 
-    double getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB)
+    float getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB)
         throws NotInContextException;
 
-    double getDistanceToObject(NWObject oObject)
+    float getDistanceToObject(NWObject oObject)
         throws NotInContextException;
 
     boolean getDroppableFlag(NWObject oItem)
@@ -856,7 +856,7 @@ public interface _NWScriptOperationsNC
     NWObject getExitingObject()
         throws NotInContextException;
 
-    double getFacing(NWObject oTarget)
+    float getFacing(NWObject oTarget)
         throws NotInContextException;
 
     int getFactionAverageGoodEvilAlignment(NWObject oFactionMember)
@@ -1270,7 +1270,7 @@ public interface _NWScriptOperationsNC
     int getListenPatternNumber()
         throws NotInContextException;
 
-    double getLocalFloat(NWObject oObject, String sVarName)
+    float getLocalFloat(NWObject oObject, String sVarName)
         throws NotInContextException;
 
     int getLocalInt(NWObject oObject, String sVarName)
@@ -1516,7 +1516,7 @@ public interface _NWScriptOperationsNC
     int getStoreMaxBuyPrice(NWObject oidStore)
         throws NotInContextException;
 
-    double getStrRefSoundDuration(int nStrRef)
+    float getStrRefSoundDuration(int nStrRef)
         throws NotInContextException;
 
     String getStringByStrRef(int nStrRef, Gender tGender)
@@ -1630,7 +1630,7 @@ public interface _NWScriptOperationsNC
     void giveXPToCreature(NWObject oCreature, int nXpAmount)
         throws NotInContextException;
 
-    double hoursToSeconds(int nHours)
+    float hoursToSeconds(int nHours)
         throws NotInContextException;
 
     void incrementRemainingFeatUses(NWObject oCreature, int nFeat)
@@ -1934,7 +1934,7 @@ public interface _NWScriptOperationsNC
     void musicBattleStop(NWObject oArea)
         throws NotInContextException;
 
-    void nightToDay(NWObject oPlayer, double fTransitionTime)
+    void nightToDay(NWObject oPlayer, float fTransitionTime)
         throws NotInContextException;
 
     void openInventory(NWObject oCreature, NWObject oPlayer)
@@ -1943,7 +1943,7 @@ public interface _NWScriptOperationsNC
     void openStore(NWObject oStore, NWObject oPC, int nBonusMarkUp, int nBonusMarkDown)
         throws NotInContextException;
 
-    void playAnimation(int nAnimation, double fSpeed, double fSeconds)
+    void playAnimation(int nAnimation, float fSpeed, float fSeconds)
         throws NotInContextException;
 
     void playSound(String sSoundName)
@@ -2002,7 +2002,7 @@ public interface _NWScriptOperationsNC
     NWObject retrieveCampaignObject(String sCampaignName, String sVarName, NWLocation locLocation, NWObject oOwner, NWObject oPlayer)
         throws NotInContextException;
 
-    double roundsToSeconds(int nRounds)
+    float roundsToSeconds(int nRounds)
         throws NotInContextException;
 
     void sendMessageToAllDMs(String szMessage)
@@ -2032,16 +2032,16 @@ public interface _NWScriptOperationsNC
     void setCalendar(int nYear, int nMonth, int nDay)
         throws NotInContextException;
 
-    void setCameraFacing(double fDirection, double fDistance, double fPitch, int nTransitionType)
+    void setCameraFacing(float fDirection, float fDistance, float fPitch, int nTransitionType)
         throws NotInContextException;
 
-    void setCameraHeight(NWObject oPlayer, double fHeight)
+    void setCameraHeight(NWObject oPlayer, float fHeight)
         throws NotInContextException;
 
     void setCameraMode(NWObject oPlayer, int nCameraMode)
         throws NotInContextException;
 
-    void setCampaignFloat(String sCampaignName, String sVarName, double flFloat, NWObject oPlayer)
+    void setCampaignFloat(String sCampaignName, String sVarName, float flFloat, NWObject oPlayer)
         throws NotInContextException;
 
     void setCampaignInt(String sCampaignName, String sVarName, int nInt, NWObject oPlayer)
@@ -2077,7 +2077,7 @@ public interface _NWScriptOperationsNC
     void setCustomToken(int nCustomTokenNumber, String sTokenValue)
         throws NotInContextException;
 
-    void setCutsceneCameraMoveRate(NWObject oCreature, double fRate)
+    void setCutsceneCameraMoveRate(NWObject oCreature, float fRate)
         throws NotInContextException;
 
     void setCutsceneMode(NWObject oCreature, boolean bInCutscene, boolean bLeftClickingEnabled)
@@ -2104,7 +2104,7 @@ public interface _NWScriptOperationsNC
     void setEncounterSpawnsMax(int nNewValue, NWObject oEncounter)
         throws NotInContextException;
 
-    void setFacing(double fDirection)
+    void setFacing(float fDirection)
         throws NotInContextException;
 
     void setFacingPoint(NWVector vTarget)
@@ -2137,13 +2137,13 @@ public interface _NWScriptOperationsNC
     void setIsDestroyable(boolean bDestroyable, boolean bRaiseable, boolean bSelectableWhenDead)
         throws NotInContextException;
 
-    void setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
+    void setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
         throws NotInContextException;
 
-    void setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
+    void setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
         throws NotInContextException;
 
-    void setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
+    void setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
         throws NotInContextException;
 
     void setItemCharges(NWObject oItem, int nCharges)
@@ -2164,7 +2164,7 @@ public interface _NWScriptOperationsNC
     void setListening(NWObject oObject, boolean bValue)
         throws NotInContextException;
 
-    void setLocalFloat(NWObject oObject, String sVarName, double fValue)
+    void setLocalFloat(NWObject oObject, String sVarName, float fValue)
         throws NotInContextException;
 
     void setLocalInt(NWObject oObject, String sVarName, int nValue)
@@ -2375,19 +2375,19 @@ public interface _NWScriptOperationsNC
     AttackResult touchAttackRanged(NWObject oTarget, boolean bDisplayFeedback)
         throws NotInContextException;
 
-    double turnsToSeconds(int nTurns)
+    float turnsToSeconds(int nTurns)
         throws NotInContextException;
 
     void unpossessFamiliar(NWObject oCreature)
         throws NotInContextException;
 
-    double vectorMagnitude(NWVector vVector)
+    float vectorMagnitude(NWVector vVector)
         throws NotInContextException;
 
     NWVector vectorNormalize(NWVector vVector)
         throws NotInContextException;
 
-    double vectorToAngle(NWVector vVector)
+    float vectorToAngle(NWVector vVector)
         throws NotInContextException;
 
     NWEffect versusAlignmentEffect(NWEffect eEffect, int nLawChaos, int nGoodEvil)

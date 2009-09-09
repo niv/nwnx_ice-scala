@@ -37,11 +37,11 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                InvalidItemPropertyException;
 
-    double getEffectDuration(NWEffect e, java.util.Map<String, String> __ctx)
+    float getEffectDuration(NWEffect e, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException;
 
-    double getItemPropertyDuration(NWItemProperty e, java.util.Map<String, String> __ctx)
+    float getItemPropertyDuration(NWItemProperty e, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException;
 
@@ -95,7 +95,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    NWObject[] allInShape(ShapeType tShapeType, double fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin, java.util.Map<String, String> __ctx)
+    NWObject[] allInShape(ShapeType tShapeType, float fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -171,15 +171,15 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void actionForceFollowObject(NWObject oFollow, double fFollowDistance, java.util.Map<String, String> __ctx)
+    void actionForceFollowObject(NWObject oFollow, float fFollowDistance, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void actionForceMoveToLocation(NWLocation lDestination, boolean bRun, double fTimeout, java.util.Map<String, String> __ctx)
+    void actionForceMoveToLocation(NWLocation lDestination, boolean bRun, float fTimeout, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void actionForceMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, double fTimeout, java.util.Map<String, String> __ctx)
+    void actionForceMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, float fTimeout, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -203,11 +203,11 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, double fMoveAwayRange, java.util.Map<String, String> __ctx)
+    void actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, float fMoveAwayRange, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, double fMoveAwayRange, java.util.Map<String, String> __ctx)
+    void actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, float fMoveAwayRange, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -215,7 +215,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void actionMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, java.util.Map<String, String> __ctx)
+    void actionMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -231,7 +231,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void actionPlayAnimation(int nAnimation, double fSpeed, double fDurationSeconds, java.util.Map<String, String> __ctx)
+    void actionPlayAnimation(int nAnimation, float fSpeed, float fDurationSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -287,7 +287,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void actionWait(double fSeconds, java.util.Map<String, String> __ctx)
+    void actionWait(float fSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -299,7 +299,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, double fDuration, java.util.Map<String, String> __ctx)
+    void addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, float fDuration, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidItemPropertyException,
                NotInContextException;
@@ -344,16 +344,16 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    NWVector angleToVector(double fAngle, java.util.Map<String, String> __ctx)
+    NWVector angleToVector(float fAngle, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, double fDuration, java.util.Map<String, String> __ctx)
+    void applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, float fDuration, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException,
                NotInContextException;
 
-    void applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, double fDuration, java.util.Map<String, String> __ctx)
+    void applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, float fDuration, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                InvalidEffectException,
                NotInContextException;
@@ -410,7 +410,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    NWObject createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, double fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, java.util.Map<String, String> __ctx)
+    NWObject createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, float fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -418,7 +418,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void dayToNight(NWObject oPlayer, double fTransitionTime, java.util.Map<String, String> __ctx)
+    void dayToNight(NWObject oPlayer, float fTransitionTime, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -458,7 +458,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void destroyObject(NWObject oDestroy, double fDelay, java.util.Map<String, String> __ctx)
+    void destroyObject(NWObject oDestroy, float fDelay, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -642,7 +642,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    NWEffect effectHitPointChangeWhenDying(double fHitPointChangePerRound, java.util.Map<String, String> __ctx)
+    NWEffect effectHitPointChangeWhenDying(float fHitPointChangePerRound, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -699,7 +699,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    NWEffect effectRegenerate(int nAmount, double fIntervalSeconds, java.util.Map<String, String> __ctx)
+    NWEffect effectRegenerate(int nAmount, float fIntervalSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -767,7 +767,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    NWEffect effectSummonCreature(String sCreatureResref, int nVisualEffectId, double fDelaySeconds, boolean bUseAppearAnimation, java.util.Map<String, String> __ctx)
+    NWEffect effectSummonCreature(String sCreatureResref, int nVisualEffectId, float fDelaySeconds, boolean bUseAppearAnimation, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -832,11 +832,11 @@ public interface _NWScriptDel extends Ice._ObjectDel
                InvalidEffectException,
                NotInContextException;
 
-    void fadeFromBlack(NWObject oCreature, double fSpeed, java.util.Map<String, String> __ctx)
+    void fadeFromBlack(NWObject oCreature, float fSpeed, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void fadeToBlack(NWObject oCreature, double fSpeed, java.util.Map<String, String> __ctx)
+    void fadeToBlack(NWObject oCreature, float fSpeed, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -964,7 +964,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer, java.util.Map<String, String> __ctx)
+    float getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -988,7 +988,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double getChallengeRating(NWObject oCreature, java.util.Map<String, String> __ctx)
+    float getChallengeRating(NWObject oCreature, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -1036,7 +1036,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double getCutsceneCameraMoveRate(NWObject oCreature, java.util.Map<String, String> __ctx)
+    float getCutsceneCameraMoveRate(NWObject oCreature, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -1064,19 +1064,19 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double getDialogSoundLength(int nStrRef, java.util.Map<String, String> __ctx)
+    float getDialogSoundLength(int nStrRef, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double getDistanceBetween(NWObject oObjectA, NWObject oObjectB, java.util.Map<String, String> __ctx)
+    float getDistanceBetween(NWObject oObjectA, NWObject oObjectB, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB, java.util.Map<String, String> __ctx)
+    float getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double getDistanceToObject(NWObject oObject, java.util.Map<String, String> __ctx)
+    float getDistanceToObject(NWObject oObject, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -1133,7 +1133,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double getFacing(NWObject oTarget, java.util.Map<String, String> __ctx)
+    float getFacing(NWObject oTarget, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -1682,7 +1682,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double getLocalFloat(NWObject oObject, String sVarName, java.util.Map<String, String> __ctx)
+    float getLocalFloat(NWObject oObject, String sVarName, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -2010,7 +2010,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double getStrRefSoundDuration(int nStrRef, java.util.Map<String, String> __ctx)
+    float getStrRefSoundDuration(int nStrRef, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -2162,7 +2162,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double hoursToSeconds(int nHours, java.util.Map<String, String> __ctx)
+    float hoursToSeconds(int nHours, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -2567,7 +2567,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void nightToDay(NWObject oPlayer, double fTransitionTime, java.util.Map<String, String> __ctx)
+    void nightToDay(NWObject oPlayer, float fTransitionTime, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -2579,7 +2579,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void playAnimation(int nAnimation, double fSpeed, double fSeconds, java.util.Map<String, String> __ctx)
+    void playAnimation(int nAnimation, float fSpeed, float fSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -2657,7 +2657,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double roundsToSeconds(int nRounds, java.util.Map<String, String> __ctx)
+    float roundsToSeconds(int nRounds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -2697,11 +2697,11 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void setCameraFacing(double fDirection, double fDistance, double fPitch, int nTransitionType, java.util.Map<String, String> __ctx)
+    void setCameraFacing(float fDirection, float fDistance, float fPitch, int nTransitionType, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void setCameraHeight(NWObject oPlayer, double fHeight, java.util.Map<String, String> __ctx)
+    void setCameraHeight(NWObject oPlayer, float fHeight, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -2709,7 +2709,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void setCampaignFloat(String sCampaignName, String sVarName, double flFloat, NWObject oPlayer, java.util.Map<String, String> __ctx)
+    void setCampaignFloat(String sCampaignName, String sVarName, float flFloat, NWObject oPlayer, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -2757,7 +2757,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void setCutsceneCameraMoveRate(NWObject oCreature, double fRate, java.util.Map<String, String> __ctx)
+    void setCutsceneCameraMoveRate(NWObject oCreature, float fRate, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -2793,7 +2793,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void setFacing(double fDirection, java.util.Map<String, String> __ctx)
+    void setFacing(float fDirection, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -2837,15 +2837,15 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx)
+    void setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx)
+    void setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx)
+    void setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -2873,7 +2873,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    void setLocalFloat(NWObject oObject, String sVarName, double fValue, java.util.Map<String, String> __ctx)
+    void setLocalFloat(NWObject oObject, String sVarName, float fValue, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -3154,7 +3154,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double turnsToSeconds(int nTurns, java.util.Map<String, String> __ctx)
+    float turnsToSeconds(int nTurns, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -3162,7 +3162,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double vectorMagnitude(NWVector vVector, java.util.Map<String, String> __ctx)
+    float vectorMagnitude(NWVector vVector, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
@@ -3170,7 +3170,7 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
-    double vectorToAngle(NWVector vVector, java.util.Map<String, String> __ctx)
+    float vectorToAngle(NWVector vVector, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 

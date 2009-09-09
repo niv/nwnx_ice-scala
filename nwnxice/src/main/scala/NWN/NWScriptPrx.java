@@ -46,14 +46,14 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void setEffectTrueType(NWEffect e, EffectTrueType t, java.util.Map<String, String> __ctx)
         throws InvalidItemPropertyException;
 
-    public double getEffectDuration(NWEffect e)
+    public float getEffectDuration(NWEffect e)
         throws InvalidEffectException;
-    public double getEffectDuration(NWEffect e, java.util.Map<String, String> __ctx)
+    public float getEffectDuration(NWEffect e, java.util.Map<String, String> __ctx)
         throws InvalidEffectException;
 
-    public double getItemPropertyDuration(NWItemProperty e)
+    public float getItemPropertyDuration(NWItemProperty e)
         throws InvalidEffectException;
-    public double getItemPropertyDuration(NWItemProperty e, java.util.Map<String, String> __ctx)
+    public float getItemPropertyDuration(NWItemProperty e, java.util.Map<String, String> __ctx)
         throws InvalidEffectException;
 
     public void setDebugLogging(boolean state);
@@ -114,9 +114,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWItemProperty[] allItemProperties(NWObject item, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public NWObject[] allInShape(ShapeType tShapeType, double fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin)
+    public NWObject[] allInShape(ShapeType tShapeType, float fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin)
         throws NotInContextException;
-    public NWObject[] allInShape(ShapeType tShapeType, double fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin, java.util.Map<String, String> __ctx)
+    public NWObject[] allInShape(ShapeType tShapeType, float fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public NWObject[] allInFaction(NWObject memberOf, boolean bPCOnly)
@@ -212,19 +212,19 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void actionExamine(NWObject oExamine, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void actionForceFollowObject(NWObject oFollow, double fFollowDistance)
+    public void actionForceFollowObject(NWObject oFollow, float fFollowDistance)
         throws NotInContextException;
-    public void actionForceFollowObject(NWObject oFollow, double fFollowDistance, java.util.Map<String, String> __ctx)
-        throws NotInContextException;
-
-    public void actionForceMoveToLocation(NWLocation lDestination, boolean bRun, double fTimeout)
-        throws NotInContextException;
-    public void actionForceMoveToLocation(NWLocation lDestination, boolean bRun, double fTimeout, java.util.Map<String, String> __ctx)
+    public void actionForceFollowObject(NWObject oFollow, float fFollowDistance, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void actionForceMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, double fTimeout)
+    public void actionForceMoveToLocation(NWLocation lDestination, boolean bRun, float fTimeout)
         throws NotInContextException;
-    public void actionForceMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, double fTimeout, java.util.Map<String, String> __ctx)
+    public void actionForceMoveToLocation(NWLocation lDestination, boolean bRun, float fTimeout, java.util.Map<String, String> __ctx)
+        throws NotInContextException;
+
+    public void actionForceMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, float fTimeout)
+        throws NotInContextException;
+    public void actionForceMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, float fTimeout, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void actionGiveItem(NWObject oItem, NWObject oGiveTo)
@@ -252,14 +252,14 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void actionLockObject(NWObject oTarget, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, double fMoveAwayRange)
+    public void actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, float fMoveAwayRange)
         throws NotInContextException;
-    public void actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, double fMoveAwayRange, java.util.Map<String, String> __ctx)
+    public void actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, float fMoveAwayRange, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, double fMoveAwayRange)
+    public void actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, float fMoveAwayRange)
         throws NotInContextException;
-    public void actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, double fMoveAwayRange, java.util.Map<String, String> __ctx)
+    public void actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, float fMoveAwayRange, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void actionMoveToLocation(NWLocation lDestination, boolean bRun)
@@ -267,9 +267,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void actionMoveToLocation(NWLocation lDestination, boolean bRun, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void actionMoveToObject(NWObject oMoveTo, boolean bRun, double fRange)
+    public void actionMoveToObject(NWObject oMoveTo, boolean bRun, float fRange)
         throws NotInContextException;
-    public void actionMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, java.util.Map<String, String> __ctx)
+    public void actionMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void actionOpenDoor(NWObject oDoor)
@@ -287,9 +287,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void actionPickUpItem(NWObject oItem, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void actionPlayAnimation(int nAnimation, double fSpeed, double fDurationSeconds)
+    public void actionPlayAnimation(int nAnimation, float fSpeed, float fDurationSeconds)
         throws NotInContextException;
-    public void actionPlayAnimation(int nAnimation, double fSpeed, double fDurationSeconds, java.util.Map<String, String> __ctx)
+    public void actionPlayAnimation(int nAnimation, float fSpeed, float fDurationSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void actionPutDownItem(NWObject oItem)
@@ -357,9 +357,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void actionUseSkill(int nSkill, NWObject oTarget, int nSubSkill, NWObject oItemUsed, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void actionWait(double fSeconds)
+    public void actionWait(float fSeconds)
         throws NotInContextException;
-    public void actionWait(double fSeconds, java.util.Map<String, String> __ctx)
+    public void actionWait(float fSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void activatePortal(NWObject oTarget, String sIPaddress, String sPassword, String sWaypointTag, boolean bSeemless)
@@ -372,10 +372,10 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void addHenchman(NWObject oMaster, NWObject oHenchman, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, double fDuration)
+    public void addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, float fDuration)
         throws InvalidItemPropertyException,
                NotInContextException;
-    public void addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, double fDuration, java.util.Map<String, String> __ctx)
+    public void addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, float fDuration, java.util.Map<String, String> __ctx)
         throws InvalidItemPropertyException,
                NotInContextException;
 
@@ -429,22 +429,22 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void ambientSoundStop(NWObject oArea, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public NWVector angleToVector(double fAngle)
+    public NWVector angleToVector(float fAngle)
         throws NotInContextException;
-    public NWVector angleToVector(double fAngle, java.util.Map<String, String> __ctx)
+    public NWVector angleToVector(float fAngle, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, double fDuration)
+    public void applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, float fDuration)
         throws InvalidEffectException,
                NotInContextException;
-    public void applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, double fDuration, java.util.Map<String, String> __ctx)
+    public void applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, float fDuration, java.util.Map<String, String> __ctx)
         throws InvalidEffectException,
                NotInContextException;
 
-    public void applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, double fDuration)
+    public void applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, float fDuration)
         throws InvalidEffectException,
                NotInContextException;
-    public void applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, double fDuration, java.util.Map<String, String> __ctx)
+    public void applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, float fDuration, java.util.Map<String, String> __ctx)
         throws InvalidEffectException,
                NotInContextException;
 
@@ -513,9 +513,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWObject createObject(ObjectType tObjectType, String sTemplate, NWLocation lLocation, boolean bUseAppearAnimation, String sNewTag, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public NWObject createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, double fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript)
+    public NWObject createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, float fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript)
         throws NotInContextException;
-    public NWObject createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, double fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, java.util.Map<String, String> __ctx)
+    public NWObject createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, float fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void createTrapOnObject(TrapType tTrapType, NWObject oObject, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript)
@@ -523,9 +523,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void createTrapOnObject(TrapType tTrapType, NWObject oObject, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void dayToNight(NWObject oPlayer, double fTransitionTime)
+    public void dayToNight(NWObject oPlayer, float fTransitionTime)
         throws NotInContextException;
-    public void dayToNight(NWObject oPlayer, double fTransitionTime, java.util.Map<String, String> __ctx)
+    public void dayToNight(NWObject oPlayer, float fTransitionTime, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void decrementRemainingFeatUses(NWObject oCreature, int nFeat)
@@ -573,9 +573,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void destroyCampaignDatabase(String sCampaignName, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void destroyObject(NWObject oDestroy, double fDelay)
+    public void destroyObject(NWObject oDestroy, float fDelay)
         throws NotInContextException;
-    public void destroyObject(NWObject oDestroy, double fDelay, java.util.Map<String, String> __ctx)
+    public void destroyObject(NWObject oDestroy, float fDelay, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void doDoorAction(NWObject oTargetDoor, DoorAction tDoorAction)
@@ -803,9 +803,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWEffect effectHeal(int nDamageToHeal, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public NWEffect effectHitPointChangeWhenDying(double fHitPointChangePerRound)
+    public NWEffect effectHitPointChangeWhenDying(float fHitPointChangePerRound)
         throws NotInContextException;
-    public NWEffect effectHitPointChangeWhenDying(double fHitPointChangePerRound, java.util.Map<String, String> __ctx)
+    public NWEffect effectHitPointChangeWhenDying(float fHitPointChangePerRound, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public NWEffect effectImmunity(ImmunityType tImmunityType)
@@ -875,9 +875,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWEffect effectPolymorph(int nPolymorphSelection, boolean bLocked, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public NWEffect effectRegenerate(int nAmount, double fIntervalSeconds)
+    public NWEffect effectRegenerate(int nAmount, float fIntervalSeconds)
         throws NotInContextException;
-    public NWEffect effectRegenerate(int nAmount, double fIntervalSeconds, java.util.Map<String, String> __ctx)
+    public NWEffect effectRegenerate(int nAmount, float fIntervalSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public NWEffect effectResurrection()
@@ -960,9 +960,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWEffect effectStunned(java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public NWEffect effectSummonCreature(String sCreatureResref, int nVisualEffectId, double fDelaySeconds, boolean bUseAppearAnimation)
+    public NWEffect effectSummonCreature(String sCreatureResref, int nVisualEffectId, float fDelaySeconds, boolean bUseAppearAnimation)
         throws NotInContextException;
-    public NWEffect effectSummonCreature(String sCreatureResref, int nVisualEffectId, double fDelaySeconds, boolean bUseAppearAnimation, java.util.Map<String, String> __ctx)
+    public NWEffect effectSummonCreature(String sCreatureResref, int nVisualEffectId, float fDelaySeconds, boolean bUseAppearAnimation, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public NWEffect effectSwarm(boolean bLooping, String sCreatureTemplate1, String sCreatureTemplate2, String sCreatureTemplate3, String sCreatureTemplate4)
@@ -1042,14 +1042,14 @@ public interface NWScriptPrx extends Ice.ObjectPrx
         throws InvalidEffectException,
                NotInContextException;
 
-    public void fadeFromBlack(NWObject oCreature, double fSpeed)
+    public void fadeFromBlack(NWObject oCreature, float fSpeed)
         throws NotInContextException;
-    public void fadeFromBlack(NWObject oCreature, double fSpeed, java.util.Map<String, String> __ctx)
+    public void fadeFromBlack(NWObject oCreature, float fSpeed, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void fadeToBlack(NWObject oCreature, double fSpeed)
+    public void fadeToBlack(NWObject oCreature, float fSpeed)
         throws NotInContextException;
-    public void fadeToBlack(NWObject oCreature, double fSpeed, java.util.Map<String, String> __ctx)
+    public void fadeToBlack(NWObject oCreature, float fSpeed, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void floatingTextStrRefOnCreature(int nStrRefToDisplay, NWObject oCreatureToFloatAbove, boolean bBroadcastToFaction)
@@ -1207,9 +1207,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public int getCalendarYear(java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer)
+    public float getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer)
         throws NotInContextException;
-    public double getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer, java.util.Map<String, String> __ctx)
+    public float getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public int getCampaignInt(String sCampaignName, String sVarName, NWObject oPlayer)
@@ -1237,9 +1237,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public int getCasterLevel(NWObject oCreature, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double getChallengeRating(NWObject oCreature)
+    public float getChallengeRating(NWObject oCreature)
         throws NotInContextException;
-    public double getChallengeRating(NWObject oCreature, java.util.Map<String, String> __ctx)
+    public float getChallengeRating(NWObject oCreature, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public int getClassByPosition(int nClassPosition, NWObject oCreature)
@@ -1297,9 +1297,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public int getCurrentHitPoints(NWObject oObject, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double getCutsceneCameraMoveRate(NWObject oCreature)
+    public float getCutsceneCameraMoveRate(NWObject oCreature)
         throws NotInContextException;
-    public double getCutsceneCameraMoveRate(NWObject oCreature, java.util.Map<String, String> __ctx)
+    public float getCutsceneCameraMoveRate(NWObject oCreature, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public boolean getCutsceneMode(NWObject oCreature)
@@ -1332,24 +1332,24 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public int getDetectMode(NWObject oCreature, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double getDialogSoundLength(int nStrRef)
+    public float getDialogSoundLength(int nStrRef)
         throws NotInContextException;
-    public double getDialogSoundLength(int nStrRef, java.util.Map<String, String> __ctx)
-        throws NotInContextException;
-
-    public double getDistanceBetween(NWObject oObjectA, NWObject oObjectB)
-        throws NotInContextException;
-    public double getDistanceBetween(NWObject oObjectA, NWObject oObjectB, java.util.Map<String, String> __ctx)
+    public float getDialogSoundLength(int nStrRef, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB)
+    public float getDistanceBetween(NWObject oObjectA, NWObject oObjectB)
         throws NotInContextException;
-    public double getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB, java.util.Map<String, String> __ctx)
+    public float getDistanceBetween(NWObject oObjectA, NWObject oObjectB, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double getDistanceToObject(NWObject oObject)
+    public float getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB)
         throws NotInContextException;
-    public double getDistanceToObject(NWObject oObject, java.util.Map<String, String> __ctx)
+    public float getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB, java.util.Map<String, String> __ctx)
+        throws NotInContextException;
+
+    public float getDistanceToObject(NWObject oObject)
+        throws NotInContextException;
+    public float getDistanceToObject(NWObject oObject, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public boolean getDroppableFlag(NWObject oItem)
@@ -1422,9 +1422,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWObject getExitingObject(java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double getFacing(NWObject oTarget)
+    public float getFacing(NWObject oTarget)
         throws NotInContextException;
-    public double getFacing(NWObject oTarget, java.util.Map<String, String> __ctx)
+    public float getFacing(NWObject oTarget, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public int getFactionAverageGoodEvilAlignment(NWObject oFactionMember)
@@ -2115,9 +2115,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public int getListenPatternNumber(java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double getLocalFloat(NWObject oObject, String sVarName)
+    public float getLocalFloat(NWObject oObject, String sVarName)
         throws NotInContextException;
-    public double getLocalFloat(NWObject oObject, String sVarName, java.util.Map<String, String> __ctx)
+    public float getLocalFloat(NWObject oObject, String sVarName, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public int getLocalInt(NWObject oObject, String sVarName)
@@ -2525,9 +2525,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public int getStoreMaxBuyPrice(NWObject oidStore, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double getStrRefSoundDuration(int nStrRef)
+    public float getStrRefSoundDuration(int nStrRef)
         throws NotInContextException;
-    public double getStrRefSoundDuration(int nStrRef, java.util.Map<String, String> __ctx)
+    public float getStrRefSoundDuration(int nStrRef, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public String getStringByStrRef(int nStrRef, Gender tGender)
@@ -2715,9 +2715,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void giveXPToCreature(NWObject oCreature, int nXpAmount, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double hoursToSeconds(int nHours)
+    public float hoursToSeconds(int nHours)
         throws NotInContextException;
-    public double hoursToSeconds(int nHours, java.util.Map<String, String> __ctx)
+    public float hoursToSeconds(int nHours, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void incrementRemainingFeatUses(NWObject oCreature, int nFeat)
@@ -3222,9 +3222,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void musicBattleStop(NWObject oArea, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void nightToDay(NWObject oPlayer, double fTransitionTime)
+    public void nightToDay(NWObject oPlayer, float fTransitionTime)
         throws NotInContextException;
-    public void nightToDay(NWObject oPlayer, double fTransitionTime, java.util.Map<String, String> __ctx)
+    public void nightToDay(NWObject oPlayer, float fTransitionTime, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void openInventory(NWObject oCreature, NWObject oPlayer)
@@ -3237,9 +3237,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void openStore(NWObject oStore, NWObject oPC, int nBonusMarkUp, int nBonusMarkDown, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void playAnimation(int nAnimation, double fSpeed, double fSeconds)
+    public void playAnimation(int nAnimation, float fSpeed, float fSeconds)
         throws NotInContextException;
-    public void playAnimation(int nAnimation, double fSpeed, double fSeconds, java.util.Map<String, String> __ctx)
+    public void playAnimation(int nAnimation, float fSpeed, float fSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void playSound(String sSoundName)
@@ -3336,9 +3336,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWObject retrieveCampaignObject(String sCampaignName, String sVarName, NWLocation locLocation, NWObject oOwner, NWObject oPlayer, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double roundsToSeconds(int nRounds)
+    public float roundsToSeconds(int nRounds)
         throws NotInContextException;
-    public double roundsToSeconds(int nRounds, java.util.Map<String, String> __ctx)
+    public float roundsToSeconds(int nRounds, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void sendMessageToAllDMs(String szMessage)
@@ -3386,14 +3386,14 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void setCalendar(int nYear, int nMonth, int nDay, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void setCameraFacing(double fDirection, double fDistance, double fPitch, int nTransitionType)
+    public void setCameraFacing(float fDirection, float fDistance, float fPitch, int nTransitionType)
         throws NotInContextException;
-    public void setCameraFacing(double fDirection, double fDistance, double fPitch, int nTransitionType, java.util.Map<String, String> __ctx)
+    public void setCameraFacing(float fDirection, float fDistance, float fPitch, int nTransitionType, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void setCameraHeight(NWObject oPlayer, double fHeight)
+    public void setCameraHeight(NWObject oPlayer, float fHeight)
         throws NotInContextException;
-    public void setCameraHeight(NWObject oPlayer, double fHeight, java.util.Map<String, String> __ctx)
+    public void setCameraHeight(NWObject oPlayer, float fHeight, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void setCameraMode(NWObject oPlayer, int nCameraMode)
@@ -3401,9 +3401,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void setCameraMode(NWObject oPlayer, int nCameraMode, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void setCampaignFloat(String sCampaignName, String sVarName, double flFloat, NWObject oPlayer)
+    public void setCampaignFloat(String sCampaignName, String sVarName, float flFloat, NWObject oPlayer)
         throws NotInContextException;
-    public void setCampaignFloat(String sCampaignName, String sVarName, double flFloat, NWObject oPlayer, java.util.Map<String, String> __ctx)
+    public void setCampaignFloat(String sCampaignName, String sVarName, float flFloat, NWObject oPlayer, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void setCampaignInt(String sCampaignName, String sVarName, int nInt, NWObject oPlayer)
@@ -3461,9 +3461,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void setCustomToken(int nCustomTokenNumber, String sTokenValue, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void setCutsceneCameraMoveRate(NWObject oCreature, double fRate)
+    public void setCutsceneCameraMoveRate(NWObject oCreature, float fRate)
         throws NotInContextException;
-    public void setCutsceneCameraMoveRate(NWObject oCreature, double fRate, java.util.Map<String, String> __ctx)
+    public void setCutsceneCameraMoveRate(NWObject oCreature, float fRate, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void setCutsceneMode(NWObject oCreature, boolean bInCutscene, boolean bLeftClickingEnabled)
@@ -3506,9 +3506,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void setEncounterSpawnsMax(int nNewValue, NWObject oEncounter, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void setFacing(double fDirection)
+    public void setFacing(float fDirection)
         throws NotInContextException;
-    public void setFacing(double fDirection, java.util.Map<String, String> __ctx)
+    public void setFacing(float fDirection, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void setFacingPoint(NWVector vTarget)
@@ -3561,19 +3561,19 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void setIsDestroyable(boolean bDestroyable, boolean bRaiseable, boolean bSelectableWhenDead, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
+    public void setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
         throws NotInContextException;
-    public void setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx)
-        throws NotInContextException;
-
-    public void setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
-        throws NotInContextException;
-    public void setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx)
+    public void setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
+    public void setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
         throws NotInContextException;
-    public void setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx)
+    public void setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx)
+        throws NotInContextException;
+
+    public void setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
+        throws NotInContextException;
+    public void setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void setItemCharges(NWObject oItem, int nCharges)
@@ -3606,9 +3606,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void setListening(NWObject oObject, boolean bValue, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public void setLocalFloat(NWObject oObject, String sVarName, double fValue)
+    public void setLocalFloat(NWObject oObject, String sVarName, float fValue)
         throws NotInContextException;
-    public void setLocalFloat(NWObject oObject, String sVarName, double fValue, java.util.Map<String, String> __ctx)
+    public void setLocalFloat(NWObject oObject, String sVarName, float fValue, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void setLocalInt(NWObject oObject, String sVarName, int nValue)
@@ -3958,9 +3958,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public AttackResult touchAttackRanged(NWObject oTarget, boolean bDisplayFeedback, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double turnsToSeconds(int nTurns)
+    public float turnsToSeconds(int nTurns)
         throws NotInContextException;
-    public double turnsToSeconds(int nTurns, java.util.Map<String, String> __ctx)
+    public float turnsToSeconds(int nTurns, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public void unpossessFamiliar(NWObject oCreature)
@@ -3968,9 +3968,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public void unpossessFamiliar(NWObject oCreature, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double vectorMagnitude(NWVector vVector)
+    public float vectorMagnitude(NWVector vVector)
         throws NotInContextException;
-    public double vectorMagnitude(NWVector vVector, java.util.Map<String, String> __ctx)
+    public float vectorMagnitude(NWVector vVector, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public NWVector vectorNormalize(NWVector vVector)
@@ -3978,9 +3978,9 @@ public interface NWScriptPrx extends Ice.ObjectPrx
     public NWVector vectorNormalize(NWVector vVector, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
-    public double vectorToAngle(NWVector vVector)
+    public float vectorToAngle(NWVector vVector)
         throws NotInContextException;
-    public double vectorToAngle(NWVector vVector, java.util.Map<String, String> __ctx)
+    public float vectorToAngle(NWVector vVector, java.util.Map<String, String> __ctx)
         throws NotInContextException;
 
     public NWEffect versusAlignmentEffect(NWEffect eEffect, int nLawChaos, int nGoodEvil)

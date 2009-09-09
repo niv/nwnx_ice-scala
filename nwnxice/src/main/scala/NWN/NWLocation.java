@@ -15,19 +15,19 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
 {
     public NWObject area;
 
-    public double x;
+    public float x;
 
-    public double y;
+    public float y;
 
-    public double z;
+    public float z;
 
-    public double facing;
+    public float facing;
 
     public NWLocation()
     {
     }
 
-    public NWLocation(NWObject area, double x, double y, double z, double facing)
+    public NWLocation(NWObject area, float x, float y, float z, float facing)
     {
         this.area = area;
         this.x = x;
@@ -89,10 +89,10 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
         {
             __h = 5 * __h + area.hashCode();
         }
-        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(x);
-        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(y);
-        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(z);
-        __h = 5 * __h + (int)java.lang.Double.doubleToLongBits(facing);
+        __h = 5 * __h + java.lang.Float.floatToIntBits(x);
+        __h = 5 * __h + java.lang.Float.floatToIntBits(y);
+        __h = 5 * __h + java.lang.Float.floatToIntBits(z);
+        __h = 5 * __h + java.lang.Float.floatToIntBits(facing);
         return __h;
     }
 
@@ -115,10 +115,10 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
     __write(IceInternal.BasicStream __os)
     {
         area.__write(__os);
-        __os.writeDouble(x);
-        __os.writeDouble(y);
-        __os.writeDouble(z);
-        __os.writeDouble(facing);
+        __os.writeFloat(x);
+        __os.writeFloat(y);
+        __os.writeFloat(z);
+        __os.writeFloat(facing);
     }
 
     public void
@@ -126,9 +126,9 @@ public final class NWLocation implements java.lang.Cloneable, java.io.Serializab
     {
         area = new NWObject();
         area.__read(__is);
-        x = __is.readDouble();
-        y = __is.readDouble();
-        z = __is.readDouble();
-        facing = __is.readDouble();
+        x = __is.readFloat();
+        y = __is.readFloat();
+        z = __is.readFloat();
+        facing = __is.readFloat();
     }
 }

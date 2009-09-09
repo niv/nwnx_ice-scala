@@ -153,21 +153,21 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    actionForceFollowObject(NWObject oFollow, double fFollowDistance)
+    actionForceFollowObject(NWObject oFollow, float fFollowDistance)
         throws NotInContextException
     {
         actionForceFollowObject(oFollow, fFollowDistance, null);
     }
 
     public final void
-    actionForceMoveToLocation(NWLocation lDestination, boolean bRun, double fTimeout)
+    actionForceMoveToLocation(NWLocation lDestination, boolean bRun, float fTimeout)
         throws NotInContextException
     {
         actionForceMoveToLocation(lDestination, bRun, fTimeout, null);
     }
 
     public final void
-    actionForceMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, double fTimeout)
+    actionForceMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, float fTimeout)
         throws NotInContextException
     {
         actionForceMoveToObject(oMoveTo, bRun, fRange, fTimeout, null);
@@ -209,14 +209,14 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, double fMoveAwayRange)
+    actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, float fMoveAwayRange)
         throws NotInContextException
     {
         actionMoveAwayFromLocation(lMoveAwayFrom, bRun, fMoveAwayRange, null);
     }
 
     public final void
-    actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, double fMoveAwayRange)
+    actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, float fMoveAwayRange)
         throws NotInContextException
     {
         actionMoveAwayFromObject(oFleeFrom, bRun, fMoveAwayRange, null);
@@ -230,7 +230,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    actionMoveToObject(NWObject oMoveTo, boolean bRun, double fRange)
+    actionMoveToObject(NWObject oMoveTo, boolean bRun, float fRange)
         throws NotInContextException
     {
         actionMoveToObject(oMoveTo, bRun, fRange, null);
@@ -258,7 +258,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    actionPlayAnimation(int nAnimation, double fSpeed, double fDurationSeconds)
+    actionPlayAnimation(int nAnimation, float fSpeed, float fDurationSeconds)
         throws NotInContextException
     {
         actionPlayAnimation(nAnimation, fSpeed, fDurationSeconds, null);
@@ -356,7 +356,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    actionWait(double fSeconds)
+    actionWait(float fSeconds)
         throws NotInContextException
     {
         actionWait(fSeconds, null);
@@ -377,7 +377,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, double fDuration)
+    addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, float fDuration)
         throws InvalidItemPropertyException,
                NotInContextException
     {
@@ -455,7 +455,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final NWObject[]
-    allInShape(ShapeType tShapeType, double fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin)
+    allInShape(ShapeType tShapeType, float fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin)
         throws NotInContextException
     {
         return allInShape(tShapeType, fSize, lTarget, bLineOfSight, tObjectType, vOrigin, null);
@@ -518,14 +518,14 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final NWVector
-    angleToVector(double fAngle)
+    angleToVector(float fAngle)
         throws NotInContextException
     {
         return angleToVector(fAngle, null);
     }
 
     public final void
-    applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, double fDuration)
+    applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, float fDuration)
         throws InvalidEffectException,
                NotInContextException
     {
@@ -533,7 +533,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, double fDuration)
+    applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, float fDuration)
         throws InvalidEffectException,
                NotInContextException
     {
@@ -638,7 +638,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final NWObject
-    createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, double fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript)
+    createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, float fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript)
         throws NotInContextException
     {
         return createTrapAtLocation(tTrapType, lLocation, fSize, sTag, tStandardFaction, sOnDisarmScript, sOnTrapTriggeredScript, null);
@@ -652,7 +652,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    dayToNight(NWObject oPlayer, double fTransitionTime)
+    dayToNight(NWObject oPlayer, float fTransitionTime)
         throws NotInContextException
     {
         dayToNight(oPlayer, fTransitionTime, null);
@@ -728,7 +728,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    destroyObject(NWObject oDestroy, double fDelay)
+    destroyObject(NWObject oDestroy, float fDelay)
         throws NotInContextException
     {
         destroyObject(oDestroy, fDelay, null);
@@ -1050,7 +1050,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final NWEffect
-    effectHitPointChangeWhenDying(double fHitPointChangePerRound)
+    effectHitPointChangeWhenDying(float fHitPointChangePerRound)
         throws NotInContextException
     {
         return effectHitPointChangeWhenDying(fHitPointChangePerRound, null);
@@ -1149,7 +1149,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final NWEffect
-    effectRegenerate(int nAmount, double fIntervalSeconds)
+    effectRegenerate(int nAmount, float fIntervalSeconds)
         throws NotInContextException
     {
         return effectRegenerate(nAmount, fIntervalSeconds, null);
@@ -1268,7 +1268,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final NWEffect
-    effectSummonCreature(String sCreatureResref, int nVisualEffectId, double fDelaySeconds, boolean bUseAppearAnimation)
+    effectSummonCreature(String sCreatureResref, int nVisualEffectId, float fDelaySeconds, boolean bUseAppearAnimation)
         throws NotInContextException
     {
         return effectSummonCreature(sCreatureResref, nVisualEffectId, fDelaySeconds, bUseAppearAnimation, null);
@@ -1381,14 +1381,14 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    fadeFromBlack(NWObject oCreature, double fSpeed)
+    fadeFromBlack(NWObject oCreature, float fSpeed)
         throws NotInContextException
     {
         fadeFromBlack(oCreature, fSpeed, null);
     }
 
     public final void
-    fadeToBlack(NWObject oCreature, double fSpeed)
+    fadeToBlack(NWObject oCreature, float fSpeed)
         throws NotInContextException
     {
         fadeToBlack(oCreature, fSpeed, null);
@@ -1611,7 +1611,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return getCalendarYear(null);
     }
 
-    public final double
+    public final float
     getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer)
         throws NotInContextException
     {
@@ -1653,7 +1653,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return getCasterLevel(oCreature, null);
     }
 
-    public final double
+    public final float
     getChallengeRating(NWObject oCreature)
         throws NotInContextException
     {
@@ -1737,7 +1737,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return getCurrentHitPoints(oObject, null);
     }
 
-    public final double
+    public final float
     getCutsceneCameraMoveRate(NWObject oCreature)
         throws NotInContextException
     {
@@ -1786,28 +1786,28 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return getDetectMode(oCreature, null);
     }
 
-    public final double
+    public final float
     getDialogSoundLength(int nStrRef)
         throws NotInContextException
     {
         return getDialogSoundLength(nStrRef, null);
     }
 
-    public final double
+    public final float
     getDistanceBetween(NWObject oObjectA, NWObject oObjectB)
         throws NotInContextException
     {
         return getDistanceBetween(oObjectA, oObjectB, null);
     }
 
-    public final double
+    public final float
     getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB)
         throws NotInContextException
     {
         return getDistanceBetweenLocations(lLocationA, lLocationB, null);
     }
 
-    public final double
+    public final float
     getDistanceToObject(NWObject oObject)
         throws NotInContextException
     {
@@ -1829,7 +1829,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return getEffectCreator(eEffect, null);
     }
 
-    public final double
+    public final float
     getEffectDuration(NWEffect e)
         throws InvalidEffectException
     {
@@ -1934,7 +1934,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return getExitingObject(null);
     }
 
-    public final double
+    public final float
     getFacing(NWObject oTarget)
         throws NotInContextException
     {
@@ -2581,7 +2581,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return getItemPropertyCostTableValue(iProp, null);
     }
 
-    public final double
+    public final float
     getItemPropertyDuration(NWItemProperty e)
         throws InvalidEffectException
     {
@@ -2909,7 +2909,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return getListenPatternNumber(null);
     }
 
-    public final double
+    public final float
     getLocalFloat(NWObject oObject, String sVarName)
         throws NotInContextException
     {
@@ -3490,7 +3490,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return getStoreMaxBuyPrice(oidStore, null);
     }
 
-    public final double
+    public final float
     getStrRefSoundDuration(int nStrRef)
         throws NotInContextException
     {
@@ -3762,7 +3762,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return hasState(key, null);
     }
 
-    public final double
+    public final float
     hoursToSeconds(int nHours)
         throws NotInContextException
     {
@@ -4471,7 +4471,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    nightToDay(NWObject oPlayer, double fTransitionTime)
+    nightToDay(NWObject oPlayer, float fTransitionTime)
         throws NotInContextException
     {
         nightToDay(oPlayer, fTransitionTime, null);
@@ -4492,7 +4492,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    playAnimation(int nAnimation, double fSpeed, double fSeconds)
+    playAnimation(int nAnimation, float fSpeed, float fSeconds)
         throws NotInContextException
     {
         playAnimation(nAnimation, fSpeed, fSeconds, null);
@@ -4632,7 +4632,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return retrieveCampaignObject(sCampaignName, sVarName, locLocation, oOwner, oPlayer, null);
     }
 
-    public final double
+    public final float
     roundsToSeconds(int nRounds)
         throws NotInContextException
     {
@@ -4703,14 +4703,14 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    setCameraFacing(double fDirection, double fDistance, double fPitch, int nTransitionType)
+    setCameraFacing(float fDirection, float fDistance, float fPitch, int nTransitionType)
         throws NotInContextException
     {
         setCameraFacing(fDirection, fDistance, fPitch, nTransitionType, null);
     }
 
     public final void
-    setCameraHeight(NWObject oPlayer, double fHeight)
+    setCameraHeight(NWObject oPlayer, float fHeight)
         throws NotInContextException
     {
         setCameraHeight(oPlayer, fHeight, null);
@@ -4724,7 +4724,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    setCampaignFloat(String sCampaignName, String sVarName, double flFloat, NWObject oPlayer)
+    setCampaignFloat(String sCampaignName, String sVarName, float flFloat, NWObject oPlayer)
         throws NotInContextException
     {
         setCampaignFloat(sCampaignName, sVarName, flFloat, oPlayer, null);
@@ -4808,7 +4808,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    setCutsceneCameraMoveRate(NWObject oCreature, double fRate)
+    setCutsceneCameraMoveRate(NWObject oCreature, float fRate)
         throws NotInContextException
     {
         setCutsceneCameraMoveRate(oCreature, fRate, null);
@@ -4908,7 +4908,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    setFacing(double fDirection)
+    setFacing(float fDirection)
         throws NotInContextException
     {
         setFacing(fDirection, null);
@@ -4985,21 +4985,21 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
+    setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
         throws NotInContextException
     {
         setIsTemporaryEnemy(oTarget, oSource, bDecays, fDurationInSeconds, null);
     }
 
     public final void
-    setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
+    setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
         throws NotInContextException
     {
         setIsTemporaryFriend(oTarget, oSource, bDecays, fDurationInSeconds, null);
     }
 
     public final void
-    setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
+    setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
         throws NotInContextException
     {
         setIsTemporaryNeutral(oTarget, oSource, bDecays, fDurationInSeconds, null);
@@ -5056,7 +5056,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final void
-    setLocalFloat(NWObject oObject, String sVarName, double fValue)
+    setLocalFloat(NWObject oObject, String sVarName, float fValue)
         throws NotInContextException
     {
         setLocalFloat(oObject, sVarName, fValue, null);
@@ -5546,7 +5546,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return touchAttackRanged(oTarget, bDisplayFeedback, null);
     }
 
-    public final double
+    public final float
     turnsToSeconds(int nTurns)
         throws NotInContextException
     {
@@ -5560,7 +5560,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         unpossessFamiliar(oCreature, null);
     }
 
-    public final double
+    public final float
     vectorMagnitude(NWVector vVector)
         throws NotInContextException
     {
@@ -5574,7 +5574,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         return vectorNormalize(vVector, null);
     }
 
-    public final double
+    public final float
     vectorToAngle(NWVector vVector)
         throws NotInContextException
     {
@@ -5783,8 +5783,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getEffectDuration(e, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getEffectDuration(e, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(InvalidEffectException ex)
@@ -5807,8 +5807,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getItemPropertyDuration(e, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getItemPropertyDuration(e, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(InvalidEffectException ex)
@@ -6087,8 +6087,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __is.startReadEncaps();
         ShapeType tShapeType;
         tShapeType = ShapeType.__read(__is);
-        double fSize;
-        fSize = __is.readDouble();
+        float fSize;
+        fSize = __is.readFloat();
         NWLocation lTarget;
         lTarget = new NWLocation();
         lTarget.__read(__is);
@@ -6574,8 +6574,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oFollow;
         oFollow = new NWObject();
         oFollow.__read(__is);
-        double fFollowDistance;
-        fFollowDistance = __is.readDouble();
+        float fFollowDistance;
+        fFollowDistance = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -6601,8 +6601,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         lDestination.__read(__is);
         boolean bRun;
         bRun = __is.readBool();
-        double fTimeout;
-        fTimeout = __is.readDouble();
+        float fTimeout;
+        fTimeout = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -6628,10 +6628,10 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         oMoveTo.__read(__is);
         boolean bRun;
         bRun = __is.readBool();
-        double fRange;
-        fRange = __is.readDouble();
-        double fTimeout;
-        fTimeout = __is.readDouble();
+        float fRange;
+        fRange = __is.readFloat();
+        float fTimeout;
+        fTimeout = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -6777,8 +6777,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         lMoveAwayFrom.__read(__is);
         boolean bRun;
         bRun = __is.readBool();
-        double fMoveAwayRange;
-        fMoveAwayRange = __is.readDouble();
+        float fMoveAwayRange;
+        fMoveAwayRange = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -6804,8 +6804,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         oFleeFrom.__read(__is);
         boolean bRun;
         bRun = __is.readBool();
-        double fMoveAwayRange;
-        fMoveAwayRange = __is.readDouble();
+        float fMoveAwayRange;
+        fMoveAwayRange = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -6856,8 +6856,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         oMoveTo.__read(__is);
         boolean bRun;
         bRun = __is.readBool();
-        double fRange;
-        fRange = __is.readDouble();
+        float fRange;
+        fRange = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -6944,10 +6944,10 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __is.startReadEncaps();
         int nAnimation;
         nAnimation = __is.readInt();
-        double fSpeed;
-        fSpeed = __is.readDouble();
-        double fDurationSeconds;
-        fDurationSeconds = __is.readDouble();
+        float fSpeed;
+        fSpeed = __is.readFloat();
+        float fDurationSeconds;
+        fDurationSeconds = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -7276,8 +7276,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
-        double fSeconds;
-        fSeconds = __is.readDouble();
+        float fSeconds;
+        fSeconds = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -7363,8 +7363,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oItem;
         oItem = new NWObject();
         oItem.__read(__is);
-        double fDuration;
-        fDuration = __is.readDouble();
+        float fDuration;
+        fDuration = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -7652,8 +7652,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __checkMode(Ice.OperationMode.Idempotent, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
-        double fAngle;
-        fAngle = __is.readDouble();
+        float fAngle;
+        fAngle = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -7683,8 +7683,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWLocation lLocation;
         lLocation = new NWLocation();
         lLocation.__read(__is);
-        double fDuration;
-        fDuration = __is.readDouble();
+        float fDuration;
+        fDuration = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -7718,8 +7718,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oTarget;
         oTarget = new NWObject();
         oTarget.__read(__is);
-        double fDuration;
-        fDuration = __is.readDouble();
+        float fDuration;
+        fDuration = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -8095,8 +8095,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWLocation lLocation;
         lLocation = new NWLocation();
         lLocation.__read(__is);
-        double fSize;
-        fSize = __is.readDouble();
+        float fSize;
+        fSize = __is.readFloat();
         String sTag;
         sTag = __is.readString();
         StandardFaction tStandardFaction;
@@ -8160,8 +8160,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oPlayer;
         oPlayer = new NWObject();
         oPlayer.__read(__is);
-        double fTransitionTime;
-        fTransitionTime = __is.readDouble();
+        float fTransitionTime;
+        fTransitionTime = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -8409,8 +8409,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oDestroy;
         oDestroy = new NWObject();
         oDestroy.__read(__is);
-        double fDelay;
-        fDelay = __is.readDouble();
+        float fDelay;
+        fDelay = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -9476,8 +9476,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __checkMode(Ice.OperationMode.Idempotent, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
-        double fHitPointChangePerRound;
-        fHitPointChangePerRound = __is.readDouble();
+        float fHitPointChangePerRound;
+        fHitPointChangePerRound = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -9803,8 +9803,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __is.startReadEncaps();
         int nAmount;
         nAmount = __is.readInt();
-        double fIntervalSeconds;
-        fIntervalSeconds = __is.readDouble();
+        float fIntervalSeconds;
+        fIntervalSeconds = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -10192,8 +10192,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         sCreatureResref = __is.readString();
         int nVisualEffectId;
         nVisualEffectId = __is.readInt();
-        double fDelaySeconds;
-        fDelaySeconds = __is.readDouble();
+        float fDelaySeconds;
+        fDelaySeconds = __is.readFloat();
         boolean bUseAppearAnimation;
         bUseAppearAnimation = __is.readBool();
         __is.endReadEncaps();
@@ -10566,8 +10566,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oCreature;
         oCreature = new NWObject();
         oCreature.__read(__is);
-        double fSpeed;
-        fSpeed = __is.readDouble();
+        float fSpeed;
+        fSpeed = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -10591,8 +10591,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oCreature;
         oCreature = new NWObject();
         oCreature.__read(__is);
-        double fSpeed;
-        fSpeed = __is.readDouble();
+        float fSpeed;
+        fSpeed = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -11367,8 +11367,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getCampaignFloat(sCampaignName, sVarName, oPlayer, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getCampaignFloat(sCampaignName, sVarName, oPlayer, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -11527,8 +11527,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getChallengeRating(oCreature, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getChallengeRating(oCreature, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -11816,8 +11816,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getCutsceneCameraMoveRate(oCreature, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getCutsceneCameraMoveRate(oCreature, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -11986,8 +11986,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getDialogSoundLength(nStrRef, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getDialogSoundLength(nStrRef, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -12013,8 +12013,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getDistanceBetween(oObjectA, oObjectB, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getDistanceBetween(oObjectA, oObjectB, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -12040,8 +12040,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getDistanceBetweenLocations(lLocationA, lLocationB, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getDistanceBetweenLocations(lLocationA, lLocationB, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -12064,8 +12064,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getDistanceToObject(oObject, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getDistanceToObject(oObject, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -12391,8 +12391,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getFacing(oTarget, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getFacing(oTarget, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -15581,8 +15581,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getLocalFloat(oObject, sVarName, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getLocalFloat(oObject, sVarName, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -17486,8 +17486,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.getStrRefSoundDuration(nStrRef, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.getStrRefSoundDuration(nStrRef, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -18372,8 +18372,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.hoursToSeconds(nHours, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.hoursToSeconds(nHours, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -20779,8 +20779,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oPlayer;
         oPlayer = new NWObject();
         oPlayer.__read(__is);
-        double fTransitionTime;
-        fTransitionTime = __is.readDouble();
+        float fTransitionTime;
+        fTransitionTime = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -20859,10 +20859,10 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __is.startReadEncaps();
         int nAnimation;
         nAnimation = __is.readInt();
-        double fSpeed;
-        fSpeed = __is.readDouble();
-        double fSeconds;
-        fSeconds = __is.readDouble();
+        float fSpeed;
+        fSpeed = __is.readFloat();
+        float fSeconds;
+        fSeconds = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -21361,8 +21361,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.roundsToSeconds(nRounds, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.roundsToSeconds(nRounds, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -21600,12 +21600,12 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __checkMode(Ice.OperationMode.Idempotent, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
-        double fDirection;
-        fDirection = __is.readDouble();
-        double fDistance;
-        fDistance = __is.readDouble();
-        double fPitch;
-        fPitch = __is.readDouble();
+        float fDirection;
+        fDirection = __is.readFloat();
+        float fDistance;
+        fDistance = __is.readFloat();
+        float fPitch;
+        fPitch = __is.readFloat();
         int nTransitionType;
         nTransitionType = __is.readInt();
         __is.endReadEncaps();
@@ -21631,8 +21631,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oPlayer;
         oPlayer = new NWObject();
         oPlayer.__read(__is);
-        double fHeight;
-        fHeight = __is.readDouble();
+        float fHeight;
+        fHeight = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -21682,8 +21682,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         sCampaignName = __is.readString();
         String sVarName;
         sVarName = __is.readString();
-        double flFloat;
-        flFloat = __is.readDouble();
+        float flFloat;
+        flFloat = __is.readFloat();
         NWObject oPlayer;
         oPlayer = new NWObject();
         oPlayer.__read(__is);
@@ -22006,8 +22006,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         NWObject oCreature;
         oCreature = new NWObject();
         oCreature.__read(__is);
-        double fRate;
-        fRate = __is.readDouble();
+        float fRate;
+        fRate = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -22232,8 +22232,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         __checkMode(Ice.OperationMode.Idempotent, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
-        double fDirection;
-        fDirection = __is.readDouble();
+        float fDirection;
+        fDirection = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -22515,8 +22515,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         oSource.__read(__is);
         boolean bDecays;
         bDecays = __is.readBool();
-        double fDurationInSeconds;
-        fDurationInSeconds = __is.readDouble();
+        float fDurationInSeconds;
+        fDurationInSeconds = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -22545,8 +22545,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         oSource.__read(__is);
         boolean bDecays;
         bDecays = __is.readBool();
-        double fDurationInSeconds;
-        fDurationInSeconds = __is.readDouble();
+        float fDurationInSeconds;
+        fDurationInSeconds = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -22575,8 +22575,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         oSource.__read(__is);
         boolean bDecays;
         bDecays = __is.readBool();
-        double fDurationInSeconds;
-        fDurationInSeconds = __is.readDouble();
+        float fDurationInSeconds;
+        fDurationInSeconds = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -22754,8 +22754,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         oObject.__read(__is);
         String sVarName;
         sVarName = __is.readString();
-        double fValue;
-        fValue = __is.readDouble();
+        float fValue;
+        fValue = __is.readFloat();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
         try
@@ -24506,8 +24506,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.turnsToSeconds(nTurns, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.turnsToSeconds(nTurns, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -24553,8 +24553,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.vectorMagnitude(vVector, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.vectorMagnitude(vVector, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)
@@ -24601,8 +24601,8 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         IceInternal.BasicStream __os = __inS.os();
         try
         {
-            double __ret = __obj.vectorToAngle(vVector, __current);
-            __os.writeDouble(__ret);
+            float __ret = __obj.vectorToAngle(vVector, __current);
+            __os.writeFloat(__ret);
             return Ice.DispatchStatus.DispatchOK;
         }
         catch(NotInContextException ex)

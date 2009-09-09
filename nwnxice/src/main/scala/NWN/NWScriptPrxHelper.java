@@ -566,14 +566,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    actionForceFollowObject(NWObject oFollow, double fFollowDistance)
+    actionForceFollowObject(NWObject oFollow, float fFollowDistance)
         throws NotInContextException
     {
         actionForceFollowObject(oFollow, fFollowDistance, null, false);
     }
 
     public void
-    actionForceFollowObject(NWObject oFollow, double fFollowDistance, java.util.Map<String, String> __ctx)
+    actionForceFollowObject(NWObject oFollow, float fFollowDistance, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         actionForceFollowObject(oFollow, fFollowDistance, __ctx, true);
@@ -581,7 +581,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    actionForceFollowObject(NWObject oFollow, double fFollowDistance, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    actionForceFollowObject(NWObject oFollow, float fFollowDistance, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -612,14 +612,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    actionForceMoveToLocation(NWLocation lDestination, boolean bRun, double fTimeout)
+    actionForceMoveToLocation(NWLocation lDestination, boolean bRun, float fTimeout)
         throws NotInContextException
     {
         actionForceMoveToLocation(lDestination, bRun, fTimeout, null, false);
     }
 
     public void
-    actionForceMoveToLocation(NWLocation lDestination, boolean bRun, double fTimeout, java.util.Map<String, String> __ctx)
+    actionForceMoveToLocation(NWLocation lDestination, boolean bRun, float fTimeout, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         actionForceMoveToLocation(lDestination, bRun, fTimeout, __ctx, true);
@@ -627,7 +627,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    actionForceMoveToLocation(NWLocation lDestination, boolean bRun, double fTimeout, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    actionForceMoveToLocation(NWLocation lDestination, boolean bRun, float fTimeout, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -658,14 +658,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    actionForceMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, double fTimeout)
+    actionForceMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, float fTimeout)
         throws NotInContextException
     {
         actionForceMoveToObject(oMoveTo, bRun, fRange, fTimeout, null, false);
     }
 
     public void
-    actionForceMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, double fTimeout, java.util.Map<String, String> __ctx)
+    actionForceMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, float fTimeout, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         actionForceMoveToObject(oMoveTo, bRun, fRange, fTimeout, __ctx, true);
@@ -673,7 +673,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    actionForceMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, double fTimeout, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    actionForceMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, float fTimeout, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -934,14 +934,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, double fMoveAwayRange)
+    actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, float fMoveAwayRange)
         throws NotInContextException
     {
         actionMoveAwayFromLocation(lMoveAwayFrom, bRun, fMoveAwayRange, null, false);
     }
 
     public void
-    actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, double fMoveAwayRange, java.util.Map<String, String> __ctx)
+    actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, float fMoveAwayRange, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         actionMoveAwayFromLocation(lMoveAwayFrom, bRun, fMoveAwayRange, __ctx, true);
@@ -949,7 +949,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, double fMoveAwayRange, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, float fMoveAwayRange, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -980,14 +980,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, double fMoveAwayRange)
+    actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, float fMoveAwayRange)
         throws NotInContextException
     {
         actionMoveAwayFromObject(oFleeFrom, bRun, fMoveAwayRange, null, false);
     }
 
     public void
-    actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, double fMoveAwayRange, java.util.Map<String, String> __ctx)
+    actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, float fMoveAwayRange, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         actionMoveAwayFromObject(oFleeFrom, bRun, fMoveAwayRange, __ctx, true);
@@ -995,7 +995,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, double fMoveAwayRange, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, float fMoveAwayRange, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -1072,14 +1072,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    actionMoveToObject(NWObject oMoveTo, boolean bRun, double fRange)
+    actionMoveToObject(NWObject oMoveTo, boolean bRun, float fRange)
         throws NotInContextException
     {
         actionMoveToObject(oMoveTo, bRun, fRange, null, false);
     }
 
     public void
-    actionMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, java.util.Map<String, String> __ctx)
+    actionMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         actionMoveToObject(oMoveTo, bRun, fRange, __ctx, true);
@@ -1087,7 +1087,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    actionMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    actionMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -1256,14 +1256,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    actionPlayAnimation(int nAnimation, double fSpeed, double fDurationSeconds)
+    actionPlayAnimation(int nAnimation, float fSpeed, float fDurationSeconds)
         throws NotInContextException
     {
         actionPlayAnimation(nAnimation, fSpeed, fDurationSeconds, null, false);
     }
 
     public void
-    actionPlayAnimation(int nAnimation, double fSpeed, double fDurationSeconds, java.util.Map<String, String> __ctx)
+    actionPlayAnimation(int nAnimation, float fSpeed, float fDurationSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         actionPlayAnimation(nAnimation, fSpeed, fDurationSeconds, __ctx, true);
@@ -1271,7 +1271,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    actionPlayAnimation(int nAnimation, double fSpeed, double fDurationSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    actionPlayAnimation(int nAnimation, float fSpeed, float fDurationSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -1900,14 +1900,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    actionWait(double fSeconds)
+    actionWait(float fSeconds)
         throws NotInContextException
     {
         actionWait(fSeconds, null, false);
     }
 
     public void
-    actionWait(double fSeconds, java.util.Map<String, String> __ctx)
+    actionWait(float fSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         actionWait(fSeconds, __ctx, true);
@@ -1915,7 +1915,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    actionWait(double fSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    actionWait(float fSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -2038,7 +2038,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, double fDuration)
+    addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, float fDuration)
         throws InvalidItemPropertyException,
                NotInContextException
     {
@@ -2046,7 +2046,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, double fDuration, java.util.Map<String, String> __ctx)
+    addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, float fDuration, java.util.Map<String, String> __ctx)
         throws InvalidItemPropertyException,
                NotInContextException
     {
@@ -2055,7 +2055,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, double fDuration, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, float fDuration, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws InvalidItemPropertyException,
                NotInContextException
     {
@@ -2541,14 +2541,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWObject[]
-    allInShape(ShapeType tShapeType, double fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin)
+    allInShape(ShapeType tShapeType, float fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin)
         throws NotInContextException
     {
         return allInShape(tShapeType, fSize, lTarget, bLineOfSight, tObjectType, vOrigin, null, false);
     }
 
     public NWObject[]
-    allInShape(ShapeType tShapeType, double fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin, java.util.Map<String, String> __ctx)
+    allInShape(ShapeType tShapeType, float fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         return allInShape(tShapeType, fSize, lTarget, bLineOfSight, tObjectType, vOrigin, __ctx, true);
@@ -2556,7 +2556,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private NWObject[]
-    allInShape(ShapeType tShapeType, double fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    allInShape(ShapeType tShapeType, float fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -2952,14 +2952,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWVector
-    angleToVector(double fAngle)
+    angleToVector(float fAngle)
         throws NotInContextException
     {
         return angleToVector(fAngle, null, false);
     }
 
     public NWVector
-    angleToVector(double fAngle, java.util.Map<String, String> __ctx)
+    angleToVector(float fAngle, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         return angleToVector(fAngle, __ctx, true);
@@ -2967,7 +2967,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private NWVector
-    angleToVector(double fAngle, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    angleToVector(float fAngle, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -2997,7 +2997,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, double fDuration)
+    applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, float fDuration)
         throws InvalidEffectException,
                NotInContextException
     {
@@ -3005,7 +3005,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, double fDuration, java.util.Map<String, String> __ctx)
+    applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, float fDuration, java.util.Map<String, String> __ctx)
         throws InvalidEffectException,
                NotInContextException
     {
@@ -3014,7 +3014,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, double fDuration, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, float fDuration, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws InvalidEffectException,
                NotInContextException
     {
@@ -3046,7 +3046,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, double fDuration)
+    applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, float fDuration)
         throws InvalidEffectException,
                NotInContextException
     {
@@ -3054,7 +3054,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, double fDuration, java.util.Map<String, String> __ctx)
+    applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, float fDuration, java.util.Map<String, String> __ctx)
         throws InvalidEffectException,
                NotInContextException
     {
@@ -3063,7 +3063,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, double fDuration, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, float fDuration, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws InvalidEffectException,
                NotInContextException
     {
@@ -3728,14 +3728,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWObject
-    createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, double fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript)
+    createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, float fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript)
         throws NotInContextException
     {
         return createTrapAtLocation(tTrapType, lLocation, fSize, sTag, tStandardFaction, sOnDisarmScript, sOnTrapTriggeredScript, null, false);
     }
 
     public NWObject
-    createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, double fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, java.util.Map<String, String> __ctx)
+    createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, float fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         return createTrapAtLocation(tTrapType, lLocation, fSize, sTag, tStandardFaction, sOnDisarmScript, sOnTrapTriggeredScript, __ctx, true);
@@ -3743,7 +3743,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private NWObject
-    createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, double fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, float fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -3819,14 +3819,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    dayToNight(NWObject oPlayer, double fTransitionTime)
+    dayToNight(NWObject oPlayer, float fTransitionTime)
         throws NotInContextException
     {
         dayToNight(oPlayer, fTransitionTime, null, false);
     }
 
     public void
-    dayToNight(NWObject oPlayer, double fTransitionTime, java.util.Map<String, String> __ctx)
+    dayToNight(NWObject oPlayer, float fTransitionTime, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         dayToNight(oPlayer, fTransitionTime, __ctx, true);
@@ -3834,7 +3834,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    dayToNight(NWObject oPlayer, double fTransitionTime, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    dayToNight(NWObject oPlayer, float fTransitionTime, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -4321,14 +4321,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    destroyObject(NWObject oDestroy, double fDelay)
+    destroyObject(NWObject oDestroy, float fDelay)
         throws NotInContextException
     {
         destroyObject(oDestroy, fDelay, null, false);
     }
 
     public void
-    destroyObject(NWObject oDestroy, double fDelay, java.util.Map<String, String> __ctx)
+    destroyObject(NWObject oDestroy, float fDelay, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         destroyObject(oDestroy, fDelay, __ctx, true);
@@ -4336,7 +4336,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    destroyObject(NWObject oDestroy, double fDelay, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    destroyObject(NWObject oDestroy, float fDelay, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -6396,14 +6396,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWEffect
-    effectHitPointChangeWhenDying(double fHitPointChangePerRound)
+    effectHitPointChangeWhenDying(float fHitPointChangePerRound)
         throws NotInContextException
     {
         return effectHitPointChangeWhenDying(fHitPointChangePerRound, null, false);
     }
 
     public NWEffect
-    effectHitPointChangeWhenDying(double fHitPointChangePerRound, java.util.Map<String, String> __ctx)
+    effectHitPointChangeWhenDying(float fHitPointChangePerRound, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         return effectHitPointChangeWhenDying(fHitPointChangePerRound, __ctx, true);
@@ -6411,7 +6411,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private NWEffect
-    effectHitPointChangeWhenDying(double fHitPointChangePerRound, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    effectHitPointChangeWhenDying(float fHitPointChangePerRound, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -7029,14 +7029,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWEffect
-    effectRegenerate(int nAmount, double fIntervalSeconds)
+    effectRegenerate(int nAmount, float fIntervalSeconds)
         throws NotInContextException
     {
         return effectRegenerate(nAmount, fIntervalSeconds, null, false);
     }
 
     public NWEffect
-    effectRegenerate(int nAmount, double fIntervalSeconds, java.util.Map<String, String> __ctx)
+    effectRegenerate(int nAmount, float fIntervalSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         return effectRegenerate(nAmount, fIntervalSeconds, __ctx, true);
@@ -7044,7 +7044,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private NWEffect
-    effectRegenerate(int nAmount, double fIntervalSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    effectRegenerate(int nAmount, float fIntervalSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -7794,14 +7794,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public NWEffect
-    effectSummonCreature(String sCreatureResref, int nVisualEffectId, double fDelaySeconds, boolean bUseAppearAnimation)
+    effectSummonCreature(String sCreatureResref, int nVisualEffectId, float fDelaySeconds, boolean bUseAppearAnimation)
         throws NotInContextException
     {
         return effectSummonCreature(sCreatureResref, nVisualEffectId, fDelaySeconds, bUseAppearAnimation, null, false);
     }
 
     public NWEffect
-    effectSummonCreature(String sCreatureResref, int nVisualEffectId, double fDelaySeconds, boolean bUseAppearAnimation, java.util.Map<String, String> __ctx)
+    effectSummonCreature(String sCreatureResref, int nVisualEffectId, float fDelaySeconds, boolean bUseAppearAnimation, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         return effectSummonCreature(sCreatureResref, nVisualEffectId, fDelaySeconds, bUseAppearAnimation, __ctx, true);
@@ -7809,7 +7809,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private NWEffect
-    effectSummonCreature(String sCreatureResref, int nVisualEffectId, double fDelaySeconds, boolean bUseAppearAnimation, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    effectSummonCreature(String sCreatureResref, int nVisualEffectId, float fDelaySeconds, boolean bUseAppearAnimation, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -8522,14 +8522,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    fadeFromBlack(NWObject oCreature, double fSpeed)
+    fadeFromBlack(NWObject oCreature, float fSpeed)
         throws NotInContextException
     {
         fadeFromBlack(oCreature, fSpeed, null, false);
     }
 
     public void
-    fadeFromBlack(NWObject oCreature, double fSpeed, java.util.Map<String, String> __ctx)
+    fadeFromBlack(NWObject oCreature, float fSpeed, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         fadeFromBlack(oCreature, fSpeed, __ctx, true);
@@ -8537,7 +8537,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    fadeFromBlack(NWObject oCreature, double fSpeed, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    fadeFromBlack(NWObject oCreature, float fSpeed, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -8568,14 +8568,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    fadeToBlack(NWObject oCreature, double fSpeed)
+    fadeToBlack(NWObject oCreature, float fSpeed)
         throws NotInContextException
     {
         fadeToBlack(oCreature, fSpeed, null, false);
     }
 
     public void
-    fadeToBlack(NWObject oCreature, double fSpeed, java.util.Map<String, String> __ctx)
+    fadeToBlack(NWObject oCreature, float fSpeed, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         fadeToBlack(oCreature, fSpeed, __ctx, true);
@@ -8583,7 +8583,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    fadeToBlack(NWObject oCreature, double fSpeed, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    fadeToBlack(NWObject oCreature, float fSpeed, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -10011,14 +10011,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer)
         throws NotInContextException
     {
         return getCampaignFloat(sCampaignName, sVarName, oPlayer, null, false);
     }
 
-    public double
+    public float
     getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -10026,7 +10026,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -10281,14 +10281,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getChallengeRating(NWObject oCreature)
         throws NotInContextException
     {
         return getChallengeRating(oCreature, null, false);
     }
 
-    public double
+    public float
     getChallengeRating(NWObject oCreature, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -10296,7 +10296,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getChallengeRating(NWObject oCreature, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -10821,14 +10821,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getCutsceneCameraMoveRate(NWObject oCreature)
         throws NotInContextException
     {
         return getCutsceneCameraMoveRate(oCreature, null, false);
     }
 
-    public double
+    public float
     getCutsceneCameraMoveRate(NWObject oCreature, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -10836,7 +10836,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getCutsceneCameraMoveRate(NWObject oCreature, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -11136,14 +11136,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getDialogSoundLength(int nStrRef)
         throws NotInContextException
     {
         return getDialogSoundLength(nStrRef, null, false);
     }
 
-    public double
+    public float
     getDialogSoundLength(int nStrRef, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -11151,7 +11151,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getDialogSoundLength(int nStrRef, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -11181,14 +11181,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getDistanceBetween(NWObject oObjectA, NWObject oObjectB)
         throws NotInContextException
     {
         return getDistanceBetween(oObjectA, oObjectB, null, false);
     }
 
-    public double
+    public float
     getDistanceBetween(NWObject oObjectA, NWObject oObjectB, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -11196,7 +11196,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getDistanceBetween(NWObject oObjectA, NWObject oObjectB, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -11226,14 +11226,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB)
         throws NotInContextException
     {
         return getDistanceBetweenLocations(lLocationA, lLocationB, null, false);
     }
 
-    public double
+    public float
     getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -11241,7 +11241,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -11271,14 +11271,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getDistanceToObject(NWObject oObject)
         throws NotInContextException
     {
         return getDistanceToObject(oObject, null, false);
     }
 
-    public double
+    public float
     getDistanceToObject(NWObject oObject, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -11286,7 +11286,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getDistanceToObject(NWObject oObject, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -11409,14 +11409,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getEffectDuration(NWEffect e)
         throws InvalidEffectException
     {
         return getEffectDuration(e, null, false);
     }
 
-    public double
+    public float
     getEffectDuration(NWEffect e, java.util.Map<String, String> __ctx)
         throws InvalidEffectException
     {
@@ -11424,7 +11424,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getEffectDuration(NWEffect e, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws InvalidEffectException
     {
@@ -12060,14 +12060,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getFacing(NWObject oTarget)
         throws NotInContextException
     {
         return getFacing(oTarget, null, false);
     }
 
-    public double
+    public float
     getFacing(NWObject oTarget, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -12075,7 +12075,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getFacing(NWObject oTarget, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -16209,14 +16209,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getItemPropertyDuration(NWItemProperty e)
         throws InvalidEffectException
     {
         return getItemPropertyDuration(e, null, false);
     }
 
-    public double
+    public float
     getItemPropertyDuration(NWItemProperty e, java.util.Map<String, String> __ctx)
         throws InvalidEffectException
     {
@@ -16224,7 +16224,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getItemPropertyDuration(NWItemProperty e, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws InvalidEffectException
     {
@@ -18297,14 +18297,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getLocalFloat(NWObject oObject, String sVarName)
         throws NotInContextException
     {
         return getLocalFloat(oObject, sVarName, null, false);
     }
 
-    public double
+    public float
     getLocalFloat(NWObject oObject, String sVarName, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -18312,7 +18312,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getLocalFloat(NWObject oObject, String sVarName, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -22032,14 +22032,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     getStrRefSoundDuration(int nStrRef)
         throws NotInContextException
     {
         return getStrRefSoundDuration(nStrRef, null, false);
     }
 
-    public double
+    public float
     getStrRefSoundDuration(int nStrRef, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -22047,7 +22047,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     getStrRefSoundDuration(int nStrRef, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -23786,14 +23786,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     hoursToSeconds(int nHours)
         throws NotInContextException
     {
         return hoursToSeconds(nHours, null, false);
     }
 
-    public double
+    public float
     hoursToSeconds(int nHours, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -23801,7 +23801,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     hoursToSeconds(int nHours, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -28349,14 +28349,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    nightToDay(NWObject oPlayer, double fTransitionTime)
+    nightToDay(NWObject oPlayer, float fTransitionTime)
         throws NotInContextException
     {
         nightToDay(oPlayer, fTransitionTime, null, false);
     }
 
     public void
-    nightToDay(NWObject oPlayer, double fTransitionTime, java.util.Map<String, String> __ctx)
+    nightToDay(NWObject oPlayer, float fTransitionTime, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         nightToDay(oPlayer, fTransitionTime, __ctx, true);
@@ -28364,7 +28364,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    nightToDay(NWObject oPlayer, double fTransitionTime, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    nightToDay(NWObject oPlayer, float fTransitionTime, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -28487,14 +28487,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    playAnimation(int nAnimation, double fSpeed, double fSeconds)
+    playAnimation(int nAnimation, float fSpeed, float fSeconds)
         throws NotInContextException
     {
         playAnimation(nAnimation, fSpeed, fSeconds, null, false);
     }
 
     public void
-    playAnimation(int nAnimation, double fSpeed, double fSeconds, java.util.Map<String, String> __ctx)
+    playAnimation(int nAnimation, float fSpeed, float fSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         playAnimation(nAnimation, fSpeed, fSeconds, __ctx, true);
@@ -28502,7 +28502,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    playAnimation(int nAnimation, double fSpeed, double fSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    playAnimation(int nAnimation, float fSpeed, float fSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -29404,14 +29404,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     roundsToSeconds(int nRounds)
         throws NotInContextException
     {
         return roundsToSeconds(nRounds, null, false);
     }
 
-    public double
+    public float
     roundsToSeconds(int nRounds, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -29419,7 +29419,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     roundsToSeconds(int nRounds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -29864,14 +29864,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    setCameraFacing(double fDirection, double fDistance, double fPitch, int nTransitionType)
+    setCameraFacing(float fDirection, float fDistance, float fPitch, int nTransitionType)
         throws NotInContextException
     {
         setCameraFacing(fDirection, fDistance, fPitch, nTransitionType, null, false);
     }
 
     public void
-    setCameraFacing(double fDirection, double fDistance, double fPitch, int nTransitionType, java.util.Map<String, String> __ctx)
+    setCameraFacing(float fDirection, float fDistance, float fPitch, int nTransitionType, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         setCameraFacing(fDirection, fDistance, fPitch, nTransitionType, __ctx, true);
@@ -29879,7 +29879,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    setCameraFacing(double fDirection, double fDistance, double fPitch, int nTransitionType, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    setCameraFacing(float fDirection, float fDistance, float fPitch, int nTransitionType, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -29910,14 +29910,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    setCameraHeight(NWObject oPlayer, double fHeight)
+    setCameraHeight(NWObject oPlayer, float fHeight)
         throws NotInContextException
     {
         setCameraHeight(oPlayer, fHeight, null, false);
     }
 
     public void
-    setCameraHeight(NWObject oPlayer, double fHeight, java.util.Map<String, String> __ctx)
+    setCameraHeight(NWObject oPlayer, float fHeight, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         setCameraHeight(oPlayer, fHeight, __ctx, true);
@@ -29925,7 +29925,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    setCameraHeight(NWObject oPlayer, double fHeight, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    setCameraHeight(NWObject oPlayer, float fHeight, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -30002,14 +30002,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    setCampaignFloat(String sCampaignName, String sVarName, double flFloat, NWObject oPlayer)
+    setCampaignFloat(String sCampaignName, String sVarName, float flFloat, NWObject oPlayer)
         throws NotInContextException
     {
         setCampaignFloat(sCampaignName, sVarName, flFloat, oPlayer, null, false);
     }
 
     public void
-    setCampaignFloat(String sCampaignName, String sVarName, double flFloat, NWObject oPlayer, java.util.Map<String, String> __ctx)
+    setCampaignFloat(String sCampaignName, String sVarName, float flFloat, NWObject oPlayer, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         setCampaignFloat(sCampaignName, sVarName, flFloat, oPlayer, __ctx, true);
@@ -30017,7 +30017,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    setCampaignFloat(String sCampaignName, String sVarName, double flFloat, NWObject oPlayer, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    setCampaignFloat(String sCampaignName, String sVarName, float flFloat, NWObject oPlayer, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -30554,14 +30554,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    setCutsceneCameraMoveRate(NWObject oCreature, double fRate)
+    setCutsceneCameraMoveRate(NWObject oCreature, float fRate)
         throws NotInContextException
     {
         setCutsceneCameraMoveRate(oCreature, fRate, null, false);
     }
 
     public void
-    setCutsceneCameraMoveRate(NWObject oCreature, double fRate, java.util.Map<String, String> __ctx)
+    setCutsceneCameraMoveRate(NWObject oCreature, float fRate, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         setCutsceneCameraMoveRate(oCreature, fRate, __ctx, true);
@@ -30569,7 +30569,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    setCutsceneCameraMoveRate(NWObject oCreature, double fRate, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    setCutsceneCameraMoveRate(NWObject oCreature, float fRate, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -31203,14 +31203,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    setFacing(double fDirection)
+    setFacing(float fDirection)
         throws NotInContextException
     {
         setFacing(fDirection, null, false);
     }
 
     public void
-    setFacing(double fDirection, java.util.Map<String, String> __ctx)
+    setFacing(float fDirection, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         setFacing(fDirection, __ctx, true);
@@ -31218,7 +31218,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    setFacing(double fDirection, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    setFacing(float fDirection, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -31709,14 +31709,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
+    setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
         throws NotInContextException
     {
         setIsTemporaryEnemy(oTarget, oSource, bDecays, fDurationInSeconds, null, false);
     }
 
     public void
-    setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx)
+    setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         setIsTemporaryEnemy(oTarget, oSource, bDecays, fDurationInSeconds, __ctx, true);
@@ -31724,7 +31724,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -31755,14 +31755,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
+    setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
         throws NotInContextException
     {
         setIsTemporaryFriend(oTarget, oSource, bDecays, fDurationInSeconds, null, false);
     }
 
     public void
-    setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx)
+    setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         setIsTemporaryFriend(oTarget, oSource, bDecays, fDurationInSeconds, __ctx, true);
@@ -31770,7 +31770,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -31801,14 +31801,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds)
+    setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds)
         throws NotInContextException
     {
         setIsTemporaryNeutral(oTarget, oSource, bDecays, fDurationInSeconds, null, false);
     }
 
     public void
-    setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx)
+    setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         setIsTemporaryNeutral(oTarget, oSource, bDecays, fDurationInSeconds, __ctx, true);
@@ -31816,7 +31816,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -32172,14 +32172,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     public void
-    setLocalFloat(NWObject oObject, String sVarName, double fValue)
+    setLocalFloat(NWObject oObject, String sVarName, float fValue)
         throws NotInContextException
     {
         setLocalFloat(oObject, sVarName, fValue, null, false);
     }
 
     public void
-    setLocalFloat(NWObject oObject, String sVarName, double fValue, java.util.Map<String, String> __ctx)
+    setLocalFloat(NWObject oObject, String sVarName, float fValue, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
         setLocalFloat(oObject, sVarName, fValue, __ctx, true);
@@ -32187,7 +32187,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
 
     @SuppressWarnings("unchecked")
     private void
-    setLocalFloat(NWObject oObject, String sVarName, double fValue, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    setLocalFloat(NWObject oObject, String sVarName, float fValue, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
         if(__explicitCtx && __ctx == null)
@@ -35389,14 +35389,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     turnsToSeconds(int nTurns)
         throws NotInContextException
     {
         return turnsToSeconds(nTurns, null, false);
     }
 
-    public double
+    public float
     turnsToSeconds(int nTurns, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -35404,7 +35404,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     turnsToSeconds(int nTurns, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -35480,14 +35480,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     vectorMagnitude(NWVector vVector)
         throws NotInContextException
     {
         return vectorMagnitude(vVector, null, false);
     }
 
-    public double
+    public float
     vectorMagnitude(NWVector vVector, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -35495,7 +35495,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     vectorMagnitude(NWVector vVector, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {
@@ -35570,14 +35570,14 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    public double
+    public float
     vectorToAngle(NWVector vVector)
         throws NotInContextException
     {
         return vectorToAngle(vVector, null, false);
     }
 
-    public double
+    public float
     vectorToAngle(NWVector vVector, java.util.Map<String, String> __ctx)
         throws NotInContextException
     {
@@ -35585,7 +35585,7 @@ public final class NWScriptPrxHelper extends Ice.ObjectPrxHelperBase implements 
     }
 
     @SuppressWarnings("unchecked")
-    private double
+    private float
     vectorToAngle(NWVector vVector, java.util.Map<String, String> __ctx, boolean __explicitCtx)
         throws NotInContextException
     {

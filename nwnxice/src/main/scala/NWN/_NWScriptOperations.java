@@ -32,10 +32,10 @@ public interface _NWScriptOperations
     void setEffectTrueType(NWEffect e, EffectTrueType t, Ice.Current __current)
         throws InvalidItemPropertyException;
 
-    double getEffectDuration(NWEffect e, Ice.Current __current)
+    float getEffectDuration(NWEffect e, Ice.Current __current)
         throws InvalidEffectException;
 
-    double getItemPropertyDuration(NWItemProperty e, Ice.Current __current)
+    float getItemPropertyDuration(NWItemProperty e, Ice.Current __current)
         throws InvalidEffectException;
 
     void setDebugLogging(boolean state, Ice.Current __current);
@@ -74,7 +74,7 @@ public interface _NWScriptOperations
     NWItemProperty[] allItemProperties(NWObject item, Ice.Current __current)
         throws NotInContextException;
 
-    NWObject[] allInShape(ShapeType tShapeType, double fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin, Ice.Current __current)
+    NWObject[] allInShape(ShapeType tShapeType, float fSize, NWLocation lTarget, boolean bLineOfSight, ObjectType tObjectType, NWVector vOrigin, Ice.Current __current)
         throws NotInContextException;
 
     NWObject[] allInFaction(NWObject memberOf, boolean bPCOnly, Ice.Current __current)
@@ -132,13 +132,13 @@ public interface _NWScriptOperations
     void actionExamine(NWObject oExamine, Ice.Current __current)
         throws NotInContextException;
 
-    void actionForceFollowObject(NWObject oFollow, double fFollowDistance, Ice.Current __current)
+    void actionForceFollowObject(NWObject oFollow, float fFollowDistance, Ice.Current __current)
         throws NotInContextException;
 
-    void actionForceMoveToLocation(NWLocation lDestination, boolean bRun, double fTimeout, Ice.Current __current)
+    void actionForceMoveToLocation(NWLocation lDestination, boolean bRun, float fTimeout, Ice.Current __current)
         throws NotInContextException;
 
-    void actionForceMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, double fTimeout, Ice.Current __current)
+    void actionForceMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, float fTimeout, Ice.Current __current)
         throws NotInContextException;
 
     void actionGiveItem(NWObject oItem, NWObject oGiveTo, Ice.Current __current)
@@ -156,16 +156,16 @@ public interface _NWScriptOperations
     void actionLockObject(NWObject oTarget, Ice.Current __current)
         throws NotInContextException;
 
-    void actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, double fMoveAwayRange, Ice.Current __current)
+    void actionMoveAwayFromLocation(NWLocation lMoveAwayFrom, boolean bRun, float fMoveAwayRange, Ice.Current __current)
         throws NotInContextException;
 
-    void actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, double fMoveAwayRange, Ice.Current __current)
+    void actionMoveAwayFromObject(NWObject oFleeFrom, boolean bRun, float fMoveAwayRange, Ice.Current __current)
         throws NotInContextException;
 
     void actionMoveToLocation(NWLocation lDestination, boolean bRun, Ice.Current __current)
         throws NotInContextException;
 
-    void actionMoveToObject(NWObject oMoveTo, boolean bRun, double fRange, Ice.Current __current)
+    void actionMoveToObject(NWObject oMoveTo, boolean bRun, float fRange, Ice.Current __current)
         throws NotInContextException;
 
     void actionOpenDoor(NWObject oDoor, Ice.Current __current)
@@ -177,7 +177,7 @@ public interface _NWScriptOperations
     void actionPickUpItem(NWObject oItem, Ice.Current __current)
         throws NotInContextException;
 
-    void actionPlayAnimation(int nAnimation, double fSpeed, double fDurationSeconds, Ice.Current __current)
+    void actionPlayAnimation(int nAnimation, float fSpeed, float fDurationSeconds, Ice.Current __current)
         throws NotInContextException;
 
     void actionPutDownItem(NWObject oItem, Ice.Current __current)
@@ -219,7 +219,7 @@ public interface _NWScriptOperations
     void actionUseSkill(int nSkill, NWObject oTarget, int nSubSkill, NWObject oItemUsed, Ice.Current __current)
         throws NotInContextException;
 
-    void actionWait(double fSeconds, Ice.Current __current)
+    void actionWait(float fSeconds, Ice.Current __current)
         throws NotInContextException;
 
     void activatePortal(NWObject oTarget, String sIPaddress, String sPassword, String sWaypointTag, boolean bSeemless, Ice.Current __current)
@@ -228,7 +228,7 @@ public interface _NWScriptOperations
     void addHenchman(NWObject oMaster, NWObject oHenchman, Ice.Current __current)
         throws NotInContextException;
 
-    void addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, double fDuration, Ice.Current __current)
+    void addItemProperty(DurationType tDurationType, NWItemProperty ipProperty, NWObject oItem, float fDuration, Ice.Current __current)
         throws InvalidItemPropertyException,
                NotInContextException;
 
@@ -262,14 +262,14 @@ public interface _NWScriptOperations
     void ambientSoundStop(NWObject oArea, Ice.Current __current)
         throws NotInContextException;
 
-    NWVector angleToVector(double fAngle, Ice.Current __current)
+    NWVector angleToVector(float fAngle, Ice.Current __current)
         throws NotInContextException;
 
-    void applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, double fDuration, Ice.Current __current)
+    void applyEffectAtLocation(DurationType tDurationType, NWEffect eEffect, NWLocation lLocation, float fDuration, Ice.Current __current)
         throws InvalidEffectException,
                NotInContextException;
 
-    void applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, double fDuration, Ice.Current __current)
+    void applyEffectToObject(DurationType tDurationType, NWEffect eEffect, NWObject oTarget, float fDuration, Ice.Current __current)
         throws InvalidEffectException,
                NotInContextException;
 
@@ -312,13 +312,13 @@ public interface _NWScriptOperations
     NWObject createObject(ObjectType tObjectType, String sTemplate, NWLocation lLocation, boolean bUseAppearAnimation, String sNewTag, Ice.Current __current)
         throws NotInContextException;
 
-    NWObject createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, double fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, Ice.Current __current)
+    NWObject createTrapAtLocation(TrapType tTrapType, NWLocation lLocation, float fSize, String sTag, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, Ice.Current __current)
         throws NotInContextException;
 
     void createTrapOnObject(TrapType tTrapType, NWObject oObject, StandardFaction tStandardFaction, String sOnDisarmScript, String sOnTrapTriggeredScript, Ice.Current __current)
         throws NotInContextException;
 
-    void dayToNight(NWObject oPlayer, double fTransitionTime, Ice.Current __current)
+    void dayToNight(NWObject oPlayer, float fTransitionTime, Ice.Current __current)
         throws NotInContextException;
 
     void decrementRemainingFeatUses(NWObject oCreature, int nFeat, Ice.Current __current)
@@ -348,7 +348,7 @@ public interface _NWScriptOperations
     void destroyCampaignDatabase(String sCampaignName, Ice.Current __current)
         throws NotInContextException;
 
-    void destroyObject(NWObject oDestroy, double fDelay, Ice.Current __current)
+    void destroyObject(NWObject oDestroy, float fDelay, Ice.Current __current)
         throws NotInContextException;
 
     void doDoorAction(NWObject oTargetDoor, DoorAction tDoorAction, Ice.Current __current)
@@ -486,7 +486,7 @@ public interface _NWScriptOperations
     NWEffect effectHeal(int nDamageToHeal, Ice.Current __current)
         throws NotInContextException;
 
-    NWEffect effectHitPointChangeWhenDying(double fHitPointChangePerRound, Ice.Current __current)
+    NWEffect effectHitPointChangeWhenDying(float fHitPointChangePerRound, Ice.Current __current)
         throws NotInContextException;
 
     NWEffect effectImmunity(ImmunityType tImmunityType, Ice.Current __current)
@@ -529,7 +529,7 @@ public interface _NWScriptOperations
     NWEffect effectPolymorph(int nPolymorphSelection, boolean bLocked, Ice.Current __current)
         throws NotInContextException;
 
-    NWEffect effectRegenerate(int nAmount, double fIntervalSeconds, Ice.Current __current)
+    NWEffect effectRegenerate(int nAmount, float fIntervalSeconds, Ice.Current __current)
         throws NotInContextException;
 
     NWEffect effectResurrection(Ice.Current __current)
@@ -580,7 +580,7 @@ public interface _NWScriptOperations
     NWEffect effectStunned(Ice.Current __current)
         throws NotInContextException;
 
-    NWEffect effectSummonCreature(String sCreatureResref, int nVisualEffectId, double fDelaySeconds, boolean bUseAppearAnimation, Ice.Current __current)
+    NWEffect effectSummonCreature(String sCreatureResref, int nVisualEffectId, float fDelaySeconds, boolean bUseAppearAnimation, Ice.Current __current)
         throws NotInContextException;
 
     NWEffect effectSwarm(boolean bLooping, String sCreatureTemplate1, String sCreatureTemplate2, String sCreatureTemplate3, String sCreatureTemplate4, Ice.Current __current)
@@ -629,10 +629,10 @@ public interface _NWScriptOperations
         throws InvalidEffectException,
                NotInContextException;
 
-    void fadeFromBlack(NWObject oCreature, double fSpeed, Ice.Current __current)
+    void fadeFromBlack(NWObject oCreature, float fSpeed, Ice.Current __current)
         throws NotInContextException;
 
-    void fadeToBlack(NWObject oCreature, double fSpeed, Ice.Current __current)
+    void fadeToBlack(NWObject oCreature, float fSpeed, Ice.Current __current)
         throws NotInContextException;
 
     void floatingTextStrRefOnCreature(int nStrRefToDisplay, NWObject oCreatureToFloatAbove, boolean bBroadcastToFaction, Ice.Current __current)
@@ -728,7 +728,7 @@ public interface _NWScriptOperations
     int getCalendarYear(Ice.Current __current)
         throws NotInContextException;
 
-    double getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer, Ice.Current __current)
+    float getCampaignFloat(String sCampaignName, String sVarName, NWObject oPlayer, Ice.Current __current)
         throws NotInContextException;
 
     int getCampaignInt(String sCampaignName, String sVarName, NWObject oPlayer, Ice.Current __current)
@@ -746,7 +746,7 @@ public interface _NWScriptOperations
     int getCasterLevel(NWObject oCreature, Ice.Current __current)
         throws NotInContextException;
 
-    double getChallengeRating(NWObject oCreature, Ice.Current __current)
+    float getChallengeRating(NWObject oCreature, Ice.Current __current)
         throws NotInContextException;
 
     int getClassByPosition(int nClassPosition, NWObject oCreature, Ice.Current __current)
@@ -782,7 +782,7 @@ public interface _NWScriptOperations
     int getCurrentHitPoints(NWObject oObject, Ice.Current __current)
         throws NotInContextException;
 
-    double getCutsceneCameraMoveRate(NWObject oCreature, Ice.Current __current)
+    float getCutsceneCameraMoveRate(NWObject oCreature, Ice.Current __current)
         throws NotInContextException;
 
     boolean getCutsceneMode(NWObject oCreature, Ice.Current __current)
@@ -803,16 +803,16 @@ public interface _NWScriptOperations
     int getDetectMode(NWObject oCreature, Ice.Current __current)
         throws NotInContextException;
 
-    double getDialogSoundLength(int nStrRef, Ice.Current __current)
+    float getDialogSoundLength(int nStrRef, Ice.Current __current)
         throws NotInContextException;
 
-    double getDistanceBetween(NWObject oObjectA, NWObject oObjectB, Ice.Current __current)
+    float getDistanceBetween(NWObject oObjectA, NWObject oObjectB, Ice.Current __current)
         throws NotInContextException;
 
-    double getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB, Ice.Current __current)
+    float getDistanceBetweenLocations(NWLocation lLocationA, NWLocation lLocationB, Ice.Current __current)
         throws NotInContextException;
 
-    double getDistanceToObject(NWObject oObject, Ice.Current __current)
+    float getDistanceToObject(NWObject oObject, Ice.Current __current)
         throws NotInContextException;
 
     boolean getDroppableFlag(NWObject oItem, Ice.Current __current)
@@ -856,7 +856,7 @@ public interface _NWScriptOperations
     NWObject getExitingObject(Ice.Current __current)
         throws NotInContextException;
 
-    double getFacing(NWObject oTarget, Ice.Current __current)
+    float getFacing(NWObject oTarget, Ice.Current __current)
         throws NotInContextException;
 
     int getFactionAverageGoodEvilAlignment(NWObject oFactionMember, Ice.Current __current)
@@ -1270,7 +1270,7 @@ public interface _NWScriptOperations
     int getListenPatternNumber(Ice.Current __current)
         throws NotInContextException;
 
-    double getLocalFloat(NWObject oObject, String sVarName, Ice.Current __current)
+    float getLocalFloat(NWObject oObject, String sVarName, Ice.Current __current)
         throws NotInContextException;
 
     int getLocalInt(NWObject oObject, String sVarName, Ice.Current __current)
@@ -1516,7 +1516,7 @@ public interface _NWScriptOperations
     int getStoreMaxBuyPrice(NWObject oidStore, Ice.Current __current)
         throws NotInContextException;
 
-    double getStrRefSoundDuration(int nStrRef, Ice.Current __current)
+    float getStrRefSoundDuration(int nStrRef, Ice.Current __current)
         throws NotInContextException;
 
     String getStringByStrRef(int nStrRef, Gender tGender, Ice.Current __current)
@@ -1630,7 +1630,7 @@ public interface _NWScriptOperations
     void giveXPToCreature(NWObject oCreature, int nXpAmount, Ice.Current __current)
         throws NotInContextException;
 
-    double hoursToSeconds(int nHours, Ice.Current __current)
+    float hoursToSeconds(int nHours, Ice.Current __current)
         throws NotInContextException;
 
     void incrementRemainingFeatUses(NWObject oCreature, int nFeat, Ice.Current __current)
@@ -1934,7 +1934,7 @@ public interface _NWScriptOperations
     void musicBattleStop(NWObject oArea, Ice.Current __current)
         throws NotInContextException;
 
-    void nightToDay(NWObject oPlayer, double fTransitionTime, Ice.Current __current)
+    void nightToDay(NWObject oPlayer, float fTransitionTime, Ice.Current __current)
         throws NotInContextException;
 
     void openInventory(NWObject oCreature, NWObject oPlayer, Ice.Current __current)
@@ -1943,7 +1943,7 @@ public interface _NWScriptOperations
     void openStore(NWObject oStore, NWObject oPC, int nBonusMarkUp, int nBonusMarkDown, Ice.Current __current)
         throws NotInContextException;
 
-    void playAnimation(int nAnimation, double fSpeed, double fSeconds, Ice.Current __current)
+    void playAnimation(int nAnimation, float fSpeed, float fSeconds, Ice.Current __current)
         throws NotInContextException;
 
     void playSound(String sSoundName, Ice.Current __current)
@@ -2002,7 +2002,7 @@ public interface _NWScriptOperations
     NWObject retrieveCampaignObject(String sCampaignName, String sVarName, NWLocation locLocation, NWObject oOwner, NWObject oPlayer, Ice.Current __current)
         throws NotInContextException;
 
-    double roundsToSeconds(int nRounds, Ice.Current __current)
+    float roundsToSeconds(int nRounds, Ice.Current __current)
         throws NotInContextException;
 
     void sendMessageToAllDMs(String szMessage, Ice.Current __current)
@@ -2032,16 +2032,16 @@ public interface _NWScriptOperations
     void setCalendar(int nYear, int nMonth, int nDay, Ice.Current __current)
         throws NotInContextException;
 
-    void setCameraFacing(double fDirection, double fDistance, double fPitch, int nTransitionType, Ice.Current __current)
+    void setCameraFacing(float fDirection, float fDistance, float fPitch, int nTransitionType, Ice.Current __current)
         throws NotInContextException;
 
-    void setCameraHeight(NWObject oPlayer, double fHeight, Ice.Current __current)
+    void setCameraHeight(NWObject oPlayer, float fHeight, Ice.Current __current)
         throws NotInContextException;
 
     void setCameraMode(NWObject oPlayer, int nCameraMode, Ice.Current __current)
         throws NotInContextException;
 
-    void setCampaignFloat(String sCampaignName, String sVarName, double flFloat, NWObject oPlayer, Ice.Current __current)
+    void setCampaignFloat(String sCampaignName, String sVarName, float flFloat, NWObject oPlayer, Ice.Current __current)
         throws NotInContextException;
 
     void setCampaignInt(String sCampaignName, String sVarName, int nInt, NWObject oPlayer, Ice.Current __current)
@@ -2077,7 +2077,7 @@ public interface _NWScriptOperations
     void setCustomToken(int nCustomTokenNumber, String sTokenValue, Ice.Current __current)
         throws NotInContextException;
 
-    void setCutsceneCameraMoveRate(NWObject oCreature, double fRate, Ice.Current __current)
+    void setCutsceneCameraMoveRate(NWObject oCreature, float fRate, Ice.Current __current)
         throws NotInContextException;
 
     void setCutsceneMode(NWObject oCreature, boolean bInCutscene, boolean bLeftClickingEnabled, Ice.Current __current)
@@ -2104,7 +2104,7 @@ public interface _NWScriptOperations
     void setEncounterSpawnsMax(int nNewValue, NWObject oEncounter, Ice.Current __current)
         throws NotInContextException;
 
-    void setFacing(double fDirection, Ice.Current __current)
+    void setFacing(float fDirection, Ice.Current __current)
         throws NotInContextException;
 
     void setFacingPoint(NWVector vTarget, Ice.Current __current)
@@ -2137,13 +2137,13 @@ public interface _NWScriptOperations
     void setIsDestroyable(boolean bDestroyable, boolean bRaiseable, boolean bSelectableWhenDead, Ice.Current __current)
         throws NotInContextException;
 
-    void setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, Ice.Current __current)
+    void setIsTemporaryEnemy(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, Ice.Current __current)
         throws NotInContextException;
 
-    void setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, Ice.Current __current)
+    void setIsTemporaryFriend(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, Ice.Current __current)
         throws NotInContextException;
 
-    void setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, double fDurationInSeconds, Ice.Current __current)
+    void setIsTemporaryNeutral(NWObject oTarget, NWObject oSource, boolean bDecays, float fDurationInSeconds, Ice.Current __current)
         throws NotInContextException;
 
     void setItemCharges(NWObject oItem, int nCharges, Ice.Current __current)
@@ -2164,7 +2164,7 @@ public interface _NWScriptOperations
     void setListening(NWObject oObject, boolean bValue, Ice.Current __current)
         throws NotInContextException;
 
-    void setLocalFloat(NWObject oObject, String sVarName, double fValue, Ice.Current __current)
+    void setLocalFloat(NWObject oObject, String sVarName, float fValue, Ice.Current __current)
         throws NotInContextException;
 
     void setLocalInt(NWObject oObject, String sVarName, int nValue, Ice.Current __current)
@@ -2375,19 +2375,19 @@ public interface _NWScriptOperations
     AttackResult touchAttackRanged(NWObject oTarget, boolean bDisplayFeedback, Ice.Current __current)
         throws NotInContextException;
 
-    double turnsToSeconds(int nTurns, Ice.Current __current)
+    float turnsToSeconds(int nTurns, Ice.Current __current)
         throws NotInContextException;
 
     void unpossessFamiliar(NWObject oCreature, Ice.Current __current)
         throws NotInContextException;
 
-    double vectorMagnitude(NWVector vVector, Ice.Current __current)
+    float vectorMagnitude(NWVector vVector, Ice.Current __current)
         throws NotInContextException;
 
     NWVector vectorNormalize(NWVector vVector, Ice.Current __current)
         throws NotInContextException;
 
-    double vectorToAngle(NWVector vVector, Ice.Current __current)
+    float vectorToAngle(NWVector vVector, Ice.Current __current)
         throws NotInContextException;
 
     NWEffect versusAlignmentEffect(NWEffect eEffect, int nLawChaos, int nGoodEvil, Ice.Current __current)
