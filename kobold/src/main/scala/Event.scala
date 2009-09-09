@@ -40,7 +40,7 @@ package es.elv.kobold.events {
 		def send(e: Event): Event = {
 			val aa = System.currentTimeMillis
 			for (o <- observers) {
-				if (!e.stopped) try {
+				try {
 					val a = System.currentTimeMillis
 					o listen e
 					val b = System.currentTimeMillis
