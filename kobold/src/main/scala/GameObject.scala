@@ -223,7 +223,7 @@ package es.elv.kobold {
 		lazy val lv   = new LocalVectorMap(this)
 		lazy val llo  = new LocalLocationMap(this)
 
-		protected def toStringProperties = List(if (valid) "valid" else "invalid", "ref=" + resref(), "tag=" + tag(), "name=" + name())
-		override def toString = getClass.getName.toString + "(" + (wrapped.id.toHexString :: toStringProperties).mkString(",") + ")"
+		protected def toStringProperties = List(if (valid) "valid" else "invalid", "ref=" + resref(), "tag=" + tag())
+		override def toString = getClass.getName.toString + "(" + (wrapped.id.toHexString :: "name=" + name() :: toStringProperties).mkString(",") + ")"
 	}
 }
