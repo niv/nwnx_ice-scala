@@ -2,11 +2,37 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
-	abstract class GFactory[K <: G](val createsWhat: ObjectType) {
-		def create(resref: String, where: Location): G =
-			create(resref, where, false, "")
-		def create(resref: String, where: Location, useAnimation: Boolean, newTag: String): G =
-			G[G](R.proxy.createObject(createsWhat, resref, where, useAnimation, newTag))
+	abstract class GSelector[K <: G] {
+	}
+
+	abstract class GFactory[K <: G](val objectType: ObjectType) extends GSelector[K] {
+		protected def create(resref: String, where: Location, useAnimation: Boolean, newTag: String) =
+			G[G](R.proxy.createObject(objectType, resref, where, useAnimation, newTag))
+
+		def apply(resref: String, where: Location): G =
+			apply(resref, where, false, "")
+		def apply(resref: String, where: Location, useAnimation: Boolean): G =
+			apply(resref, where, useAnimation, "")
+		def apply(resref: String, where: Location, useAnimation: Boolean, newTag: String): G =
+			create(resref, where, useAnimation, newTag)
+	}
+
+	abstract class GRefFactory[K <: G](objectType: ObjectType, val resref: String)
+			extends GFactory[K](objectType) {
+
+		def apply(where: Location): G =
+			apply(where, false, "")
+		def apply(where: Location, useAnimation: Boolean): G =
+			apply(where, useAnimation, "")
+		def apply(where: Location, useAnimation: Boolean, newTag: String): G =
+			create(resref, where, useAnimation, newTag)
+	}
+
+	abstract class GRefTagFactory[K <: G](objectType: ObjectType, resref: String, val tag: String)
+			extends GRefFactory[K](objectType, resref) {
+
+		override def create(resref: String, where: Location, useAnimation: Boolean, newTag: String) =
+			super.create(resref, where, useAnimation, tag)
 	}
 
 	object G {

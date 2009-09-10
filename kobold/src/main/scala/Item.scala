@@ -2,10 +2,36 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
-	object Item extends GFactory[Item](ObjectType.Item) {
-		def create(resref: String, on: G, newTag: String, stacksize: Int) =
+	abstract class GItemFactory[K <: G] extends GFactory[K](ObjectType.Item) {
+		protected def create(resref: String, on: G, newTag: String, stacksize: Int) =
 			G[G](R.proxy.createItemOnObject(resref, on, stacksize, newTag))
+
+		def apply(resref: String, on: G, newTag: String, stacksize: Int) =
+			create(resref, on, newTag, stacksize)
 	}
+
+	abstract class GRefItemFactory[K <: G](val resref: String)
+			extends GItemFactory[K] {
+
+		def apply(on: G): G =
+			apply(on, "", 1)
+		def apply(on: G, stacksize: Int): G =
+			apply(on, "", stacksize)
+		def apply(on: G, newTag: String): G =
+			apply(on, newTag, 1)
+		def apply(on: G, newTag: String, stacksize: Int): G =
+			create(resref, on, newTag, stacksize)
+	}
+
+	abstract class GRefTagItemFactory[K <: G](resref: String, val tag: String)
+			extends GRefItemFactory[K](resref) {
+
+		override def create(resref: String, on: G, newTag: String, stacksize: Int) =
+			super.create(resref, on, tag, stacksize)
+	}
+
+
+	object Item extends GItemFactory[Item]
 
 	class Item (wrapped: NWObject) extends G(wrapped)
 			with Position with Inventory {
