@@ -88,12 +88,22 @@ package es.elv.kobold {
 		val facing = P(() => location().facing, (n: Float) => R.proxy.setFacing(n))
 		val area = P(() => location().area : Area)
 
-		/** Returns all objects in the given radius. */
-		def near(radius: Float): List[G] = near(ObjectType.All, radius)
+		/** Returns a List[G] objects in the given radius. */
+		def near(radius: Float): List[G] = near(radius, ObjectType.All)
 
-		/** Returns all objects matching oType in the given radius. */
-		def near(oType: ObjectType, radius: Float): List[G] = R.proxy.allInShape(ShapeType.SphereShape, radius,
+		/** Returns a List[G] of objects matching oType in the given radius. */
+		def near(radius: Float, oType: ObjectType): List[G] = R.proxy.allInShape(ShapeType.SphereShape, radius,
 			location(), false, oType, Vector.origin) map(x => G[G](x)) filter(x => x != this) toList
+
+		/** Returns a List[T] of VALID objects of a specific class type T &lt;: G in the given radius. */
+		def near[T <: G](radius: Float, mapType: ObjectType, klass: Class[T]): List[T] = R.proxy.allInShape(ShapeType.SphereShape,
+			radius, location(), false, mapType, Vector.origin) map (x => G[G](x)) filter
+				(x => klass.isAssignableFrom(x.getClass)) map (x => x.asInstanceOf[T]) toList
+
+		/** Returns a List[G] of VALID objects which klasses match the given types. */
+		def near(radius: Float, klasses: Class[G]*): List[G] = R.proxy.allInShape(ShapeType.SphereShape,
+			radius, location(), false, ObjectType.All, Vector.origin) map (x => G[G](x)) filter
+				(x => klasses.exists(kk => kk.isAssignableFrom(x.getClass))) toList
 	}
 
 	trait Movement extends Position with ActionQueue {
