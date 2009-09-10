@@ -35,10 +35,9 @@ object Chat extends Core("CHAT") with Plugin {
 
 	private def pcIn(o: G) {
 		val id = get(o, "GETID", 10).trim.toInt
-		if (id != -1) {
-			R.proxy.setLocalObject(Module(), "chatPC_" + id, o)
-			R.proxy.setLocalInt(o, "chatID", id)
-		}
+		require(id > -1)
+		R.proxy.setLocalObject(Module(), "chatPC_" + id, o)
+		R.proxy.setLocalInt(o, "chatID", id)
 	}
 	private def pcOut(o: G) {
 		val id = R.proxy.getLocalInt(o, "chatID")
