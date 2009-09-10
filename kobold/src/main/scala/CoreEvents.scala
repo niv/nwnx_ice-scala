@@ -159,8 +159,8 @@ package es.elv.kobold {
 							r.self, R.proxy.getLastSpellCaster, R.proxy.getSpellCastItem,
 							R.proxy.getLastSpell, R.proxy.getMetaMagicFeat, R.proxy.getLastSpellHarmful)
 
-						case "player_login" => EventSource send new OnPlayerEnter(R.proxy.getEnteringObject)
-						case "player_logout" => EventSource send new OnPlayerLeave(R.proxy.getExitingObject)
+						case "player_login" => EventSource send new OnPlayerEnter(r.self)
+						case "player_logout" => EventSource send new OnPlayerLeave(r.self)
 						case "player_dying" => EventSource send new OnPlayerDying(R.proxy.getLastPlayerDying)
 						case "player_death" => EventSource send new OnPlayerDeath(R.proxy.getLastPlayerDied)
 						case "player_rest" => EventSource send new OnPlayerRest(R.proxy.getLastPCRested)
