@@ -78,6 +78,14 @@ package es.elv.kobold {
 			case _ => Some(new Area(o))
 		})
 
+		/* There seems to be a bug/undocumented feature in nwserver that sometimes spawns
+			an object at the location just where a player logged out, of type ALL
+			and with resref = "", tag = "" and name of the player. */
+		registerObjectClass((o, t, r, ta) => if (t == ObjectType.All && r == "" && ta == "" &&
+				R.proxy.getName(o, true) != "" && R.proxy.getDescription(o, true, true) == "") {
+			Some(new UFO(o))
+		} else None)
+
 		/* TRUE if oCreature is a DM (Dungeon Master) avatar. Returns FALSE for
 			everything else, including creatures controlled by the DM.  */
 		registerObjectClass((o, t, r, ta) => if (R.proxy.getIsDM(o)) Some(new DM(o)) else None)
