@@ -7,5 +7,7 @@ package es.elv.kobold {
 	class Placeable (wrapped: NWObject) extends G(wrapped)
 			with Position with Effects with Lock with Trap {
 		ensureObjectType(ObjectType.Placeable)
+
+		val plot = P(() => R.proxy.getPlotFlag(this), (v: Boolean) => R.proxy.setPlotFlag(this, v))
 	}
 }
