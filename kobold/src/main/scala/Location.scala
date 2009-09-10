@@ -67,5 +67,12 @@ package es.elv.kobold {
 		/** Create a new Location based on this one. */
 		def modify(a: (Area) => Area, v: (Vector) => Vector, f: (Float) => Float): Location =
 			Location(a(area), v(position), f(facing))
+
+		/** Get the SurfaceType at this location. */
+		def surface = nwnx.FuncsExt.getSurfaceAt(this)
+
+		/** Gets this location adjusted to ground height. */
+		def atGroundHeight =
+			Location(area, Vector(position.x, position.y, nwnx.Funcs.groundHeightAt(this)), facing)
 	}
 }

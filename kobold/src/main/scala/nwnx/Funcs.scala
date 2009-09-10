@@ -25,6 +25,12 @@ object Funcs extends Core("FUNCS") {
 		}
 		all.toList
 	}
+
+	def groundHeightAt(where: Location): Float = where.area match {
+		case NoArea => 0.0f
+		case _ => setGet(where.area, "GETGROUNDHEIGHT",
+			List(where.x, where.y, where.z).mkString("¬") + "                     ").toFloat
+	}
 }
 
 }
