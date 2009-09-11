@@ -16,5 +16,6 @@ package es.elv.kobold {
 			R.proxy.setCalendar(datetime.year, datetime.month, datetime.day)
 		}
 
+		override val valid = P(() => true)
 	}
 }

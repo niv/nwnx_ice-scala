@@ -124,7 +124,7 @@ package es.elv.kobold {
 			Not needed for normal usage.
 		*/
 		def purgeCache = for ((l,g) <- cache)
-			if (g.objAge > invalidationTime && !g.valid)
+			if (g.objAge > invalidationTime && !g.valid())
 				cache -= l
 
 		def apply[K <: G](n: Long): K =
@@ -132,7 +132,7 @@ package es.elv.kobold {
 
 		def apply[K <: G](o: NWObject): K = {
 			if (cache.contains(o.id) && cache(o.id).objAge > invalidationTime
-					&& !cache(o.id).valid)
+					&& !cache(o.id).valid())
 				cache -= o.id
 
 			if (!cache.contains(o.id)) {
@@ -212,12 +212,7 @@ package es.elv.kobold {
 		val resref = P( Indef, () => R.proxy.getResRef(this) )
 		val tag = P( () => R.proxy.getTag(this) )
 
-		def valid: Boolean = {
-			if (this == Module())
-				return true
-
-			R.proxy.getIsObjectValid(this)
-		}
+		val valid = P( () => R.proxy.getIsObjectValid(this) )
 
 		val name: RWCachedProperty[String] = P(() => R.proxy.getName(this, false), (n: String) => { R.proxy.setName(this, n); this.name.clear() })
 		val originalName = P(() => R.proxy.getName(this, true))
@@ -238,7 +233,7 @@ package es.elv.kobold {
 		lazy val lv   = new LocalVectorMap(this)
 		lazy val llo  = new LocalLocationMap(this)
 
-		protected def toStringProperties = List(if (valid) "valid" else "invalid", "ref=" + resref(), "tag=" + tag())
+		protected def toStringProperties = List(if (valid()) "valid" else "invalid", "ref=" + resref(), "tag=" + tag())
 		override def toString = getClass.getName.toString + "(" + (wrapped.id.toHexString :: "name=" + name() :: toStringProperties).mkString(",") + ")"
 	}
 }

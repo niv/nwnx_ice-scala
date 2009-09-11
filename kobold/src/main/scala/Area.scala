@@ -11,7 +11,7 @@ package es.elv.kobold {
 	/** A special area object for creatures currently in transition. */
 	object NoArea extends Area(new NWObject(0x7f000000)) {
 		def apply() = this
-		override def valid = false
+		override val valid = P(() => false)
 	}
 
 	class Area (wrapped: NWObject) extends G(wrapped) {

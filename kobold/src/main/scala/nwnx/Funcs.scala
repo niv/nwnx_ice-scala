@@ -19,7 +19,7 @@ object Funcs extends Core("FUNCS") {
 	def allAreas: List[Area] = {
 		var all = new mutable.ListBuffer[Area]
 		var area: G = G(getObject(Module(), "GETFIRSTAREA"))
-		while (area.valid) {
+		while (area.valid()) {
 			all += area.asInstanceOf[Area]
 			area = G(getObject(Module(), "GETNEXTAREA"))
 		}

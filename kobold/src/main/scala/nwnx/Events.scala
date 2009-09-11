@@ -38,7 +38,7 @@ object Events extends Core("EVENTS") with Plugin {
 				val nwnxPosition = stringToVector(get(Module(), "GET_EVENT_POSITION", 30))
 
 				val area = G[G](R.proxy.getArea(self))
-				val nwnxLocation = if (area.valid)
+				val nwnxLocation = if (area.valid())
 					Location(area.asInstanceOf[Area], nwnxPosition, 0)
 				else
 					InvalidLocation()

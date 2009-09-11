@@ -14,5 +14,7 @@ package es.elv.kobold {
 		ensureObjectType()
 
 		override val cacheClassInstances = false
+
+		override val valid = P(() => false)
 	}
 }

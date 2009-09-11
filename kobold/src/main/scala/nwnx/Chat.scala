@@ -19,10 +19,10 @@ package nwnx {
 
 object Chat extends Core("CHAT") with Plugin {
 	def speakToChannel(speaker: G, channel: Int, text: String, to: G): Unit = {
-		if (!speaker.valid)
+		if (!speaker.valid())
 			return
 
-		if (channel == 4 && !to.valid)
+		if (channel == 4 && !to.valid())
 			return
 
 		val t = List(speaker.wrapped.id.toHexString,

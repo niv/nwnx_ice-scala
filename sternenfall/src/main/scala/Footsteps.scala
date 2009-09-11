@@ -135,10 +135,10 @@ object Footsteps extends Plugin {
 	def listen(event: Event) = event match {
 
 		case OnTick(_, tick) => {
-			val players = Player.all() filter (p => p.area().valid && doesFootsteps(p))
+			val players = Player.all() filter (p => p.area().valid() && doesFootsteps(p))
 			val npcs = players.flatMap(p =>
 				p.near(60, NWN.ObjectType.Creature, classOf[NonPlayer])
-					filter (n => n.area().valid && doesFootsteps(n))).removeDuplicates.take(50)
+					filter (n => n.area().valid() && doesFootsteps(n))).removeDuplicates.take(50)
 
 			for (p <- players) doFootsteps(p)
 			for (p <- npcs) doFootsteps(p)
