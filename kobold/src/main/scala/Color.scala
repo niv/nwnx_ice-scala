@@ -1,5 +1,6 @@
 package es.elv.kobold.color {
 	object Color {
+		private val TokenRX = """<c(.)(.)(.)>""".r
 		val min = 1
 		val low = 80
 		val mid = 128
@@ -7,6 +8,14 @@ package es.elv.kobold.color {
 		val max = 255
 
 		def apply(hex: Int) = new Color(hex)
+		def apply(tok: String) = tok match {
+			case "</c>" => NoColor
+			case TokenRX(r, g, b) => {
+				val (rr, gg, bb) = (r.toArray, g.toArray, b.toArray)
+				new Color(rr(0).toInt, gg(0).toInt, bb(0).toInt)
+			}
+			case p => throw new IllegalArgumentException("Cannot parse token: " + tok)
+		}
 
 		/**
 			Strip all colour tags out of the given string.
@@ -41,8 +50,8 @@ package es.elv.kobold.color {
 		override def toString = "<c" + r.toChar + g.toChar + b.toChar + ">"
 	}
 
-	case object NoColor {
-		def apply(enclose: String) = toString + enclose
+	case object NoColor extends Color(0) {
+		override def apply(enclose: String) = toString + enclose
 		override def toString = "</c>"
 	}
 
