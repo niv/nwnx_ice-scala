@@ -142,16 +142,23 @@ package es.elv.kobold {
 
 				def selectClass(facList: List[ (NWObject, =>ObjectType, =>String, =>String) => Option[G] ]): Option[G] = {
 					for (fact <- facList)
-						fact(o, objectType, resRef, tag) match {
-							case Some(g) => return Some(g)
-							case None =>
+						try {
+							fact(o, objectType, resRef, tag) match {
+								case Some(g) => return Some(g)
+								case None =>
+							}
+						} catch {
+							case p: IllegalArgumentException => {
+								log.error("while trying to produce: %08x=%s ref=%s tag=%s".format(o.id, objectType, resRef, tag), p)
+								throw p
+							}
 						}
 					return None
 				}
 
 				val kk: G = selectClass(objectClasses) match {
 					case Some(g) => g
-					case None => throw new Exception("Cannot produce a class for %08x=%s ref=%s tag=%s".format(o.id, objectType, resRef, tag))
+					case None => throw new Exception("Cannot produce for %08x=%s ref=%s tag=%s".format(o.id, objectType, resRef, tag))
 				}
 
 				log.debug("%08x=%s ref=%s tag=%s -> %s".format(o.id, objectType.toString, resRef, tag, kk.toString))
