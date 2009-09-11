@@ -77,6 +77,9 @@ package es.elv.kobold {
 			)
 		})
 
+		/** Returns true if this Creature has the feat in question. */
+		def hasFeat(feat: Int) = R.proxy.getHasFeat(feat, this)
+
 		/** Returns true if this Creature can hear who. */
 		def hears(who: Creature) = R.proxy.getObjectHeard(who, this)
 
