@@ -1,83 +1,70 @@
 package es.elv.kobold
 import es.elv.kobold.Implicits._
 
-class LocalStringMap(parent: G) {
-	def apply(key: String): String =
-		R.proxy.getLocalString(parent, key)
-	def update(key: String, value: String) =
-		R.proxy.setLocalString(parent, key, value)
-	def -=(key: String) =
-		R.proxy.deleteLocalString(parent, key)
+abstract class LocalVarMap[T](parent: G, getter: (String) => T,
+		setter: (String, T) => Unit, deleter: (String) => Unit) {
+	def apply(key: String): T = getter(key)
+	def update(key: String, value: T) = setter(key, value)
+	def -=(key: String) = deleter(key)
 }
 
-class LocalIntMap(parent: G) {
-	def apply(key: String): Int =
-		R.proxy.getLocalInt(parent, key)
-	def update(key: String, value: Int) =
-		R.proxy.setLocalInt(parent, key, value)
-	def -=(key: String) =
-		R.proxy.deleteLocalInt(parent, key)
-}
+class LocalStringMap(parent: G) extends LocalVarMap[String](parent,
+	(k) => R.proxy.getLocalString(parent, k),
+	(k, v) => R.proxy.setLocalString(parent, k, v),
+	(k) => R.proxy.deleteLocalString(parent, k)
+)
 
-class LocalLongMap(parent: G) {
-	def apply(key: String): Long =
-		try {R.proxy.getLocalString(parent, "_ice_l_" + key).toLong } catch { case p: NumberFormatException => 0 }
-	def update(key: String, value: Long) =
-		R.proxy.setLocalString(parent, "_ice_l_" + key, value.toString)
-	def -=(key: String) =
-		R.proxy.deleteLocalString(parent,"_ice_l_" +  key)
-}
+class LocalIntMap(parent: G) extends LocalVarMap[Int](parent,
+	(k) => R.proxy.getLocalInt(parent, k),
+	(k, v) => R.proxy.setLocalInt(parent, k, v),
+	(k) => R.proxy.deleteLocalInt(parent, k)
+)
 
-class LocalBoolMap(parent: G) {
-	def apply(key: String): Boolean =
-		if (R.proxy.getLocalInt(parent, "_ice_b_" + key) == 0) false else true
-	def update(key: String, value: Boolean) =
-		R.proxy.setLocalInt(parent, "_ice_b_" + key, if (value) 1 else 0)
-	def -=(key: String) =
-		R.proxy.deleteLocalInt(parent, "_ice_b_" + key)
-}
+class LocalLongMap(parent: G) extends LocalVarMap[Long](parent,
+	(k) => try { R.proxy.getLocalString(parent, "_ice_l_" + k).toLong }
+		catch { case p: NumberFormatException => 0 },
+	(k, v) => R.proxy.setLocalString(parent, "_ice_l_" + k, v.toString),
+	(k) => R.proxy.deleteLocalString(parent, "_ice_l_" + k)
+)
 
-class LocalFloatMap(parent: G) {
-	def apply(key: String): Float =
-		R.proxy.getLocalFloat(parent, key)
-	def update(key: String, value: Float) =
-		R.proxy.setLocalFloat(parent, key, value)
-	def -=(key: String) =
-		R.proxy.deleteLocalFloat(parent, key)
-}
+class LocalBoolMap(parent: G) extends LocalVarMap[Boolean](parent,
+	(k) => if (R.proxy.getLocalInt(parent, "_ice_b_" + k) != 0) true else false,
+	(k, v) => R.proxy.setLocalInt(parent, "_ice_b_" + k, if (v) 1 else 0),
+	(k) => R.proxy.deleteLocalInt(parent, "_ice_b_" + k)
+)
 
-class LocalObjectMap(parent: G) {
-	def apply(key: String): G =
-		G(R.proxy.getLocalObject(parent, key))
-	def update(key: String, value: G) =
-		R.proxy.setLocalObject(parent, key, value)
-	def -=(key: String) =
-		R.proxy.deleteLocalObject(parent, key)
-}
+class LocalFloatMap(parent: G) extends LocalVarMap[Float](parent,
+	(k) => R.proxy.getLocalFloat(parent, k),
+	(k, v) => R.proxy.setLocalFloat(parent, k, v),
+	(k) => R.proxy.deleteLocalFloat(parent, k)
+)
 
-class LocalVectorMap(parent: G) {
-	def apply(key: String): Vector = Vector(
-		R.proxy.getLocalFloat(parent, "_ice_v_" + key + "_x"),
-		R.proxy.getLocalFloat(parent, "_ice_v_" + key + "_y"),
-		R.proxy.getLocalFloat(parent, "_ice_v_" + key + "_z")
-	)
-	def update(key: String, value: Vector) {
-		R.proxy.setLocalFloat(parent, "_ice_v_" + key + "_x", value.x)
-		R.proxy.setLocalFloat(parent, "_ice_v_" + key + "_y", value.y)
-		R.proxy.setLocalFloat(parent, "_ice_v_" + key + "_z", value.z)
+class LocalLocationMap(parent: G) extends LocalVarMap[Location](parent,
+	(k) => R.proxy.getLocalLocation(parent, k),
+	(k, v) => R.proxy.setLocalLocation(parent, k, v),
+	(k) => R.proxy.deleteLocalLocation(parent, k)
+)
+
+class LocalObjectMap(parent: G) extends LocalVarMap[G](parent,
+	(k) => G[G](R.proxy.getLocalObject(parent, k)),
+	(k, v) => R.proxy.setLocalObject(parent, k, v),
+	(k) => R.proxy.deleteLocalObject(parent, k)
+)
+
+class LocalVectorMap(parent: G) extends LocalVarMap[Vector](parent,
+	(k) => Vector(
+		R.proxy.getLocalFloat(parent, "_ice_v_" + k + "_x"),
+		R.proxy.getLocalFloat(parent, "_ice_v_" + k + "_y"),
+		R.proxy.getLocalFloat(parent, "_ice_v_" + k + "_z")
+	),
+	(k, v) => {
+		R.proxy.setLocalFloat(parent, "_ice_v_" + k + "_x", v.x)
+		R.proxy.setLocalFloat(parent, "_ice_v_" + k + "_y", v.y)
+		R.proxy.setLocalFloat(parent, "_ice_v_" + k + "_z", v.z)
+	},
+	(k) => {
+		R.proxy.deleteLocalFloat(parent, "_ice_v_" + k + "_x")
+		R.proxy.deleteLocalFloat(parent, "_ice_v_" + k + "_y")
+		R.proxy.deleteLocalFloat(parent, "_ice_v_" + k + "_z")
 	}
-	def -=(key: String) {
-		R.proxy.deleteLocalFloat(parent, "_ice_v_" + key + "_x")
-		R.proxy.deleteLocalFloat(parent, "_ice_v_" + key + "_y")
-		R.proxy.deleteLocalFloat(parent, "_ice_v_" + key + "_z")
-	}
-}
-
-class LocalLocationMap(parent: G) {
-	def apply(key: String): Location =
-		R.proxy.getLocalLocation(parent, key)
-	def update(key: String, value: Location) =
-		R.proxy.setLocalLocation(parent, key, value)
-	def -=(key: String) =
-		R.proxy.deleteLocalLocation(parent, key)
-}
+)
