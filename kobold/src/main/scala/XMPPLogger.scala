@@ -52,7 +52,10 @@ class XMPPAppender extends log4j.AppenderSkeleton with smack.MessageListener {
 		if (!connection.isConnected)
 			return
 
-		val msg = layout.format(what).trim
+		val throwable = if (null != what.getThrowableStrRep && what.getThrowableStrRep.size > 0)
+			"\n" + what.getThrowableStrRep.mkString("\n")
+		else ""
+		val msg = layout.format(what).trim + throwable
 
 		for (c <- chats)
 			c sendMessage msg
