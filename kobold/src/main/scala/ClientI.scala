@@ -50,19 +50,13 @@ package es.elv.kobold {
 			specific object.
 		*/
 		def assign(obj: NWObject, block: => Unit) {
-			// This saves us a round trip, because we're already on the correct object.
-			if (obj == objectSelf) {
-				block
+			val token = nextToken()
 
-			} else {
-				val token = nextToken()
+			storedTokens(token) = () => { block }
 
-				storedTokens(token) = () => { block }
-
-				val mod = new NWObject(0)
-				proxy.setLocalString(mod, "ice_token", token.toString)
-				proxy.executeScript("ice_token", obj)
-			}
+			val mod = new NWObject(0)
+			proxy.setLocalString(mod, "ice_token", token.toString)
+			proxy.executeScript("ice_token", obj)
 		}
 
 		/**
