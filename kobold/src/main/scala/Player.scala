@@ -5,21 +5,21 @@ package es.elv.kobold {
 	object PlayerCreature extends cachedproperty.CachedProperties {
 		def all = P(() => R.proxy.allPCs.map(G[PlayerCreature](_)).toList)
 
-		def byAccount(account: String) = all().find(_.account == account)
-		def byName(name: String) = all().find(_.name == name)
+		def byAccount(account: String) = all().find(_.account().toLowerCase == account.toLowerCase)
+		def byName(name: String) = all().find(_.name().toLowerCase == name.toLowerCase)
 	}
 	object Player extends cachedproperty.CachedProperties {
 		def all = P(() => PlayerCreature.all().filter(_.isInstanceOf[Player]).map(_.asInstanceOf[Player]))
 
-		def byAccount(account: String) = all().find(_.account == account)
-		def byName(name: String) = all().find(_.name == name)
+		def byAccount(account: String) = all().find(_.account().toLowerCase == account.toLowerCase)
+		def byName(name: String) = all().find(_.name().toLowerCase == name.toLowerCase)
 	}
 
 	object DM extends cachedproperty.CachedProperties {
 		def all = P(() => PlayerCreature.all().filter(_.isInstanceOf[DM]).map(_.asInstanceOf[DM]))
 
-		def byAccount(account: String) = all().find(_.account == account)
-		def byName(name: String) = all().find(_.name == name)
+		def byAccount(account: String) = all().find(_.account().toLowerCase == account.toLowerCase)
+		def byName(name: String) = all().find(_.name().toLowerCase == name.toLowerCase)
 	}
 
 	abstract class PlayerCreature (wrapped: NWObject) extends Creature(wrapped) {
