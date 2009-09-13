@@ -201,12 +201,12 @@ package es.elv.kobold {
 		val objCreatedAt = System.currentTimeMillis
 		def objAge = System.currentTimeMillis - objCreatedAt
 
-		val objectType = R.proxy.getObjectType(this)
+		val objectType = P(Indef, () => R.proxy.getObjectType(this))
 
 		def ensureObjectType(o: ObjectType*) {
-			val m = (o contains objectType) || (objectType == ObjectType.InvalidObject)
+			val m = (o contains objectType()) || (objectType() == ObjectType.InvalidObject)
 
-			require(m, "expect one of " + o.toString + ", got: " + objectType.toString)
+			require(m, "expect one of " + o.toString + ", got: " + objectType().toString)
 		}
 
 		val resref = P( Indef, () => R.proxy.getResRef(this) )
