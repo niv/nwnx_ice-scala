@@ -14,6 +14,10 @@ package es.elv.kobold.cachedproperty {
 	class CachedProperty[T] (val cachePolicy: CachePolicy, getter: () => T) {
 		protected var value: Option[T] = None
 
+		/** Set this CachedPropertys value without calling a getter/setter. */
+		def setNoUpdate(v: T): Unit =
+			value = Some(v)
+
 		def apply() = cachePolicy match {
 			case CachePolicy.None => getter()
 			case _ => {

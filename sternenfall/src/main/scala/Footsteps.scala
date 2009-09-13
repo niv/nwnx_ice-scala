@@ -23,7 +23,7 @@ class Footstep(wrapped: NWObject) extends Placeable(wrapped) {
 object Footsteps extends Plugin {
 	import SurfaceType._
 
-	G registerCustomClass ((n, o, r, ta) => if (o == ObjectType.Placeable && ta == "footsteps")
+	G registerCustomClass ((n, v, o, r, ta) => if (o == ObjectType.Placeable && ta == "footsteps")
 		Some(new Footstep(n)) else None
 	)
 
