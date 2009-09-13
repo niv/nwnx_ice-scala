@@ -79,6 +79,10 @@ public interface _NWScriptDel extends Ice._ObjectDel
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;
 
+    NWObject[] allInAreaOfType(NWObject area, ObjectType ofType, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               NotInContextException;
+
     NWObject[] allByTag(String tag, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException;

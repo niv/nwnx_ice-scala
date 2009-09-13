@@ -2612,6 +2612,60 @@ public final class _NWScriptDelM extends Ice._ObjectDelM implements _NWScriptDel
     }
 
     public NWObject[]
+    allInAreaOfType(NWObject area, ObjectType ofType, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper,
+               NotInContextException
+    {
+        IceInternal.Outgoing __og = __handler.getOutgoing("allInAreaOfType", Ice.OperationMode.Idempotent, __ctx);
+        try
+        {
+            try
+            {
+                IceInternal.BasicStream __os = __og.os();
+                area.__write(__os);
+                ofType.__write(__os);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __og.abort(__ex);
+            }
+            boolean __ok = __og.invoke();
+            try
+            {
+                if(!__ok)
+                {
+                    try
+                    {
+                        __og.throwUserException();
+                    }
+                    catch(NotInContextException __ex)
+                    {
+                        throw __ex;
+                    }
+                    catch(Ice.UserException __ex)
+                    {
+                        throw new Ice.UnknownUserException(__ex.ice_name());
+                    }
+                }
+                IceInternal.BasicStream __is = __og.is();
+                __is.startReadEncaps();
+                NWObject[] __ret;
+                __ret = NWObjectSeqHelper.read(__is);
+                __is.endReadEncaps();
+                return __ret;
+            }
+            catch(Ice.LocalException __ex)
+            {
+                throw new IceInternal.LocalExceptionWrapper(__ex, false);
+            }
+        }
+        finally
+        {
+            __handler.reclaimOutgoing(__og);
+        }
+    }
+
+    public NWObject[]
     allInFaction(NWObject memberOf, boolean bPCOnly, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper,
                NotInContextException

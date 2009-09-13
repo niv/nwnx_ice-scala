@@ -441,6 +441,13 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
     }
 
     public final NWObject[]
+    allInAreaOfType(NWObject area, ObjectType ofType)
+        throws NotInContextException
+    {
+        return allInAreaOfType(area, ofType, null);
+    }
+
+    public final NWObject[]
     allInFaction(NWObject memberOf, boolean bPCOnly)
         throws NotInContextException
     {
@@ -5974,6 +5981,32 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         try
         {
             NWObject[] __ret = __obj.allInArea(area, __current);
+            NWObjectSeqHelper.write(__os, __ret);
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(NotInContextException ex)
+        {
+            __os.writeUserException(ex);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
+    }
+
+    public static Ice.DispatchStatus
+    ___allInAreaOfType(NWScript __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Idempotent, __current.mode);
+        IceInternal.BasicStream __is = __inS.is();
+        __is.startReadEncaps();
+        NWObject area;
+        area = new NWObject();
+        area.__read(__is);
+        ObjectType ofType;
+        ofType = ObjectType.__read(__is);
+        __is.endReadEncaps();
+        IceInternal.BasicStream __os = __inS.os();
+        try
+        {
+            NWObject[] __ret = __obj.allInAreaOfType(area, ofType, __current);
             NWObjectSeqHelper.write(__os, __ret);
             return Ice.DispatchStatus.DispatchOK;
         }
@@ -24813,6 +24846,7 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
         "allEffects",
         "allEquipped",
         "allInArea",
+        "allInAreaOfType",
         "allInFaction",
         "allInInventory",
         "allInShape",
@@ -25780,2961 +25814,2965 @@ public abstract class _NWScriptDisp extends Ice.ObjectImpl implements NWScript
             }
             case 53:
             {
-                return ___allInFaction(this, in, __current);
+                return ___allInAreaOfType(this, in, __current);
             }
             case 54:
             {
-                return ___allInInventory(this, in, __current);
+                return ___allInFaction(this, in, __current);
             }
             case 55:
             {
-                return ___allInShape(this, in, __current);
+                return ___allInInventory(this, in, __current);
             }
             case 56:
             {
-                return ___allItemProperties(this, in, __current);
+                return ___allInShape(this, in, __current);
             }
             case 57:
             {
-                return ___allPCs(this, in, __current);
+                return ___allItemProperties(this, in, __current);
             }
             case 58:
             {
-                return ___ambientSoundChangeDay(this, in, __current);
+                return ___allPCs(this, in, __current);
             }
             case 59:
             {
-                return ___ambientSoundChangeNight(this, in, __current);
+                return ___ambientSoundChangeDay(this, in, __current);
             }
             case 60:
             {
-                return ___ambientSoundPlay(this, in, __current);
+                return ___ambientSoundChangeNight(this, in, __current);
             }
             case 61:
             {
-                return ___ambientSoundSetDayVolume(this, in, __current);
+                return ___ambientSoundPlay(this, in, __current);
             }
             case 62:
             {
-                return ___ambientSoundSetNightVolume(this, in, __current);
+                return ___ambientSoundSetDayVolume(this, in, __current);
             }
             case 63:
             {
-                return ___ambientSoundStop(this, in, __current);
+                return ___ambientSoundSetNightVolume(this, in, __current);
             }
             case 64:
             {
-                return ___angleToVector(this, in, __current);
+                return ___ambientSoundStop(this, in, __current);
             }
             case 65:
             {
-                return ___applyEffectAtLocation(this, in, __current);
+                return ___angleToVector(this, in, __current);
             }
             case 66:
             {
-                return ___applyEffectToObject(this, in, __current);
+                return ___applyEffectAtLocation(this, in, __current);
             }
             case 67:
             {
-                return ___badBadReplaceMeThisDoesNothing(this, in, __current);
+                return ___applyEffectToObject(this, in, __current);
             }
             case 68:
             {
-                return ___beginConversation(this, in, __current);
+                return ___badBadReplaceMeThisDoesNothing(this, in, __current);
             }
             case 69:
             {
-                return ___blackScreen(this, in, __current);
+                return ___beginConversation(this, in, __current);
             }
             case 70:
             {
-                return ___bootPC(this, in, __current);
+                return ___blackScreen(this, in, __current);
             }
             case 71:
             {
-                return ___changeFaction(this, in, __current);
+                return ___bootPC(this, in, __current);
             }
             case 72:
             {
-                return ___changeToStandardFaction(this, in, __current);
+                return ___changeFaction(this, in, __current);
             }
             case 73:
             {
-                return ___clearAllActions(this, in, __current);
+                return ___changeToStandardFaction(this, in, __current);
             }
             case 74:
             {
-                return ___clearPersonalReputation(this, in, __current);
+                return ___clearAllActions(this, in, __current);
             }
             case 75:
             {
-                return ___clearState(this, in, __current);
+                return ___clearPersonalReputation(this, in, __current);
             }
             case 76:
             {
-                return ___copyItem(this, in, __current);
+                return ___clearState(this, in, __current);
             }
             case 77:
             {
-                return ___copyItemAndModify(this, in, __current);
+                return ___copyItem(this, in, __current);
             }
             case 78:
             {
-                return ___copyObject(this, in, __current);
+                return ___copyItemAndModify(this, in, __current);
             }
             case 79:
             {
-                return ___createItemOnObject(this, in, __current);
+                return ___copyObject(this, in, __current);
             }
             case 80:
             {
-                return ___createObject(this, in, __current);
+                return ___createItemOnObject(this, in, __current);
             }
             case 81:
             {
-                return ___createTrapAtLocation(this, in, __current);
+                return ___createObject(this, in, __current);
             }
             case 82:
             {
-                return ___createTrapOnObject(this, in, __current);
+                return ___createTrapAtLocation(this, in, __current);
             }
             case 83:
             {
-                return ___dayToNight(this, in, __current);
+                return ___createTrapOnObject(this, in, __current);
             }
             case 84:
             {
-                return ___decrementRemainingFeatUses(this, in, __current);
+                return ___dayToNight(this, in, __current);
             }
             case 85:
             {
-                return ___decrementRemainingSpellUses(this, in, __current);
+                return ___decrementRemainingFeatUses(this, in, __current);
             }
             case 86:
             {
-                return ___delState(this, in, __current);
+                return ___decrementRemainingSpellUses(this, in, __current);
             }
             case 87:
             {
-                return ___deleteCampaignVariable(this, in, __current);
+                return ___delState(this, in, __current);
             }
             case 88:
             {
-                return ___deleteLocalFloat(this, in, __current);
+                return ___deleteCampaignVariable(this, in, __current);
             }
             case 89:
             {
-                return ___deleteLocalInt(this, in, __current);
+                return ___deleteLocalFloat(this, in, __current);
             }
             case 90:
             {
-                return ___deleteLocalLocation(this, in, __current);
+                return ___deleteLocalInt(this, in, __current);
             }
             case 91:
             {
-                return ___deleteLocalObject(this, in, __current);
+                return ___deleteLocalLocation(this, in, __current);
             }
             case 92:
             {
-                return ___deleteLocalString(this, in, __current);
+                return ___deleteLocalObject(this, in, __current);
             }
             case 93:
             {
-                return ___destroyCampaignDatabase(this, in, __current);
+                return ___deleteLocalString(this, in, __current);
             }
             case 94:
             {
-                return ___destroyObject(this, in, __current);
+                return ___destroyCampaignDatabase(this, in, __current);
             }
             case 95:
             {
-                return ___doDoorAction(this, in, __current);
+                return ___destroyObject(this, in, __current);
             }
             case 96:
             {
-                return ___doPlaceableObjectAction(this, in, __current);
+                return ___doDoorAction(this, in, __current);
             }
             case 97:
             {
-                return ___doSinglePlayerAutoSave(this, in, __current);
+                return ___doPlaceableObjectAction(this, in, __current);
             }
             case 98:
             {
-                return ___doWhirlwindAttack(this, in, __current);
+                return ___doSinglePlayerAutoSave(this, in, __current);
             }
             case 99:
             {
-                return ___effectACDecrease(this, in, __current);
+                return ___doWhirlwindAttack(this, in, __current);
             }
             case 100:
             {
-                return ___effectACIncrease(this, in, __current);
+                return ___effectACDecrease(this, in, __current);
             }
             case 101:
             {
-                return ___effectAbilityDecrease(this, in, __current);
+                return ___effectACIncrease(this, in, __current);
             }
             case 102:
             {
-                return ___effectAbilityIncrease(this, in, __current);
+                return ___effectAbilityDecrease(this, in, __current);
             }
             case 103:
             {
-                return ___effectAppear(this, in, __current);
+                return ___effectAbilityIncrease(this, in, __current);
             }
             case 104:
             {
-                return ___effectAreaOfEffect(this, in, __current);
+                return ___effectAppear(this, in, __current);
             }
             case 105:
             {
-                return ___effectAttackDecrease(this, in, __current);
+                return ___effectAreaOfEffect(this, in, __current);
             }
             case 106:
             {
-                return ___effectAttackIncrease(this, in, __current);
+                return ___effectAttackDecrease(this, in, __current);
             }
             case 107:
             {
-                return ___effectBeam(this, in, __current);
+                return ___effectAttackIncrease(this, in, __current);
             }
             case 108:
             {
-                return ___effectBlindness(this, in, __current);
+                return ___effectBeam(this, in, __current);
             }
             case 109:
             {
-                return ___effectCharmed(this, in, __current);
+                return ___effectBlindness(this, in, __current);
             }
             case 110:
             {
-                return ___effectConcealment(this, in, __current);
+                return ___effectCharmed(this, in, __current);
             }
             case 111:
             {
-                return ___effectConfused(this, in, __current);
+                return ___effectConcealment(this, in, __current);
             }
             case 112:
             {
-                return ___effectCurse(this, in, __current);
+                return ___effectConfused(this, in, __current);
             }
             case 113:
             {
-                return ___effectCutsceneDominated(this, in, __current);
+                return ___effectCurse(this, in, __current);
             }
             case 114:
             {
-                return ___effectCutsceneGhost(this, in, __current);
+                return ___effectCutsceneDominated(this, in, __current);
             }
             case 115:
             {
-                return ___effectCutsceneImmobilize(this, in, __current);
+                return ___effectCutsceneGhost(this, in, __current);
             }
             case 116:
             {
-                return ___effectCutsceneParalyze(this, in, __current);
+                return ___effectCutsceneImmobilize(this, in, __current);
             }
             case 117:
             {
-                return ___effectDamage(this, in, __current);
+                return ___effectCutsceneParalyze(this, in, __current);
             }
             case 118:
             {
-                return ___effectDamageDecrease(this, in, __current);
+                return ___effectDamage(this, in, __current);
             }
             case 119:
             {
-                return ___effectDamageImmunityDecrease(this, in, __current);
+                return ___effectDamageDecrease(this, in, __current);
             }
             case 120:
             {
-                return ___effectDamageImmunityIncrease(this, in, __current);
+                return ___effectDamageImmunityDecrease(this, in, __current);
             }
             case 121:
             {
-                return ___effectDamageIncrease(this, in, __current);
+                return ___effectDamageImmunityIncrease(this, in, __current);
             }
             case 122:
             {
-                return ___effectDamageReduction(this, in, __current);
+                return ___effectDamageIncrease(this, in, __current);
             }
             case 123:
             {
-                return ___effectDamageResistance(this, in, __current);
+                return ___effectDamageReduction(this, in, __current);
             }
             case 124:
             {
-                return ___effectDamageShield(this, in, __current);
+                return ___effectDamageResistance(this, in, __current);
             }
             case 125:
             {
-                return ___effectDarkness(this, in, __current);
+                return ___effectDamageShield(this, in, __current);
             }
             case 126:
             {
-                return ___effectDazed(this, in, __current);
+                return ___effectDarkness(this, in, __current);
             }
             case 127:
             {
-                return ___effectDeaf(this, in, __current);
+                return ___effectDazed(this, in, __current);
             }
             case 128:
             {
-                return ___effectDeath(this, in, __current);
+                return ___effectDeaf(this, in, __current);
             }
             case 129:
             {
-                return ___effectDisappear(this, in, __current);
+                return ___effectDeath(this, in, __current);
             }
             case 130:
             {
-                return ___effectDisappearAppear(this, in, __current);
+                return ___effectDisappear(this, in, __current);
             }
             case 131:
             {
-                return ___effectDisease(this, in, __current);
+                return ___effectDisappearAppear(this, in, __current);
             }
             case 132:
             {
-                return ___effectDispelMagicAll(this, in, __current);
+                return ___effectDisease(this, in, __current);
             }
             case 133:
             {
-                return ___effectDispelMagicBest(this, in, __current);
+                return ___effectDispelMagicAll(this, in, __current);
             }
             case 134:
             {
-                return ___effectDominated(this, in, __current);
+                return ___effectDispelMagicBest(this, in, __current);
             }
             case 135:
             {
-                return ___effectEntangle(this, in, __current);
+                return ___effectDominated(this, in, __current);
             }
             case 136:
             {
-                return ___effectEthereal(this, in, __current);
+                return ___effectEntangle(this, in, __current);
             }
             case 137:
             {
-                return ___effectFrightened(this, in, __current);
+                return ___effectEthereal(this, in, __current);
             }
             case 138:
             {
-                return ___effectHaste(this, in, __current);
+                return ___effectFrightened(this, in, __current);
             }
             case 139:
             {
-                return ___effectHeal(this, in, __current);
+                return ___effectHaste(this, in, __current);
             }
             case 140:
             {
-                return ___effectHitPointChangeWhenDying(this, in, __current);
+                return ___effectHeal(this, in, __current);
             }
             case 141:
             {
-                return ___effectImmunity(this, in, __current);
+                return ___effectHitPointChangeWhenDying(this, in, __current);
             }
             case 142:
             {
-                return ___effectInvisibility(this, in, __current);
+                return ___effectImmunity(this, in, __current);
             }
             case 143:
             {
-                return ___effectKnockdown(this, in, __current);
+                return ___effectInvisibility(this, in, __current);
             }
             case 144:
             {
-                return ___effectLinkEffects(this, in, __current);
+                return ___effectKnockdown(this, in, __current);
             }
             case 145:
             {
-                return ___effectMissChance(this, in, __current);
+                return ___effectLinkEffects(this, in, __current);
             }
             case 146:
             {
-                return ___effectModifyAttacks(this, in, __current);
+                return ___effectMissChance(this, in, __current);
             }
             case 147:
             {
-                return ___effectMovementSpeedDecrease(this, in, __current);
+                return ___effectModifyAttacks(this, in, __current);
             }
             case 148:
             {
-                return ___effectMovementSpeedIncrease(this, in, __current);
+                return ___effectMovementSpeedDecrease(this, in, __current);
             }
             case 149:
             {
-                return ___effectNegativeLevel(this, in, __current);
+                return ___effectMovementSpeedIncrease(this, in, __current);
             }
             case 150:
             {
-                return ___effectParalyze(this, in, __current);
+                return ___effectNegativeLevel(this, in, __current);
             }
             case 151:
             {
-                return ___effectPetrify(this, in, __current);
+                return ___effectParalyze(this, in, __current);
             }
             case 152:
             {
-                return ___effectPoison(this, in, __current);
+                return ___effectPetrify(this, in, __current);
             }
             case 153:
             {
-                return ___effectPolymorph(this, in, __current);
+                return ___effectPoison(this, in, __current);
             }
             case 154:
             {
-                return ___effectRegenerate(this, in, __current);
+                return ___effectPolymorph(this, in, __current);
             }
             case 155:
             {
-                return ___effectResurrection(this, in, __current);
+                return ___effectRegenerate(this, in, __current);
             }
             case 156:
             {
-                return ___effectSanctuary(this, in, __current);
+                return ___effectResurrection(this, in, __current);
             }
             case 157:
             {
-                return ___effectSavingThrowDecrease(this, in, __current);
+                return ___effectSanctuary(this, in, __current);
             }
             case 158:
             {
-                return ___effectSavingThrowIncrease(this, in, __current);
+                return ___effectSavingThrowDecrease(this, in, __current);
             }
             case 159:
             {
-                return ___effectSeeInvisible(this, in, __current);
+                return ___effectSavingThrowIncrease(this, in, __current);
             }
             case 160:
             {
-                return ___effectSilence(this, in, __current);
+                return ___effectSeeInvisible(this, in, __current);
             }
             case 161:
             {
-                return ___effectSkillDecrease(this, in, __current);
+                return ___effectSilence(this, in, __current);
             }
             case 162:
             {
-                return ___effectSkillIncrease(this, in, __current);
+                return ___effectSkillDecrease(this, in, __current);
             }
             case 163:
             {
-                return ___effectSleep(this, in, __current);
+                return ___effectSkillIncrease(this, in, __current);
             }
             case 164:
             {
-                return ___effectSlow(this, in, __current);
+                return ___effectSleep(this, in, __current);
             }
             case 165:
             {
-                return ___effectSpellFailure(this, in, __current);
+                return ___effectSlow(this, in, __current);
             }
             case 166:
             {
-                return ___effectSpellImmunity(this, in, __current);
+                return ___effectSpellFailure(this, in, __current);
             }
             case 167:
             {
-                return ___effectSpellLevelAbsorption(this, in, __current);
+                return ___effectSpellImmunity(this, in, __current);
             }
             case 168:
             {
-                return ___effectSpellResistanceDecrease(this, in, __current);
+                return ___effectSpellLevelAbsorption(this, in, __current);
             }
             case 169:
             {
-                return ___effectSpellResistanceIncrease(this, in, __current);
+                return ___effectSpellResistanceDecrease(this, in, __current);
             }
             case 170:
             {
-                return ___effectStunned(this, in, __current);
+                return ___effectSpellResistanceIncrease(this, in, __current);
             }
             case 171:
             {
-                return ___effectSummonCreature(this, in, __current);
+                return ___effectStunned(this, in, __current);
             }
             case 172:
             {
-                return ___effectSwarm(this, in, __current);
+                return ___effectSummonCreature(this, in, __current);
             }
             case 173:
             {
-                return ___effectTemporaryHitpoints(this, in, __current);
+                return ___effectSwarm(this, in, __current);
             }
             case 174:
             {
-                return ___effectTimeStop(this, in, __current);
+                return ___effectTemporaryHitpoints(this, in, __current);
             }
             case 175:
             {
-                return ___effectTrueSeeing(this, in, __current);
+                return ___effectTimeStop(this, in, __current);
             }
             case 176:
             {
-                return ___effectTurnResistanceDecrease(this, in, __current);
+                return ___effectTrueSeeing(this, in, __current);
             }
             case 177:
             {
-                return ___effectTurnResistanceIncrease(this, in, __current);
+                return ___effectTurnResistanceDecrease(this, in, __current);
             }
             case 178:
             {
-                return ___effectTurned(this, in, __current);
+                return ___effectTurnResistanceIncrease(this, in, __current);
             }
             case 179:
             {
-                return ___effectUltravision(this, in, __current);
+                return ___effectTurned(this, in, __current);
             }
             case 180:
             {
-                return ___effectVisualEffect(this, in, __current);
+                return ___effectUltravision(this, in, __current);
             }
             case 181:
             {
-                return ___endGame(this, in, __current);
+                return ___effectVisualEffect(this, in, __current);
             }
             case 182:
             {
-                return ___executeScript(this, in, __current);
+                return ___endGame(this, in, __current);
             }
             case 183:
             {
-                return ___exploreAreaForPlayer(this, in, __current);
+                return ___executeScript(this, in, __current);
             }
             case 184:
             {
-                return ___exportAllCharacters(this, in, __current);
+                return ___exploreAreaForPlayer(this, in, __current);
             }
             case 185:
             {
-                return ___exportSingleCharacter(this, in, __current);
+                return ___exportAllCharacters(this, in, __current);
             }
             case 186:
             {
-                return ___extraordinaryEffect(this, in, __current);
+                return ___exportSingleCharacter(this, in, __current);
             }
             case 187:
             {
-                return ___fadeFromBlack(this, in, __current);
+                return ___extraordinaryEffect(this, in, __current);
             }
             case 188:
             {
-                return ___fadeToBlack(this, in, __current);
+                return ___fadeFromBlack(this, in, __current);
             }
             case 189:
             {
-                return ___floatingTextStrRefOnCreature(this, in, __current);
+                return ___fadeToBlack(this, in, __current);
             }
             case 190:
             {
-                return ___floatingTextStringOnCreature(this, in, __current);
+                return ___floatingTextStrRefOnCreature(this, in, __current);
             }
             case 191:
             {
-                return ___forceRest(this, in, __current);
+                return ___floatingTextStringOnCreature(this, in, __current);
             }
             case 192:
             {
-                return ___fortitudeSave(this, in, __current);
+                return ___forceRest(this, in, __current);
             }
             case 193:
             {
-                return ___get2DAString(this, in, __current);
+                return ___fortitudeSave(this, in, __current);
             }
             case 194:
             {
-                return ___getAC(this, in, __current);
+                return ___get2DAString(this, in, __current);
             }
             case 195:
             {
-                return ___getAILevel(this, in, __current);
+                return ___getAC(this, in, __current);
             }
             case 196:
             {
-                return ___getAbilityModifier(this, in, __current);
+                return ___getAILevel(this, in, __current);
             }
             case 197:
             {
-                return ___getAbilityScore(this, in, __current);
+                return ___getAbilityModifier(this, in, __current);
             }
             case 198:
             {
-                return ___getActionMode(this, in, __current);
+                return ___getAbilityScore(this, in, __current);
             }
             case 199:
             {
-                return ___getAge(this, in, __current);
+                return ___getActionMode(this, in, __current);
             }
             case 200:
             {
-                return ___getAlignmentGoodEvil(this, in, __current);
+                return ___getAge(this, in, __current);
             }
             case 201:
             {
-                return ___getAlignmentLawChaos(this, in, __current);
+                return ___getAlignmentGoodEvil(this, in, __current);
             }
             case 202:
             {
-                return ___getAnimalCompanionCreatureType(this, in, __current);
+                return ___getAlignmentLawChaos(this, in, __current);
             }
             case 203:
             {
-                return ___getAnimalCompanionName(this, in, __current);
+                return ___getAnimalCompanionCreatureType(this, in, __current);
             }
             case 204:
             {
-                return ___getAppearanceType(this, in, __current);
+                return ___getAnimalCompanionName(this, in, __current);
             }
             case 205:
             {
-                return ___getArcaneSpellFailure(this, in, __current);
+                return ___getAppearanceType(this, in, __current);
             }
             case 206:
             {
-                return ___getArea(this, in, __current);
+                return ___getArcaneSpellFailure(this, in, __current);
             }
             case 207:
             {
-                return ___getAreaOfEffectCreator(this, in, __current);
+                return ___getArea(this, in, __current);
             }
             case 208:
             {
-                return ___getAreaSize(this, in, __current);
+                return ___getAreaOfEffectCreator(this, in, __current);
             }
             case 209:
             {
-                return ___getAssociate(this, in, __current);
+                return ___getAreaSize(this, in, __current);
             }
             case 210:
             {
-                return ___getAssociateType(this, in, __current);
+                return ___getAssociate(this, in, __current);
             }
             case 211:
             {
-                return ___getAttackTarget(this, in, __current);
+                return ___getAssociateType(this, in, __current);
             }
             case 212:
             {
-                return ___getAttemptedAttackTarget(this, in, __current);
+                return ___getAttackTarget(this, in, __current);
             }
             case 213:
             {
-                return ___getAttemptedSpellTarget(this, in, __current);
+                return ___getAttemptedAttackTarget(this, in, __current);
             }
             case 214:
             {
-                return ___getBaseAttackBonus(this, in, __current);
+                return ___getAttemptedSpellTarget(this, in, __current);
             }
             case 215:
             {
-                return ___getBaseItemType(this, in, __current);
+                return ___getBaseAttackBonus(this, in, __current);
             }
             case 216:
             {
-                return ___getBlockingDoor(this, in, __current);
+                return ___getBaseItemType(this, in, __current);
             }
             case 217:
             {
-                return ___getCalendarDay(this, in, __current);
+                return ___getBlockingDoor(this, in, __current);
             }
             case 218:
             {
-                return ___getCalendarMonth(this, in, __current);
+                return ___getCalendarDay(this, in, __current);
             }
             case 219:
             {
-                return ___getCalendarYear(this, in, __current);
+                return ___getCalendarMonth(this, in, __current);
             }
             case 220:
             {
-                return ___getCampaignFloat(this, in, __current);
+                return ___getCalendarYear(this, in, __current);
             }
             case 221:
             {
-                return ___getCampaignInt(this, in, __current);
+                return ___getCampaignFloat(this, in, __current);
             }
             case 222:
             {
-                return ___getCampaignLocation(this, in, __current);
+                return ___getCampaignInt(this, in, __current);
             }
             case 223:
             {
-                return ___getCampaignString(this, in, __current);
+                return ___getCampaignLocation(this, in, __current);
             }
             case 224:
             {
-                return ___getCampaignVector(this, in, __current);
+                return ___getCampaignString(this, in, __current);
             }
             case 225:
             {
-                return ___getCasterLevel(this, in, __current);
+                return ___getCampaignVector(this, in, __current);
             }
             case 226:
             {
-                return ___getChallengeRating(this, in, __current);
+                return ___getCasterLevel(this, in, __current);
             }
             case 227:
             {
-                return ___getClassByPosition(this, in, __current);
+                return ___getChallengeRating(this, in, __current);
             }
             case 228:
             {
-                return ___getClickingObject(this, in, __current);
+                return ___getClassByPosition(this, in, __current);
             }
             case 229:
             {
-                return ___getColor(this, in, __current);
+                return ___getClickingObject(this, in, __current);
             }
             case 230:
             {
-                return ___getCommandable(this, in, __current);
+                return ___getColor(this, in, __current);
             }
             case 231:
             {
-                return ___getCreatureBodyPart(this, in, __current);
+                return ___getCommandable(this, in, __current);
             }
             case 232:
             {
-                return ___getCreatureSize(this, in, __current);
+                return ___getCreatureBodyPart(this, in, __current);
             }
             case 233:
             {
-                return ___getCreatureStartingPackage(this, in, __current);
+                return ___getCreatureSize(this, in, __current);
             }
             case 234:
             {
-                return ___getCreatureTailType(this, in, __current);
+                return ___getCreatureStartingPackage(this, in, __current);
             }
             case 235:
             {
-                return ___getCreatureWingType(this, in, __current);
+                return ___getCreatureTailType(this, in, __current);
             }
             case 236:
             {
-                return ___getCurrentAction(this, in, __current);
+                return ___getCreatureWingType(this, in, __current);
             }
             case 237:
             {
-                return ___getCurrentHitPoints(this, in, __current);
+                return ___getCurrentAction(this, in, __current);
             }
             case 238:
             {
-                return ___getCutsceneCameraMoveRate(this, in, __current);
+                return ___getCurrentHitPoints(this, in, __current);
             }
             case 239:
             {
-                return ___getCutsceneMode(this, in, __current);
+                return ___getCutsceneCameraMoveRate(this, in, __current);
             }
             case 240:
             {
-                return ___getDamageDealtByType(this, in, __current);
+                return ___getCutsceneMode(this, in, __current);
             }
             case 241:
             {
-                return ___getDefensiveCastingMode(this, in, __current);
+                return ___getDamageDealtByType(this, in, __current);
             }
             case 242:
             {
-                return ___getDeity(this, in, __current);
+                return ___getDefensiveCastingMode(this, in, __current);
             }
             case 243:
             {
-                return ___getDescription(this, in, __current);
+                return ___getDeity(this, in, __current);
             }
             case 244:
             {
-                return ___getDetectMode(this, in, __current);
+                return ___getDescription(this, in, __current);
             }
             case 245:
             {
-                return ___getDialogSoundLength(this, in, __current);
+                return ___getDetectMode(this, in, __current);
             }
             case 246:
             {
-                return ___getDistanceBetween(this, in, __current);
+                return ___getDialogSoundLength(this, in, __current);
             }
             case 247:
             {
-                return ___getDistanceBetweenLocations(this, in, __current);
+                return ___getDistanceBetween(this, in, __current);
             }
             case 248:
             {
-                return ___getDistanceToObject(this, in, __current);
+                return ___getDistanceBetweenLocations(this, in, __current);
             }
             case 249:
             {
-                return ___getDroppableFlag(this, in, __current);
+                return ___getDistanceToObject(this, in, __current);
             }
             case 250:
             {
-                return ___getEffectCreator(this, in, __current);
+                return ___getDroppableFlag(this, in, __current);
             }
             case 251:
             {
-                return ___getEffectDuration(this, in, __current);
+                return ___getEffectCreator(this, in, __current);
             }
             case 252:
             {
-                return ___getEffectDurationType(this, in, __current);
+                return ___getEffectDuration(this, in, __current);
             }
             case 253:
             {
-                return ___getEffectExposed(this, in, __current);
+                return ___getEffectDurationType(this, in, __current);
             }
             case 254:
             {
-                return ___getEffectIconShown(this, in, __current);
+                return ___getEffectExposed(this, in, __current);
             }
             case 255:
             {
-                return ___getEffectInteger(this, in, __current);
+                return ___getEffectIconShown(this, in, __current);
             }
             case 256:
             {
-                return ___getEffectSpellId(this, in, __current);
+                return ___getEffectInteger(this, in, __current);
             }
             case 257:
             {
-                return ___getEffectSubType(this, in, __current);
+                return ___getEffectSpellId(this, in, __current);
             }
             case 258:
             {
-                return ___getEffectType(this, in, __current);
+                return ___getEffectSubType(this, in, __current);
             }
             case 259:
             {
-                return ___getEncounterActive(this, in, __current);
+                return ___getEffectType(this, in, __current);
             }
             case 260:
             {
-                return ___getEncounterDifficulty(this, in, __current);
+                return ___getEncounterActive(this, in, __current);
             }
             case 261:
             {
-                return ___getEncounterSpawnsCurrent(this, in, __current);
+                return ___getEncounterDifficulty(this, in, __current);
             }
             case 262:
             {
-                return ___getEncounterSpawnsMax(this, in, __current);
+                return ___getEncounterSpawnsCurrent(this, in, __current);
             }
             case 263:
             {
-                return ___getEnteringObject(this, in, __current);
+                return ___getEncounterSpawnsMax(this, in, __current);
             }
             case 264:
             {
-                return ___getExitingObject(this, in, __current);
+                return ___getEnteringObject(this, in, __current);
             }
             case 265:
             {
-                return ___getFacing(this, in, __current);
+                return ___getExitingObject(this, in, __current);
             }
             case 266:
             {
-                return ___getFactionAverageGoodEvilAlignment(this, in, __current);
+                return ___getFacing(this, in, __current);
             }
             case 267:
             {
-                return ___getFactionAverageLawChaosAlignment(this, in, __current);
+                return ___getFactionAverageGoodEvilAlignment(this, in, __current);
             }
             case 268:
             {
-                return ___getFactionAverageLevel(this, in, __current);
+                return ___getFactionAverageLawChaosAlignment(this, in, __current);
             }
             case 269:
             {
-                return ___getFactionAverageReputation(this, in, __current);
+                return ___getFactionAverageLevel(this, in, __current);
             }
             case 270:
             {
-                return ___getFactionAverageXP(this, in, __current);
+                return ___getFactionAverageReputation(this, in, __current);
             }
             case 271:
             {
-                return ___getFactionBestAC(this, in, __current);
+                return ___getFactionAverageXP(this, in, __current);
             }
             case 272:
             {
-                return ___getFactionEqual(this, in, __current);
+                return ___getFactionBestAC(this, in, __current);
             }
             case 273:
             {
-                return ___getFactionGold(this, in, __current);
+                return ___getFactionEqual(this, in, __current);
             }
             case 274:
             {
-                return ___getFactionLeader(this, in, __current);
+                return ___getFactionGold(this, in, __current);
             }
             case 275:
             {
-                return ___getFactionLeastDamagedMember(this, in, __current);
+                return ___getFactionLeader(this, in, __current);
             }
             case 276:
             {
-                return ___getFactionMostDamagedMember(this, in, __current);
+                return ___getFactionLeastDamagedMember(this, in, __current);
             }
             case 277:
             {
-                return ___getFactionMostFrequentClass(this, in, __current);
+                return ___getFactionMostDamagedMember(this, in, __current);
             }
             case 278:
             {
-                return ___getFactionStrongestMember(this, in, __current);
+                return ___getFactionMostFrequentClass(this, in, __current);
             }
             case 279:
             {
-                return ___getFactionWeakestMember(this, in, __current);
+                return ___getFactionStrongestMember(this, in, __current);
             }
             case 280:
             {
-                return ___getFactionWorstAC(this, in, __current);
+                return ___getFactionWeakestMember(this, in, __current);
             }
             case 281:
             {
-                return ___getFamiliarCreatureType(this, in, __current);
+                return ___getFactionWorstAC(this, in, __current);
             }
             case 282:
             {
-                return ___getFamiliarName(this, in, __current);
+                return ___getFamiliarCreatureType(this, in, __current);
             }
             case 283:
             {
-                return ___getFogAmount(this, in, __current);
+                return ___getFamiliarName(this, in, __current);
             }
             case 284:
             {
-                return ___getFogColor(this, in, __current);
+                return ___getFogAmount(this, in, __current);
             }
             case 285:
             {
-                return ___getFootstepType(this, in, __current);
+                return ___getFogColor(this, in, __current);
             }
             case 286:
             {
-                return ___getFortitudeSavingThrow(this, in, __current);
+                return ___getFootstepType(this, in, __current);
             }
             case 287:
             {
-                return ___getGameDifficulty(this, in, __current);
+                return ___getFortitudeSavingThrow(this, in, __current);
             }
             case 288:
             {
-                return ___getGender(this, in, __current);
+                return ___getGameDifficulty(this, in, __current);
             }
             case 289:
             {
-                return ___getGoingToBeAttackedBy(this, in, __current);
+                return ___getGender(this, in, __current);
             }
             case 290:
             {
-                return ___getGold(this, in, __current);
+                return ___getGoingToBeAttackedBy(this, in, __current);
             }
             case 291:
             {
-                return ___getGoldPieceValue(this, in, __current);
+                return ___getGold(this, in, __current);
             }
             case 292:
             {
-                return ___getGoodEvilValue(this, in, __current);
+                return ___getGoldPieceValue(this, in, __current);
             }
             case 293:
             {
-                return ___getHardness(this, in, __current);
+                return ___getGoodEvilValue(this, in, __current);
             }
             case 294:
             {
-                return ___getHasFeat(this, in, __current);
+                return ___getHardness(this, in, __current);
             }
             case 295:
             {
-                return ___getHasFeatEffect(this, in, __current);
+                return ___getHasFeat(this, in, __current);
             }
             case 296:
             {
-                return ___getHasInventory(this, in, __current);
+                return ___getHasFeatEffect(this, in, __current);
             }
             case 297:
             {
-                return ___getHasSkill(this, in, __current);
+                return ___getHasInventory(this, in, __current);
             }
             case 298:
             {
-                return ___getHasSpell(this, in, __current);
+                return ___getHasSkill(this, in, __current);
             }
             case 299:
             {
-                return ___getHasSpellEffect(this, in, __current);
+                return ___getHasSpell(this, in, __current);
             }
             case 300:
             {
-                return ___getHenchman(this, in, __current);
+                return ___getHasSpellEffect(this, in, __current);
             }
             case 301:
             {
-                return ___getHitDice(this, in, __current);
+                return ___getHenchman(this, in, __current);
             }
             case 302:
             {
-                return ___getIdentified(this, in, __current);
+                return ___getHitDice(this, in, __current);
             }
             case 303:
             {
-                return ___getImmortal(this, in, __current);
+                return ___getIdentified(this, in, __current);
             }
             case 304:
             {
-                return ___getInfiniteFlag(this, in, __current);
+                return ___getImmortal(this, in, __current);
             }
             case 305:
             {
-                return ___getInstructionCount(this, in, __current);
+                return ___getInfiniteFlag(this, in, __current);
             }
             case 306:
             {
-                return ___getInventoryDisturbItem(this, in, __current);
+                return ___getInstructionCount(this, in, __current);
             }
             case 307:
             {
-                return ___getInventoryDisturbType(this, in, __current);
+                return ___getInventoryDisturbItem(this, in, __current);
             }
             case 308:
             {
-                return ___getIsAreaAboveGround(this, in, __current);
+                return ___getInventoryDisturbType(this, in, __current);
             }
             case 309:
             {
-                return ___getIsAreaInterior(this, in, __current);
+                return ___getIsAreaAboveGround(this, in, __current);
             }
             case 310:
             {
-                return ___getIsAreaNatural(this, in, __current);
+                return ___getIsAreaInterior(this, in, __current);
             }
             case 311:
             {
-                return ___getIsCreatureDisarmable(this, in, __current);
+                return ___getIsAreaNatural(this, in, __current);
             }
             case 312:
             {
-                return ___getIsDM(this, in, __current);
+                return ___getIsCreatureDisarmable(this, in, __current);
             }
             case 313:
             {
-                return ___getIsDMPossessed(this, in, __current);
+                return ___getIsDM(this, in, __current);
             }
             case 314:
             {
-                return ___getIsDawn(this, in, __current);
+                return ___getIsDMPossessed(this, in, __current);
             }
             case 315:
             {
-                return ___getIsDay(this, in, __current);
+                return ___getIsDawn(this, in, __current);
             }
             case 316:
             {
-                return ___getIsDead(this, in, __current);
+                return ___getIsDay(this, in, __current);
             }
             case 317:
             {
-                return ___getIsDoorActionPossible(this, in, __current);
+                return ___getIsDead(this, in, __current);
             }
             case 318:
             {
-                return ___getIsDusk(this, in, __current);
+                return ___getIsDoorActionPossible(this, in, __current);
             }
             case 319:
             {
-                return ___getIsEffectValid(this, in, __current);
+                return ___getIsDusk(this, in, __current);
             }
             case 320:
             {
-                return ___getIsEncounterCreature(this, in, __current);
+                return ___getIsEffectValid(this, in, __current);
             }
             case 321:
             {
-                return ___getIsEnemy(this, in, __current);
+                return ___getIsEncounterCreature(this, in, __current);
             }
             case 322:
             {
-                return ___getIsFriend(this, in, __current);
+                return ___getIsEnemy(this, in, __current);
             }
             case 323:
             {
-                return ___getIsImmune(this, in, __current);
+                return ___getIsFriend(this, in, __current);
             }
             case 324:
             {
-                return ___getIsInCombat(this, in, __current);
+                return ___getIsImmune(this, in, __current);
             }
             case 325:
             {
-                return ___getIsInSubArea(this, in, __current);
+                return ___getIsInCombat(this, in, __current);
             }
             case 326:
             {
-                return ___getIsItemPropertyValid(this, in, __current);
+                return ___getIsInSubArea(this, in, __current);
             }
             case 327:
             {
-                return ___getIsListening(this, in, __current);
+                return ___getIsItemPropertyValid(this, in, __current);
             }
             case 328:
             {
-                return ___getIsNeutral(this, in, __current);
+                return ___getIsListening(this, in, __current);
             }
             case 329:
             {
-                return ___getIsNight(this, in, __current);
+                return ___getIsNeutral(this, in, __current);
             }
             case 330:
             {
-                return ___getIsObjectValid(this, in, __current);
+                return ___getIsNight(this, in, __current);
             }
             case 331:
             {
-                return ___getIsOpen(this, in, __current);
+                return ___getIsObjectValid(this, in, __current);
             }
             case 332:
             {
-                return ___getIsPC(this, in, __current);
+                return ___getIsOpen(this, in, __current);
             }
             case 333:
             {
-                return ___getIsPlaceableObjectActionPossible(this, in, __current);
+                return ___getIsPC(this, in, __current);
             }
             case 334:
             {
-                return ___getIsPlayableRacialType(this, in, __current);
+                return ___getIsPlaceableObjectActionPossible(this, in, __current);
             }
             case 335:
             {
-                return ___getIsPossessedFamiliar(this, in, __current);
+                return ___getIsPlayableRacialType(this, in, __current);
             }
             case 336:
             {
-                return ___getIsReactionTypeFriendly(this, in, __current);
+                return ___getIsPossessedFamiliar(this, in, __current);
             }
             case 337:
             {
-                return ___getIsReactionTypeHostile(this, in, __current);
+                return ___getIsReactionTypeFriendly(this, in, __current);
             }
             case 338:
             {
-                return ___getIsReactionTypeNeutral(this, in, __current);
+                return ___getIsReactionTypeHostile(this, in, __current);
             }
             case 339:
             {
-                return ___getIsResting(this, in, __current);
+                return ___getIsReactionTypeNeutral(this, in, __current);
             }
             case 340:
             {
-                return ___getIsSkillSuccessful(this, in, __current);
+                return ___getIsResting(this, in, __current);
             }
             case 341:
             {
-                return ___getIsTrapped(this, in, __current);
+                return ___getIsSkillSuccessful(this, in, __current);
             }
             case 342:
             {
-                return ___getIsWeaponEffective(this, in, __current);
+                return ___getIsTrapped(this, in, __current);
             }
             case 343:
             {
-                return ___getItemACValue(this, in, __current);
+                return ___getIsWeaponEffective(this, in, __current);
             }
             case 344:
             {
-                return ___getItemActivated(this, in, __current);
+                return ___getItemACValue(this, in, __current);
             }
             case 345:
             {
-                return ___getItemActivatedTarget(this, in, __current);
+                return ___getItemActivated(this, in, __current);
             }
             case 346:
             {
-                return ___getItemActivatedTargetLocation(this, in, __current);
+                return ___getItemActivatedTarget(this, in, __current);
             }
             case 347:
             {
-                return ___getItemActivator(this, in, __current);
+                return ___getItemActivatedTargetLocation(this, in, __current);
             }
             case 348:
             {
-                return ___getItemAppearance(this, in, __current);
+                return ___getItemActivator(this, in, __current);
             }
             case 349:
             {
-                return ___getItemCharges(this, in, __current);
+                return ___getItemAppearance(this, in, __current);
             }
             case 350:
             {
-                return ___getItemCursedFlag(this, in, __current);
+                return ___getItemCharges(this, in, __current);
             }
             case 351:
             {
-                return ___getItemHasItemProperty(this, in, __current);
+                return ___getItemCursedFlag(this, in, __current);
             }
             case 352:
             {
-                return ___getItemInSlot(this, in, __current);
+                return ___getItemHasItemProperty(this, in, __current);
             }
             case 353:
             {
-                return ___getItemPossessedBy(this, in, __current);
+                return ___getItemInSlot(this, in, __current);
             }
             case 354:
             {
-                return ___getItemPossessor(this, in, __current);
+                return ___getItemPossessedBy(this, in, __current);
             }
             case 355:
             {
-                return ___getItemPropertyCostTable(this, in, __current);
+                return ___getItemPossessor(this, in, __current);
             }
             case 356:
             {
-                return ___getItemPropertyCostTableValue(this, in, __current);
+                return ___getItemPropertyCostTable(this, in, __current);
             }
             case 357:
             {
-                return ___getItemPropertyDuration(this, in, __current);
+                return ___getItemPropertyCostTableValue(this, in, __current);
             }
             case 358:
             {
-                return ___getItemPropertyDurationType(this, in, __current);
+                return ___getItemPropertyDuration(this, in, __current);
             }
             case 359:
             {
-                return ___getItemPropertyInteger(this, in, __current);
+                return ___getItemPropertyDurationType(this, in, __current);
             }
             case 360:
             {
-                return ___getItemPropertyParam1(this, in, __current);
+                return ___getItemPropertyInteger(this, in, __current);
             }
             case 361:
             {
-                return ___getItemPropertyParam1Value(this, in, __current);
+                return ___getItemPropertyParam1(this, in, __current);
             }
             case 362:
             {
-                return ___getItemPropertySubType(this, in, __current);
+                return ___getItemPropertyParam1Value(this, in, __current);
             }
             case 363:
             {
-                return ___getItemPropertyType(this, in, __current);
+                return ___getItemPropertySubType(this, in, __current);
             }
             case 364:
             {
-                return ___getItemStackSize(this, in, __current);
+                return ___getItemPropertyType(this, in, __current);
             }
             case 365:
             {
-                return ___getJournalQuestExperience(this, in, __current);
+                return ___getItemStackSize(this, in, __current);
             }
             case 366:
             {
-                return ___getKeyRequiredFeedback(this, in, __current);
+                return ___getJournalQuestExperience(this, in, __current);
             }
             case 367:
             {
-                return ___getLastAssociateCommand(this, in, __current);
+                return ___getKeyRequiredFeedback(this, in, __current);
             }
             case 368:
             {
-                return ___getLastAttackMode(this, in, __current);
+                return ___getLastAssociateCommand(this, in, __current);
             }
             case 369:
             {
-                return ___getLastAttackType(this, in, __current);
+                return ___getLastAttackMode(this, in, __current);
             }
             case 370:
             {
-                return ___getLastAttacker(this, in, __current);
+                return ___getLastAttackType(this, in, __current);
             }
             case 371:
             {
-                return ___getLastClosedBy(this, in, __current);
+                return ___getLastAttacker(this, in, __current);
             }
             case 372:
             {
-                return ___getLastDamager(this, in, __current);
+                return ___getLastClosedBy(this, in, __current);
             }
             case 373:
             {
-                return ___getLastDisarmed(this, in, __current);
+                return ___getLastDamager(this, in, __current);
             }
             case 374:
             {
-                return ___getLastDisturbed(this, in, __current);
+                return ___getLastDisarmed(this, in, __current);
             }
             case 375:
             {
-                return ___getLastHostileActor(this, in, __current);
+                return ___getLastDisturbed(this, in, __current);
             }
             case 376:
             {
-                return ___getLastKiller(this, in, __current);
+                return ___getLastHostileActor(this, in, __current);
             }
             case 377:
             {
-                return ___getLastLocked(this, in, __current);
+                return ___getLastKiller(this, in, __current);
             }
             case 378:
             {
-                return ___getLastOpenedBy(this, in, __current);
+                return ___getLastLocked(this, in, __current);
             }
             case 379:
             {
-                return ___getLastPCRested(this, in, __current);
+                return ___getLastOpenedBy(this, in, __current);
             }
             case 380:
             {
-                return ___getLastPCToCancelCutscene(this, in, __current);
+                return ___getLastPCRested(this, in, __current);
             }
             case 381:
             {
-                return ___getLastPerceived(this, in, __current);
+                return ___getLastPCToCancelCutscene(this, in, __current);
             }
             case 382:
             {
-                return ___getLastPerceptionHeard(this, in, __current);
+                return ___getLastPerceived(this, in, __current);
             }
             case 383:
             {
-                return ___getLastPerceptionInaudible(this, in, __current);
+                return ___getLastPerceptionHeard(this, in, __current);
             }
             case 384:
             {
-                return ___getLastPerceptionSeen(this, in, __current);
+                return ___getLastPerceptionInaudible(this, in, __current);
             }
             case 385:
             {
-                return ___getLastPerceptionVanished(this, in, __current);
+                return ___getLastPerceptionSeen(this, in, __current);
             }
             case 386:
             {
-                return ___getLastPlayerDied(this, in, __current);
+                return ___getLastPerceptionVanished(this, in, __current);
             }
             case 387:
             {
-                return ___getLastPlayerDying(this, in, __current);
+                return ___getLastPlayerDied(this, in, __current);
             }
             case 388:
             {
-                return ___getLastRespawnButtonPresser(this, in, __current);
+                return ___getLastPlayerDying(this, in, __current);
             }
             case 389:
             {
-                return ___getLastRestEventType(this, in, __current);
+                return ___getLastRespawnButtonPresser(this, in, __current);
             }
             case 390:
             {
-                return ___getLastSpeaker(this, in, __current);
+                return ___getLastRestEventType(this, in, __current);
             }
             case 391:
             {
-                return ___getLastSpell(this, in, __current);
+                return ___getLastSpeaker(this, in, __current);
             }
             case 392:
             {
-                return ___getLastSpellCastClass(this, in, __current);
+                return ___getLastSpell(this, in, __current);
             }
             case 393:
             {
-                return ___getLastSpellCaster(this, in, __current);
+                return ___getLastSpellCastClass(this, in, __current);
             }
             case 394:
             {
-                return ___getLastSpellHarmful(this, in, __current);
+                return ___getLastSpellCaster(this, in, __current);
             }
             case 395:
             {
-                return ___getLastTrapDetected(this, in, __current);
+                return ___getLastSpellHarmful(this, in, __current);
             }
             case 396:
             {
-                return ___getLastUnlocked(this, in, __current);
+                return ___getLastTrapDetected(this, in, __current);
             }
             case 397:
             {
-                return ___getLastUsedBy(this, in, __current);
+                return ___getLastUnlocked(this, in, __current);
             }
             case 398:
             {
-                return ___getLastWeaponUsed(this, in, __current);
+                return ___getLastUsedBy(this, in, __current);
             }
             case 399:
             {
-                return ___getLawChaosValue(this, in, __current);
+                return ___getLastWeaponUsed(this, in, __current);
             }
             case 400:
             {
-                return ___getLevelByClass(this, in, __current);
+                return ___getLawChaosValue(this, in, __current);
             }
             case 401:
             {
-                return ___getLevelByPosition(this, in, __current);
+                return ___getLevelByClass(this, in, __current);
             }
             case 402:
             {
-                return ___getListenPatternNumber(this, in, __current);
+                return ___getLevelByPosition(this, in, __current);
             }
             case 403:
             {
-                return ___getLocalFloat(this, in, __current);
+                return ___getListenPatternNumber(this, in, __current);
             }
             case 404:
             {
-                return ___getLocalInt(this, in, __current);
+                return ___getLocalFloat(this, in, __current);
             }
             case 405:
             {
-                return ___getLocalLocation(this, in, __current);
+                return ___getLocalInt(this, in, __current);
             }
             case 406:
             {
-                return ___getLocalObject(this, in, __current);
+                return ___getLocalLocation(this, in, __current);
             }
             case 407:
             {
-                return ___getLocalString(this, in, __current);
+                return ___getLocalObject(this, in, __current);
             }
             case 408:
             {
-                return ___getLocation(this, in, __current);
+                return ___getLocalString(this, in, __current);
             }
             case 409:
             {
-                return ___getLockKeyRequired(this, in, __current);
+                return ___getLocation(this, in, __current);
             }
             case 410:
             {
-                return ___getLockKeyTag(this, in, __current);
+                return ___getLockKeyRequired(this, in, __current);
             }
             case 411:
             {
-                return ___getLockLockDC(this, in, __current);
+                return ___getLockKeyTag(this, in, __current);
             }
             case 412:
             {
-                return ___getLockLockable(this, in, __current);
+                return ___getLockLockDC(this, in, __current);
             }
             case 413:
             {
-                return ___getLockUnlockDC(this, in, __current);
+                return ___getLockLockable(this, in, __current);
             }
             case 414:
             {
-                return ___getLocked(this, in, __current);
+                return ___getLockUnlockDC(this, in, __current);
             }
             case 415:
             {
-                return ___getLootable(this, in, __current);
+                return ___getLocked(this, in, __current);
             }
             case 416:
             {
-                return ___getMaster(this, in, __current);
+                return ___getLootable(this, in, __current);
             }
             case 417:
             {
-                return ___getMatchedSubstring(this, in, __current);
+                return ___getMaster(this, in, __current);
             }
             case 418:
             {
-                return ___getMatchedSubstringsCount(this, in, __current);
+                return ___getMatchedSubstring(this, in, __current);
             }
             case 419:
             {
-                return ___getMaxHenchmen(this, in, __current);
+                return ___getMatchedSubstringsCount(this, in, __current);
             }
             case 420:
             {
-                return ___getMaxHitPoints(this, in, __current);
+                return ___getMaxHenchmen(this, in, __current);
             }
             case 421:
             {
-                return ___getMetaMagicFeat(this, in, __current);
+                return ___getMaxHitPoints(this, in, __current);
             }
             case 422:
             {
-                return ___getModule(this, in, __current);
+                return ___getMetaMagicFeat(this, in, __current);
             }
             case 423:
             {
-                return ___getModuleItemAcquired(this, in, __current);
+                return ___getModule(this, in, __current);
             }
             case 424:
             {
-                return ___getModuleItemAcquiredBy(this, in, __current);
+                return ___getModuleItemAcquired(this, in, __current);
             }
             case 425:
             {
-                return ___getModuleItemAcquiredFrom(this, in, __current);
+                return ___getModuleItemAcquiredBy(this, in, __current);
             }
             case 426:
             {
-                return ___getModuleItemAcquiredStackSize(this, in, __current);
+                return ___getModuleItemAcquiredFrom(this, in, __current);
             }
             case 427:
             {
-                return ___getModuleItemLost(this, in, __current);
+                return ___getModuleItemAcquiredStackSize(this, in, __current);
             }
             case 428:
             {
-                return ___getModuleItemLostBy(this, in, __current);
+                return ___getModuleItemLost(this, in, __current);
             }
             case 429:
             {
-                return ___getModuleName(this, in, __current);
+                return ___getModuleItemLostBy(this, in, __current);
             }
             case 430:
             {
-                return ___getModuleXPScale(this, in, __current);
+                return ___getModuleName(this, in, __current);
             }
             case 431:
             {
-                return ___getMovementRate(this, in, __current);
+                return ___getModuleXPScale(this, in, __current);
             }
             case 432:
             {
-                return ___getName(this, in, __current);
+                return ___getMovementRate(this, in, __current);
             }
             case 433:
             {
-                return ___getNearestCreature(this, in, __current);
+                return ___getName(this, in, __current);
             }
             case 434:
             {
-                return ___getNearestCreatureToLocation(this, in, __current);
+                return ___getNearestCreature(this, in, __current);
             }
             case 435:
             {
-                return ___getNearestObject(this, in, __current);
+                return ___getNearestCreatureToLocation(this, in, __current);
             }
             case 436:
             {
-                return ___getNearestObjectByTag(this, in, __current);
+                return ___getNearestObject(this, in, __current);
             }
             case 437:
             {
-                return ___getNearestObjectToLocation(this, in, __current);
+                return ___getNearestObjectByTag(this, in, __current);
             }
             case 438:
             {
-                return ___getNearestTrapToObject(this, in, __current);
+                return ___getNearestObjectToLocation(this, in, __current);
             }
             case 439:
             {
-                return ___getNumStackedItems(this, in, __current);
+                return ___getNearestTrapToObject(this, in, __current);
             }
             case 440:
             {
-                return ___getObjectByTag(this, in, __current);
+                return ___getNumStackedItems(this, in, __current);
             }
             case 441:
             {
-                return ___getObjectHeard(this, in, __current);
+                return ___getObjectByTag(this, in, __current);
             }
             case 442:
             {
-                return ___getObjectSeen(this, in, __current);
+                return ___getObjectHeard(this, in, __current);
             }
             case 443:
             {
-                return ___getObjectType(this, in, __current);
+                return ___getObjectSeen(this, in, __current);
             }
             case 444:
             {
-                return ___getPCChatMessage(this, in, __current);
+                return ___getObjectType(this, in, __current);
             }
             case 445:
             {
-                return ___getPCChatSpeaker(this, in, __current);
+                return ___getPCChatMessage(this, in, __current);
             }
             case 446:
             {
-                return ___getPCChatVolume(this, in, __current);
+                return ___getPCChatSpeaker(this, in, __current);
             }
             case 447:
             {
-                return ___getPCIPAddress(this, in, __current);
+                return ___getPCChatVolume(this, in, __current);
             }
             case 448:
             {
-                return ___getPCItemLastEquipped(this, in, __current);
+                return ___getPCIPAddress(this, in, __current);
             }
             case 449:
             {
-                return ___getPCItemLastEquippedBy(this, in, __current);
+                return ___getPCItemLastEquipped(this, in, __current);
             }
             case 450:
             {
-                return ___getPCItemLastUnequipped(this, in, __current);
+                return ___getPCItemLastEquippedBy(this, in, __current);
             }
             case 451:
             {
-                return ___getPCItemLastUnequippedBy(this, in, __current);
+                return ___getPCItemLastUnequipped(this, in, __current);
             }
             case 452:
             {
-                return ___getPCLevellingUp(this, in, __current);
+                return ___getPCItemLastUnequippedBy(this, in, __current);
             }
             case 453:
             {
-                return ___getPCPlayerName(this, in, __current);
+                return ___getPCLevellingUp(this, in, __current);
             }
             case 454:
             {
-                return ___getPCPublicCDKey(this, in, __current);
+                return ___getPCPlayerName(this, in, __current);
             }
             case 455:
             {
-                return ___getPCSpeaker(this, in, __current);
+                return ___getPCPublicCDKey(this, in, __current);
             }
             case 456:
             {
-                return ___getPhenoType(this, in, __current);
+                return ___getPCSpeaker(this, in, __current);
             }
             case 457:
             {
-                return ___getPickpocketableFlag(this, in, __current);
+                return ___getPhenoType(this, in, __current);
             }
             case 458:
             {
-                return ___getPlaceableIllumination(this, in, __current);
+                return ___getPickpocketableFlag(this, in, __current);
             }
             case 459:
             {
-                return ___getPlaceableLastClickedBy(this, in, __current);
+                return ___getPlaceableIllumination(this, in, __current);
             }
             case 460:
             {
-                return ___getPlotFlag(this, in, __current);
+                return ___getPlaceableLastClickedBy(this, in, __current);
             }
             case 461:
             {
-                return ___getPortraitId(this, in, __current);
+                return ___getPlotFlag(this, in, __current);
             }
             case 462:
             {
-                return ___getPortraitResRef(this, in, __current);
+                return ___getPortraitId(this, in, __current);
             }
             case 463:
             {
-                return ___getPosition(this, in, __current);
+                return ___getPortraitResRef(this, in, __current);
             }
             case 464:
             {
-                return ___getRacialType(this, in, __current);
+                return ___getPosition(this, in, __current);
             }
             case 465:
             {
-                return ___getReflexAdjustedDamage(this, in, __current);
+                return ___getRacialType(this, in, __current);
             }
             case 466:
             {
-                return ___getReflexSavingThrow(this, in, __current);
+                return ___getReflexAdjustedDamage(this, in, __current);
             }
             case 467:
             {
-                return ___getReputation(this, in, __current);
+                return ___getReflexSavingThrow(this, in, __current);
             }
             case 468:
             {
-                return ___getResRef(this, in, __current);
+                return ___getReputation(this, in, __current);
             }
             case 469:
             {
-                return ___getSittingCreature(this, in, __current);
+                return ___getResRef(this, in, __current);
             }
             case 470:
             {
-                return ___getSkillRank(this, in, __current);
+                return ___getSittingCreature(this, in, __current);
             }
             case 471:
             {
-                return ___getSkyBox(this, in, __current);
+                return ___getSkillRank(this, in, __current);
             }
             case 472:
             {
-                return ___getSpellCastItem(this, in, __current);
+                return ___getSkyBox(this, in, __current);
             }
             case 473:
             {
-                return ___getSpellId(this, in, __current);
+                return ___getSpellCastItem(this, in, __current);
             }
             case 474:
             {
-                return ___getSpellResistance(this, in, __current);
+                return ___getSpellId(this, in, __current);
             }
             case 475:
             {
-                return ___getSpellSaveDC(this, in, __current);
+                return ___getSpellResistance(this, in, __current);
             }
             case 476:
             {
-                return ___getSpellTargetLocation(this, in, __current);
+                return ___getSpellSaveDC(this, in, __current);
             }
             case 477:
             {
-                return ___getSpellTargetObject(this, in, __current);
+                return ___getSpellTargetLocation(this, in, __current);
             }
             case 478:
             {
-                return ___getStandardFactionReputation(this, in, __current);
+                return ___getSpellTargetObject(this, in, __current);
             }
             case 479:
             {
-                return ___getStartingLocation(this, in, __current);
+                return ___getStandardFactionReputation(this, in, __current);
             }
             case 480:
             {
-                return ___getState(this, in, __current);
+                return ___getStartingLocation(this, in, __current);
             }
             case 481:
             {
-                return ___getStealthMode(this, in, __current);
+                return ___getState(this, in, __current);
             }
             case 482:
             {
-                return ___getStolenFlag(this, in, __current);
+                return ___getStealthMode(this, in, __current);
             }
             case 483:
             {
-                return ___getStoreGold(this, in, __current);
+                return ___getStolenFlag(this, in, __current);
             }
             case 484:
             {
-                return ___getStoreIdentifyCost(this, in, __current);
+                return ___getStoreGold(this, in, __current);
             }
             case 485:
             {
-                return ___getStoreMaxBuyPrice(this, in, __current);
+                return ___getStoreIdentifyCost(this, in, __current);
             }
             case 486:
             {
-                return ___getStrRefSoundDuration(this, in, __current);
+                return ___getStoreMaxBuyPrice(this, in, __current);
             }
             case 487:
             {
-                return ___getStringByStrRef(this, in, __current);
+                return ___getStrRefSoundDuration(this, in, __current);
             }
             case 488:
             {
-                return ___getSubRace(this, in, __current);
+                return ___getStringByStrRef(this, in, __current);
             }
             case 489:
             {
-                return ___getTag(this, in, __current);
+                return ___getSubRace(this, in, __current);
             }
             case 490:
             {
-                return ___getTileMainLight1Color(this, in, __current);
+                return ___getTag(this, in, __current);
             }
             case 491:
             {
-                return ___getTileMainLight2Color(this, in, __current);
+                return ___getTileMainLight1Color(this, in, __current);
             }
             case 492:
             {
-                return ___getTileSourceLight1Color(this, in, __current);
+                return ___getTileMainLight2Color(this, in, __current);
             }
             case 493:
             {
-                return ___getTileSourceLight2Color(this, in, __current);
+                return ___getTileSourceLight1Color(this, in, __current);
             }
             case 494:
             {
-                return ___getTilesetResRef(this, in, __current);
+                return ___getTileSourceLight2Color(this, in, __current);
             }
             case 495:
             {
-                return ___getTimeHour(this, in, __current);
+                return ___getTilesetResRef(this, in, __current);
             }
             case 496:
             {
-                return ___getTimeMillisecond(this, in, __current);
+                return ___getTimeHour(this, in, __current);
             }
             case 497:
             {
-                return ___getTimeMinute(this, in, __current);
+                return ___getTimeMillisecond(this, in, __current);
             }
             case 498:
             {
-                return ___getTimeSecond(this, in, __current);
+                return ___getTimeMinute(this, in, __current);
             }
             case 499:
             {
-                return ___getTotalDamageDealt(this, in, __current);
+                return ___getTimeSecond(this, in, __current);
             }
             case 500:
             {
-                return ___getTransitionTarget(this, in, __current);
+                return ___getTotalDamageDealt(this, in, __current);
             }
             case 501:
             {
-                return ___getTrapActive(this, in, __current);
+                return ___getTransitionTarget(this, in, __current);
             }
             case 502:
             {
-                return ___getTrapBaseType(this, in, __current);
+                return ___getTrapActive(this, in, __current);
             }
             case 503:
             {
-                return ___getTrapCreator(this, in, __current);
+                return ___getTrapBaseType(this, in, __current);
             }
             case 504:
             {
-                return ___getTrapDetectDC(this, in, __current);
+                return ___getTrapCreator(this, in, __current);
             }
             case 505:
             {
-                return ___getTrapDetectable(this, in, __current);
+                return ___getTrapDetectDC(this, in, __current);
             }
             case 506:
             {
-                return ___getTrapDetectedBy(this, in, __current);
+                return ___getTrapDetectable(this, in, __current);
             }
             case 507:
             {
-                return ___getTrapDisarmDC(this, in, __current);
+                return ___getTrapDetectedBy(this, in, __current);
             }
             case 508:
             {
-                return ___getTrapDisarmable(this, in, __current);
+                return ___getTrapDisarmDC(this, in, __current);
             }
             case 509:
             {
-                return ___getTrapFlagged(this, in, __current);
+                return ___getTrapDisarmable(this, in, __current);
             }
             case 510:
             {
-                return ___getTrapKeyTag(this, in, __current);
+                return ___getTrapFlagged(this, in, __current);
             }
             case 511:
             {
-                return ___getTrapOneShot(this, in, __current);
+                return ___getTrapKeyTag(this, in, __current);
             }
             case 512:
             {
-                return ___getTrapRecoverable(this, in, __current);
+                return ___getTrapOneShot(this, in, __current);
             }
             case 513:
             {
-                return ___getTurnResistanceHD(this, in, __current);
+                return ___getTrapRecoverable(this, in, __current);
             }
             case 514:
             {
-                return ___getUseableFlag(this, in, __current);
+                return ___getTurnResistanceHD(this, in, __current);
             }
             case 515:
             {
-                return ___getUserDefinedEventNumber(this, in, __current);
+                return ___getUseableFlag(this, in, __current);
             }
             case 516:
             {
-                return ___getWaypointByTag(this, in, __current);
+                return ___getUserDefinedEventNumber(this, in, __current);
             }
             case 517:
             {
-                return ___getWeaponRanged(this, in, __current);
+                return ___getWaypointByTag(this, in, __current);
             }
             case 518:
             {
-                return ___getWeather(this, in, __current);
+                return ___getWeaponRanged(this, in, __current);
             }
             case 519:
             {
-                return ___getWeight(this, in, __current);
+                return ___getWeather(this, in, __current);
             }
             case 520:
             {
-                return ___getWillSavingThrow(this, in, __current);
+                return ___getWeight(this, in, __current);
             }
             case 521:
             {
-                return ___getXP(this, in, __current);
+                return ___getWillSavingThrow(this, in, __current);
             }
             case 522:
             {
-                return ___giveGoldToCreature(this, in, __current);
+                return ___getXP(this, in, __current);
             }
             case 523:
             {
-                return ___giveXPToCreature(this, in, __current);
+                return ___giveGoldToCreature(this, in, __current);
             }
             case 524:
             {
-                return ___hasState(this, in, __current);
+                return ___giveXPToCreature(this, in, __current);
             }
             case 525:
             {
-                return ___hoursToSeconds(this, in, __current);
+                return ___hasState(this, in, __current);
             }
             case 526:
             {
-                return ___ice_id(this, in, __current);
+                return ___hoursToSeconds(this, in, __current);
             }
             case 527:
             {
-                return ___ice_ids(this, in, __current);
+                return ___ice_id(this, in, __current);
             }
             case 528:
             {
-                return ___ice_isA(this, in, __current);
+                return ___ice_ids(this, in, __current);
             }
             case 529:
             {
-                return ___ice_ping(this, in, __current);
+                return ___ice_isA(this, in, __current);
             }
             case 530:
             {
-                return ___incrementRemainingFeatUses(this, in, __current);
+                return ___ice_ping(this, in, __current);
             }
             case 531:
             {
-                return ___isInConversation(this, in, __current);
+                return ___incrementRemainingFeatUses(this, in, __current);
             }
             case 532:
             {
-                return ___itemPropertyACBonus(this, in, __current);
+                return ___isInConversation(this, in, __current);
             }
             case 533:
             {
-                return ___itemPropertyACBonusVsAlign(this, in, __current);
+                return ___itemPropertyACBonus(this, in, __current);
             }
             case 534:
             {
-                return ___itemPropertyACBonusVsDmgType(this, in, __current);
+                return ___itemPropertyACBonusVsAlign(this, in, __current);
             }
             case 535:
             {
-                return ___itemPropertyACBonusVsRace(this, in, __current);
+                return ___itemPropertyACBonusVsDmgType(this, in, __current);
             }
             case 536:
             {
-                return ___itemPropertyACBonusVsSAlign(this, in, __current);
+                return ___itemPropertyACBonusVsRace(this, in, __current);
             }
             case 537:
             {
-                return ___itemPropertyAbilityBonus(this, in, __current);
+                return ___itemPropertyACBonusVsSAlign(this, in, __current);
             }
             case 538:
             {
-                return ___itemPropertyAdditional(this, in, __current);
+                return ___itemPropertyAbilityBonus(this, in, __current);
             }
             case 539:
             {
-                return ___itemPropertyArcaneSpellFailure(this, in, __current);
+                return ___itemPropertyAdditional(this, in, __current);
             }
             case 540:
             {
-                return ___itemPropertyAttackBonus(this, in, __current);
+                return ___itemPropertyArcaneSpellFailure(this, in, __current);
             }
             case 541:
             {
-                return ___itemPropertyAttackBonusVsAlign(this, in, __current);
+                return ___itemPropertyAttackBonus(this, in, __current);
             }
             case 542:
             {
-                return ___itemPropertyAttackBonusVsRace(this, in, __current);
+                return ___itemPropertyAttackBonusVsAlign(this, in, __current);
             }
             case 543:
             {
-                return ___itemPropertyAttackBonusVsSAlign(this, in, __current);
+                return ___itemPropertyAttackBonusVsRace(this, in, __current);
             }
             case 544:
             {
-                return ___itemPropertyAttackPenalty(this, in, __current);
+                return ___itemPropertyAttackBonusVsSAlign(this, in, __current);
             }
             case 545:
             {
-                return ___itemPropertyBonusFeat(this, in, __current);
+                return ___itemPropertyAttackPenalty(this, in, __current);
             }
             case 546:
             {
-                return ___itemPropertyBonusLevelSpell(this, in, __current);
+                return ___itemPropertyBonusFeat(this, in, __current);
             }
             case 547:
             {
-                return ___itemPropertyBonusSavingThrow(this, in, __current);
+                return ___itemPropertyBonusLevelSpell(this, in, __current);
             }
             case 548:
             {
-                return ___itemPropertyBonusSavingThrowVsX(this, in, __current);
+                return ___itemPropertyBonusSavingThrow(this, in, __current);
             }
             case 549:
             {
-                return ___itemPropertyBonusSpellResistance(this, in, __current);
+                return ___itemPropertyBonusSavingThrowVsX(this, in, __current);
             }
             case 550:
             {
-                return ___itemPropertyCastSpell(this, in, __current);
+                return ___itemPropertyBonusSpellResistance(this, in, __current);
             }
             case 551:
             {
-                return ___itemPropertyContainerReducedWeight(this, in, __current);
+                return ___itemPropertyCastSpell(this, in, __current);
             }
             case 552:
             {
-                return ___itemPropertyDamageBonus(this, in, __current);
+                return ___itemPropertyContainerReducedWeight(this, in, __current);
             }
             case 553:
             {
-                return ___itemPropertyDamageBonusVsAlign(this, in, __current);
+                return ___itemPropertyDamageBonus(this, in, __current);
             }
             case 554:
             {
-                return ___itemPropertyDamageBonusVsRace(this, in, __current);
+                return ___itemPropertyDamageBonusVsAlign(this, in, __current);
             }
             case 555:
             {
-                return ___itemPropertyDamageBonusVsSAlign(this, in, __current);
+                return ___itemPropertyDamageBonusVsRace(this, in, __current);
             }
             case 556:
             {
-                return ___itemPropertyDamageImmunity(this, in, __current);
+                return ___itemPropertyDamageBonusVsSAlign(this, in, __current);
             }
             case 557:
             {
-                return ___itemPropertyDamagePenalty(this, in, __current);
+                return ___itemPropertyDamageImmunity(this, in, __current);
             }
             case 558:
             {
-                return ___itemPropertyDamageReduction(this, in, __current);
+                return ___itemPropertyDamagePenalty(this, in, __current);
             }
             case 559:
             {
-                return ___itemPropertyDamageResistance(this, in, __current);
+                return ___itemPropertyDamageReduction(this, in, __current);
             }
             case 560:
             {
-                return ___itemPropertyDamageVulnerability(this, in, __current);
+                return ___itemPropertyDamageResistance(this, in, __current);
             }
             case 561:
             {
-                return ___itemPropertyDarkvision(this, in, __current);
+                return ___itemPropertyDamageVulnerability(this, in, __current);
             }
             case 562:
             {
-                return ___itemPropertyDecreaseAC(this, in, __current);
+                return ___itemPropertyDarkvision(this, in, __current);
             }
             case 563:
             {
-                return ___itemPropertyDecreaseAbility(this, in, __current);
+                return ___itemPropertyDecreaseAC(this, in, __current);
             }
             case 564:
             {
-                return ___itemPropertyDecreaseSkill(this, in, __current);
+                return ___itemPropertyDecreaseAbility(this, in, __current);
             }
             case 565:
             {
-                return ___itemPropertyEnhancementBonus(this, in, __current);
+                return ___itemPropertyDecreaseSkill(this, in, __current);
             }
             case 566:
             {
-                return ___itemPropertyEnhancementBonusVsAlign(this, in, __current);
+                return ___itemPropertyEnhancementBonus(this, in, __current);
             }
             case 567:
             {
-                return ___itemPropertyEnhancementBonusVsRace(this, in, __current);
+                return ___itemPropertyEnhancementBonusVsAlign(this, in, __current);
             }
             case 568:
             {
-                return ___itemPropertyEnhancementBonusVsSAlign(this, in, __current);
+                return ___itemPropertyEnhancementBonusVsRace(this, in, __current);
             }
             case 569:
             {
-                return ___itemPropertyEnhancementPenalty(this, in, __current);
+                return ___itemPropertyEnhancementBonusVsSAlign(this, in, __current);
             }
             case 570:
             {
-                return ___itemPropertyExtraMeleeDamageType(this, in, __current);
+                return ___itemPropertyEnhancementPenalty(this, in, __current);
             }
             case 571:
             {
-                return ___itemPropertyExtraRangeDamageType(this, in, __current);
+                return ___itemPropertyExtraMeleeDamageType(this, in, __current);
             }
             case 572:
             {
-                return ___itemPropertyFreeAction(this, in, __current);
+                return ___itemPropertyExtraRangeDamageType(this, in, __current);
             }
             case 573:
             {
-                return ___itemPropertyHaste(this, in, __current);
+                return ___itemPropertyFreeAction(this, in, __current);
             }
             case 574:
             {
-                return ___itemPropertyHealersKit(this, in, __current);
+                return ___itemPropertyHaste(this, in, __current);
             }
             case 575:
             {
-                return ___itemPropertyHolyAvenger(this, in, __current);
+                return ___itemPropertyHealersKit(this, in, __current);
             }
             case 576:
             {
-                return ___itemPropertyImmunityMisc(this, in, __current);
+                return ___itemPropertyHolyAvenger(this, in, __current);
             }
             case 577:
             {
-                return ___itemPropertyImmunityToSpellLevel(this, in, __current);
+                return ___itemPropertyImmunityMisc(this, in, __current);
             }
             case 578:
             {
-                return ___itemPropertyImprovedEvasion(this, in, __current);
+                return ___itemPropertyImmunityToSpellLevel(this, in, __current);
             }
             case 579:
             {
-                return ___itemPropertyKeen(this, in, __current);
+                return ___itemPropertyImprovedEvasion(this, in, __current);
             }
             case 580:
             {
-                return ___itemPropertyLight(this, in, __current);
+                return ___itemPropertyKeen(this, in, __current);
             }
             case 581:
             {
-                return ___itemPropertyLimitUseByAlign(this, in, __current);
+                return ___itemPropertyLight(this, in, __current);
             }
             case 582:
             {
-                return ___itemPropertyLimitUseByClass(this, in, __current);
+                return ___itemPropertyLimitUseByAlign(this, in, __current);
             }
             case 583:
             {
-                return ___itemPropertyLimitUseByRace(this, in, __current);
+                return ___itemPropertyLimitUseByClass(this, in, __current);
             }
             case 584:
             {
-                return ___itemPropertyLimitUseBySAlign(this, in, __current);
+                return ___itemPropertyLimitUseByRace(this, in, __current);
             }
             case 585:
             {
-                return ___itemPropertyMassiveCritical(this, in, __current);
+                return ___itemPropertyLimitUseBySAlign(this, in, __current);
             }
             case 586:
             {
-                return ___itemPropertyMaterial(this, in, __current);
+                return ___itemPropertyMassiveCritical(this, in, __current);
             }
             case 587:
             {
-                return ___itemPropertyMaxRangeStrengthMod(this, in, __current);
+                return ___itemPropertyMaterial(this, in, __current);
             }
             case 588:
             {
-                return ___itemPropertyMonsterDamage(this, in, __current);
+                return ___itemPropertyMaxRangeStrengthMod(this, in, __current);
             }
             case 589:
             {
-                return ___itemPropertyNoDamage(this, in, __current);
+                return ___itemPropertyMonsterDamage(this, in, __current);
             }
             case 590:
             {
-                return ___itemPropertyOnHitCastSpell(this, in, __current);
+                return ___itemPropertyNoDamage(this, in, __current);
             }
             case 591:
             {
-                return ___itemPropertyOnHitProps(this, in, __current);
+                return ___itemPropertyOnHitCastSpell(this, in, __current);
             }
             case 592:
             {
-                return ___itemPropertyOnMonsterHitProperties(this, in, __current);
+                return ___itemPropertyOnHitProps(this, in, __current);
             }
             case 593:
             {
-                return ___itemPropertyQuality(this, in, __current);
+                return ___itemPropertyOnMonsterHitProperties(this, in, __current);
             }
             case 594:
             {
-                return ___itemPropertyReducedSavingThrow(this, in, __current);
+                return ___itemPropertyQuality(this, in, __current);
             }
             case 595:
             {
-                return ___itemPropertyReducedSavingThrowVsX(this, in, __current);
+                return ___itemPropertyReducedSavingThrow(this, in, __current);
             }
             case 596:
             {
-                return ___itemPropertyRegeneration(this, in, __current);
+                return ___itemPropertyReducedSavingThrowVsX(this, in, __current);
             }
             case 597:
             {
-                return ___itemPropertySkillBonus(this, in, __current);
+                return ___itemPropertyRegeneration(this, in, __current);
             }
             case 598:
             {
-                return ___itemPropertySpecialWalk(this, in, __current);
+                return ___itemPropertySkillBonus(this, in, __current);
             }
             case 599:
             {
-                return ___itemPropertySpellImmunitySchool(this, in, __current);
+                return ___itemPropertySpecialWalk(this, in, __current);
             }
             case 600:
             {
-                return ___itemPropertySpellImmunitySpecific(this, in, __current);
+                return ___itemPropertySpellImmunitySchool(this, in, __current);
             }
             case 601:
             {
-                return ___itemPropertyThievesTools(this, in, __current);
+                return ___itemPropertySpellImmunitySpecific(this, in, __current);
             }
             case 602:
             {
-                return ___itemPropertyTrap(this, in, __current);
+                return ___itemPropertyThievesTools(this, in, __current);
             }
             case 603:
             {
-                return ___itemPropertyTrueSeeing(this, in, __current);
+                return ___itemPropertyTrap(this, in, __current);
             }
             case 604:
             {
-                return ___itemPropertyTurnResistance(this, in, __current);
+                return ___itemPropertyTrueSeeing(this, in, __current);
             }
             case 605:
             {
-                return ___itemPropertyUnlimitedAmmo(this, in, __current);
+                return ___itemPropertyTurnResistance(this, in, __current);
             }
             case 606:
             {
-                return ___itemPropertyVampiricRegeneration(this, in, __current);
+                return ___itemPropertyUnlimitedAmmo(this, in, __current);
             }
             case 607:
             {
-                return ___itemPropertyVisualEffect(this, in, __current);
+                return ___itemPropertyVampiricRegeneration(this, in, __current);
             }
             case 608:
             {
-                return ___itemPropertyWeightIncrease(this, in, __current);
+                return ___itemPropertyVisualEffect(this, in, __current);
             }
             case 609:
             {
-                return ___itemPropertyWeightReduction(this, in, __current);
+                return ___itemPropertyWeightIncrease(this, in, __current);
             }
             case 610:
             {
-                return ___jumpToLocation(this, in, __current);
+                return ___itemPropertyWeightReduction(this, in, __current);
             }
             case 611:
             {
-                return ___jumpToObject(this, in, __current);
+                return ___jumpToLocation(this, in, __current);
             }
             case 612:
             {
-                return ___levelUpHenchman(this, in, __current);
+                return ___jumpToObject(this, in, __current);
             }
             case 613:
             {
-                return ___lineOfSightObject(this, in, __current);
+                return ___levelUpHenchman(this, in, __current);
             }
             case 614:
             {
-                return ___lineOfSightVector(this, in, __current);
+                return ___lineOfSightObject(this, in, __current);
             }
             case 615:
             {
-                return ___lockCameraDirection(this, in, __current);
+                return ___lineOfSightVector(this, in, __current);
             }
             case 616:
             {
-                return ___lockCameraDistance(this, in, __current);
+                return ___lockCameraDirection(this, in, __current);
             }
             case 617:
             {
-                return ___lockCameraPitch(this, in, __current);
+                return ___lockCameraDistance(this, in, __current);
             }
             case 618:
             {
-                return ___magicalEffect(this, in, __current);
+                return ___lockCameraPitch(this, in, __current);
             }
             case 619:
             {
-                return ___musicBackgroundChangeDay(this, in, __current);
+                return ___magicalEffect(this, in, __current);
             }
             case 620:
             {
-                return ___musicBackgroundChangeNight(this, in, __current);
+                return ___musicBackgroundChangeDay(this, in, __current);
             }
             case 621:
             {
-                return ___musicBackgroundGetBattleTrack(this, in, __current);
+                return ___musicBackgroundChangeNight(this, in, __current);
             }
             case 622:
             {
-                return ___musicBackgroundGetDayTrack(this, in, __current);
+                return ___musicBackgroundGetBattleTrack(this, in, __current);
             }
             case 623:
             {
-                return ___musicBackgroundGetNightTrack(this, in, __current);
+                return ___musicBackgroundGetDayTrack(this, in, __current);
             }
             case 624:
             {
-                return ___musicBackgroundPlay(this, in, __current);
+                return ___musicBackgroundGetNightTrack(this, in, __current);
             }
             case 625:
             {
-                return ___musicBackgroundSetDelay(this, in, __current);
+                return ___musicBackgroundPlay(this, in, __current);
             }
             case 626:
             {
-                return ___musicBackgroundStop(this, in, __current);
+                return ___musicBackgroundSetDelay(this, in, __current);
             }
             case 627:
             {
-                return ___musicBattleChange(this, in, __current);
+                return ___musicBackgroundStop(this, in, __current);
             }
             case 628:
             {
-                return ___musicBattlePlay(this, in, __current);
+                return ___musicBattleChange(this, in, __current);
             }
             case 629:
             {
-                return ___musicBattleStop(this, in, __current);
+                return ___musicBattlePlay(this, in, __current);
             }
             case 630:
             {
-                return ___nightToDay(this, in, __current);
+                return ___musicBattleStop(this, in, __current);
             }
             case 631:
             {
-                return ___openInventory(this, in, __current);
+                return ___nightToDay(this, in, __current);
             }
             case 632:
             {
-                return ___openStore(this, in, __current);
+                return ___openInventory(this, in, __current);
             }
             case 633:
             {
-                return ___playAnimation(this, in, __current);
+                return ___openStore(this, in, __current);
             }
             case 634:
             {
-                return ___playSound(this, in, __current);
+                return ___playAnimation(this, in, __current);
             }
             case 635:
             {
-                return ___playSoundByStrRef(this, in, __current);
+                return ___playSound(this, in, __current);
             }
             case 636:
             {
-                return ___playVoiceChat(this, in, __current);
+                return ___playSoundByStrRef(this, in, __current);
             }
             case 637:
             {
-                return ___popUpDeathGUIPanel(this, in, __current);
+                return ___playVoiceChat(this, in, __current);
             }
             case 638:
             {
-                return ___popUpGUIPanel(this, in, __current);
+                return ___popUpDeathGUIPanel(this, in, __current);
             }
             case 639:
             {
-                return ___putState(this, in, __current);
+                return ___popUpGUIPanel(this, in, __current);
             }
             case 640:
             {
-                return ___randomName(this, in, __current);
+                return ___putState(this, in, __current);
             }
             case 641:
             {
-                return ___recomputeStaticLighting(this, in, __current);
+                return ___randomName(this, in, __current);
             }
             case 642:
             {
-                return ___reflexSave(this, in, __current);
+                return ___recomputeStaticLighting(this, in, __current);
             }
             case 643:
             {
-                return ___removeEffect(this, in, __current);
+                return ___reflexSave(this, in, __current);
             }
             case 644:
             {
-                return ___removeFromParty(this, in, __current);
+                return ___removeEffect(this, in, __current);
             }
             case 645:
             {
-                return ___removeHenchman(this, in, __current);
+                return ___removeFromParty(this, in, __current);
             }
             case 646:
             {
-                return ___removeItemProperty(this, in, __current);
+                return ___removeHenchman(this, in, __current);
             }
             case 647:
             {
-                return ___removeJournalQuestEntry(this, in, __current);
+                return ___removeItemProperty(this, in, __current);
             }
             case 648:
             {
-                return ___removeSummonedAssociate(this, in, __current);
+                return ___removeJournalQuestEntry(this, in, __current);
             }
             case 649:
             {
-                return ___resistSpell(this, in, __current);
+                return ___removeSummonedAssociate(this, in, __current);
             }
             case 650:
             {
-                return ___restoreBaseAttackBonus(this, in, __current);
+                return ___resistSpell(this, in, __current);
             }
             case 651:
             {
-                return ___restoreCameraFacing(this, in, __current);
+                return ___restoreBaseAttackBonus(this, in, __current);
             }
             case 652:
             {
-                return ___retrieveCampaignObject(this, in, __current);
+                return ___restoreCameraFacing(this, in, __current);
             }
             case 653:
             {
-                return ___roundsToSeconds(this, in, __current);
+                return ___retrieveCampaignObject(this, in, __current);
             }
             case 654:
             {
-                return ___sendMessageToAllDMs(this, in, __current);
+                return ___roundsToSeconds(this, in, __current);
             }
             case 655:
             {
-                return ___sendMessageToPC(this, in, __current);
+                return ___sendMessageToAllDMs(this, in, __current);
             }
             case 656:
             {
-                return ___sendMessageToPCByStrRef(this, in, __current);
+                return ___sendMessageToPC(this, in, __current);
             }
             case 657:
             {
-                return ___setAILevel(this, in, __current);
+                return ___sendMessageToPCByStrRef(this, in, __current);
             }
             case 658:
             {
-                return ___setActionMode(this, in, __current);
+                return ___setAILevel(this, in, __current);
             }
             case 659:
             {
-                return ___setAreaTransitionBMP(this, in, __current);
+                return ___setActionMode(this, in, __current);
             }
             case 660:
             {
-                return ___setAssociateListenPatterns(this, in, __current);
+                return ___setAreaTransitionBMP(this, in, __current);
             }
             case 661:
             {
-                return ___setBaseAttackBonus(this, in, __current);
+                return ___setAssociateListenPatterns(this, in, __current);
             }
             case 662:
             {
-                return ___setCalendar(this, in, __current);
+                return ___setBaseAttackBonus(this, in, __current);
             }
             case 663:
             {
-                return ___setCameraFacing(this, in, __current);
+                return ___setCalendar(this, in, __current);
             }
             case 664:
             {
-                return ___setCameraHeight(this, in, __current);
+                return ___setCameraFacing(this, in, __current);
             }
             case 665:
             {
-                return ___setCameraMode(this, in, __current);
+                return ___setCameraHeight(this, in, __current);
             }
             case 666:
             {
-                return ___setCampaignFloat(this, in, __current);
+                return ___setCameraMode(this, in, __current);
             }
             case 667:
             {
-                return ___setCampaignInt(this, in, __current);
+                return ___setCampaignFloat(this, in, __current);
             }
             case 668:
             {
-                return ___setCampaignLocation(this, in, __current);
+                return ___setCampaignInt(this, in, __current);
             }
             case 669:
             {
-                return ___setCampaignString(this, in, __current);
+                return ___setCampaignLocation(this, in, __current);
             }
             case 670:
             {
-                return ___setCampaignVector(this, in, __current);
+                return ___setCampaignString(this, in, __current);
             }
             case 671:
             {
-                return ___setColor(this, in, __current);
+                return ___setCampaignVector(this, in, __current);
             }
             case 672:
             {
-                return ___setCommandable(this, in, __current);
+                return ___setColor(this, in, __current);
             }
             case 673:
             {
-                return ___setCreatureAppearanceType(this, in, __current);
+                return ___setCommandable(this, in, __current);
             }
             case 674:
             {
-                return ___setCreatureBodyPart(this, in, __current);
+                return ___setCreatureAppearanceType(this, in, __current);
             }
             case 675:
             {
-                return ___setCreatureTailType(this, in, __current);
+                return ___setCreatureBodyPart(this, in, __current);
             }
             case 676:
             {
-                return ___setCreatureWingType(this, in, __current);
+                return ___setCreatureTailType(this, in, __current);
             }
             case 677:
             {
-                return ___setCustomToken(this, in, __current);
+                return ___setCreatureWingType(this, in, __current);
             }
             case 678:
             {
-                return ___setCutsceneCameraMoveRate(this, in, __current);
+                return ___setCustomToken(this, in, __current);
             }
             case 679:
             {
-                return ___setCutsceneMode(this, in, __current);
+                return ___setCutsceneCameraMoveRate(this, in, __current);
             }
             case 680:
             {
-                return ___setDebugLogging(this, in, __current);
+                return ___setCutsceneMode(this, in, __current);
             }
             case 681:
             {
-                return ___setDeity(this, in, __current);
+                return ___setDebugLogging(this, in, __current);
             }
             case 682:
             {
-                return ___setDescription(this, in, __current);
+                return ___setDeity(this, in, __current);
             }
             case 683:
             {
-                return ___setDroppableFlag(this, in, __current);
+                return ___setDescription(this, in, __current);
             }
             case 684:
             {
-                return ___setEffectExposed(this, in, __current);
+                return ___setDroppableFlag(this, in, __current);
             }
             case 685:
             {
-                return ___setEffectIconShown(this, in, __current);
+                return ___setEffectExposed(this, in, __current);
             }
             case 686:
             {
-                return ___setEffectInteger(this, in, __current);
+                return ___setEffectIconShown(this, in, __current);
             }
             case 687:
             {
-                return ___setEffectTrueType(this, in, __current);
+                return ___setEffectInteger(this, in, __current);
             }
             case 688:
             {
-                return ___setEncounterActive(this, in, __current);
+                return ___setEffectTrueType(this, in, __current);
             }
             case 689:
             {
-                return ___setEncounterDifficulty(this, in, __current);
+                return ___setEncounterActive(this, in, __current);
             }
             case 690:
             {
-                return ___setEncounterSpawnsCurrent(this, in, __current);
+                return ___setEncounterDifficulty(this, in, __current);
             }
             case 691:
             {
-                return ___setEncounterSpawnsMax(this, in, __current);
+                return ___setEncounterSpawnsCurrent(this, in, __current);
             }
             case 692:
             {
-                return ___setFacing(this, in, __current);
+                return ___setEncounterSpawnsMax(this, in, __current);
             }
             case 693:
             {
-                return ___setFacingPoint(this, in, __current);
+                return ___setFacing(this, in, __current);
             }
             case 694:
             {
-                return ___setFogAmount(this, in, __current);
+                return ___setFacingPoint(this, in, __current);
             }
             case 695:
             {
-                return ___setFogColor(this, in, __current);
+                return ___setFogAmount(this, in, __current);
             }
             case 696:
             {
-                return ___setFootstepType(this, in, __current);
+                return ___setFogColor(this, in, __current);
             }
             case 697:
             {
-                return ___setFortitudeSavingThrow(this, in, __current);
+                return ___setFootstepType(this, in, __current);
             }
             case 698:
             {
-                return ___setHardness(this, in, __current);
+                return ___setFortitudeSavingThrow(this, in, __current);
             }
             case 699:
             {
-                return ___setIdentified(this, in, __current);
+                return ___setHardness(this, in, __current);
             }
             case 700:
             {
-                return ___setImmortal(this, in, __current);
+                return ___setIdentified(this, in, __current);
             }
             case 701:
             {
-                return ___setInfiniteFlag(this, in, __current);
+                return ___setImmortal(this, in, __current);
             }
             case 702:
             {
-                return ___setIsDestroyable(this, in, __current);
+                return ___setInfiniteFlag(this, in, __current);
             }
             case 703:
             {
-                return ___setIsTemporaryEnemy(this, in, __current);
+                return ___setIsDestroyable(this, in, __current);
             }
             case 704:
             {
-                return ___setIsTemporaryFriend(this, in, __current);
+                return ___setIsTemporaryEnemy(this, in, __current);
             }
             case 705:
             {
-                return ___setIsTemporaryNeutral(this, in, __current);
+                return ___setIsTemporaryFriend(this, in, __current);
             }
             case 706:
             {
-                return ___setItemCharges(this, in, __current);
+                return ___setIsTemporaryNeutral(this, in, __current);
             }
             case 707:
             {
-                return ___setItemCursedFlag(this, in, __current);
+                return ___setItemCharges(this, in, __current);
             }
             case 708:
             {
-                return ___setItemPropertyInteger(this, in, __current);
+                return ___setItemCursedFlag(this, in, __current);
             }
             case 709:
             {
-                return ___setItemStackSize(this, in, __current);
+                return ___setItemPropertyInteger(this, in, __current);
             }
             case 710:
             {
-                return ___setKeyRequiredFeedback(this, in, __current);
+                return ___setItemStackSize(this, in, __current);
             }
             case 711:
             {
-                return ___setListenPattern(this, in, __current);
+                return ___setKeyRequiredFeedback(this, in, __current);
             }
             case 712:
             {
-                return ___setListening(this, in, __current);
+                return ___setListenPattern(this, in, __current);
             }
             case 713:
             {
-                return ___setLocalFloat(this, in, __current);
+                return ___setListening(this, in, __current);
             }
             case 714:
             {
-                return ___setLocalInt(this, in, __current);
+                return ___setLocalFloat(this, in, __current);
             }
             case 715:
             {
-                return ___setLocalLocation(this, in, __current);
+                return ___setLocalInt(this, in, __current);
             }
             case 716:
             {
-                return ___setLocalObject(this, in, __current);
+                return ___setLocalLocation(this, in, __current);
             }
             case 717:
             {
-                return ___setLocalString(this, in, __current);
+                return ___setLocalObject(this, in, __current);
             }
             case 718:
             {
-                return ___setLockKeyRequired(this, in, __current);
+                return ___setLocalString(this, in, __current);
             }
             case 719:
             {
-                return ___setLockKeyTag(this, in, __current);
+                return ___setLockKeyRequired(this, in, __current);
             }
             case 720:
             {
-                return ___setLockLockDC(this, in, __current);
+                return ___setLockKeyTag(this, in, __current);
             }
             case 721:
             {
-                return ___setLockLockable(this, in, __current);
+                return ___setLockLockDC(this, in, __current);
             }
             case 722:
             {
-                return ___setLockUnlockDC(this, in, __current);
+                return ___setLockLockable(this, in, __current);
             }
             case 723:
             {
-                return ___setLocked(this, in, __current);
+                return ___setLockUnlockDC(this, in, __current);
             }
             case 724:
             {
-                return ___setLootable(this, in, __current);
+                return ___setLocked(this, in, __current);
             }
             case 725:
             {
-                return ___setMapPinEnabled(this, in, __current);
+                return ___setLootable(this, in, __current);
             }
             case 726:
             {
-                return ___setMaxHenchmen(this, in, __current);
+                return ___setMapPinEnabled(this, in, __current);
             }
             case 727:
             {
-                return ___setModuleXPScale(this, in, __current);
+                return ___setMaxHenchmen(this, in, __current);
             }
             case 728:
             {
-                return ___setName(this, in, __current);
+                return ___setModuleXPScale(this, in, __current);
             }
             case 729:
             {
-                return ___setPCChatMessage(this, in, __current);
+                return ___setName(this, in, __current);
             }
             case 730:
             {
-                return ___setPCChatVolume(this, in, __current);
+                return ___setPCChatMessage(this, in, __current);
             }
             case 731:
             {
-                return ___setPCDislike(this, in, __current);
+                return ___setPCChatVolume(this, in, __current);
             }
             case 732:
             {
-                return ___setPCLike(this, in, __current);
+                return ___setPCDislike(this, in, __current);
             }
             case 733:
             {
-                return ___setPanelButtonFlash(this, in, __current);
+                return ___setPCLike(this, in, __current);
             }
             case 734:
             {
-                return ___setPhenoType(this, in, __current);
+                return ___setPanelButtonFlash(this, in, __current);
             }
             case 735:
             {
-                return ___setPickpocketableFlag(this, in, __current);
+                return ___setPhenoType(this, in, __current);
             }
             case 736:
             {
-                return ___setPlaceableIllumination(this, in, __current);
+                return ___setPickpocketableFlag(this, in, __current);
             }
             case 737:
             {
-                return ___setPlotFlag(this, in, __current);
+                return ___setPlaceableIllumination(this, in, __current);
             }
             case 738:
             {
-                return ___setPortraitId(this, in, __current);
+                return ___setPlotFlag(this, in, __current);
             }
             case 739:
             {
-                return ___setPortraitResRef(this, in, __current);
+                return ___setPortraitId(this, in, __current);
             }
             case 740:
             {
-                return ___setReflexSavingThrow(this, in, __current);
+                return ___setPortraitResRef(this, in, __current);
             }
             case 741:
             {
-                return ___setSkyBox(this, in, __current);
+                return ___setReflexSavingThrow(this, in, __current);
             }
             case 742:
             {
-                return ___setStandardFactionReputation(this, in, __current);
+                return ___setSkyBox(this, in, __current);
             }
             case 743:
             {
-                return ___setStolenFlag(this, in, __current);
+                return ___setStandardFactionReputation(this, in, __current);
             }
             case 744:
             {
-                return ___setStoreGold(this, in, __current);
+                return ___setStolenFlag(this, in, __current);
             }
             case 745:
             {
-                return ___setStoreIdentifyCost(this, in, __current);
+                return ___setStoreGold(this, in, __current);
             }
             case 746:
             {
-                return ___setStoreMaxBuyPrice(this, in, __current);
+                return ___setStoreIdentifyCost(this, in, __current);
             }
             case 747:
             {
-                return ___setSubRace(this, in, __current);
+                return ___setStoreMaxBuyPrice(this, in, __current);
             }
             case 748:
             {
-                return ___setTileMainLightColor(this, in, __current);
+                return ___setSubRace(this, in, __current);
             }
             case 749:
             {
-                return ___setTileSourceLightColor(this, in, __current);
+                return ___setTileMainLightColor(this, in, __current);
             }
             case 750:
             {
-                return ___setTime(this, in, __current);
+                return ___setTileSourceLightColor(this, in, __current);
             }
             case 751:
             {
-                return ___setTrapActive(this, in, __current);
+                return ___setTime(this, in, __current);
             }
             case 752:
             {
-                return ___setTrapDetectDC(this, in, __current);
+                return ___setTrapActive(this, in, __current);
             }
             case 753:
             {
-                return ___setTrapDetectable(this, in, __current);
+                return ___setTrapDetectDC(this, in, __current);
             }
             case 754:
             {
-                return ___setTrapDetectedBy(this, in, __current);
+                return ___setTrapDetectable(this, in, __current);
             }
             case 755:
             {
-                return ___setTrapDisabled(this, in, __current);
+                return ___setTrapDetectedBy(this, in, __current);
             }
             case 756:
             {
-                return ___setTrapDisarmDC(this, in, __current);
+                return ___setTrapDisabled(this, in, __current);
             }
             case 757:
             {
-                return ___setTrapDisarmable(this, in, __current);
+                return ___setTrapDisarmDC(this, in, __current);
             }
             case 758:
             {
-                return ___setTrapKeyTag(this, in, __current);
+                return ___setTrapDisarmable(this, in, __current);
             }
             case 759:
             {
-                return ___setTrapOneShot(this, in, __current);
+                return ___setTrapKeyTag(this, in, __current);
             }
             case 760:
             {
-                return ___setTrapRecoverable(this, in, __current);
+                return ___setTrapOneShot(this, in, __current);
             }
             case 761:
             {
-                return ___setUseableFlag(this, in, __current);
+                return ___setTrapRecoverable(this, in, __current);
             }
             case 762:
             {
-                return ___setWeather(this, in, __current);
+                return ___setUseableFlag(this, in, __current);
             }
             case 763:
             {
-                return ___setWillSavingThrow(this, in, __current);
+                return ___setWeather(this, in, __current);
             }
             case 764:
             {
-                return ___setXP(this, in, __current);
+                return ___setWillSavingThrow(this, in, __current);
             }
             case 765:
             {
-                return ___soundObjectPlay(this, in, __current);
+                return ___setXP(this, in, __current);
             }
             case 766:
             {
-                return ___soundObjectSetPosition(this, in, __current);
+                return ___soundObjectPlay(this, in, __current);
             }
             case 767:
             {
-                return ___soundObjectSetVolume(this, in, __current);
+                return ___soundObjectSetPosition(this, in, __current);
             }
             case 768:
             {
-                return ___soundObjectStop(this, in, __current);
+                return ___soundObjectSetVolume(this, in, __current);
             }
             case 769:
             {
-                return ___speakOneLinerConversation(this, in, __current);
+                return ___soundObjectStop(this, in, __current);
             }
             case 770:
             {
-                return ___speakString(this, in, __current);
+                return ___speakOneLinerConversation(this, in, __current);
             }
             case 771:
             {
-                return ___speakStringByStrRef(this, in, __current);
+                return ___speakString(this, in, __current);
             }
             case 772:
             {
-                return ___startNewModule(this, in, __current);
+                return ___speakStringByStrRef(this, in, __current);
             }
             case 773:
             {
-                return ___stopFade(this, in, __current);
+                return ___startNewModule(this, in, __current);
             }
             case 774:
             {
-                return ___storeCameraFacing(this, in, __current);
+                return ___stopFade(this, in, __current);
             }
             case 775:
             {
-                return ___storeCampaignObject(this, in, __current);
+                return ___storeCameraFacing(this, in, __current);
             }
             case 776:
             {
-                return ___summonAnimalCompanion(this, in, __current);
+                return ___storeCampaignObject(this, in, __current);
             }
             case 777:
             {
-                return ___summonFamiliar(this, in, __current);
+                return ___summonAnimalCompanion(this, in, __current);
             }
             case 778:
             {
-                return ___supernaturalEffect(this, in, __current);
+                return ___summonFamiliar(this, in, __current);
             }
             case 779:
             {
-                return ___surrenderToEnemies(this, in, __current);
+                return ___supernaturalEffect(this, in, __current);
             }
             case 780:
             {
-                return ___takeGoldFromCreature(this, in, __current);
+                return ___surrenderToEnemies(this, in, __current);
             }
             case 781:
             {
-                return ___touchAttackMelee(this, in, __current);
+                return ___takeGoldFromCreature(this, in, __current);
             }
             case 782:
             {
-                return ___touchAttackRanged(this, in, __current);
+                return ___touchAttackMelee(this, in, __current);
             }
             case 783:
             {
-                return ___turnsToSeconds(this, in, __current);
+                return ___touchAttackRanged(this, in, __current);
             }
             case 784:
             {
-                return ___unpossessFamiliar(this, in, __current);
+                return ___turnsToSeconds(this, in, __current);
             }
             case 785:
             {
-                return ___vectorMagnitude(this, in, __current);
+                return ___unpossessFamiliar(this, in, __current);
             }
             case 786:
             {
-                return ___vectorNormalize(this, in, __current);
+                return ___vectorMagnitude(this, in, __current);
             }
             case 787:
             {
-                return ___vectorToAngle(this, in, __current);
+                return ___vectorNormalize(this, in, __current);
             }
             case 788:
             {
-                return ___versusAlignmentEffect(this, in, __current);
+                return ___vectorToAngle(this, in, __current);
             }
             case 789:
             {
-                return ___versusRacialTypeEffect(this, in, __current);
+                return ___versusAlignmentEffect(this, in, __current);
             }
             case 790:
             {
-                return ___versusTrapEffect(this, in, __current);
+                return ___versusRacialTypeEffect(this, in, __current);
             }
             case 791:
             {
-                return ___willSave(this, in, __current);
+                return ___versusTrapEffect(this, in, __current);
             }
             case 792:
+            {
+                return ___willSave(this, in, __current);
+            }
+            case 793:
             {
                 return ___writeTimestampedLogEntry(this, in, __current);
             }
