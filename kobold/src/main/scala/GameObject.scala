@@ -216,8 +216,8 @@ package es.elv.kobold {
 			require(m, "expect one of " + o.toString + ", got: " + objectType().toString)
 		}
 
-		val resref = P( Indef, () => R.proxy.getResRef(this) )
-		val tag = P( () => R.proxy.getTag(this) )
+		val resref = P(Indef, () => R.proxy.getResRef(this))
+		val tag = P(Indef, () => R.proxy.getTag(this))
 
 		val valid = P( () => R.proxy.getIsObjectValid(this) )
 
