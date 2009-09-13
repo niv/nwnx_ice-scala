@@ -99,7 +99,10 @@ package es.elv.kobold {
 				}
 				storedTokens -= token
 			} else {
-				log.error("  Wanted to execute token " + tk + " but not found")
+				if (token > tokenCounter + 10)
+					log.info("  Lost token due to restart: " + tk)
+				else
+					log.error("  Wanted to execute token " + tk + " but not found")
 			}
 
 			val instr: Long = p.getInstructionCount()
