@@ -5,6 +5,7 @@ import es.elv.kobold._
 import es.elv.kobold.events._
 
 object Footstep extends GRefTagFactory[Footstep](ObjectType.Placeable, "x0_tracks", "footsteps")
+
 class Footstep(wrapped: NWObject) extends Placeable(wrapped) {
 	require(tag() == "footsteps", "tag = footsteps")
 
@@ -27,13 +28,13 @@ object Footsteps extends Plugin {
 		Some(new Footstep(n)) else None
 	)
 
-	private val fadeoutTimePerWetpoint = 4000
-	private val minimumDistance = 0.4f // meter? feet? whatever
+	private val fadeoutTimePerWetpoint = config.getInt("fadeoutTimePerWetpoint")
+	private def minimumDistance = config.getFloat("minimumDistance")
 
-	private val minimumWetpoints = 0
-	private val maximumWetpoints = 24
+	private def minimumWetpoints = config.getInt("minimumWetpoints")
+	private def maximumWetpoints = config.getInt("maximumWetpoints")
 
-	private val ticksStandingStill = 3
+	private def ticksStandingStill = config.getInt("ticksStandingStill")
 
 	// Add this many wetpoints per step per surface type.
 	private val surfaceAdjustments: Map[Int, Int] = Map(
@@ -134,14 +135,22 @@ object Footsteps extends Plugin {
 
 	def listen(event: Event) = event match {
 
+
 		case OnTick(_, tick) => {
-			val players = Player.all() filter (p => p.area().valid() && doesFootsteps(p))
-			val npcs = players.flatMap(p =>
-				p.near(60, NWN.ObjectType.Creature, classOf[NonPlayer])
-					filter (n => n.area().valid() && doesFootsteps(n))).removeDuplicates.take(50)
+			val players = PlayerCreature.all() filter (p => p.area().valid() && doesFootsteps(p))
+			val npcs: List[NonPlayer] = if (config.getBoolean("handleAllNPCsInArea"))
+				players.flatMap(p =>
+					p.area().all(ObjectType.Creature, classOf[NonPlayer]))
+			else
+				players.flatMap(p =>
+					p.near(config.getFloat("handleNPCsWithinOfPlayer"), NWN.ObjectType.Creature, classOf[NonPlayer]))
+
+			val selectedNPCs = npcs.removeDuplicates.
+				filter(n => n.area().valid() && doesFootsteps(n)).
+				take(config.getInt("areaCreaturesLimit"))
 
 			for (p <- players) doFootsteps(p)
-			for (p <- npcs) doFootsteps(p)
+			for (p <- selectedNPCs) doFootsteps(p)
 		}
 
 		case _ =>
