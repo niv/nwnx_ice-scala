@@ -217,7 +217,7 @@ package es.elv.kobold {
 		}
 
 		val resref = P(Indef, () => R.proxy.getResRef(this))
-		val tag = P(Indef, () => R.proxy.getTag(this))
+		val tag: RWCachedProperty[String] = P(Indef, () => R.proxy.getTag(this), (t: String) => { nwnx.Funcs.setTag(this, t); this.tag.clear() })
 
 		val valid = P( () => R.proxy.getIsObjectValid(this) )
 

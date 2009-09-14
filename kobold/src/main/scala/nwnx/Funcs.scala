@@ -26,6 +26,9 @@ object Funcs extends Core("FUNCS") {
 		all.toList
 	}
 
+	def setTag(o: G, newTag: String) =
+		set(o, "SETTAG", newTag)
+
 	def groundHeightAt(where: Location): Float = where.area match {
 		case NoArea => 0.0f
 		case _ => setGet(where.area, "GETGROUNDHEIGHT",
