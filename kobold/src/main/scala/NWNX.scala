@@ -6,12 +6,19 @@ package es.elv.kobold.nwnx {
 
 		def get(obj: NWObject, key: String, buf: Int) =
 			setGet(obj, key, " " * buf)
-		def set(obj: NWObject, key: String, value: String) =
+
+		def set(obj: NWObject, key: String, value: String) {
 			R.proxy.setLocalString(obj, "NWNX!" + nwnxKey + "!" + key, value)
+			R.proxy.deleteLocalString(obj, "NWNX!" + nwnxKey + "!" + key)
+		}
+
 		def setGet(obj: NWObject, key: String, init: String) = {
 			R.proxy.setLocalString(obj, "NWNX!" + nwnxKey + "!" + key, init)
-			R.proxy.getLocalString(obj, "NWNX!" + nwnxKey + "!" + key)
+			val ret = R.proxy.getLocalString(obj, "NWNX!" + nwnxKey + "!" + key)
+			R.proxy.deleteLocalString(obj, "NWNX!" + nwnxKey + "!" + key)
+			ret
 		}
+
 		def getObject(obj: NWObject, key: String) =
 			R.proxy.getLocalObject(obj, "NWNX!" + nwnxKey + "!" + key)
 
