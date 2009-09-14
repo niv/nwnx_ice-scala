@@ -10,6 +10,7 @@ class Footstep(wrapped: NWObject) extends Placeable(wrapped) {
 	require(tag() == "footsteps", "tag = footsteps")
 
 	val owner = P(() => lo("footstepOwner"), (o: G) => lo("footstepOwner") = o)
+	val expectedDeath = P(() => ll("footstepExpectedDeath"), (o: Long) => ll("footstepExpectedDeath") = o)
 }
 
 /**
@@ -118,6 +119,7 @@ object Footsteps extends Plugin {
 					var timeout = fadeoutTimePerWetpoint * wetpoints
 					if (p.stealthMode())
 						timeout = (timeout.toFloat / 1.5f).toInt
+					pl.expectedDeath() = System.currentTimeMillis + timeout
 					pl after (timeout, pl.destroy)
 				}
 
@@ -137,6 +139,13 @@ object Footsteps extends Plugin {
 
 
 		case OnTick(_, tick) => {
+			if (config.getInt("cleanupTick") > 0 && tick % config.getInt("cleanupTick") == 0) {
+				for (area <- PlayerCreature.all() filter (_.area().valid()) map (_.area()) removeDuplicates)
+					for (footstep <- area.all(ObjectType.Placeable, classOf[Footstep]))
+						if (System.currentTimeMillis > footstep.expectedDeath())
+							footstep.destroy
+			}
+
 			val players = PlayerCreature.all() filter (p => p.area().valid() && doesFootsteps(p))
 			val npcs: List[NonPlayer] = if (config.getBoolean("handleAllNPCsInArea"))
 				players.flatMap(p =>
