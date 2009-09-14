@@ -44,7 +44,7 @@ package es.elv.kobold {
 		val identified = P(() => R.proxy.getIdentified(this), (is: Boolean) => R.proxy.setIdentified(this, is))
 		val stolen = P(() => R.proxy.getStolenFlag(this), (is: Boolean) => R.proxy.setStolenFlag(this, is))
 
-		val possessor = P(() => G(R.proxy.getItemPossessor(this)))
+		val possessor = P(() => G[G](R.proxy.getItemPossessor(this)))
 
 		val goldValue = P(() => R.proxy.getGoldPieceValue(this))
 
