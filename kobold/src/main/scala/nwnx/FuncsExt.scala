@@ -6,6 +6,8 @@ import es.elv.kobold.events._
 import es.elv.kobold.Implicits._
 
 object SurfaceType {
+	val Invalid        = -1
+
 	val Dirt           = 1
 	val Obscuring      = 2
 	val Grass          = 3
@@ -36,6 +38,8 @@ package nwnx {
 object FuncsExt extends Core("FUNCSEXT") {
 	import scala.collection._
 
+	/** Returns the SurfaceType at the given location.
+		Will fail with return value Invalid/-1 for invalid locations. */
 	def getSurfaceAt(where: Location) =
 		setGet(where.area, "GETSURFACE", vectorToString(where.position)).toInt
 }
