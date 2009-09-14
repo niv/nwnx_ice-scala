@@ -147,12 +147,12 @@ object Footsteps extends Plugin {
 			}
 
 			val players = PlayerCreature.all() filter (p => p.area().valid() && doesFootsteps(p))
-			val npcs: List[NonPlayer] = if (config.getBoolean("handleAllNPCsInArea"))
+			val npcs: List[NPC] = if (config.getBoolean("handleAllNPCsInArea"))
 				players.flatMap(p =>
-					p.area().all(ObjectType.Creature, classOf[NonPlayer]))
+					p.area().all(ObjectType.Creature, classOf[NPC]))
 			else
 				players.flatMap(p =>
-					p.near(config.getFloat("handleNPCsWithinOfPlayer"), NWN.ObjectType.Creature, classOf[NonPlayer]))
+					p.near(config.getFloat("handleNPCsWithinOfPlayer"), NWN.ObjectType.Creature, classOf[NPC]))
 
 			val selectedNPCs = npcs.removeDuplicates.
 				filter(n => n.area().valid() && doesFootsteps(n)).

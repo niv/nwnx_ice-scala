@@ -189,15 +189,15 @@ package es.elv.kobold {
 		registerObjectClass((o, v, t, r, ta) => R.proxy.getAssociateType(o) match {
 			case AssociateType.AnimalCompanionAssociate => Some(new AnimalCompanion(o))
 			case AssociateType.FamiliarAssociate        => Some(new Familiar(o))
-			case AssociateType.DominatedAssociate       => Some(new NonPlayer(o))
-			case AssociateType.HenchmanAssociate        => Some(new NonPlayer(o))
+			case AssociateType.DominatedAssociate       => Some(new NPC(o))
+			case AssociateType.HenchmanAssociate        => Some(new NPC(o))
 			case AssociateType.SummonedAssociate        => Some(new Summon(o)) // XXX: summons are only flagged AFTER onCreate
 			case AssociateType.NoAssociate              => None
 		})
 
 		/* Returns TRUE if the creature oCreature is currently possessed by a DM character. */
 		/* Note: GetIsDMPossessed() will return FALSE if oCreature is the DM character. */
-		registerObjectClass((o, v, t, r, ta) => if (R.proxy.getIsDMPossessed(o)) Some(new NonPlayer(o)) else None)
+		registerObjectClass((o, v, t, r, ta) => if (R.proxy.getIsDMPossessed(o)) Some(new NPC(o)) else None)
 
 		/* Resref is always "" for player characters. */
 		/* A player controlled character is treated as one of the following: a PC, DM avatars,
@@ -205,7 +205,7 @@ package es.elv.kobold {
 		registerObjectClass((o, v, t, r, ta) => if (r == "" && R.proxy.getIsPC(o)) Some(new Player(o)) else None)
 
 		/* Empty resref: copy of player.  Non-empty: created from template. */
-		registerObjectClass((o, v, t, r, ta) => if (t == ObjectType.Creature) Some(new NonPlayer(o)) else None)
+		registerObjectClass((o, v, t, r, ta) => if (t == ObjectType.Creature) Some(new NPC(o)) else None)
 
 		registerObjectClass((o, v, t, r, ta) => if (t == ObjectType.All) r match {
 			case "" => Some(new Sound(o))
