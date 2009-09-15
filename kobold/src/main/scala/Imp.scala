@@ -17,7 +17,7 @@ package events {
 		tickCounter starts at 0 at startup/restart, and increments
 		for each tick issued.
 	*/
-	case class OnTick(val drift: Long, val tickCounter: Long) extends GameEvent
+	case class OnTick(val drift: Long, val tickCounter: Long, val tickInterval: Long) extends GameEvent
 }
 
 /**
@@ -31,9 +31,9 @@ object Imp extends Plugin {
 
 	private var lastTickAt = 0L
 
-	private val tickEnabled = Kobold.config.getBoolean("tickEnabled")
-	private val tickInterval = 1000
-	private val tickDriftWarn = Kobold.config.getLong("tickDriftWarn")
+	private def tickEnabled = Kobold.config.getBoolean("tickEnabled")
+	private def tickInterval = Kobold.config.getLong("tickInterval")
+	private def tickDriftWarn = Kobold.config.getLong("tickDriftWarn")
 
 	def listen(event: Event) = event match {
 		case OnStartup() => {
@@ -56,7 +56,7 @@ object Imp extends Plugin {
 		case OnModuleHB() =>
 			G purgeCache
 
-		case OnTick(_, lastTick) => {
+		case OnTick(_, lastTick, _) => {
 			val timerDrift = System.currentTimeMillis - lastTickAt - tickInterval
 			lastTickAt = System.currentTimeMillis
 
@@ -66,7 +66,7 @@ object Imp extends Plugin {
 			log.trace("tick, drift " + timerDrift)
 
 			if (tickEnabled)
-				Module() after (tickInterval, EventSource send OnTick(timerDrift, lastTick + 1))
+				Module() after (tickInterval, EventSource send OnTick(timerDrift, lastTick + 1, tickInterval))
 		}
 
 		case RawEvent(o, e) => {
@@ -76,7 +76,7 @@ object Imp extends Plugin {
 			if (tickEnabled && (System.currentTimeMillis - lastTickAt) > (tickInterval + 5000)) {
 				log.warn("lost tick timer, restarting.")
 				lastTickAt = System.currentTimeMillis
-				Module() after (tickInterval, EventSource send OnTick(0, 0))
+				Module() after (tickInterval, EventSource send OnTick(0, 0, tickInterval))
 			}
 
 			Module().ll("koboldLastEventAt") = System.currentTimeMillis

@@ -135,10 +135,21 @@ object Footsteps extends Plugin {
 		p.alive
 
 
+	private var lastRanAt = 0L
+	// Run every ms seconds at most.
+	private def every(ms: Long): Boolean = {
+		val n = System.currentTimeMillis
+		if (n - lastRanAt >= ms) {
+			lastRanAt = n
+			true
+		} else
+			false
+	}
+
 	def listen(event: Event) = event match {
 
 
-		case OnTick(_, tick) => {
+		case OnTick(_, tick, tickIntv) => if (every(650)) {
 			if (config.getInt("cleanupTick") > 0 && tick % config.getInt("cleanupTick") == 0) {
 				for (area <- PlayerCreature.all() filter (_.area().valid()) map (_.area()) removeDuplicates)
 					for (footstep <- area.all(ObjectType.Placeable, classOf[Footstep]))

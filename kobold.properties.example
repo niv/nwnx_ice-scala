@@ -29,6 +29,9 @@ eventAllTimeWarnThreshold=2000
 tickEnabled=true
 # Emit warnings if a tick is at least this many ms late.
 tickDriftWarn=1000
+# Global timer tick interval. 500 is usually fine. Some plugins may
+# break if they depend on a specific tick interval being used.
+tickInterval=500
 
 # A list of all plugins to load. Load order is importance - events
 # will be distributed from top to bottom, and will not propagate
