@@ -32,7 +32,12 @@ object Funcs extends Core("FUNCS") {
 	def groundHeightAt(where: Location): Float = where.area match {
 		case NoArea => 0.0f
 		case _ => setGet(where.area, "GETGROUNDHEIGHT",
-			List(where.x, where.y, where.z).mkString("¬") + "                     ").toFloat
+			List(where.x, where.y, where.z).mkString("¬") + " " * 12).toFloat
+	}
+
+	def walkable(where: Location): Boolean = where.area match {
+		case NoArea => false
+		case _ => setGet(where.area, "GETISWALKABLE", vectorToString(where.position) + " " * 12) == "1"
 	}
 }
 
