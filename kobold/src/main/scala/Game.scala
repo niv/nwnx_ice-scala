@@ -12,7 +12,7 @@ package es.elv.kobold {
 		}
 
 		def after(delay: Long, what: => Unit) {
-			R delay (this, delay / 1000, what)
+			R delay (this, delay.toFloat / 1000, what)
 		}
 
 		def clearActions: Unit = clearActions(true)
@@ -21,7 +21,7 @@ package es.elv.kobold {
 		}
 
 		def doWait(msec: Long) = assign {
-			R.proxy.actionWait(msec / 1000)
+			R.proxy.actionWait(msec.toFloat / 1000)
 		}
 
 		def currentAction = R.proxy.getCurrentAction(this)
