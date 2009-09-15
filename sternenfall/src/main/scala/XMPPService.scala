@@ -7,7 +7,7 @@ import org.jivesoftware.smack
 
 package events {
 	case class XMPPEvent() extends Event
-	case class OnXMPPCommand(val chat: smack.Chat, val command: String, val arguments: List[String]) extends XMPPEvent
+	case class OnXMPPCommand(val chat: smack.Chat, val command: String, val arguments: String) extends XMPPEvent
 }
 
 object XMPPService extends Plugin with smack.MessageListener with smack.ChatManagerListener {
@@ -40,17 +40,17 @@ object XMPPService extends Plugin with smack.MessageListener with smack.ChatMana
 		connection.getChatManager.createChat(jid, this).sendMessage(message)
 
 	/** All registered commands. */
-	val commands: collection.mutable.Map[String, (String, String, (smack.Chat, List[String]) => Unit, List[String])] =
+	val commands: collection.mutable.Map[String, (String, String, (smack.Chat, String) => Unit, List[String])] =
 		collection.mutable.Map()
 
 	/** Register a new XMPP command. Error messages will be passed on to the user,
 		so catch them if you don't want to show them - but you can use this to add
 		checks without much effort (.toInt will throw the Exceptions traight back at the user ..)
 	*/
-	def registerCommand(command: String, shortHelp: String, longHelp: String, body: (smack.Chat, List[String]) => Unit, aliases: String*) =
+	def registerCommand(command: String, shortHelp: String, longHelp: String, body: (smack.Chat, String) => Unit, aliases: String*) =
 		commands(command) = ((shortHelp, longHelp, body, aliases.toList))
 
-	private def getCommand(command: String): Option[(smack.Chat, List[String]) => Unit] =
+	private def getCommand(command: String): Option[(smack.Chat, String) => Unit] =
 		if (commands.contains(command))
 			Some(commands(command)._3)
 		else
@@ -67,9 +67,10 @@ object XMPPService extends Plugin with smack.MessageListener with smack.ChatMana
 		val text = m.getBody
 		if (null == text) return
 
-		val (command, arguments) = text.split(" +").toList match {
-			case x :: xs => (x, xs)
-			case x => (x(0), List())
+		val (command, arguments) = text.split(" +", 2).toList match {
+			case x :: Nil => (x, "")
+			case x :: xs => (x, xs(0))
+			case Nil => ("", "")
 		}
 
 		try {
