@@ -111,7 +111,7 @@ object Footsteps extends Plugin {
 
 			case x :: xs => // existing, do nothing.
 
-			case _ => Footstep(p.location() move (_ + Vector(0, 0, 0.01f))) match {
+			case _ => Footstep(p.location() face (_ + 180) move (_ + Vector(0, 0, 0.01f))) match {
 
 				case pl: Footstep => {
 					pl.owner() = p
