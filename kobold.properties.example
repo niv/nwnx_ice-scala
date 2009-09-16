@@ -37,6 +37,10 @@ tickInterval=500
 # will be distributed from top to bottom, and will not propagate
 # further if stopped by a plugin.
 
+# A comma-separated list of event names that are ignored and simply
+# answered with ClientResult.Continue.
+ignoreEvents=
+
 # The nwnx namespace contains NWNX extensions for common plugins.
 # Load them before any other plugins. Core functionality does
 # not depend on them, but plugins usually do.

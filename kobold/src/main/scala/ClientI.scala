@@ -123,27 +123,35 @@ package es.elv.kobold {
 
 			handleScheduled
 
-			val ret: ClientResult = try {
-				rawEventHandled = false
-				val e: Event = EventSource send events.RawEvent(self, ev)
-				if (!rawEventHandled)
-					log.warn("Unhandled event received: %s (on %08x)".format(ev, self.id))
-				if (e.stopped)
-					ClientResult.Stop
-				else
-					ClientResult.Continue
+			val ret = if (Kobold.config.getStringArray("ignoreEvents") contains ev) {
+				log.debug("%08x  (ignored)   - %s".format(self.id, ev))
+				ClientResult.Continue
 
-			} catch {
-				case p => {
-					log.error("while distributing event: " + ev + " on " + self.id, p)
-					System.exit(1)
-					ClientResult.Error
+			} else {
+				val ret: ClientResult = try {
+					rawEventHandled = false
+					val e: Event = EventSource send events.RawEvent(self, ev)
+					if (!rawEventHandled)
+						log.warn("Unhandled event received: %s (on %08x)".format(ev, self.id))
+					if (e.stopped)
+						ClientResult.Stop
+					else
+						ClientResult.Continue
+
+				} catch {
+					case p => {
+						log.error("while distributing event: " + ev + " on " + self.id, p)
+						System.exit(1)
+						ClientResult.Error
+					}
 				}
+
+				val instr: Long = p.getInstructionCount()
+
+				log.debug("%08x %4d %4d ms - %s".format(self.id, instr, System.currentTimeMillis - start, ev))
+
+				ret
 			}
-
-			val instr: Long = p.getInstructionCount()
-
-			log.debug("%08x %4d %4d ms - %s".format(self.id, instr, System.currentTimeMillis - start, ev))
 
 			contextDepth -= 1
 			ret
