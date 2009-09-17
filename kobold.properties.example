@@ -52,6 +52,7 @@ kobold.plugins=es.elv.kobold.nwnx.DMActions
 # that do not depend on NWNX, but merely repackage existing
 # information in a more accessible format.
 kobold.plugins=es.elv.kobold.ext.ChatListener
+kobold.plugins=es.elv.kobold.ext.NPCEquipEvents
 
 # Load your custom plugins at the end.
 kobold.plugins=es.elv.kobold.Greeter

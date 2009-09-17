@@ -65,8 +65,11 @@ package es.elv.kobold {
 	trait Equipped extends ActionQueue {
 		this: G =>
 
-		def getEquipped: NWCreatureEquipped = R.proxy.allEquipped(this)
-		def isEquipped(item: Item) = getEquipped.all contains item
+		/** A List[Item] of all equipped Items. */
+		val equipped = P(() => R.proxy.allEquipped(this).all map(G[Item](_)) toList)
+
+		/** Retrieve the Item/Invalid contained in the given slot. */
+		def itemInSlot(slot: InventorySlot) = G[G](R.proxy.getItemInSlot(slot, this))
 
 		def equipItem(item: Item, slot: InventorySlot) = assign {
 			R.proxy.actionEquipItem(item, slot)
