@@ -14,8 +14,14 @@ package es.elv.kobold {
 	}
 
 	abstract class GFactory[K <: G](val objectType: ObjectType) extends GSelector[K] {
-		protected def create(resref: String, where: Location, useAnimation: Boolean, newTag: String) =
-			G[G](R.proxy.createObject(objectType, resref, where, useAnimation, newTag))
+		protected def create(resref: String, where: Location, useAnimation: Boolean, newTag: String) = {
+			val r = G[G](R.proxy.createObject(objectType, resref, where, useAnimation, newTag))
+			if (r.valid()) {
+				r.ll("koboldCreatedAt") = System.currentTimeMillis
+				postCreate(r.asInstanceOf[K])
+			}
+			r
+		}
 
 		def apply(resref: String, where: Location): G =
 			apply(resref, where, false, "")
@@ -23,6 +29,9 @@ package es.elv.kobold {
 			apply(resref, where, useAnimation, "")
 		def apply(resref: String, where: Location, useAnimation: Boolean, newTag: String): G =
 			create(resref, where, useAnimation, newTag)
+
+		/** Override this for post-creation hook. Note that this will not fire if instanciation fails. */
+		protected def postCreate(o: K) {}
 	}
 
 	abstract class GRefFactory[K <: G](objectType: ObjectType, val resref: String)
@@ -328,6 +337,8 @@ package es.elv.kobold {
 
 		val objCreatedAt = System.currentTimeMillis
 		def objAge = System.currentTimeMillis - objCreatedAt
+
+		lazy val koboldCreatedAt = ll("koboldCreatedAt")
 
 		val objectType = P(Indef, () => R.proxy.getObjectType(this))
 
