@@ -76,7 +76,7 @@ object Kobold {
 
 		log.debug("ICE endpoint listening at: " + endpoint)
 
-		val plugins = config.getStringArray("kobold.plugins")
+		val plugins = config.getStringArray("plugins")
 		val pclasses = plugins.map(p =>
 			Class.forName(p + "$").getField("MODULE$").get(null).asInstanceOf[Plugin]
 		)

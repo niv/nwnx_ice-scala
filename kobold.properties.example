@@ -7,7 +7,7 @@ ice.properties = ThreadPool.Client.Size=2, Ice.ThreadPool.Client.SizeMax=15, \
 
 # Specify the path to your complete 2da file collection here.
 # This is needed by the TwoDA class.
-kobold.twoda_path=./2da/
+twoda_path=./2da/
 
 # Invalidate cached objects that went invalid after this many ms.
 G.invalidateInvalidAfter=120000
@@ -44,15 +44,15 @@ ignoreEvents=
 # The nwnx namespace contains NWNX extensions for common plugins.
 # Load them before any other plugins. Core functionality does
 # not depend on them, but plugins usually do.
-kobold.plugins=es.elv.kobold.nwnx.Chat
-kobold.plugins=es.elv.kobold.nwnx.Events
-kobold.plugins=es.elv.kobold.nwnx.DMActions
+plugins=es.elv.kobold.nwnx.Chat
+plugins=es.elv.kobold.nwnx.Events
+plugins=es.elv.kobold.nwnx.DMActions
 
 # The ext namespace contains plugins that send out custom events
 # that do not depend on NWNX, but merely repackage existing
 # information in a more accessible format.
-kobold.plugins=es.elv.kobold.ext.ChatListener
-kobold.plugins=es.elv.kobold.ext.NPCEquipEvents
+plugins=es.elv.kobold.ext.ChatListener
+plugins=es.elv.kobold.ext.NPCEquipEvents
 
 # Load your custom plugins at the end.
-kobold.plugins=es.elv.kobold.Greeter
+plugins=es.elv.kobold.Greeter

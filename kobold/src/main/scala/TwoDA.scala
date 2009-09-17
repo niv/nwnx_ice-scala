@@ -8,7 +8,7 @@ package es.elv.kobold {
 	object TwoDA {
 		private val log = Kobold.logger()
 
-		private val twodaPath = new java.io.File(Kobold.config.getString("kobold.twoda_path"))
+		private val twodaPath = new java.io.File(Kobold.config.getString("twoda_path"))
 
 		class TwoDAParser extends JavaTokenParsers {
 			private val log = Kobold.logger()
