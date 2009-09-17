@@ -50,7 +50,7 @@ object Imp extends Plugin {
 
 		case OnModuleLoad() => {
 			log.info("Clearing cache.")
-			G.getCache.clear
+			G clearCache
 		}
 
 		case OnModuleHB() =>
@@ -80,16 +80,11 @@ object Imp extends Plugin {
 			}
 
 			Module().ll("koboldLastEventAt") = System.currentTimeMillis
-			G.getCache.foreach((k) =>
-				k._2.clearCachedPropertiesByPolicy(cachedproperty.CachePolicy.Event)
-			)
+			G clearCachedProperties cachedproperty.CachePolicy.Event
 		}
 		
-		case TokenEvent(o, e) => {
-			G.getCache.foreach((k) =>
-				k._2.clearCachedPropertiesByPolicy(cachedproperty.CachePolicy.Event)
-			)
-		}
+		case TokenEvent(o, e) =>
+			G clearCachedProperties cachedproperty.CachePolicy.Event
 
 		case x =>
 	}

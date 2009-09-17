@@ -2,6 +2,14 @@ package es.elv.kobold {
 	import NWN._
 	import Implicits._
 
+	package events {
+		/** Sent out whenever a GameObject gets added to the cache. */
+		case class OnCached(o: G) extends Event
+
+		/** Sent out whenever a GameObject gets invalidated in the cache. */
+		case class OnInvalidated(o: G) extends Event
+	}
+
 	abstract class GSelector[K <: G] {
 	}
 
@@ -213,6 +221,13 @@ package es.elv.kobold {
 
 		registerObjectClass((o, v, t, r, ta) => if (t == ObjectType.InvalidObject) Some(new Invalid(o)) else None)
 
+		/** Invalidate a GameObject and send out an event saying so. */
+		private def invalidate(l: Long) = if (cache.contains(l)) {
+			val o = cache(l)
+			events.EventSource send events.OnInvalidated(o)
+			cache -= l
+		}
+
 		/**
 			Purge the whole cache, removing invalid objects.
 			This is a potentially expensive operation.
@@ -220,7 +235,16 @@ package es.elv.kobold {
 		*/
 		def purgeCache = for ((l,g) <- cache)
 			if (g.objAge > invalidationTime && !g.valid())
-				cache -= l
+				invalidate(l)
+
+		/**
+			Unconditionally clears out the whole cache.
+		*/
+		def clearCache = for ((l,g) <- cache)
+			invalidate(l)
+
+		def clearCachedProperties(p: cachedproperty.CachePolicy.CachePolicy) =
+			cache.foreach((k) => k._2.clearCachedPropertiesByPolicy(p))
 
 		def apply[K <: G](n: Long): K =
 			apply[K](new NWObject(n))
@@ -228,7 +252,7 @@ package es.elv.kobold {
 		def apply[K <: G](o: NWObject): K = {
 			if (cache.contains(o.id) && cache(o.id).objAge > invalidationTime
 					&& !cache(o.id).valid())
-				cache -= o.id
+				invalidate(o.id)
 
 			if (!cache.contains(o.id)) {
 				val valid = R.proxy.getIsObjectValid(o)
@@ -264,8 +288,10 @@ package es.elv.kobold {
 				kk.resref setNoUpdate resRef
 				kk.tag setNoUpdate tag
 
-				if (kk.cacheClassInstances)
+				if (kk.cacheClassInstances) {
+					events.EventSource send events.OnCached(kk)
 					cache(o.id) = kk
+				}
 
 				kk.asInstanceOf[K]
 			} else {
