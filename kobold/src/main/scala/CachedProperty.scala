@@ -10,43 +10,47 @@ package es.elv.kobold.cachedproperty {
 	}
 
 	import CachePolicy.CachePolicy
+	
+	trait Cacheable {
+		var cachePolicy = CachePolicy.Event
 
-	class CachedProperty[T] (val cachePolicy: CachePolicy, getter: () => T) {
+		def clear()
+	}
+
+	class CachedProperty[T] (getter: () => T) extends Cacheable {
 		protected var value: Option[T] = None
 
 		/** Set this CachedPropertys value without calling a getter/setter. */
-		def setNoUpdate(v: T): Unit =
-			value = Some(v)
+		def setNoUpdate(v: T){ value = Some(v) }
+
+		def clear() { value = None }
 
 		def apply() = cachePolicy match {
 			case CachePolicy.None => getter()
 			case _ => {
 				if (value.isEmpty)
-					value = Some(getter())
+					setNoUpdate(getter())
 				value.get
 			}
 		}
-
-		def clear() { value = None }
 
 		override def toString() = "CachedProperty(" + cachePolicy + ", " + apply().toString + ")"
 	}
 
 	class RWCachedProperty[T] (
-		policy: CachePolicy,
 		getter: () => T,
 		setter: (T) => Unit
-	) extends CachedProperty[T](policy, getter) {
+	) extends CachedProperty[T](getter) {
 		def update(what: T) {
 			setter(what)
-			value = Some(what)
+			setNoUpdate(what)
 		}
 
 		override def toString() = "RWCachedProperty(" + cachePolicy + ", " + apply().toString + ")"
 	}
 
 	trait CachedProperties {
-		private var cachedProperties: List[CachedProperty[_]] = List()
+		private var cachedProperties: List[Cacheable] = List()
 
 		protected object P {
 
@@ -54,24 +58,30 @@ package es.elv.kobold.cachedproperty {
 				apply(CachePolicy.Event, getter)
 			def apply[T](getter: () => T, setter: (T) => Unit): RWCachedProperty[T] =
 				apply(CachePolicy.Event, getter, setter)
-
 			def apply[T](policy: CachePolicy, getter: () => T) = {
-				val v = new CachedProperty[T](policy, getter)
+				val v = new CachedProperty[T](getter)
+				v.cachePolicy = policy
 				cachedProperties = v :: cachedProperties
 				v
 			}
 			def apply[T](policy: CachePolicy, getter: () => T, setter: (T) => Unit) = {
-				val v = new RWCachedProperty[T](policy, getter, setter)
+				val v = new RWCachedProperty[T](getter, setter)
+				v.cachePolicy = policy
 				cachedProperties = v :: cachedProperties
 				v
+			}
+
+			/** Register a Cacheable to be handled. Returns p for easy assignment. */
+			def apply[T <: Cacheable](p: T): T = {
+				cachedProperties = p :: cachedProperties
+				p
 			}
 
 		}
 
 		final private[kobold] def clearCachedPropertiesByPolicy(p: CachePolicy) {
-			for (field <- cachedProperties)
-				if (field.cachePolicy == p)
-					field.clear()
+			for (field <- cachedProperties if field.cachePolicy == p)
+				field.clear()
 		}
 	}
 }

@@ -363,14 +363,14 @@ package es.elv.kobold {
 		def destroy(delay: Float): Unit =
 			R.proxy.destroyObject(this, delay)
 
-		lazy val ls   = new LocalStringMap(this)
-		lazy val li   = new LocalIntMap(this)
-		lazy val ll   = new LocalLongMap(this)
-		lazy val lb   = new LocalBoolMap(this)
-		lazy val lo   = new LocalObjectMap(this)
-		lazy val lf   = new LocalFloatMap(this)
-		lazy val lv   = new LocalVectorMap(this)
-		lazy val llo  = new LocalLocationMap(this)
+		val ls   = P(new LocalStringMap(this))
+		val li   = P(new LocalIntMap(this))
+		val ll   = P(new LocalLongMap(this))
+		val lb   = P(new LocalBoolMap(this))
+		val lo   = P(new LocalObjectMap(this))
+		val lf   = P(new LocalFloatMap(this))
+		val lv   = P(new LocalVectorMap(this))
+		val llo  = P(new LocalLocationMap(this))
 
 		protected def toStringProperties = List(if (valid()) "valid" else "invalid", "ref=" + resref(), "tag=" + tag())
 		override def toString = getClass.getName.toString + "(" + (wrapped.id.toHexString :: "name=" + name() :: toStringProperties).mkString(",") + ")"

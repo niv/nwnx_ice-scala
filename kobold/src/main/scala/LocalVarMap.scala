@@ -2,10 +2,28 @@ package es.elv.kobold
 import es.elv.kobold.Implicits._
 
 abstract class LocalVarMap[T](parent: G, getter: (String) => T,
-		setter: (String, T) => Unit, deleter: (String) => Unit) {
-	def apply(key: String): T = getter(key)
-	def update(key: String, value: T) = setter(key, value)
-	def -=(key: String) = deleter(key)
+		setter: (String, T) => Unit, deleter: (String) => Unit)
+				extends cachedproperty.Cacheable {
+
+	def apply(key: String): T = {
+		if (!cache.contains(key))
+			cache(key) = getter(key)
+		cache(key)
+	}
+	def update(key: String, value: T) {
+		cache(key) = value
+		setter(key, value)
+	}
+	def -=(key: String) {
+		if (cache.contains(key))
+			cache -= key
+		deleter(key)
+	}
+
+	private val cache: collection.mutable.Map[String, T] =
+		collection.mutable.Map()
+
+	override def clear() = cache.clear
 }
 
 class LocalStringMap(parent: G) extends LocalVarMap[String](parent,
