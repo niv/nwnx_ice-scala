@@ -38,6 +38,7 @@ package es.elv.kobold.events {
 		}
 
 		def send(e: Event): Event = {
+			log.debug(e.toString)
 			val aa = System.currentTimeMillis
 			for (o <- observers) {
 				try {
