@@ -80,10 +80,10 @@ object Imp extends Plugin {
 			}
 
 			Module().ll("koboldLastEventAt") = System.currentTimeMillis
-			G clearCachedProperties cachedproperty.CachePolicy.Event
 		}
 		
-		case TokenEvent(o, e) =>
+		// Clear all caches before processing further events.
+		case OnNWNContext(o, _) =>
 			G clearCachedProperties cachedproperty.CachePolicy.Event
 
 		case x =>

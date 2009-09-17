@@ -7,8 +7,14 @@ package es.elv.kobold {
 	import events._
 
 	package events {
+		/**
+			Sent out whenever NWN context is acquired. Try not to use this for running
+			NWN-depending code, use R.schedule() instead, which optimises scheduling as to
+			not produce any lag.
+		*/
+		final case class OnNWNContext(val self: NWObject, val contextDepth: Int) extends Event
+
 		final case class RawEvent(val self: NWObject, val event: String) extends Event
-		final case class TokenEvent(val self: NWObject, val token: Long) extends Event
 	}
 
 	object R extends _ClientDisp {
@@ -82,13 +88,13 @@ package es.elv.kobold {
 
 			contextDepth += 1
 
+			EventSource send events.OnNWNContext(self, contextDepth)
+
 			val start = System.currentTimeMillis
 
 			val token = tk.toLong
 
 			handleScheduled
-
-			EventSource send events.TokenEvent(self, token)
 
 			if (storedTokens.contains(token)) {
 				try { storedTokens(token)() } catch {
@@ -118,6 +124,8 @@ package es.elv.kobold {
 			cachedProxy = p
 
 			contextDepth += 1
+
+			EventSource send events.OnNWNContext(self, contextDepth)
 
 			val start = System.currentTimeMillis
 
