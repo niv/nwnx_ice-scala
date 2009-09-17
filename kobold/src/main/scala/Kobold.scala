@@ -9,11 +9,18 @@ abstract class Persistable[T] extends NWN.Persistable
 trait Plugin extends Observer {
 	lazy protected val log = Kobold.logger()
 
+	/**
+		The default config name of this plugin. override to change, but not recommended.
+		Defaults to "fully.qualified.class.Name.properties".
+	*/
 	private val configName = getClass.getName.toString.replace("$", "") +
 		".properties"
 
-	lazy protected val config = {
-		val c = new org.apache.commons.configuration.PropertiesConfiguration(configName)
+	lazy protected val config = getConfig(configName)
+
+	/** Get a configuration object with the given name. */
+	protected def getConfig(name: String) = {
+		val c = new org.apache.commons.configuration.PropertiesConfiguration(name)
 		c.setThrowExceptionOnMissing(true)
 		if (Kobold.config.getBoolean("reloadConfigOnChange", true))
 			c.setReloadingStrategy(new org.apache.commons.configuration.reloading.FileChangedReloadingStrategy)
