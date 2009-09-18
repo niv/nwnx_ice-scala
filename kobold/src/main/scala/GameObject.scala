@@ -325,6 +325,14 @@ package es.elv.kobold {
 		def allByTag(tag: String): List[G] =
 			R.proxy.allByTag(tag).map(G(_)).toList
 
+		/**
+			Returns all objects with the given tag of the given klass.
+		*/
+		def allByTag[K <: G](tag: String, klass: Class[K]): List[K] =
+			R.proxy.allByTag(tag).map(x => G[G](x)).
+				filter(x => klass.isAssignableFrom(x.getClass)).
+				map(x => x.asInstanceOf[K]).toList
+
 	}
 
 	abstract case class G private[kobold] (wrapped: NWObject) extends cachedproperty.CachedProperties with ActionQueue {
