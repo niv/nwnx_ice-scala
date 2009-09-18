@@ -51,13 +51,14 @@ package es.elv.kobold.cachedproperty {
 
 	trait CachedProperties {
 		private var cachedProperties: List[Cacheable] = List()
+		protected var defaultCachePolicy = CachePolicy.Event
 
 		protected object P {
 
 			def apply[T](getter: () => T): CachedProperty[T] =
-				apply(CachePolicy.Event, getter)
+				apply(defaultCachePolicy, getter)
 			def apply[T](getter: () => T, setter: (T) => Unit): RWCachedProperty[T] =
-				apply(CachePolicy.Event, getter, setter)
+				apply(defaultCachePolicy, getter, setter)
 			def apply[T](policy: CachePolicy, getter: () => T) = {
 				val v = new CachedProperty[T](getter)
 				v.cachePolicy = policy

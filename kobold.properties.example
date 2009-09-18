@@ -12,6 +12,15 @@ twoda_path=./2da/
 # Invalidate cached objects that went invalid after this many ms.
 G.invalidateInvalidAfter=120000
 
+# The default caching policy, unless explicitly specified for events.
+# Valid values:
+#   none: never cache anything
+#   event: cache values per-event (recommended, default)
+#   indef: cache values until explicitly invalidated
+# Do not set 'indef' unless you know no other script will ever change
+# values. Even then, things might break with hard-to-reproduce bugs.
+G.defaultCachePolicy=event
+
 # Reload configuration files when they have changed. Depending on
 # the plugin and variable, changes may or may not take effect.
 reloadConfigOnChange=true

@@ -339,6 +339,12 @@ package es.elv.kobold {
 		import cachedproperty.CachePolicy._
 		import cachedproperty._
 
+		defaultCachePolicy = Kobold.config.getString("G.defaultCachePolicy") match {
+			case "indef" => cachedproperty.CachePolicy.Indef
+			case "event" => cachedproperty.CachePolicy.Event
+			case "none" => cachedproperty.CachePolicy.None
+		}
+
 		/** override this to false in your custom classes to prevent Kobold from caching
 			them. Usually not needed. */
 		val cacheClassInstances = true
