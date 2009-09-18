@@ -10,6 +10,8 @@ package es.elv.kobold {
 
 		ensureObjectType(ObjectType.Creature)
 
+		val racialType = P(() => R.proxy.getRacialType(this))
+
 		val commandable = P(() => R.proxy.getCommandable(this), (is: Boolean) => R.proxy.setCommandable(is, this))
 		val lootable = P(() => R.proxy.getLootable(this), (is: Boolean) => R.proxy.setLootable(this, is))
 
