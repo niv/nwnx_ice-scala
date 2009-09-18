@@ -74,5 +74,8 @@ package es.elv.kobold {
 		/** Gets this location adjusted to ground height. */
 		def atGroundHeight =
 			Location(area, Vector(position.x, position.y, nwnx.Funcs.groundHeightAt(this)), facing)
+
+		/** Returns true if this location has a walkable walkmesh. */
+		def walkable = nwnx.Funcs.walkable(this)
 	}
 }
