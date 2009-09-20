@@ -92,15 +92,15 @@ trait Position {
 trait Movement extends Position with ActionQueue {
 	this: G =>
 
-	def walk(to: Location) = assign { R.proxy.actionMoveToLocation(to, false) }
-	def run(to: Location) = assign { R.proxy.actionMoveToLocation(to, true) }
-	def randomWalk(to: Location) = assign { R.proxy.actionRandomWalk }
-	def walkFrom(from: G, range: Float) =
+	def doWalk(to: Location) = assign { R.proxy.actionMoveToLocation(to, false) }
+	def doRun(to: Location) = assign { R.proxy.actionMoveToLocation(to, true) }
+	def doRandomWalk(to: Location) = assign { R.proxy.actionRandomWalk }
+	def doWalkFrom(from: G, range: Float) =
 		assign { R.proxy.actionMoveAwayFromObject(from, false, range) }
-	def runFrom(from: G, range: Float) =
+	def doRunFrom(from: G, range: Float) =
 		assign { R.proxy.actionMoveAwayFromObject(from, true, range) }
 
-	def follow(toFollow: G, followDistance: Float) = assign {
+	def doFollow(toFollow: G, followDistance: Float) = assign {
 		R.proxy.actionForceFollowObject(toFollow, followDistance)
 	}
 }

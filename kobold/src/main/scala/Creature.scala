@@ -43,7 +43,9 @@ abstract class Creature(wrapped: NWObject) extends G(wrapped)
 	def floatingText(text: String, broadcastToFaction: Boolean) =
 		R.proxy.floatingTextStringOnCreature(text, this, broadcastToFaction)
 
-	def sit(on: Placeable) = assign { R.proxy.actionSit(on) }
+	def doSit(on: Placeable) = assign { R.proxy.actionSit(on) }
+	def doPickUpItem(item: Item) = assign { R.proxy.actionPickUpItem(item) }
+	def doPutDownItem(item: Item) = assign { R.proxy.actionPutDownItem(item) }
 
 	val appearance = P(() => R.proxy.getAppearanceType(this), (id: Int) => R.proxy.setCreatureAppearanceType(this, id))
 	val phenoType = P(() => R.proxy.getPhenoType(this), (id: PhenoType) => R.proxy.setPhenoType(id, this))
