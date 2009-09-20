@@ -3,36 +3,6 @@ import NWN._
 import Implicits._
 import events._
 
-
-trait ActionQueue {
-	this: G =>
-
-	def assign(what: => Unit) {
-		R assign (this, what)
-	}
-
-	def after(delay: Long, what: => Unit) {
-		R delay (this, delay.toFloat / 1000, what)
-	}
-
-	def clearActions: Unit = clearActions(true)
-	def clearActions(combatToo: Boolean) = assign {
-		R.proxy.clearAllActions(combatToo)
-	}
-
-	def doWait(msec: Long) = assign {
-		R.proxy.actionWait(msec.toFloat / 1000)
-	}
-
-	def currentAction = R.proxy.getCurrentAction(this)
-	def idle = !busy
-	def busy = currentAction != Action.InvalidAction
-
-	def doLock(what: G with Lock) = assign {
-		R.proxy.actionLockObject(what)
-	}
-}
-
 trait Language extends ActionQueue {
 	this: G =>
 
