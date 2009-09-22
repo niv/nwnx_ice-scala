@@ -19,15 +19,11 @@ trait Language extends ActionQueue {
 trait Inventory extends ActionQueue {
 	this: G =>
 
-	def hasInventory = R.proxy.allInInventory(this)
-	def allInInventory: List[Item] = R.proxy.allInInventory(this).toList.map(G[Item](_))
+	/** A List[Item] of all items in this objects' inventory. */
+	def inventory: List[Item] = R.proxy.allInInventory(this).toList.map(G[Item](_))
 
-	def createItem(resref: String,  stacksize: Int): Item = {
-		require(stacksize > 0)
-		G[Item](R.proxy.createItemOnObject(resref, this, stacksize, ""))
-	}
-
-	def giveItem(item: Item, to: G with Inventory) = assign {
+	/** Give an item to someone else with an inventory. */
+	def doGiveItem(item: Item, to: G with Inventory) = assign {
 		R.proxy.actionGiveItem(item, to)
 	}
 }
