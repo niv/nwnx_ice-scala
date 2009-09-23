@@ -22,7 +22,7 @@ object DM extends cachedproperty.CachedProperties {
 	def byName(name: String) = all().find(_.name().toLowerCase == name.toLowerCase)
 }
 
-abstract class PlayerCreature (wrapped: NWObject) extends Creature(wrapped) {
+abstract class PlayerCreature (wrapped: NWObject) extends Creature(wrapped) with PCFactionMember {
 	import cachedproperty.CachePolicy._
 
 	val age = P(Indef, () => R.proxy.getAge(this))
