@@ -65,11 +65,15 @@ object Kobold {
 		LoggerFactory.getLogger(className)
 	}
 
-	def loadPlugin(p: Plugin) {
-		EventSource register p
-		plugins = p :: plugins
-		p.onLoad
-	}
+	def loadPlugin(p: String): Unit =
+		loadPlugin(Class.forName(p + "$").getField("MODULE$").get(null).asInstanceOf[Plugin])
+
+	def loadPlugin(p: Plugin): Unit =
+		if (!plugins.contains(p)) {
+			EventSource register p
+			plugins = p :: plugins
+			p.onLoad
+		}
 
 	def unloadPlugin(p: Plugin) {
 		p.onUnload
@@ -84,9 +88,11 @@ object Kobold {
 		log.debug("ICE endpoint listening at: " + endpoint)
 
 		val plugins = config.getStringArray("plugins")
-		val pclasses = plugins.map(p =>
-			Class.forName(p + "$").getField("MODULE$").get(null).asInstanceOf[Plugin]
-		)
+
+		log.info("Loading all plugins ..")
+		Kobold loadPlugin CoreEvents
+		Kobold loadPlugin Imp
+		plugins.foreach(Kobold loadPlugin _)
 
 		val iceprop = config.getProperties("ice.properties")
 		val ic: Ice.Communicator = Ice.Util.initialize
@@ -106,10 +112,6 @@ object Kobold {
 
 		adapter.add(obj, ic.stringToIdentity("Client"))
 
-		log.info("Loading all plugins ..")
-		Kobold loadPlugin CoreEvents
-		Kobold loadPlugin Imp
-		pclasses.foreach(Kobold loadPlugin _)
 		log.info("Starting up.")
 		adapter.activate()
 	}
