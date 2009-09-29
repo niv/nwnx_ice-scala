@@ -135,44 +135,29 @@ object Footsteps extends Plugin {
 		p.alive
 
 
-	private var lastRanAt = 0L
-	// Run every ms seconds at most.
-	private def every(ms: Long): Boolean = {
-		val n = System.currentTimeMillis
-		if (n - lastRanAt >= ms) {
-			lastRanAt = n
-			true
-		} else
-			false
-	}
+	Schedule every (config.getLong("footstepsEvery"), {
+		val players = PlayerCreature.all() filter (p => p.area().valid() && doesFootsteps(p))
+		val npcs: List[NPC] = if (config.getBoolean("handleAllNPCsInArea"))
+			players.flatMap(p =>
+				p.area().all(ObjectType.Creature, classOf[NPC]))
+		else
+			players.flatMap(p =>
+				p.near(config.getFloat("handleNPCsWithinOfPlayer"), NWN.ObjectType.Creature, classOf[NPC]))
 
-	def listen(event: Event) = event match {
+		val selectedNPCs = npcs.removeDuplicates.
+			filter(n => n.area().valid() && doesFootsteps(n)).
+			take(config.getInt("areaCreaturesLimit"))
 
+		for (p <- players) doFootsteps(p)
+		for (p <- selectedNPCs) doFootsteps(p)
+	})
 
-		case OnTick(_, tick, tickIntv) => if (every(650)) {
-			if (config.getInt("cleanupTick") > 0 && tick % config.getInt("cleanupTick") == 0) {
-				for (area <- PlayerCreature.all() filter (_.area().valid()) map (_.area()) removeDuplicates)
-					for (footstep <- area.all(ObjectType.Placeable, classOf[Footstep]))
-						if (System.currentTimeMillis > footstep.expectedDeath())
-							footstep.destroy
-			}
+	Schedule every (config.getLong("cleanupEvery"), {
+		for (area <- PlayerCreature.all() filter (_.area().valid()) map (_.area()) removeDuplicates)
+			for (footstep <- area.all(ObjectType.Placeable, classOf[Footstep]))
+				if (System.currentTimeMillis > footstep.expectedDeath())
+					footstep.destroy
+	})
 
-			val players = PlayerCreature.all() filter (p => p.area().valid() && doesFootsteps(p))
-			val npcs: List[NPC] = if (config.getBoolean("handleAllNPCsInArea"))
-				players.flatMap(p =>
-					p.area().all(ObjectType.Creature, classOf[NPC]))
-			else
-				players.flatMap(p =>
-					p.near(config.getFloat("handleNPCsWithinOfPlayer"), NWN.ObjectType.Creature, classOf[NPC]))
-
-			val selectedNPCs = npcs.removeDuplicates.
-				filter(n => n.area().valid() && doesFootsteps(n)).
-				take(config.getInt("areaCreaturesLimit"))
-
-			for (p <- players) doFootsteps(p)
-			for (p <- selectedNPCs) doFootsteps(p)
-		}
-
-		case _ =>
-	}
+	def listen(e: Event) {}
 }
