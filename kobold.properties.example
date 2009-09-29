@@ -62,6 +62,7 @@ plugins=es.elv.kobold.nwnx.DMActions
 # information in a more accessible format.
 plugins=es.elv.kobold.ext.ChatListener
 plugins=es.elv.kobold.ext.NPCEquipEvents
+plugins=es.elv.kobold.ext.IdleState
 
 # Load your custom plugins at the end.
 plugins=es.elv.kobold.Greeter
