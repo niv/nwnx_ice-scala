@@ -25,6 +25,8 @@ class Footstep(wrapped: NWObject) extends Placeable(wrapped) {
 object Footsteps extends Plugin {
 	import SurfaceType._
 
+	depend(ext.IdleState)
+
 	G registerCustomClass ((n, v, o, r, ta) => if (o == ObjectType.Placeable && ta == "footsteps")
 		Some(new Footstep(n)) else None
 	)
@@ -96,16 +98,8 @@ object Footsteps extends Plugin {
 		if (tracklessSurfaces.contains(surface))
 			return
 
-		val lastLoc = p.llo("footstepLastLoc")
-		if (p.location() == lastLoc) {
-			val standStill = p.li("footstepStandingStill")
-			if (p.li("footstepStandingStill") > ticksStandingStill)
-				return
-			p.li("footstepStandingStill") = standStill + 1
-		} else
-			p.li("footstepStandingStill") = 0
-
-		p.llo("footstepLastLoc") = p.location()
+		if (ext.IdleState.immobileFor(p) > 3000)
+			return
 
 		p.near(minimumDistance, NWN.ObjectType.Placeable, classOf[Footstep]) filter (pla => pla.owner() == p) match {
 
