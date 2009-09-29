@@ -30,6 +30,9 @@ trait Plugin extends Observer {
 	def onLoad {}
 	def onUnload {}
 
+	protected def depend(p: Plugin) = Kobold.loadPlugin(p)
+	protected def depend(p: String) = Kobold.loadPlugin(p)
+
 	private lazy val persistKey = "__" + this.getClass.getName.toString + "_"
 
 	def retrieve[T](key: String, constructor: => Persistable[T]): T = {
