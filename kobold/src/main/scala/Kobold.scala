@@ -94,6 +94,7 @@ object Kobold {
 
 		log.info("Loading all plugins ..")
 		Kobold loadPlugin CoreEvents
+		Kobold loadPlugin Schedule
 		Kobold loadPlugin Imp
 		plugins.foreach(Kobold loadPlugin _)
 
