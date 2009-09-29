@@ -2,7 +2,7 @@ package es.elv.kobold.log
 
 import org.apache.log4j
 
-class IngameAppender extends log4j.AppenderSkeleton {
+class IngameAppender extends log4j.AppenderSkeleton with Configurable {
 	override def requiresLayout = true
 	override def close() {}
 
@@ -13,15 +13,13 @@ class IngameAppender extends log4j.AppenderSkeleton {
 		if (R.getContextDepth == 0)
 			return
 
-		val col = what.getLevel match {
-			case log4j.Level.FATAL => color.Red
-			case log4j.Level.ERROR => color.Red
-			case log4j.Level.WARN => color.Pink
-			case log4j.Level.INFO => color.Bisque
-			case _ => color.Mistyrose
-		}
-		
-		val text = col.toString + layout.format(what).trim
+		val text = (what.getLevel match {
+			case log4j.Level.FATAL => config.getString("fatal")
+			case log4j.Level.ERROR => config.getString("error")
+			case log4j.Level.WARN => config.getString("warn")
+			case log4j.Level.INFO => config.getString("info")
+			case _ => config.getString("other")
+		}).format(layout.format(what)).trim
 
 		if (toDMChannel)
 			R.proxy.sendMessageToAllDMs(text)
