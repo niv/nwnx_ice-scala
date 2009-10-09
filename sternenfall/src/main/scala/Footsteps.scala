@@ -129,7 +129,7 @@ object Footsteps extends Plugin {
 		p.alive
 
 
-	Schedule every (config.getLong("footstepsEvery"), {
+	Schedule.every(config.getLong("footstepsEvery")) {
 		val players = PlayerCreature.all() filter (p => p.area().valid() && doesFootsteps(p))
 		val npcs: List[NPC] = if (config.getBoolean("handleAllNPCsInArea"))
 			players.flatMap(p =>
@@ -144,14 +144,14 @@ object Footsteps extends Plugin {
 
 		for (p <- players) doFootsteps(p)
 		for (p <- selectedNPCs) doFootsteps(p)
-	})
+	}
 
-	Schedule every (config.getLong("cleanupEvery"), {
+	Schedule.every(config.getLong("cleanupEvery")) {
 		for (area <- PlayerCreature.all() filter (_.area().valid()) map (_.area()) removeDuplicates)
 			for (footstep <- area.all(ObjectType.Placeable, classOf[Footstep]))
 				if (System.currentTimeMillis > footstep.expectedDeath())
 					footstep.destroy
-	})
+	}
 
 	def listen(e: Event) {}
 }

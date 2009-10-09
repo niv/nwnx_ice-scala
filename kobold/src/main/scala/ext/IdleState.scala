@@ -53,9 +53,9 @@ object IdleState extends Plugin {
 		else if (p.busy) resetIdle(p)
 	}
 
-	Schedule every (playerCreatureInterval, {
+	Schedule.every (playerCreatureInterval) {
 		for (p <- PlayerCreature.all()) checkHB(p)
-	})
+	}
 
 	def listen(event: Event) = event match {
 		case OnInvalidated(g: Creature) => {

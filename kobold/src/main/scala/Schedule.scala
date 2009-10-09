@@ -20,7 +20,7 @@ object Schedule extends Plugin {
 		if nwscript context is available.
 		Call Schedule.stop to prevent further scheduling.
 	*/
-	def every(ms: Long, what: => Unit) =
+	def every(ms: Long)(what: => Unit) =
 		schedList = SchedEv(ms, None, 0, () => {what}) :: schedList
 
 	/**
@@ -28,7 +28,7 @@ object Schedule extends Plugin {
 		ms milliseconds, up to count times.
 		Call Schedule.stop to prevent further scheduling.
 	*/
-	def every(ms: Long, count: Long, what: => Unit) =
+	def every(ms: Long, count: Long)(what: => Unit) =
 		schedList = SchedEv(ms, Some(count), 0, () => {what}) :: schedList
 
 	/**
