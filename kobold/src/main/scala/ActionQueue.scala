@@ -23,7 +23,7 @@ trait ActionQueue {
 		objects' context after delay milliseconds.
 		Roughly equivalent to DelayCommand()
 	*/
-	def after(delay: Long, what: => Unit) {
+	def after(delay: Long)(what: => Unit) {
 		R delay (this, delay.toFloat / 1000, what)
 	}
 

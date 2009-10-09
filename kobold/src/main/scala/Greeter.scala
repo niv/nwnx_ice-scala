@@ -4,7 +4,7 @@ import events._
 object Greeter extends Plugin {
 	def listen(event: Event) = event match {
 		case OnPlayerEnter(p: Creature) => {
-			p after(18000, {
+			p.after(18000) {
 				p floatingText config.getString("greetingText")
 
 				p message config.getString("versionText").format(
@@ -13,7 +13,7 @@ object Greeter extends Plugin {
 					" " + System.getProperty("os.arch") +
 					", scalac " + util.Properties.versionString + ")"
 				)
-			})
+			}
 		}
 
 		case _ =>

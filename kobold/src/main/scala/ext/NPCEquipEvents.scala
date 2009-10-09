@@ -42,7 +42,7 @@ object NPCEquipEvents extends Plugin {
 
 		case OnCreatureSpawn(o: NPC) => if (!currentlyEquipped.contains(o)) {
 				currentlyEquipped(o) = List()
-				o after (1000, checkDiff(o))
+				o.after(1000) { checkDiff(o) }
 			} else
 				log.error("Spawn event for creature already in cache: " + o)
 

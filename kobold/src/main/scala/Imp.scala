@@ -66,7 +66,7 @@ object Imp extends Plugin {
 			log.trace("tick, drift " + timerDrift)
 
 			if (tickEnabled)
-				Module() after (tickInterval, EventSource send OnTick(timerDrift, lastTick + 1, tickInterval))
+				Module().after(tickInterval) { EventSource send OnTick(timerDrift, lastTick + 1, tickInterval) }
 		}
 
 		case RawEvent(o, e) => {
@@ -76,7 +76,7 @@ object Imp extends Plugin {
 			if (tickEnabled && (System.currentTimeMillis - lastTickAt) > (tickInterval + 5000)) {
 				log.warn("lost tick timer, restarting.")
 				lastTickAt = System.currentTimeMillis
-				Module() after (tickInterval, EventSource send OnTick(0, 0, tickInterval))
+				Module().after(tickInterval) { EventSource send OnTick(0, 0, tickInterval) }
 			}
 
 			Module().ll("koboldLastEventAt") = System.currentTimeMillis

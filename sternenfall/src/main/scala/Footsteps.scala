@@ -114,7 +114,7 @@ object Footsteps extends Plugin {
 					if (p.stealthMode())
 						timeout = (timeout.toFloat / 1.5f).toInt
 					pl.expectedDeath() = System.currentTimeMillis + timeout
-					pl after (timeout, pl.destroy)
+					pl.after(timeout) { pl.destroy }
 				}
 
 				case _ => log.warn("Cannot create footstep.")
