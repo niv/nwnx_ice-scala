@@ -15,7 +15,8 @@ package events {
 	case class OnCreatureUseSkill(val creature: G, val skill: Int, val target: G, val targetLocation: Location) extends GameEvent
 	case class OnCreatureUseFeat(val creature: G, val feat: Int, val target: G, val targetLocation: Location) extends GameEvent
 	case class OnCreatureToggleMode(val creature: G, val mode: ActionMode, val desiredState: Boolean) extends GameEvent
-	case class OnCreatureCastSpell(val caster: G, val spell: Int, val target: G, val targetLocation: Location) extends GameEvent
+	case class OnCreatureCastSpell(val caster: G, val target: G, val targetLocation: Location,
+		val spell: Int, metaMagic: MetaMagic, instantCast: Boolean) extends GameEvent
 	case class OnTogglePause(player: G) extends GameEvent
 	case class OnCreaturePossessFamiliar(creature: G) extends GameEvent
 }
@@ -54,7 +55,8 @@ object Events extends Core("EVENTS") with Plugin {
 					case 8 => EventSource send new OnCreatureUseFeat(self, nwnxSubType, G(nwnxTarget), nwnxLocation)
 					case 9 => EventSource send new OnCreatureToggleMode(self,
 						ActionMode.convert(nwnxSubType), !R.proxy.getActionMode(self, ActionMode.convert(nwnxSubType)))
-					case 10 => EventSource send new OnCreatureCastSpell(self, nwnxSubType, G(nwnxTarget), nwnxLocation)
+					case 10 => EventSource send new OnCreatureCastSpell(self, G(nwnxTarget), nwnxLocation, nwnxSubType & 0xffff,
+						MetaMagic.convert(nwnxSubType >> 16 & 0xff), (nwnxSubType >> 27 * 0x0f) > 0)
 					case 11 => EventSource send new OnTogglePause(self)
 					case 12 => EventSource send new OnCreaturePossessFamiliar(self)
 					case _ => log.error("Unhandled nwnx_event: " + nwnxType)
