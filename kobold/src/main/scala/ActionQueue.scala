@@ -32,6 +32,7 @@ trait ActionQueue {
 
 	/** Clear the action queue on this object. */
 	def clearActions(combatToo: Boolean) = assign {
+		currentAction.clear
 		R.proxy.clearAllActions(combatToo)
 	}
 
@@ -41,7 +42,7 @@ trait ActionQueue {
 	}
 
 	/** Returns the current Action this object is busy with. */
-	def currentAction = R.proxy.getCurrentAction(this)
+	val currentAction = P(() => R.proxy.getCurrentAction(this))
 
 	/** Alias for !busy */
 	def idle = !busy
