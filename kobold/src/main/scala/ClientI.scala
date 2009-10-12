@@ -14,7 +14,9 @@ package events {
 	*/
 	final case class OnNWNContext(val self: NWObject, val contextDepth: Int) extends Event
 
-	final case class RawEvent(val self: NWObject, val event: String) extends Event
+	final case class RawEvent(val self: NWObject, val event: String) extends Event {
+		override val profile = false
+	}
 }
 
 object R extends _ClientDisp {

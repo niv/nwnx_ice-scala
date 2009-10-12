@@ -9,6 +9,9 @@ trait Event {
 	/** override this to false to disable event stopping. */
 	val stoppable = true
 
+	/** override this to false to stop profiling this event in EventSource. */
+	val profile = true
+
 	private var _stopped = false
 	def stop() = synchronized { if (stoppable)
 			_stopped = true
@@ -45,7 +48,7 @@ object EventSource {
 				val a = System.currentTimeMillis
 				o listen e
 				val b = System.currentTimeMillis
-				if (eventTimeWarnThreshold > 0 &&  b - a > eventTimeWarnThreshold)
+				if (e.profile && eventTimeWarnThreshold > 0 &&  b - a > eventTimeWarnThreshold)
 					log.warn(o + " took " + (b-a) + " for " + e)
 			} catch {
 				case p => {
@@ -55,7 +58,7 @@ object EventSource {
 			}
 		}
 		val bb = System.currentTimeMillis
-		if (eventAllTimeWarnThreshold > 0 &&  bb - aa > eventAllTimeWarnThreshold)
+		if (e.profile && eventAllTimeWarnThreshold > 0 &&  bb - aa > eventAllTimeWarnThreshold)
 			log.warn((bb-aa) + " for " + e)
 
 		e
