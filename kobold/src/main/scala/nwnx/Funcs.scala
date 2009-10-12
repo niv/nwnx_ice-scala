@@ -39,6 +39,11 @@ object Funcs extends Core("FUNCS") {
 		case NoArea => false
 		case _ => setGet(where.area, "GETISWALKABLE", vectorToString(where.position) + " " * 12) == "1"
 	}
-}
 
+	def getFactionId(o: Creature): Int =
+		setGet(o, "GETFACTIONID", " " * 8).toInt
+
+	def setFactionId(o: Creature, factionId: Int): Unit =
+		setGet(o, "SETFACTIONID", factionId + " " * 8)
+}
 }

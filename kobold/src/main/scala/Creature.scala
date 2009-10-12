@@ -6,7 +6,7 @@ object Creature extends GFactory[Creature](ObjectType.Creature)
 
 abstract class Creature(wrapped: NWObject) extends G(wrapped)
 		with Movement with Language with Inventory with Equipped with Effects
-		with VisualEffects with SpellCasting {
+		with VisualEffects with SpellCasting with FactionMember {
 
 	ensureObjectType(ObjectType.Creature)
 
