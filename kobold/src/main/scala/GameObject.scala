@@ -59,6 +59,7 @@ object G {
 		collection.mutable.Map()
 
 	private val invalidationTime = Kobold.config.getLong("G.invalidateInvalidAfter")
+	private val invalidationOneshotTime = Kobold.config.getLong("G.invalidateOneshotAfter")
 
 	def getCache = cache
 
@@ -86,14 +87,18 @@ object G {
 		cache -= l
 	}
 
+	/** Internal helper for cache invalidation. */
+	private def invalidateConditional(l: Long) = if (cache.contains(l))
+		if ((cache(l).cacheCount < 2 && cache(l).objAge > invalidationOneshotTime) ||
+			(cache(l).objAge > invalidationTime && !cache(l).valid()))
+				invalidate(l)
+
 	/**
 		Purge the whole cache, removing invalid objects.
 		This is a potentially expensive operation.
 		Not needed for normal usage.
 	*/
-	def purgeCache = for ((l,g) <- cache)
-		if (g.objAge > invalidationTime && !g.valid())
-			invalidate(l)
+	def purgeCache = for ((l,g) <- cache) invalidateConditional(l)
 
 	/**
 		Unconditionally clears out the whole cache.
@@ -108,11 +113,9 @@ object G {
 		apply[K](new NWObject(n))
 
 	def apply[K <: G](o: NWObject): K = {
-		if (cache.contains(o.id) && cache(o.id).objAge > invalidationTime
-				&& !cache(o.id).valid())
-			invalidate(o.id)
+		invalidateConditional(o.id)
 
-		if (!cache.contains(o.id)) {
+		val x = if (!cache.contains(o.id)) {
 			val valid = R.proxy.getIsObjectValid(o)
 			val objectType = R.proxy.getObjectType(o)
 			val resRef = R.proxy.getResRef(o)
@@ -155,6 +158,9 @@ object G {
 		} else {
 			cache(o.id).asInstanceOf[K]
 		}
+
+		x.cacheCount += 1
+		x
 	}
 
 	/**
@@ -197,6 +203,10 @@ abstract case class G private[kobold] (wrapped: NWObject) extends cachedproperty
 	/** override this to false in your custom classes to prevent Kobold from caching
 		them. Usually not needed. */
 	val cacheClassInstances = true
+
+	/** The number of times this instance had been accessed through the cache (Usually in events,
+		thus representing the usage). */
+	private[kobold] var cacheCount = 0
 
 	val objCreatedAt = System.currentTimeMillis
 	def objAge = System.currentTimeMillis - objCreatedAt

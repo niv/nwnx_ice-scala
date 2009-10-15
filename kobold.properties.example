@@ -12,6 +12,9 @@ twoda_path=./2da/
 # Invalidate cached objects that went invalid after this many ms.
 G.invalidateInvalidAfter=120000
 
+# Invalidate cached objects that were accessed only once after this many ms.
+G.invalidateOneshotAfter=240000
+
 # The default caching policy, unless explicitly specified for events.
 # Valid values:
 #   none: never cache anything
