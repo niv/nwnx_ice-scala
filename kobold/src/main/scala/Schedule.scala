@@ -15,6 +15,8 @@ object Schedule extends Plugin {
 
 	private var schedList: List[SchedEv] = List()
 
+	val driftWarn = Kobold.config.getLong("Schedule.driftWarn")
+
 	/**
 		Execute the given code block roughly every ms milliseconds,
 		if nwscript context is available.
@@ -42,7 +44,11 @@ object Schedule extends Plugin {
 			val n = System.currentTimeMillis
 
 			val (runnables, nonrunnables) = schedList partition (x => n >= (x.last + x.ms))
-			val reassign = runnables map (run =>
+			val reassign = runnables map (run => {
+				val diff = (run.last + run.ms) - n
+				if (driftWarn > 0 && diff > driftWarn)
+					log.warn("scheduled event drift by " + diff)
+
 				try {
 					run.code()
 
@@ -58,7 +64,7 @@ object Schedule extends Plugin {
 						None
 					}
 				}
-			) filter (x => x.isDefined) map (x => x.get)
+			}) filter (x => x.isDefined) map (x => x.get)
 
 			schedList = reassign ::: nonrunnables
 		}

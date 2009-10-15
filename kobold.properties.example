@@ -24,6 +24,9 @@ G.invalidateOneshotAfter=240000
 # values. Even then, things might break with hard-to-reproduce bugs.
 G.defaultCachePolicy=event
 
+# Warn if scheduled events drift for this many ms off-target.
+Schedule.driftWarn=250
+
 # Reload configuration files when they have changed. Depending on
 # the plugin and variable, changes may or may not take effect.
 reloadConfigOnChange=true
