@@ -16,6 +16,7 @@ public enum MetaMagic implements java.io.Serializable
     NoneMeta,
     EmpowerMeta,
     ExtendMeta,
+    InvalidMeta,
     MaximizeMeta,
     QuickenMeta,
     SilentMeta,
@@ -25,16 +26,17 @@ public enum MetaMagic implements java.io.Serializable
     public static final int _NoneMeta = 0;
     public static final int _EmpowerMeta = 1;
     public static final int _ExtendMeta = 2;
-    public static final int _MaximizeMeta = 3;
-    public static final int _QuickenMeta = 4;
-    public static final int _SilentMeta = 5;
-    public static final int _StillMeta = 6;
-    public static final int _AnyMeta = 7;
+    public static final int _InvalidMeta = 3;
+    public static final int _MaximizeMeta = 4;
+    public static final int _QuickenMeta = 5;
+    public static final int _SilentMeta = 6;
+    public static final int _StillMeta = 7;
+    public static final int _AnyMeta = 8;
 
     public static MetaMagic
     convert(int val)
     {
-        assert val >= 0 && val < 8;
+        assert val >= 0 && val < 9;
         return values()[val];
     }
 
@@ -66,7 +68,7 @@ public enum MetaMagic implements java.io.Serializable
     public static MetaMagic
     __read(IceInternal.BasicStream __is)
     {
-        int __v = __is.readByte(8);
+        int __v = __is.readByte(9);
         return MetaMagic.convert(__v);
     }
 }
