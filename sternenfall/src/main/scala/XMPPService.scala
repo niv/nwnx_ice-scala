@@ -13,6 +13,8 @@ package events {
 object XMPPService extends Plugin with smack.MessageListener with smack.ChatManagerListener {
 	def listen(event: Event) {}
 
+	private val charset = config.getString("charset", "ISO-8859-15")
+
 	private val connectionConfiguration = new smack.ConnectionConfiguration(
 		config.getString("host"), config.getInt("port"), config.getString("service"))
 	if (!config.getBoolean("useTLS"))
@@ -37,7 +39,9 @@ object XMPPService extends Plugin with smack.MessageListener with smack.ChatMana
 
 	/** Send a message to a jid, with or without resource. */
 	def sendMessage(jid: String, message: String) =
-		connection.getChatManager.createChat(jid, this).sendMessage(message)
+		connection.getChatManager.createChat(jid, this).
+			sendMessage(new String(message.getBytes(charset), charset)
+		)
 
 	/** All registered commands. */
 	val commands: collection.mutable.Map[String, (String, String, (smack.Chat, String) => Unit, List[String])] =
