@@ -81,8 +81,7 @@ object XMPPService extends Plugin with smack.MessageListener with smack.ChatMana
 			if (!(EventSource send(events.OnXMPPCommand(c, command, arguments))).stopped)
 				getCommand(command) match {
 					case Some(what) => what(c, arguments)
-					case None => if (-1 == jid.toLowerCase.indexOf(config.getString("jid").toLowerCase))
-						c sendMessage config.getString("unhandledCommandMessage")
+					case None =>
 				}
 		} catch {
 			case p => {
