@@ -64,14 +64,14 @@ object RegisterNotify extends Plugin {
 	XMPPService.registerCommand("register", config.getString("help.register"), "", (c, a) => {
 		val jid = c.getParticipant.split("/")(0)
 		val n = (jid :: db.getStringArray("notify.players").toList).filter(_.trim != "").removeDuplicates
-		db.setProperty("notify.players", n.toArray)
+		db.setProperty("notify.players", n.mkString(","))
 		c sendMessage config.getString("msg.registered").format(jid)
 	})
 
 	XMPPService.registerCommand("unregister", config.getString("help.unregister"), "", (c, a) => {
 		val jid = c.getParticipant.split("/")(0)
 		val n = (db.getStringArray("notify.players").toList - jid).filter(_.trim != "").removeDuplicates
-		db.setProperty("notify.players", n.toArray)
+		db.setProperty("notify.players", n.mkString(","))
 		c sendMessage config.getString("msg.unregistered").format(jid)
 	})
 
